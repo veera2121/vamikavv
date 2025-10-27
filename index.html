@@ -2638,38 +2638,57 @@ header .header-content h1 {
       <img src="images/Induction Stove.webp" alt="Sofa 2">
       <p>Induction Stove</p>
     </div>
-    <div class="slide-item">
-      <img src="images/sof3.jpg" alt="Sofa 3">
-      <p>Sofa 3</p>
+     <div class="slide-item">
+      <img src="images/Mixer Grinder.webp" alt="Sofa 1">
+      <p>Mixer Grinder</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof4.jpg" alt="Sofa 4">
-      <p>Sofa 4</p>
+      <img src="images/Wet Grinder.webp" alt="Sofa 2">
+      <p>Wet Grinder</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof5.jpg" alt="Sofa 5">
-      <p>Sofa 5</p>
+      <img src="images/Pressure Cooker.webp" alt="Sofa 3">
+      <p>Pressure Cooker</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof6.jpg" alt="Sofa 6">
-      <p>Sofa 6</p>
+      <img src="images/Electric Cooker.webp" alt="Sofa 4">
+      <p>Electric Cooker</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof7.jpg" alt="Sofa 7">
-      <p>Sofa 7</p>
+      <img src="images/Electric Kettle.webp" alt="Sofa 5">
+      <p>Electric Kettle</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof8.jpg" alt="Sofa 8">
-      <p>Sofa 8</p>
+      <img src="images/Gas Stove.webp" alt="Sofa 6">
+      <p>Gas Stove</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof9.jpg" alt="Sofa 9">
-      <p>Sofa 9</p>
+      <img src="images/Gas Stove1.webp" alt="Sofa 7">
+      <p>3 Burner Gas Stove</p>
     </div>
     <div class="slide-item">
-      <img src="images/sof10.jpg" alt="Sofa 10">
-      <p>Sofa 10</p>
+      <img src="images/Gas Stove2.webp" alt="Sofa 8">
+      <p>4 Burner Gas Stove</p>
     </div>
+    <div class="slide-item">
+      <img src="images/microwave oven.webp" alt="Sofa 9">
+      <p>Microwave oven</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Water Purifier.webp" alt="Sofa 10">
+      <p>Water Purifier</p>
+    </div>
+
+    <!-- Repeat same images for continuous scroll -->
+    <div class="slide-item">
+      <img src="images/Chimney.webp" alt="Sofa 1">
+      <p>Chimney</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Induction Stove.webp" alt="Sofa 2">
+      <p>Induction Stove</p>
+    </div>
+    
   </div>
 </div>
 
@@ -3964,7 +3983,8 @@ async function loadReviews() {
     let starsHTML = "";
     for (let i = 0; i < 5; i++) {
       starsHTML += `<span style="color:${i < r.rating ? '#ffb703' : '#ccc'};">★</span>`;
-    }
+    }git push --set-upstream origin main
+
 
     list.innerHTML += `
       <div class="review-card">

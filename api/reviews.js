@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const uri = "mongodb+srv://vamika:<vamika12>@cluster0reviewsdb.dowupq4.mongodb.net/";
+const uri = "mongodb+srv://vamika:vamika12@cluster0reviewsdb.dowupq4.mongodb.net/";
 const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
@@ -24,5 +24,5 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ message: "Server Error", error });
   } 
-  
+
 }

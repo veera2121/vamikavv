@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Sri Sai Ganesh Homeneeds and Fornitures</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      color: white;
+    }
+
+    /* Background video */
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      filter: brightness(0.65);
+    }
+
+    /* Blur overlay to hide prices */
+    .blur-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3), transparent);
+      z-index: 5;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Shop name container */
+    .shop-name {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      text-transform: uppercase;
+      animation: fadeIn 2.5s ease forwards;
+    }
+
+    .shop-name h1,
+    .shop-name h2,
+    .shop-name h3 {
+      margin: 0;
+      line-height: 1.2;
+      color: #fff;
+      text-shadow: 0 0 20px #b993d6, 0 0 30px #8ca6db;
+      animation: glow 4s ease-in-out infinite alternate;
+    }
+
+    .shop-name h1 {
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      animation-delay: 0.3s;
+    }
+
+    .shop-name h2 {
+      font-size: 1.5rem;
+      margin-top: 8px;
+      color: #f3eaff;
+      animation-delay: 0.6s;
+    }
+
+    .shop-name h3 {
+      font-size: 2.2rem;
+      margin-top: 8px;
+      animation-delay: 0.9s;
+    }
+
+    /* Glow animation */
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 8px #b993d6,
+          0 0 16px #8ca6db,
+          0 0 24px #b993d6;
+      }
+      to {
+        text-shadow:
+          0 0 18px #b993d6,
+          0 0 32px #8ca6db,
+          0 0 48px #b993d6;
+      }
+    }
+
+    /* Smooth fade in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    /* Fade overlay for transition */
+    .fade-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(0);
+      transition: opacity 1s ease, transform 1.2s ease;
+      z-index: 100;
+    }
+
+    .fade-overlay.active {
+      opacity: 1;
+      transform: translateY(-100%);
+    } 
+   
+    @media (max-width: 768px) {
+      .shop-name {
+        top: 16%;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0 25px;
+        text-shadow:
+          0 0 6px rgba(255, 255, 255, 0.8),
+          0 0 15px rgba(255, 255, 255, 0.5);
+      }
+
+      video {
+        object-position: center;
+        filter: brightness(0.7);
+      }
+      
+    .shop-name h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      animation-delay: 0.3s;
+    }
+
+    .shop-name h2 {
+      font-size: 1rem;
+      margin-top: 8px;
+      color: #f3eaff;
+      animation-delay: 0.6s;
+    }
+
+    .shop-name h3 {
+      font-size: 1.2rem;
+      margin-top: 8px;
+      animation-delay: 0.9s;
+    }
+    }
+
+    @media (max-width: 480px) {
+      .shop-name {
+        top: 18%;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video id="bg-video" autoplay muted playsinline>
+    <source src="https://cdn.dribbble.com/userupload/28003388/file/original-362c3298a2a0d9abd0850028317e6645.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Blur overlay to hide bottom text -->
+  <div class="blur-bottom"></div>
+
+  <!-- Shop name in upper-middle -->
+  <div class="shop-name">
+    <h1>Sri Sai Ganesh Homeneeds</h1>
+    <h2>and</h2>
+    <h3>Fornitures</h3>
+  </div>
+
+  <!-- Fade overlay -->
+  <div class="fade-overlay" id="fade"></div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const fade = document.getElementById('fade');
+
+      // Smooth fade transition after intro
+      setTimeout(() => {
+        fade.classList.add('active');
+      }, 6800);
+
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 7000);
+    });
+  </script>
+
+</body>
+</html>

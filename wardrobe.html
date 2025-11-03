@@ -15,7 +15,7 @@ header{display:flex;justify-content:space-between;align-items:center;padding:15p
 .brand h1{font-size:1.5rem;font-weight:700;background:linear-gradient(90deg,#a78bfa,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 nav a{margin-left:15px;font-weight:600;color:#333;transition:color 0.3s;}
 nav a:hover{color:#c99b55;}
-h2{text-align:center;font-size:2.2rem;margin-top:30px;font-weight:800;background:linear-gradient(90deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+h2{text-align:center;font-size:1.2rem;margin-top:30px;font-weight:800;background:linear-gradient(90deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;margin-top:35px;}
 @media(max-width:768px){.grid{grid-template-columns:repeat(1,1fr);}}
 .card{position:relative;background: rgba(255,255,255,0.25);border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.15);transition: transform 0.4s ease, box-shadow 0.4s ease;backdrop-filter: blur(10px);cursor:pointer;}
@@ -25,8 +25,21 @@ h2{text-align:center;font-size:2.2rem;margin-top:30px;font-weight:800;background
 .title{font-weight:700;font-size:1.1rem;margin-bottom:8px;color:#2e2e2e;}
 .meta{color:#6b6b6b;font-size:0.9rem;margin-bottom:10px;}
 .price{font-weight:800;font-size:1.1rem;color:#c99b55;margin-bottom:12px;}
-.btn{background: linear-gradient(90deg,#c99b55,#e0b469);color:#fff;border:none;padding:10px 18px;border-radius:25px;cursor:pointer;font-weight:600;transition: all 0.3s ease;box-shadow:0 4px 10px rgba(224,180,105,0.3);}
-.btn:hover{background:linear-gradient(90deg,#e0b469,#c99b55);transform:scale(1.05);}
+.btn {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
+
 .modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background-color: rgba(0,0,0,0.65);backdrop-filter: blur(6px);justify-content:center;align-items:center;}
 .modal-content{background: rgba(255,255,255,0.95);border-radius:18px;width:90%;max-width:500px;max-height:90vh;padding:20px;color:#333;text-align:left;box-shadow:0 8px 30px rgba(0,0,0,0.25);animation:zoomIn 0.4s ease;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);overflow-y:auto;}
 .modal-content img{width:100%;max-height:250px;object-fit:contain;border-radius:12px;margin-bottom:15px;background:#f0f0f0;display:block;}
@@ -109,18 +122,18 @@ nav a.active {
       <div class="card">
         <img src="images/Iron-Almirah5.jpg" alt="Classic Wooden Wardrobe">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Wardrobe</h4>
-          <div class="meta">Elegant wooden finish with ample storage.</div>
-          <div class="price">₹19,999</div>
+          <h4 class="title"> Designer Dual-Door Iron Almirah with Mirror</h4>
+          <div class="meta">A stylish dual-door iron almirah featuring intricate floral cutwork and a central full-length mirror..</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(1)">View Details</button>
         </div>
       </div>
       <div class="card">
         <img src="images/Iron-Almirah4.jpg" alt="Sliding Door Wardrobe">
         <div class="card-body">
-          <h4 class="title">Sliding Door Wardrobe</h4>
-          <div class="meta">Smooth sliding doors with modern design.</div>
-          <div class="price">₹24,499</div>
+          <h4 class="title">Compact Wooden-Finish Iron Almirah</h4>
+          <div class="meta">This almirah has a sleek wood-textured finish with a central mirror panel and three drawers below.</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(2)">View Details</button>
         </div>
       </div>
@@ -128,9 +141,9 @@ nav a.active {
       <div class="card">
         <img src="images/Iron-Almirah3.jpg" alt="Classic Wooden Wardrobe">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Wardrobe</h4>
-          <div class="meta">Elegant wooden finish with ample storage.</div>
-          <div class="price">₹19,999</div>
+          <h4 class="title">Blue Steel Almirah with Mirror Panel</h4>
+          <div class="meta">A modern two-door steel almirah in a calming blue color, designed with a slim vertical mirror on one side..</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(1)">View Details</button>
         </div>
       </div>
@@ -138,9 +151,9 @@ nav a.active {
       <div class="card">
         <img src="images/Iron-Almirah2.jpg" alt="Classic Wooden Wardrobe">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Wardrobe</h4>
-          <div class="meta">Elegant wooden finish with ample storage.</div>
-          <div class="price">₹19,999</div>
+          <h4 class="title">Industrial Grey Steel Storage Almirah</h4>
+          <div class="meta">Elegant  with ample storage.</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(1)">View Details</button>
         </div>
       </div>
@@ -148,9 +161,9 @@ nav a.active {
       <div class="card">
         <img src="images/Iron-Almirah1.jpg" alt="Classic Wooden Wardrobe">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Wardrobe</h4>
-          <div class="meta">Elegant wooden finish with ample storage.</div>
-          <div class="price">₹19,999</div>
+          <h4 class="title">Blue Dual-Door Steel Almirah with Mirror</h4>
+          <div class="meta">This stylish two-door iron almirah features a smooth blue finish and a full-length mirror for a modern look.</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(1)">View Details</button>
         </div>
       </div>
@@ -158,9 +171,9 @@ nav a.active {
       <div class="card">
         <img src="images/Iron-Almirah.jpg" alt="Classic Wooden Wardrobe">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Wardrobe</h4>
-          <div class="meta">Elegant wooden finish with ample storage.</div>
-          <div class="price">₹19,999</div>
+          <h4 class="title">Elegant Triple-Door Purple Wardrobe</h4>
+          <div class="meta">A vibrant triple-door almirah in a glossy purple finish with a side mirror and decorative white snowflake patterns.</div>
+          <div class="price"></div>
           <button class="btn" onclick="showDetails(1)">View Details</button>
         </div>
       </div>
@@ -175,6 +188,7 @@ nav a.active {
   </div>
 
   <script>
+    /*
     const wardrobes = {
       1: { name:"Classic Wooden Wardrobe", size:"6 ft", model:"CW-101", details:"Elegant wooden finish with ample storage.", image:"Iron-Almirah5.jpg" },
       2: { name:"Sliding Door Wardrobe", size:"7 ft", model:"SD-202", details:"Smooth sliding doors with modern design.", image:"Iron-Almirah4.jpg" },
@@ -182,7 +196,7 @@ nav a.active {
       4: { name:"Sliding Door Wardrobe", size:"7 ft", model:"SD-202", details:"Smooth sliding doors with modern design.", image:"Iron-Almirah2.jpg" },
       5: { name:"Sliding Door Wardrobe", size:"7 ft", model:"SD-202", details:"Smooth sliding doors with modern design.", image:"Iron-Almirah1.jpg" },
       6: { name:"Sliding Door Wardrobe", size:"7 ft", model:"SD-202", details:"Smooth sliding doors with modern design.", image:"Iron-Almirah.jpg" }
-    };
+    };*/
 
     function showDetails(id) {
       const product = wardrobes[id];

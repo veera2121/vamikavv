@@ -56,7 +56,7 @@
     nav a:hover, nav a.active { color:#c99b55; }
 
     h2 {
-      text-align:center;font-size:2.2rem;margin-top:30px;font-weight:800;
+      text-align:center;font-size:.2rem;margin-top:30px;font-weight:800;
       background: linear-gradient(90deg,#a855f7,#f97316);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     }
@@ -85,14 +85,22 @@
     .card-body { padding:18px; text-align:center; }
     .title { font-weight:700;font-size:1.1rem;margin-bottom:8px;color:#2e2e2e; }
     .meta { color:#6b6b6b;font-size:0.9rem;margin-bottom:10px; }
-    .price { font-weight:800;font-size:1.1rem;color:#c99b55;margin-bottom:12px; }
-    .btn {
-      background: linear-gradient(90deg,#c99b55,#e0b469);
-      color:#fff;border:none;padding:10px 18px;border-radius:25px;
-      cursor:pointer;font-weight:600;transition: all 0.3s ease;
-      box-shadow:0 4px 10px rgba(224,180,105,0.3);
-    }
-    .btn:hover { background: linear-gradient(90deg,#e0b469,#c99b55); transform: scale(1.05); }
+    .price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
+   .btn {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
+
 
     /* Modal */
     .modal { display:none; position:fixed; z-index:9999; left:0;top:0;width:100%;height:100%;
@@ -174,59 +182,124 @@
     <h2>Chairs Collection</h2>
     <div class="grid">
       <div class="card">
-        <img src="images/chair1.jpg" alt="Classic Wooden Chair">
+        <img src="images/chair1.webp" alt="Classic Wooden Chair">
         <div class="card-body">
-          <h4 class="title">Classic Wooden Chair</h4>
-          <div class="meta">Sturdy and stylish, perfect for dining rooms.</div>
-          <div class="price">₹4,499</div>
-          <button class="btn" onclick="openModal('images/chair1.jpg','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
+          <h4 class="title">Executive Leather Office Chair</h4>
+          <div class="meta">High-back with thick padding for long-hour comfort.</div>
+          <div class="price">under 8000</div>
+          <button class="btn" onclick="openModal('images/chair1.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
         </div>
       </div>
       <div class="card">
-        <img src="images/chair2.jpg" alt="Ergonomic Office Chair">
+        <img src="images/chair2.webp" alt="Ergonomic Office Chair">
         <div class="card-body">
-          <h4 class="title">Ergonomic Office Chair</h4>
+          <h4 class="title">Executive Leather Office Chair (Black)</h4>
+          <div class="meta">Premium high-back executive chair with plush cushioning.</div>
+          <div class="price">₹6,999</div>
+          <button class="btn" onclick="openModal('images/chair2.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View Details</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/chair13.webp" alt="Modern Lounge Chair">
+        <div class="card-body">
+          <h4 class="title">Hanging Swing Chair</h4>
+          <div class="meta">Rust-proof frame, Weather-resistant, Modern design.</div>
+          <div class="price">₹7,499</div>
+          <button class="btn" onclick="openModal('images/chair13.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+        </div>
+      </div> 
+      <div class="card">
+        <img src="images/chair4.webp" alt="Modern Lounge Chair">
+        <div class="card-body">
+          <h4 class="title">Modern Ergonomic Office Chair (Gray)</h4>
+          <div class="meta">Workstations, computer desks, and conference rooms.</div>
+          <div class="price">₹7,499</div>
+          <button class="btn" onclick="openModal('images/chair4.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+        </div>
+      </div>
+      
+      <div class="card">
+        <img src="images/chair5.webp" alt="Recliner Chair">
+        <div class="card-body">
+          <h4 class="title">Breathable Mesh Ergonomic Office Chair (Black)</h4>
+          <div class="meta">Adjustable headrest and height.</div>
+          <div class="price">₹9,499</div>
+          <button class="btn" onclick="openModal('images/chair5.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View Details</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/chair6.webp" alt="Rattan Chair">
+        <div class="card-body">
+          <h4 class="title">White Executive Office Chair</h4>
+          <div class="meta">Cushioned headrest and lumbar support.</div>
+          <div class="price">₹5,999</div>
+          <button class="btn" onclick="openModal('images/chair6.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View Details</button>
+        </div>
+      </div>
+         <div class="card">
+        <img src="images/chair7.webp" alt="Classic Wooden Chair">
+        <div class="card-body">
+          <h4 class="title">Modern Executive High-Back Office Chair (White)</h4>
+          <div class="meta">Premium PU leather with chrome armrests and base.</div>
+          <div class="price">₹4,499</div>
+          <button class="btn" onclick="openModal('images/chair7.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/chair8.webp" alt="Ergonomic Office Chair">
+        <div class="card-body">
+          <h4 class="title">Premium Leather Executive Chair (Beige)</h4>
           <div class="meta">Comfortable chair with adjustable height and back support.</div>
           <div class="price">₹6,999</div>
-          <button class="btn" onclick="openModal('images/chair2.jpg','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View Details</button>
+          <button class="btn" onclick="openModal('images/chair8.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View Details</button>
         </div>
       </div>
       <div class="card">
-        <img src="images/chair3.jpg" alt="Modern Lounge Chair">
+        <img src="images/chair9.webp" alt="Modern Lounge Chair">
         <div class="card-body">
-          <h4 class="title">Modern Lounge Chair</h4>
-          <div class="meta">Perfect for living rooms or reading corners.</div>
+          <h4 class="title">Fabric Ergonomic Office Chair (Grey)</h4>
+          <div class="meta">A soft, cushioned fabric office chair with mid-back support..</div>
           <div class="price">₹7,499</div>
-          <button class="btn" onclick="openModal('images/chair3.jpg','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+          <button class="btn" onclick="openModal('images/chair9.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
         </div>
       </div>
       <div class="card">
-        <img src="images/officenv.jpg" alt="Plastic Dining Chair">
+        <img src="images/chair10.webp" alt="Plastic Dining Chair">
         <div class="card-body">
-          <h4 class="title">Plastic Dining Chair</h4>
-          <div class="meta">Durable, lightweight, and easy to clean.</div>
+          <h4 class="title">Stackable Plastic Chairs (Green & Maroon)</h4>
+          <div class="meta">Durable, lightweight plastic chairs for multipurpose use..</div>
           <div class="price">₹2,999</div>
-          <button class="btn" onclick="openModal('images/chair4.jpg','Plastic Dining Chair','Durable, lightweight, and easy to clean.')">View Details</button>
+          <button class="btn" onclick="openModal('images/chair10.webp','Plastic Dining Chair','Durable, lightweight, and easy to clean.')">View Details</button>
         </div>
       </div>
       <div class="card">
-        <img src="images/officenv1.jpg" alt="Recliner Chair">
+        <img src="images/chair11.webp" alt="Recliner Chair">
         <div class="card-body">
-          <h4 class="title">Recliner Chair</h4>
-          <div class="meta">Luxury recliner with soft cushions for relaxation.</div>
+          <h4 class="title">Modern Metallic Hanging Egg Chair</h4>
+          <div class="meta">Ideal for balconies, modern living rooms, lounges, or cafes..</div>
           <div class="price">₹9,499</div>
-          <button class="btn" onclick="openModal('images/chair5.jpg','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View Details</button>
+          <button class="btn" onclick="openModal('images/chair11.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View Details</button>
         </div>
       </div>
       <div class="card">
-        <img src="images/officenv3.jpg" alt="Rattan Chair">
+        <img src="images/chair12.webp" alt="Rattan Chair">
         <div class="card-body">
-          <h4 class="title">Rattan Chair</h4>
-          <div class="meta">Handcrafted rattan chair with natural look.</div>
+          <h4 class="title">Hanging Wicker Swing Chair (Pink)</h4>
+          <div class="meta">Perfect for balconies, gardens, living rooms, or patios..</div>
           <div class="price">₹5,999</div>
-          <button class="btn" onclick="openModal('images/chair6.jpg','Rattan Chair','Handcrafted rattan chair with natural look.')">View Details</button>
+          <button class="btn" onclick="openModal('images/chair12.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View Details</button>
+        </div>
+      </div> 
+         <div class="card">
+        <img src="images/chair3.webp" alt="Classic Wooden Chair">
+        <div class="card-body">
+          <h4 class="title">Modern Ergonomic Office Chair</h4>
+          <div class="meta">Suitable for corporate setups, startups, and study rooms..</div>
+          <div class="price">under10000</div>
+          <button class="btn" onclick="openModal('images/chair3.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
         </div>
       </div>
+      
     </div>
   </section>
 

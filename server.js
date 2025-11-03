@@ -1,44 +1,60 @@
-const path = require("path");
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
+import cors from "cors";
+import Review from "./models/review.js";
+
 const app = express();
 const PORT = 3000;
 
-// Static files in public and products
-app.use(express.static("public"));
-app.use("/products", express.static("products"));
+// __dirname fix
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Serve index.html on root
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+
+// MongoDB connection
+mongoose.connect("mongodb://127.0.0.1:27017/furniture_reviews")
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+
+// Routes
+app.post("/api/reviews", async (req, res) => {
+  try {
+    console.log("📩 Incoming Review:", req.body);
+
+    if (!req.body.name || !req.body.rating || !req.body.comment) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const review = new Review(req.body);
+    await review.save();
+
+    res.json({ message: "✅ Review added successfully!" });
+  } catch (err) {
+    console.error("❌ Error saving review:", err);
+    res.status(500).json({ error: "Server error while saving review" });
+  }
+});
+
+app.get("/api/reviews", async (req, res) => {
+  try {
+    const reviews = await Review.find().sort({ date: -1 });
+    res.json(reviews);
+  } catch (err) {
+    console.error("❌ Fetch Error:", err);
+    res.status(500).json({ error: "Failed to load reviews" });
+  }
+});
+
+// Serve Frontend
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Serve 3droom.html from root folder
-app.get("/3droom", (req, res) => {
-  res.sendFile(path.join(__dirname, "3droom.html"));
-});
-
-// API to get images
-app.get("/api/images/:folder", (req, res) => {
-  const folder = req.params.folder;
-  const folderPath = path.join(__dirname, "products", folder);
-
-  if (!fs.existsSync(folderPath)) {
-    return res.status(404).json({ error: "Folder not found" });
-  }
-
-  const files = fs.readdirSync(folderPath);
-  const images = files
-    .filter(file => /\.(png|jpg|jpeg|gif)$/i.test(file))
-    .map(file => `/products/${folder}/${file}`);
-
-  if (images.length === 0) {
-    return res.status(404).json({ error: "No images found in folder" });
-  }
-
-  res.json(images);
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// Start Server
+app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));

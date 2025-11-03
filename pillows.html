@@ -20,20 +20,33 @@
     .brand h1 { font-size:1.5rem; font-weight:700; background: linear-gradient(90deg,#a78bfa,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     nav a { margin-left:15px; font-weight:600; color:#333; transition: color 0.3s ease; }
     nav a:hover { color:#c99b55; }
-    h2 { text-align:center; font-size:2.2rem; margin-top:30px; font-weight:800; background: linear-gradient(90deg,#a855f7,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    h2 { text-align:center; font-size:1.2rem; margin-top:30px; font-weight:800; background: linear-gradient(90deg,#a855f7,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
     .grid { display:grid; grid-template-columns: repeat(4,1fr); gap:25px; margin-top:35px; }
-    @media(max-width:768px){ .grid{ grid-template-columns: repeat(3,1fr); } }
+   
 
     .card { position:relative; background: rgba(255,255,255,0.25); border-radius:18px; overflow:hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.4s ease, box-shadow 0.4s ease; backdrop-filter: blur(10px); cursor:pointer; }
     .card:hover { transform: translateY(-10px) scale(1.02); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-    .card img { width:100%; max-height:250px; object-fit:contain; border-radius:12px; display:block; background:#f0f0f0; margin-bottom:10px; }
+    .card img { width:100%; max-height:150px; object-fit:contain; border-radius:12px; display:block; background:#f0f0f0; margin-bottom:10px; }
     .card-body { padding:18px; text-align:center; }
     .title { font-weight:700; font-size:1.1rem; margin-bottom:8px; color:#2e2e2e; }
     .meta { color:#6b6b6b; font-size:0.9rem; margin-bottom:10px; }
     .price { font-weight:800; font-size:1.1rem; color:#c99b55; margin-bottom:12px; }
-    .btn { background: linear-gradient(90deg,#c99b55,#e0b469); color:#fff; border:none; padding:10px 18px; border-radius:25px; cursor:pointer; font-weight:600; transition: all 0.3s ease; box-shadow:0 4px 10px rgba(224,180,105,0.3); }
-    .btn:hover { background: linear-gradient(90deg,#e0b469,#c99b55); transform: scale(1.05); }
+    .btn {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
+
 
     .modal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.65); backdrop-filter: blur(6px); justify-content:center; align-items:center; }
     .modal-content { background: rgba(255,255,255,0.95); border-radius:18px; width:90%; max-width:500px; max-height:90vh; padding:20px; color:#333; text-align:left; box-shadow:0 8px 30px rgba(0,0,0,0.25); animation: zoomIn 0.4s ease; position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); overflow-y:auto; }
@@ -85,6 +98,50 @@ html {
     background: rgba(255,255,255,0.35);
   }
    }
+/* Responsive grid fix for mobile */
+@media (max-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 10px; /* smaller gap */
+    padding: 10px;
+  }
+
+  .card {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .card-body {
+    padding: 6px;
+  }
+
+  .card .title {
+    font-size: 14px;
+  }
+
+  .card .price {
+    font-size: 13px;
+  }
+
+  .card .btn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
+/* Optional: for very small screens */
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 card per row on very small phones */
+  }
+}
 
   </style>
 </head>
@@ -112,87 +169,179 @@ html {
     <a href="tv.html">TV</a>
   </nav>
 </header>
+<section id="pillows"> 
+  <p style="text-align:center; color:#ff0000; margin-top:20px;">
+  * Prices are not displayed online. Please visit our store for the latest deals and offers.
+</p>
 
-<section id="pillows">
-    <h2>Pillows Collection</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="images/pillow1.jpg" alt="Memory Foam Pillow">
-        <div class="card-body">
-          <h4 class="title">Memory Foam Pillow</h4>
-          <div class="meta">Ergonomic pillow for perfect neck support.</div>
-          <div class="price">₹1,299</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/pillow2.jpg" alt="Gel Pillow">
-        <div class="card-body">
-          <h4 class="title">Gel Pillow</h4>
-          <div class="meta">Cool and soft gel-infused pillow.</div>
-          <div class="price">₹1,499</div>
-          <button class="btn" onclick="showDetails(2)">View Details</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/pillow3.jpg" alt="Feather Pillow">
-        <div class="card-body">
-          <h4 class="title">Feather Pillow</h4>
-          <div class="meta">Soft feather pillow for luxurious sleep.</div>
-          <div class="price">₹1,199</div>
-          <button class="btn" onclick="showDetails(3)">View Details</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/pillow4.jpg" alt="Latex Pillow">
-        <div class="card-body">
-          <h4 class="title">Latex Pillow</h4>
-          <div class="meta">Natural latex pillow for orthopedic support.</div>
-          <div class="price">₹1,699</div>
-          <button class="btn" onclick="showDetails(4)">View Details</button>
-        </div>
-      </div> 
+  <h2>Pillows Collection</h2>
+  <div class="grid">
 
-      <div class="card">
-        <img src="images/pillow5.jpg" alt="Memory Foam Pillow">
-        <div class="card-body">
-          <h4 class="title">Memory Foam Pillow</h4>
-          <div class="meta">Ergonomic pillow for perfect neck support.</div>
-          <div class="price">₹1,299</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
+    <div class="card">
+      <img src="images/p1.webp" alt="Memory Foam Pillow">
+      <div class="card-body">
+        <h4 class="title">Memory Foam Pillow</h4>
+        <div class="meta">Ergonomic pillow for perfect neck support.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(1)"></button>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/pillow6.jpg" alt="Memory Foam Pillow">
-        <div class="card-body">
-          <h4 class="title">Memory Foam Pillow</h4>
-          <div class="meta">Ergonomic pillow for perfect neck support.</div>
-          <div class="price">₹1,299</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
+    <div class="card">
+      <img src="images/p2.webp" alt="Gel Pillow">
+      <div class="card-body">
+        <h4 class="title">Gel Pillow</h4>
+        <div class="meta">Cool and soft gel-infused pillow.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(2)"></button>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/pillow7.jpg" alt="Memory Foam Pillow">
-        <div class="card-body">
-          <h4 class="title">Memory Foam Pillow</h4>
-          <div class="meta">Ergonomic pillow for perfect neck support.</div>
-          <div class="price">₹1,299</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
+    <div class="card">
+      <img src="images/p3.webp" alt="Feather Pillow">
+      <div class="card-body">
+        <h4 class="title">Feather Pillow</h4>
+        <div class="meta">Soft feather pillow for luxurious sleep.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(3)"></button>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/pillow8.jpg" alt="Memory Foam Pillow">
-        <div class="card-body">
-          <h4 class="title">Memory Foam Pillow</h4>
-          <div class="meta">Ergonomic pillow for perfect neck support.</div>
-          <div class="price">₹1,299</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
+    <div class="card">
+      <img src="images/p4.webp" alt="Latex Pillow">
+      <div class="card-body">
+        <h4 class="title">Latex Pillow</h4>
+        <div class="meta">Natural latex pillow for orthopedic support.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(4)"></button>
       </div>
-    </section>
+    </div>
+
+    <div class="card">
+      <img src="images/p5.webp" alt="Soft Pillow">
+      <div class="card-body">
+        <h4 class="title">Soft Pillow</h4>
+        <div class="meta">Super-soft comfort with high-quality material.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(5)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p6.webp" alt="Cooling Pillow">
+      <div class="card-body">
+        <h4 class="title">Cooling Pillow</h4>
+        <div class="meta">Keeps your head cool and relaxed all night.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(6)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p7.webp" alt="Luxury Pillow">
+      <div class="card-body">
+        <h4 class="title">Luxury Pillow</h4>
+        <div class="meta">Premium pillow with soft-touch cover.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(7)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p8.webp" alt="Travel Pillow">
+      <div class="card-body">
+        <h4 class="title">Travel Pillow</h4>
+        <div class="meta">Compact and comfortable for travel use.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(8)"></button>
+      </div>
+    </div>
+  
+
+       <div class="card">
+      <img src="images/p9.webp" alt="Orthopedic Pillow">
+      <div class="card-body">
+        <h4 class="title">Orthopedic Pillow</h4>
+        <div class="meta">Supports spinal alignment and reduces neck pain.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(9)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p10.webp" alt="Contour Pillow">
+      <div class="card-body">
+        <h4 class="title">Contour Pillow</h4>
+        <div class="meta">Contours naturally to your head and neck shape.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(10)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p11.webp" alt="Microfiber Pillow">
+      <div class="card-body">
+        <h4 class="title">Microfiber Pillow</h4>
+        <div class="meta">Soft and hypoallergenic microfiber filling.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(11)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p12.webp" alt="Dual Comfort Pillow">
+      <div class="card-body">
+        <h4 class="title">Dual Comfort Pillow</h4>
+        <div class="meta">Two comfort sides for custom sleep experience.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(12)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p13.webp" alt="Organic Cotton Pillow">
+      <div class="card-body">
+        <h4 class="title">Organic Cotton Pillow</h4>
+        <div class="meta">Made from 100% organic cotton cover and filling.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(13)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p14.webp" alt="Aloe Vera Pillow">
+      <div class="card-body">
+        <h4 class="title">Aloe Vera Pillow</h4>
+        <div class="meta">Infused with Aloe Vera for a soothing sleep.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(14)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p15.webp" alt="Silk Touch Pillow">
+      <div class="card-body">
+        <h4 class="title">Silk Touch Pillow</h4>
+        <div class="meta">Smooth silk-touch cover with soft inner filling.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(15)"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/p16.webp" alt="Kids Pillow">
+      <div class="card-body">
+        <h4 class="title">Kids Pillow</h4>
+        <div class="meta">Cute and safe pillow designed for children.</div>
+        <div class="price"></div>
+        <button class="btn" onclick="showDetails(16)"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   
      
 
     <!-- Modal -->
@@ -204,17 +353,30 @@ html {
 
 
   <script>
-    const pillows = {
-      1: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"pillow1.jpg" },
-      2: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"pillow2.jpg" },
-      3: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"pillow3.jpg" },
-      4: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"pillow4.jpg" },
-      5: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"pillow5.jpg" },
-      6: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"pillow6.jpg" },
-      7: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"pillow7.jpg" },
-      8: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"pillow8.jpg" },
+   /* const pillows = {
+      1: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"p1.webp" },
+      2: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"p2.webp" },
+      3: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"p3.webp" },
+      4: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"p4.webp" },
+      5: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"p5.webp" },
+      6: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"p6.webp" },
+      7: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"p7.webp" },
+      8: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"p8.webp" },
+      9: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"p9.webp" },
+      10: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"p10.webp" },
+      11: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"p11.webp" },
+      12: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"p12.webp" },
+      13: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"p13.webp" },
+      14: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"p14.webp" },
+      15: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"p15.webp" },
+      16: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"p16.webp" },
+      17: { name:"Memory Foam Pillow", material:"Foam", size:"Standard", color:"White", details:"Ergonomic pillow for perfect neck support.", image:"p17.webp" },
+      18: { name:"Gel Pillow", material:"Gel", size:"Standard", color:"Blue", details:"Cool and soft gel-infused pillow.", image:"p18.webp" },
+      19: { name:"Feather Pillow", material:"Feather", size:"Standard", color:"White", details:"Soft feather pillow for luxurious sleep.", image:"p19.webp" },
+      20: { name:"Latex Pillow", material:"Latex", size:"Standard", color:"White", details:"Natural latex pillow for orthopedic support.", image:"p20.webp" },
       
-    };
+
+    };*/
 
 
 

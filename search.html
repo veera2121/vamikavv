@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jay's Furniture</title>
+
+  <style>
+    /* ✅ Search Section Styling */
+    .search-container {
+      text-align: center;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    #searchInput {
+      padding: 12px 14px;
+      width: 250px;
+      border-radius: 10px;
+      border: 1px solid #bbb;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-btn {
+      padding: 12px 16px;
+      margin-left: 6px;
+      border-radius: 10px;
+      border: none;
+      background: #c99b55;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .suggestions-list {
+      position: absolute;
+      width: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      list-style: none;
+      margin: 2px 0 0;
+      padding: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .suggestions-list li:hover {
+      background: #eee;
+    }
+
+    @media (max-width: 480px) {
+      #searchInput {
+        width: 65%;
+      }
+      .suggestions-list {
+        width: 65%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ UNIVERSAL SEARCH SECTION -->
+  <div class="search-container">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search any product, contact, map..."
+      oninput="showSuggestions()"
+    />
+    <button class="search-btn" onclick="searchPage()">Search</button>
+
+    <ul id="suggestions" class="suggestions-list"></ul>
+  </div>
+
+  <script>
+    // ✅ List of search items and locations
+    const searchItems = {
+      "sofa": "sofas.html",
+      "sofas": "sofas.html",
+      "soofa": "sofas.html",
+      "soffa": "sofas.html",
+      "chair": "chairs.html",
+      "chairs": "chairs.html",
+      "bed": "beds.html",
+      "beds": "beds.html",
+      "washing machine": "washing.html",
+      "washing": "washing.html",
+      "washer": "washing.html",
+      "fridge": "fridge.html",
+      "refrigerator": "fridge.html",
+      "ac": "ac.html",
+      "cooler": "cooler.html",
+      "table": "tables.html",
+      "tables": "tables.html",
+      "mattress": "mattress.html",
+      "matress": "mattress.html",
+      "tv": "tv.html",
+      "television": "tv.html",
+      "pillow": "pillow.html",
+      "pillows": "pillow.html",
+
+      // ✅ Scroll to page sections
+      "contact": "#contact",
+      "phone": "#contact",
+      "call": "#contact",
+      "help": "#contact",
+      "map": "#contact",
+      "location": "#contact",
+      "direction": "#contact",
+      "videos": "#videos",
+      "video": "#videos",
+      "new arrival": "#new-arrivals",
+      "new arrivals": "#new-arrivals",
+      "latest": "#new-arrivals",
+      "new products": "#new-arrivals",
+      "offer": "#offers",
+      "offers": "#offers",
+      "discount": "#offers",
+      "sale": "#offers",
+      "trending": "#offers",
+      "kitchen": "#kitchen",
+      "kitchen items": "#kitchen",
+      "kitchenware": "#kitchen",
+      "cookware": "#kitchen",
+      "cooker": "#kitchen",
+      "cokker": "#kitchen",
+      "fans": "#kitchen",
+      "fan": "#kitchen",
+      "geinder": "#kitchen",
+      "mixer": "#kitchen"
+    };
+
+    // ✅ Levenshtein distance for typo correction
+    function levenshtein(a, b) {
+      const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+      for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          matrix[i][j] =
+            b[i - 1] === a[j - 1]
+              ? matrix[i - 1][j - 1]
+              : Math.min(
+                  matrix[i - 1][j - 1] + 1,
+                  matrix[i][j - 1] + 1,
+                  matrix[i - 1][j] + 1
+                );
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+
+    // ✅ Suggestions dropdown
+    function showSuggestions() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const suggestionsBox = document.getElementById("suggestions");
+
+      suggestionsBox.innerHTML = "";
+      if (!input) {
+        suggestionsBox.style.display = "none";
+        return;
+      }
+
+      const ranked = Object.keys(searchItems)
+        .map(key => ({ key, distance: levenshtein(input, key) }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 3);
+
+      ranked.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.key;
+        li.onclick = () => redirect(item.key);
+        suggestionsBox.appendChild(li);
+      });
+
+      suggestionsBox.style.display = "block";
+    }
+
+    // ✅ ENTER button support
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("searchInput").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") searchPage();
+      });
+    });
+
+    // ✅ Redirect function
+    function redirect(key) {
+      const destination = searchItems[key];
+      if (destination.startsWith("#")) {
+        document.querySelector(destination)?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.location.href = destination;
+      }
+    }
+
+    // ✅ Main search handler
+    function searchPage() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const matches = Object.keys(searchItems)
+        .map(key => ({ key, distance: levenshtein(input, key) }))
+        .sort((a, b) => a.distance - b.distance);
+
+      if (matches[0].distance <= 2) redirect(matches[0].key);
+      else alert("❌ No results found!");
+    }
+  </script>
+
+</body>
+</html>

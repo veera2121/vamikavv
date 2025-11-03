@@ -18,7 +18,7 @@ header{display:flex;justify-content:space-between;align-items:center;padding:15p
 .brand h1{font-size:1.5rem;font-weight:700;background:linear-gradient(90deg,#a78bfa,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 nav a{margin-left:15px;font-weight:600;color:#333;transition:color 0.3s;}
 nav a:hover{color:#c99b55;}
-h2{text-align:center;font-size:2.2rem;margin-top:30px;font-weight:800;background:linear-gradient(90deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+h2{text-align:center;font-size:1.2rem;margin-top:30px;font-weight:800;background:linear-gradient(90deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;margin-top:35px;}
 @media(max-width:768px){.grid{grid-template-columns:repeat(1,1fr);}}
 .card{position:relative;background: rgba(255,255,255,0.25);border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.15);transition: transform 0.4s ease, box-shadow 0.4s ease;backdrop-filter: blur(10px);cursor:pointer;}
@@ -27,9 +27,22 @@ h2{text-align:center;font-size:2.2rem;margin-top:30px;font-weight:800;background
 .card-body{padding:18px;text-align:center;}
 .title{font-weight:700;font-size:1.1rem;margin-bottom:8px;color:#2e2e2e;}
 .meta{color:#6b6b6b;font-size:0.9rem;margin-bottom:10px;}
-.price{font-weight:800;font-size:1.1rem;color:#c99b55;margin-bottom:12px;}
-.btn{background: linear-gradient(90deg,#c99b55,#e0b469);color:#fff;border:none;padding:10px 18px;border-radius:25px;cursor:pointer;font-weight:600;transition: all 0.3s ease;box-shadow:0 4px 10px rgba(224,180,105,0.3);}
-.btn:hover{background:linear-gradient(90deg,#e0b469,#c99b55);transform:scale(1.05);}
+.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
+.btn {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
+
 .modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background-color: rgba(0,0,0,0.65);backdrop-filter: blur(6px);justify-content:center;align-items:center;}
 .modal-content{background: rgba(255,255,255,0.95);border-radius:18px;width:90%;max-width:500px;max-height:90vh;padding:20px;color:#333;text-align:left;box-shadow:0 8px 30px rgba(0,0,0,0.25);animation:zoomIn 0.4s ease;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);overflow-y:auto;}
 .modal-content img{width:100%;max-height:250px;object-fit:contain;border-radius:12px;margin-bottom:15px;background:#f0f0f0;display:block;}
@@ -169,7 +182,7 @@ html {
   <h2>Sofas Collection</h2>
   <div class="grid">
     <div class="card">
-      <img src="images/sofa1.jpg" alt="Leather Sofa">
+      <img src="images/s21.webp" alt="Leather Sofa">
       <div class="card-body">
         <h4 class="title">Leather Sofa</h4>
         <div class="meta">Premium leather with classic design.</div>
@@ -179,7 +192,7 @@ html {
     </div>
 
     <div class="card">
-      <img src="images/sofa2.jpg" alt="Fabric Sofa">
+      <img src="images/s21.webp" alt="Fabric Sofa">
       <div class="card-body">
         <h4 class="title">Fabric Sofa</h4>
         <div class="meta">Comfortable fabric upholstery with soft cushions.</div>
@@ -189,7 +202,7 @@ html {
     </div>
 
     <div class="card">
-      <img src="images/sofa3.jpg" alt="Recliner Sofa">
+      <img src="images/s23.webp" alt="Recliner Sofa">
       <div class="card-body">
         <h4 class="title">Recliner Sofa</h4>
         <div class="meta">Modern recliner for ultimate comfort.</div>
@@ -199,7 +212,7 @@ html {
     </div>
 
     <div class="card">
-      <img src="images/sofa4.jpg" alt="Sectional Sofa">
+      <img src="images/s24.webp" alt="Sectional Sofa">
       <div class="card-body">
         <h4 class="title">Sectional Sofa</h4>
         <div class="meta">Spacious L-shaped sectional for family comfort.</div>
@@ -209,7 +222,7 @@ html {
       </div> 
 
        <div class="card">
-      <img src="images/sofa5.jpg" alt="Leather Sofa">
+      <img src="images/s31.webp" alt="Leather Sofa">
       <div class="card-body">
         <h4 class="title">Leather Sofa</h4>
         <div class="meta">Premium leather with classic design.</div>
@@ -219,7 +232,7 @@ html {
       </div> 
 
        <div class="card">
-      <img src="images/sofa6.jpg" alt="Leather Sofa">
+      <img src="images/s32.webp" alt="Leather Sofa">
       <div class="card-body">
         <h4 class="title">Leather Sofa</h4>
         <div class="meta">Premium leather with classic design.</div>

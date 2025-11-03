@@ -1,282 +1,196 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jay's Furniture — Coolers</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
-      color: #111;
-      min-height: 100vh;
-    }
-    a { text-decoration: none; color: inherit; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jay's Furniture —Cooler Conditioners</title>
 
-    .container {
-      max-width: 1250px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
+  color: #111;
+  min-height: 100vh;
+}
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 25px;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 55px; height: 55px;
+  background: linear-gradient(135deg, #c99b55, #e0b469);
+  color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px; font-size: 18px;
+  box-shadow: 0 4px 10px rgba(201,155,85,0.4);
+}
+.brand h1 {
+  font-size: 1.5rem; font-weight: 700;
+  background: linear-gradient(90deg, #a78bfa, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav a {
+  margin-left: 15px; font-weight: 600;
+  color: #333; transition: color 0.3s;
+}
+nav a:hover { color: #c99b55; }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a855f7, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .logo {
-      width: 55px;
-      height: 55px;
-      background: linear-gradient(135deg, #c99b55, #e0b469);
-      color: #fff;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 14px;
-      font-size: 18px;
-      box-shadow: 0 4px 10px rgba(201, 155, 85, 0.4);
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media(max-width:768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
-    .brand h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #a78bfa, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.card {
+  background: rgba(255,255,255,0.25);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  overflow: hidden;
+}
+.card:hover { transform: translateY(-10px) scale(1.02); }
+.card img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  display: block;
+}
+.card-body { padding: 18px; text-align: center; }
+.title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
+.meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
+.btn {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
 
-    nav a {
-      margin-left: 15px;
-      font-weight: 600;
-      color: #333;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: #c99b55; }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  justify-content: center; align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 18px;
+  width: 90%; max-width: 500px; max-height: 90vh;
+  padding: 20px; overflow-y: auto;
+  text-align: left; position: relative;
+}
+.modal-content img {
+  width: 100%; max-height: 250px; object-fit: contain;
+  border-radius: 12px; margin-bottom: 15px;
+}
+.close {
+  position: absolute; top: 12px; right: 18px;
+  font-size: 24px; cursor: pointer;
+}
 
-    h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-top: 30px;
-      font-weight: 800;
-      background: linear-gradient(90deg, #a855f7, #f97316);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* Brand Filter Buttons */
+.filter-btn {
+  background: #fff;
+  border: 2px solid #c99b55;
+  color: #c99b55;
+  padding: 8px 16px;
+  border-radius: 25px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.filter-btn:hover {
+  background: #c99b55;
+  color: #fff;
+}
+.filter-btn.active {
+  background: linear-gradient(90deg, #c99b55, #e0b469);
+  color: #fff;
+}    
+footer {
+  text-align: center; margin: 30px 0; font-weight: 600;
+}  
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      margin-top: 35px;
-    }
+nav a.active {
+  background: linear-gradient(90deg,#c99b55,#e0b469);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+  transform: scale(1.05);
+}
 
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      backdrop-filter: blur(10px);
-      cursor: pointer;
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      max-height: 250px;
-      object-fit: contain;
-      background: #f0f0f0;
-      display: block;
-      border-radius: 12px;
-    }
-
-    .card-body {
-      padding: 18px;
-      text-align: center;
-    }
-
-    .title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: #2e2e2e;
-    }
-
-    .meta {
-      color: #6b6b6b;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: #c99b55;
-      margin-bottom: 12px;
-    }
-
-    .btn {
-      background: linear-gradient(90deg, #c99b55, #e0b469);
-      color: #fff;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(224, 180, 105, 0.3);
-    }
-
-    .btn:hover {
-      background: linear-gradient(90deg, #e0b469, #c99b55);
-      transform: scale(1.05);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.65);
-      backdrop-filter: blur(6px);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: rgba(255,255,255,0.95);
-      border-radius: 18px;
-      width: 90%;
-      max-width: 500px;
-      max-height: 90vh;
-      padding: 20px;
-      color: #333;
-      text-align: left;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-      animation: zoomIn 0.4s ease;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      overflow-y: auto;
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: auto;
-      max-height: 250px;
-      object-fit: contain;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      background: #f0f0f0;
-      display: block;
-    }
-
-    #modalSpecs {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.95rem;
-    }
-
-    #modalSpecs li {
-      margin-bottom: 8px;
-      padding: 8px;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .close {
-      float: right;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      color: #6b6b6b;
-      font-size: 0.9rem;
-    }     
-        /* Active nav link styling */
-    nav a.active {
-      background: linear-gradient(90deg,#c99b55,#e0b469);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-      transform: scale(1.05);
-    }
-     html {
+html {
   scroll-padding-top: 100px;
 }
-    @media(max-width:768px){
-          nav {
-        display:flex;                   /* horizontal layout */
-        overflow-x:auto;                /* allow scrolling */
-        padding:10px 0;
-        gap:10px;                       /* space between links */
-        -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-      }
 
-      /* Hide scrollbar for cleaner look */
-      nav::-webkit-scrollbar { display:none; }
-
-      nav a {
-        flex:0 0 auto;                 /* prevent shrinking */
-        font-size:0.9rem;
-        padding:8px 16px;
-        white-space:nowrap;             /* prevent wrapping text */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-radius:10px;
-        background: rgba(255,255,255,0.25);
-        backdrop-filter: blur(5px);
-        transition: transform 0.2s;
-      }
-
-      nav a:hover {
-        transform: scale(1.05);
-        background: rgba(255,255,255,0.35);
-      }
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  nav {
+    display:flex; overflow-x:auto; padding:10px 0; gap:10px;
+    -webkit-overflow-scrolling: touch;
   }
-
-  </style> 
+  nav::-webkit-scrollbar { display:none; }
+  nav a {
+    flex:0 0 auto; font-size:0.9rem;
+    padding:8px 16px; white-space:nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius:10px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+  }
+  nav a:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.35);
+  }
+}
+</style>
 </head>
+
+<body>
+
 <header>
   <div class="brand">
     <div class="logo">sri</div>
     <h1>Sri's Furniture</h1>
   </div>
-  
-  <!-- NAVIGATION -->
   <nav id="navbar">
     <a href="index.html">Home</a>
     <a href="sofas.html">Sofas</a>
@@ -294,129 +208,139 @@
   </nav>
 </header>
 
-<section id="cooler">
-    <h2>Coolers Collection</h2>
+<section>
+  <h2>Cooler Collection</h2>
+  <div id="brandFilters" style="text-align:center; margin: 20px 0;"></div>
+  <div id="productGrid" class="grid"></div>
+</section>
 
-    <div class="grid">
-      <!-- Cooler Cards -->
-      <div class="card">
-        <img src="images/cooler1.jpg" alt="Desert Cooler">
-        <div class="card-body">
-          <h4 class="title">Desert Cooler</h4>
-          <div class="meta">Powerful cooling for large spaces.</div>
-          <div class="price">₹7,499</div>
-          <button class="btn" onclick="showDetails(1)">View Details</button>
-        </div>
-      </div>
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage">
+    <h3 id="modalName"></h3>
+    <p id="modalDesc"></p>
+    <p><b>Brand:</b> <span id="modalBrand"></span></p>
+    <p><b>Model:</b> <span id="modalModel"></span></p>
+    <p><b>Type:</b> <span id="modalType"></span></p>
+    <p><b>Price:</b> ₹<span id="modalPrice"></span></p>
+  </div>
+</div>
 
-      <div class="card">
-        <img src="images/cooler2.jpg" alt="Tower Cooler">
-        <div class="card-body">
-          <h4 class="title">Tower Cooler</h4>
-          <div class="meta">Slim design, ideal for living rooms.</div>
-          <div class="price">₹5,499</div>
-          <button class="btn" onclick="showDetails(2)">View Details</button>
-        </div>
-      </div>
+<footer>© 2025 Jay's Furniture. All rights reserved.</footer>
 
-      <div class="card">
-        <img src="images/cooler3.jpg" alt="Mini Cooler">
-        <div class="card-body">
-          <h4 class="title">Mini Cooler</h4>
-          <div class="meta">Compact and efficient for personal use.</div>
-          <div class="price">₹2,999</div>
-          <button class="btn" onclick="showDetails(3)">View Details</button>
-        </div>
-      </div> 
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvPibat9qkzagzBKCjK8idNHoNNSkC-EahaOSzqs5fccfWW90c95PKZ1Imw9inomqR6c7OwLO-mPb_/pub?output=csv";
 
-       <div class="card">
-        <img src="images/cooler4.jpg" alt="Mini Cooler">
-        <div class="card-body">
-          <h4 class="title">Mini Cooler</h4>
-          <div class="meta">Compact and efficient for personal use.</div>
-          <div class="price">₹2,999</div>
-          <button class="btn" onclick="showDetails(3)">View Details</button>
-        </div>
-      </div> 
-       
-      <div class="card">
-        <img src="images/cooler5.jpg" alt="Mini Cooler">
-        <div class="card-body">
-          <h4 class="title">Mini Cooler</h4>
-          <div class="meta">Compact and efficient for personal use.</div>
-          <div class="price">₹2,999</div>
-          <button class="btn" onclick="showDetails(3)">View Details</button>
-        </div>
-      </div> 
+function parseCSV(text) {
+  text = text.replace(/\r/g, "");
+  const lines = text.split("\n").filter(l => l.trim().length > 0);
+  const rows = lines.map(line => {
+    const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+    return cols.map(c => {
+      c = c.trim();
+      if (c.startsWith('"') && c.endsWith('"')) c = c.slice(1, -1).replace(/""/g, '"');
+      return c;
+    });
+  });
+  return rows;
+}
 
-      <div class="card">
-        <img src="images/cooler6.jpg" alt="Mini Cooler">
-        <div class="card-body">
-          <h4 class="title">Mini Cooler</h4>
-          <div class="meta">Compact and efficient for personal use.</div>
-          <div class="price">₹2,999</div>
-          <button class="btn" onclick="showDetails(3)">View Details</button>
-        </div>
-      </div>
-    </div>
- </section>
-    <!-- Modal -->
-    <div id="coolerModal" class="modal">
-      <div class="modal-content" id="modalContent"></div>
-    </div>
+let allProducts = [];
 
-    <footer>© 2025 Jay's Furniture. All rights reserved.</footer>
-  
-
-  <script>
-    const coolers = {
-      1: { name:"Desert Cooler", size:"Large", model:"DC-101", material:"Plastic & Metal", details:"Powerful cooling for large spaces.", image:"cooler1.jpg" },
-      2: { name:"Tower Cooler", size:"Medium", model:"TC-202", material:"Plastic", details:"Slim design, ideal for living rooms.", image:"cooler2.jpg" },
-      3: { name:"Mini Cooler", size:"Small", model:"MC-303", material:"Plastic", details:"Compact and efficient for personal use.", image:"cooler3.jpg" },
-      4: { name:"Desert Cooler", size:"Large", model:"DC-101", material:"Plastic & Metal", details:"Powerful cooling for large spaces.", image:"cooler4.jpg" },
-      5: { name:"Tower Cooler", size:"Medium", model:"TC-202", material:"Plastic", details:"Slim design, ideal for living rooms.", image:"cooler5.jpg" },
-      6: { name:"Mini Cooler", size:"Small", model:"MC-303", material:"Plastic", details:"Compact and efficient for personal use.", image:"cooler6.jpg" }
-    };
-
-    function showDetails(id) {
-      const product = coolers[id];
-      const modal = document.getElementById('coolerModal');
-      const content = document.getElementById('modalContent');
-      content.innerHTML = `
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img src="images/${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <ul id="modalSpecs">
-          <li><strong>Size:</strong> ${product.size}</li>
-          <li><strong>Model:</strong> ${product.model}</li>
-          <li><strong>Material:</strong> ${product.material}</li>
-          <li><strong>Details:</strong> ${product.details}</li>
-        </ul>
-      `;
-      modal.style.display = 'flex';
+async function loadProducts() {
+  try {
+    const res = await fetch(SHEET_URL + "&t=" + Date.now());
+    const text = await res.text();
+    const cleanText = text.replace(/^\uFEFF/, "");
+    const rows = parseCSV(cleanText);
+    if (rows.length < 2) {
+      document.getElementById("productGrid").innerHTML = "<p style='text-align:center'>No products found in sheet.</p>";
+      return;
     }
+    const headers = rows.shift().map(h => h.trim().toLowerCase());
+    allProducts = rows.map(r => {
+      const obj = {};
+      headers.forEach((h, i) => { obj[h] = (r[i] !== undefined) ? r[i].trim() : ""; });
+      return obj;
+    });
+    renderBrandFilters();
+    renderProducts(allProducts);
+  } catch (err) {
+    console.error("Error loading sheet:", err);
+    document.getElementById("productGrid").innerHTML = `<p style="text-align:center;color:red;">Failed to load data. Check sheet link and publish status.</p>`;
+  }
+}
 
-    function closeModal() {
-      document.getElementById('coolerModal').style.display = 'none';
-    }
+function renderBrandFilters() {
+  const brandSet = new Set(allProducts.map(p => p.brand?.trim()).filter(Boolean));
+  const container = document.getElementById("brandFilters");
+  container.innerHTML = `
+    <button class="filter-btn active" onclick="filterByBrand('All')">All</button>
+    ${[...brandSet].map(b => `<button class="filter-btn" onclick="filterByBrand('${b}')">${b}</button>`).join('')}
+  `;
+}
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('coolerModal');
-      if(event.target === modal) modal.style.display = 'none';
-    } 
+function renderProducts(data) {
+  const container = document.getElementById("productGrid");
+  container.innerHTML = data.map(item => {
+    const img = item.image || item.imageurl || "";
+    const name = item.name || item.product || "Unnamed";
+    const brand = item.brand || "";
+    const model = item.model || "";
+    const price = item.price || "";
+    const type = item.type || "";
+    const safeItem = JSON.stringify(item).replace(/'/g, "&#39;");
+    return `
+      <div class="card">
+        <img src="${img}" alt="${name}" loading="lazy"
+             onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250?text=No+Image';">
+        <div class="card-body">
+          <div class="title">${name}</div>
+          <div class="meta">${brand}${brand && model ? ' • ' : ''}${model}</div>
+          <div class="price">${price ? '₹' + price : ''}</div>
+          <div class="type"><b>Type:</b> ${type || "—"}</div>
+          <button class="btn" onclick='showDetails(${safeItem})'>View Details</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
 
+function filterByBrand(brand) {
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  const activeBtn = Array.from(document.querySelectorAll(".filter-btn")).find(btn => btn.textContent === brand);
+  if (activeBtn) activeBtn.classList.add("active");
+  if (brand === "All") renderProducts(allProducts);
+  else renderProducts(allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase()));
+}
 
-    // Highlight current nav link
-    // Highlight current page link in navbar
-  const currentPage = location.pathname.split("/").pop(); // e.g., "fridge.html"
+function showDetails(item) {
+  document.getElementById("modalImage").src = item.image || item.imageurl || "https://via.placeholder.com/400x250?text=No+Image";
+  document.getElementById("modalName").textContent = item.name || item.product || "N/A";
+  document.getElementById("modalDesc").textContent = item.description || "";
+  document.getElementById("modalBrand").textContent = item.brand || "-";
+  document.getElementById("modalModel").textContent = item.model || "-";
+  document.getElementById("modalType").textContent = item.type || "-";
+  document.getElementById("modalPrice").textContent = item.price || "-";
+  document.getElementById("productModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("productModal").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  const currentPage = location.pathname.split("/").pop();
   const navLinks = document.querySelectorAll("#navbar a");
   navLinks.forEach(link => {
     if(link.getAttribute("href") === currentPage){
       link.classList.add("active");
-      // Scroll it into view for mobile horizontal nav
       link.scrollIntoView({behavior: "smooth", inline: "center"});
     }
   });
-  </script>
+});
+</script>
 </body>
 </html>

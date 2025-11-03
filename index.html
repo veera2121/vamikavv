@@ -46,8 +46,9 @@ License: free to use and customize.
     <!-- Centered shop name -->
      <div class="header-content">
       <h1>
-              <span class="line1">Sri Sai Ganesh Homeneeds</span><br>
-              <span class="line2">  and Forniture</span><br>
+
+        <span class="line1">Sri Sai Ganesh Homeneeds</span><br>
+        <span class="line2">  and Forniture</span><br>
               
       </h1>
     </div>
@@ -56,11 +57,12 @@ License: free to use and customize.
   <!-- Navigation below -->
   <nav id="navLinks">
     <a href="#home">Home</a>
-    <a href="#products">Products</a>
+     <a href="ac.html">Products</a> 
     <a href="#Offer">Offer</a>
     <button id="adminToggle" class="ghost">Admin</button>
     <button id="cartBtn" class="btn">Cart (<span id="cartCount">0</span>)</button>
   </nav>
+
 
 
   <!-- Hamburger button bottom-right corner -->
@@ -68,6 +70,8 @@ License: free to use and customize.
     <span></span>
     <span></span>
     <span></span>
+
+    
   </div>
 
 </header>
@@ -158,7 +162,7 @@ License: free to use and customize.
 
     .cat:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(183, 10, 226, 0.6), 0 0 10px rgba(179, 14, 63, 0.4) inset;
+      box-shadow: 0 4px 20px rgb(10, 226, 172), 0 0 10px rgba(179, 14, 63, 0.4) inset;
     }
 
 
@@ -183,7 +187,7 @@ License: free to use and customize.
 
     .cat:hover img {
       transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(179, 14, 63, 0.7);
+      box-shadow: 0 0 15px rgb(243, 8, 231);
     }
 
     /* --- Mobile View --- */
@@ -384,7 +388,7 @@ header {
   display: flex;
   flex-direction: column;
   padding: 30px 25px;
-  background: linear-gradient(90deg, #ff0000 0%, #ff0000 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
   border-bottom: 2px solid rgba(255,255,255,0.2);
   border-radius: 0 0 8px 8px;
   box-shadow: 0 0 15px rgb(255, 0, 0), 0 3px 8px rgba(0,0,0,0.25);
@@ -400,7 +404,7 @@ header .header-top {
   width: 100%;
   height:70px;
   top:8;
-}
+} 
 
 /* Brand section (logo left) */
 .brand {
@@ -429,19 +433,22 @@ header .header-top {
 /* ---------------- TITLE CENTERED ---------------- */
 header .header-content h1 { 
   font-family: 'Montserrat', sans-serif;
-  font-size: 52px;
+  font-size: 42px;
   font-weight: 800;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   line-height: 1.1;
   text-align: center;
-  background: linear-gradient(100deg, #ffffff, #ffffff);
+  background: linear-gradient(100deg, #ff0000, #ff0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
   white-space: nowrap; /* keep on one line */
-}
+} 
+ .bottom-nav {
+    display: none !important;
+  }
 
 /* ---------------- SHRINK HEADER ---------------- */
  /* ---------------- Shrink header ---------------- */
@@ -450,10 +457,13 @@ header .header-content h1 {
     }
     header.shrink {
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      background: #ff0000; /* slightly more transparent for effect */
+      background: #ffffff; /* slightly more transparent for effect */
     } 
     header {
   transition: all 0.3s ease;
+}
+header .header-content h1 {
+  white-space: nowrap; /* keep entire name on one line */
 }
 /* ---------------- NAVIGATION BELOW ---------------- */
 nav {
@@ -537,11 +547,28 @@ nav a:hover {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
-      }
-   /* ---------------- DESKTOP HEADER ---------------- */
-header .header-content h1 {
-  white-space: nowrap; /* keep entire name on one line */
+      } 
+     
+/* ✅ FIX: Make Home & Products clickable */
+nav, #navLinks, #navLinks a {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
 }
+
+/* ✅ Allow clicks to pass through content above */
+.header-content, .header-top {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✅ Keep text selectable */
+.header-content h1, .header-content span {
+  pointer-events: auto;
+}
+   /* ---------------- DESKTOP HEADER ---------------- */
+
  /* ---------------- SHRINK EFFECT ---------------- */
 @media (max-width: 768px) {
   /* Shrink header on scroll */
@@ -557,21 +584,18 @@ header .header-content h1 {
 
   header.shrink .header-content h1 {
     font-size: 1.2rem;
-  }
-}
+ }
+ }
 
-/* ---------------- MOBILE NAVIGATION ---------------- */
+
 /* ---------------- MOBILE LAYOUT ---------------- */
  @media (max-width: 768px) { 
-  /* ---------------- MOBILE HEADER ---------------- */
   header {
     padding: 1px; 
       position: relative; 
       height:100px;
      
   }
-    
-  
   /* Header top: logo left, text right */
   .header-top {
     display: flex;
@@ -624,20 +648,20 @@ header .header-content h1 {
     white-space: normal; /* allow wrapping on small screens */
   
    
-    background: linear-gradient(180deg, #ffffff, #ffffff);
+    background: linear-gradient(180deg, #ff0000, #ff0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: flext-start; /* align with logo */
     line-height: 1.1;
     margin: 0; 
       margin: 25px 0 0 0; /* <-- top margin adds space */ 
+    
+    } 
+    header .header-content h1 {
+    position: relative;
+    left: -30px; /* move slightly left — adjust value as needed */
+  }
   
-  } 
-  header .header-content h1 {
-  position: relative;
-  left: -30px; /* move slightly left — adjust value as needed */
-}
- 
   /* Navigation below */
   nav {
    /* Hamburger menu */
@@ -669,7 +693,7 @@ header .header-content h1 {
   .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: white;
+    background: rgb(7, 109, 100);
     transition: 0.3s;
   }
 
@@ -705,9 +729,9 @@ header .header-content h1 {
 
 
 
+ }
 
-
-    
+    @media (max-width: 768px) { 
       /* Bottom Navigation */
       .bottom-nav {
         display: flex;
@@ -759,18 +783,21 @@ header .header-content h1 {
         transform: translateY(-3px);
       }
       
-    .bottom-nav {
-  display: none; /* hides it initially */
-}
+      .bottom-nav {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: all 0.4s ease;
+      }
+
+      .bottom-nav.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+ }
 
     /* ---------------- Desktop hides bottom nav ---------------- */
-    @media (min-width: 769px) {
-      .bottom-nav {
-        display: none;
-      }
-  }
- }
-  
+ 
+
     .whatsapp-chat {
       display: none;
       justify-content: center;
@@ -871,20 +898,25 @@ header .header-content h1 {
       overflow: hidden;
     }
 
-    /* Product image */
-    .product-image {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4/3; /* maintain 4:3 ratio */
-      overflow: hidden;
-    }
+   /* Product image */
+.product-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3; /* maintain 4:3 ratio */
+  overflow: hidden;
+  background: #fff; /* optional: add clean background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* fill card without stretching */
-      transition: all 0.3s ease;
-    }
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ show full image without cropping */
+  transition: transform 0.3s ease;
+}
+
 
     /* New tag */
     .new-tag {
@@ -1261,7 +1293,10 @@ header .header-content h1 {
     .product-card:hover {
       transform: translateY(-5px) scale(1.03);
       box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    .footer-social {
+      top: 10px;
     }
+  }
 
     /* Container */
     .media-grid {
@@ -1276,11 +1311,7 @@ header .header-content h1 {
       width: fit-content; /* only take space of content */
       max-width: 100%;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-      background: linear-gradient(
-        135deg,
-        rgba(0, 196, 170, 0.651),
-        rgba(126, 6, 182, 0.863)
-      );
+   
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border: 1px solid rgba(12, 30, 134, 0.377);
@@ -1432,7 +1463,7 @@ header .header-content h1 {
 
     .section-header p {
       font-size: 1.1rem;
-      color: #022718;
+      color: #ffffff;
       margin-bottom: 30px;
         text-align: center; /* Center the title and paragraph */
 
@@ -2479,7 +2510,158 @@ header .header-content h1 {
   .fan-slide p {
     font-size: 12px;
   }
+} 
+
+
+.subscribe-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px 30px;
+    background: #ffffffcc;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .subscribe-form:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .subscribe-form h2 {
+    font-size: 22px;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .subscribe-form input {
+    width: 90%;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .subscribe-form input:focus {
+    border-color: #b58b00; /* gold tone */
+    box-shadow: 0 0 5px rgba(181, 139, 0, 0.3);
+  }
+
+  .subscribe-form button {
+    margin-top: 12px;
+    background: linear-gradient(135deg, #b58b00, #f7ca18);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .subscribe-form button:hover {
+    background: linear-gradient(135deg, #f7ca18, #b58b00);
+  }
+
+  .success-msg {
+    color: green;
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+.shopbanner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
 }
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Show desktop banner normally */
+.desktop-banner {
+  display: block;
+}
+
+/* Hide mobile by default */
+.mobile-banner {
+  display: none;
+}
+
+/* ✅ Mobile version fix */
+@media (max-width: 768px) {
+  .desktop-banner {
+    display: none;
+  }
+
+  .mobile-banner {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;  /* ✅ shows full image without cropping */
+    object-position: center;
+    background-color: #000; /* optional – adds black background behind if image doesn’t fill */
+  }
+}
+/* Bottom row: We Accept (left) + Follow Us (right) */
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.footer-bottom-row .footer-payments,
+.footer-bottom-row .footer-social {
+  flex: 1;
+}
+
+/* Headings */
+.footer-bottom-row h4 {
+  font-family: 'Playfair Display', serif;
+  color: #1A237E;
+  margin-bottom: 10px;
+}
+
+/* Payment Icons */
+.footer-bottom-row .payment-icons img {
+  width: 50px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+/* Social Icons */
+.footer-bottom-row .social-icons img {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-bottom-row .social-icons img:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
 </style>
   </style> 
 </head>
@@ -2503,38 +2685,51 @@ header .header-content h1 {
 
       <!-- Categories Grid -->
       <div class="categories">
-        <!-- First row -->
-        <div class="cat" onclick="window.location.href='sofas.html'">
-          <img src="images/sofa.jpg" alt="sofa">
-          <div class="cat-name">Sofas</div>
-        </div>
-        <div class="cat" onclick="window.location.href='chairs.html'">
-          <img src="images/chair.jpg" alt="chair">
-          <div class="cat-name">Chairs</div>
-        </div>
-        <div class="cat" onclick="window.location.href='beds.html'">
-          <img src="images/bed.jpg" alt="bed">
-          <div class="cat-name">Beds</div>
-        </div>
+        <!-- First row --> 
+           <div class="cat" onclick="window.location.href='Ac.html'">
+          <img src="images/ac21.jpg" alt="air conditioner">
+          <div class="cat-name">Air Conditioners</div>
+        </div> 
         <div class="cat" onclick="window.location.href='fridge.html'">
           <img src="images/fridge.jpg" alt="fridge">
           <div class="cat-name">Fridges</div>
-        </div>
+        </div>  
         <div class="cat" onclick="window.location.href='washing.html'">
           <img src="images/washing.jpg" alt="washing machine">
           <div class="cat-name">Washing Machines</div>
         </div>
-        <div class="cat" onclick="window.location.href='pillows.html'">
-          <img src="images/pillows.jpg" alt="pillows">
-          <div class="cat-name">Pillows</div>
-        </div>  
+            <div class="cat" onclick="window.location.href='cooler.html'">
+          <img src="images/cooler.jpg" alt="cooler">
+          <div class="cat-name">Coolers</div>
+        </div>
+        <div class="cat" onclick="window.location.href='sofas.html'">
+          <img src="images/sofa.jpg" alt="sofa">
+          <div class="cat-name">Sofas</div>
+        </div>
+          <div class="cat" onclick="window.location.href='tv.html'">
+          <img src="images/tv.jpg" alt="tv">
+          <div class="cat-name">TVs</div>
+        </div> 
+       
+      
+        
+       
+       
+        
+
+        <!-- Second row --> 
+           <div class="cat" onclick="window.location.href='beds.html'">
+          <img src="images/bed.jpg" alt="bed">
+          <div class="cat-name">Beds</div>
+        </div>
          <div class="cat" onclick="window.location.href='pillows.html'">
           <img src="images/diwan.webp" alt="pillows">
           <div class="cat-name">Diwan</div>
         </div> 
-
-
-        <!-- Second row -->
+         <div class="cat" onclick="window.location.href='dressingtable.html'">
+          <img src="images/dressing table.webp" alt="pillows">
+          <div class="cat-name">Dressing Table</div>
+        </div> 
         <div class="cat" onclick="window.location.href='table.html'">
           <img src="images/table.jpg" alt="tables">
           <div class="cat-name">Tables</div>
@@ -2543,32 +2738,27 @@ header .header-content h1 {
           <img src="images/mattress.jpg" alt="mattress">
           <div class="cat-name">Mattress</div>
         </div>
-        <div class="cat" onclick="window.location.href='Ac.html'">
-          <img src="images/ac21.jpg" alt="air conditioner">
-          <div class="cat-name">Air Conditioners</div>
+         <div class="cat" onclick="window.location.href='chairs.html'">
+          <img src="images/chair.jpg" alt="chair">
+          <div class="cat-name">Chairs</div>
         </div>
-        <div class="cat" onclick="window.location.href='cooler.html'">
-          <img src="images/cooler.jpg" alt="cooler">
-          <div class="cat-name">Coolers</div>
-        </div>
+    
         <div class="cat" onclick="window.location.href='wardrobe.html'">
           <img src="images/wardrobe.jpg" alt="wardrobe">
           <div class="cat-name">Wardrobes</div>
         </div>
-        <div class="cat" onclick="window.location.href='tv.html'">
-          <img src="images/tv.jpg" alt="tv">
-          <div class="cat-name">TVs</div>
+      
+          <div class="cat" onclick="window.location.href='pillows.html'">
+          <img src="images/pillows.jpg" alt="pillows">
+          <div class="cat-name">Pillows</div>
         </div> 
-         <div class="cat" onclick="window.location.href='dressingtable.html'">
-          <img src="images/dressing table.webp" alt="pillows">
-          <div class="cat-name">Dressing Table</div>
-        </div> 
+        
       </div>
     </section>
 
 
 
-    <a href="https://wa.me/1234567890" class="whatsapp-chat" target="_blank">
+    <a href="https://wa.me/+919666780228" class="whatsapp-chat" target="_blank">
       <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -2586,7 +2776,7 @@ header .header-content h1 {
      
 
 
-   <div class="slider">
+   <section id="kitchen" class="slider">
   <div class="slide-track">
     <div class="slide-item">
       <img src="images/Mixer Grinder.webp" alt="Sofa 1">
@@ -2638,7 +2828,7 @@ header .header-content h1 {
       <img src="images/Induction Stove.webp" alt="Sofa 2">
       <p>Induction Stove</p>
     </div>
-     <div class="slide-item">
+    <div class="slide-item">
       <img src="images/Mixer Grinder.webp" alt="Sofa 1">
       <p>Mixer Grinder</p>
     </div>
@@ -2691,9 +2881,15 @@ header .header-content h1 {
     
   </div>
 </div>
+</section>
 
+<section class="shopbanner">
+  <!-- Desktop Banner -->
+  <img src="images/yanambanner.png" alt="Yanam Branch Banner" class="banner-img desktop-banner">
 
-
+  <!-- Mobile Banner -->
+  <img src="images/mobilebanner.png" alt="Yanam Branch Banner Mobile" class="banner-img mobile-banner">
+</section>
 
     <!-- Media Grid Section -->
     <div class="media-grid">
@@ -2712,7 +2908,7 @@ header .header-content h1 {
     </div>
       
   <section class="emi-banner">
-    <img src="images/banner.jpg" alt="EMI on Cards Banner">
+    <img src="images/emis on credit cards.png" alt="EMI on Cards Banner">
   </section>
 
 
@@ -2801,75 +2997,7 @@ header .header-content h1 {
 </div>
   </section>
 
-    <section id="kitchen">
-    <!-- Desktop Banner 
-    <div class="banner-section desktop-banner"> 
-         <h2 class="desktop-title">Our Kitchen Products</h2>
-      <div class="banner-container">
-        <img src="images/banner1.png" alt="Main Banner" class="banner-image">
-       
-
-        <!-- Overlay Images 
-        <div class="overlay-images">
-          <div class="overlay-item">
-            <img src="images/grinder2.jpg" alt="Mixer Grinder">
-            <span class="price-tag">Sarts from ₹10,000</span>
-          </div>
-          <div class="overlay-item">
-            <img src="images/grinder.jpg" alt="Grinder">
-            <span class="price-tag">Sarts from ₹8,000</span>
-          </div>
-          <div class="overlay-item">
-            <img src="images/fan.jpg" alt="Fan">
-            <span class="price-tag">Sarts from ₹5,000</span>
-          </div>
-          <div class="overlay-item">
-            <img src="images/cooker.jpg" alt="Cooker">
-            <span class="price-tag">Sarts from ₹6,000</span>
-          </div>
-          <div class="overlay-item">
-            <img src="images/gas.jpg" alt="Gas Stove">
-            <span class="price-tag">Sarts from ₹7,000</span>
-          </div>
-          <div class="overlay-item">
-            <img src="images/tn.jpg" alt="Stand Fan">
-            <span class="price-tag">Sarts from ₹7,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Grid 
-    <div class="mobile-grid-section">
-      <h2 class="mobile-grid-title">Our Kitchen Products</h2>
-      <div class="mobile-grid">
-        <div class="grid-item">
-          <img src="images/grinder2.jpg" alt="Mixer Grinder">
-          <span class="price-tag">starts from ₹10,000</span>
-        </div>
-        <div class="grid-item">
-          <img src="images/grinder.jpg" alt="Grinder">
-          <span class="price-tag">starts from ₹8,000</span>
-        </div>
-        <div class="grid-item">
-          <img src="images/fan.jpg" alt="Fan">
-          <span class="price-tag">starts from ₹5,000</span>
-        </div>
-        <div class="grid-item">
-          <img src="images/cooker.jpg" alt="Cooker">
-          <span class="price-tag">starts from ₹6,000</span>
-        </div>
-        <div class="grid-item">
-          <img src="images/gas.jpg" alt="Gas Stove">
-          <span class="price-tag">starts from ₹7,000</span>
-        </div>
-        <div class="grid-item">
-          <img src="images/tn.jpg" alt="Stand Fan">
-          <span class="price-tag">starts from ₹7,000</span>
-        </div>
-      </div>
-    </div>
-    </section>-->
+    
 
   <section id="new-arrivals" class="new-products-section">
   <!-- Section Title -->
@@ -2885,33 +3013,33 @@ header .header-content h1 {
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa11.jpg" alt="Luxury Sofa">
+          <img src="images/ac4.webp" alt="Luxury Sofa">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Luxury Sofa</h3>
-          <p class="product-price">$250</p>
+          <h3 class="product-name">BLUE STAR AC</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa12.jpg" alt="Comfort Sofa">
+          <img src="images/chair5.webp" alt="Comfort Sofa">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Comfort Sofa</h3>
-          <p class="product-price">$220</p>
+          <h3 class="product-name">OFFICE CHAIR</h3>
+          <p class="product-price"></p>
         </div>
   </div>
 
   <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa13.jpg" alt="Classic Sofa">
+          <img src="images/cooler.jpg" alt="Classic Sofa">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Classic Sofa</h3>
-          <p class="product-price">$200</p>
+          <h3 class="product-name">NEW MODEL COOLER </h3>
+          <p class="product-price"></p>
         </div>
   </div>
 
@@ -2922,40 +3050,40 @@ header .header-content h1 {
         </div>
         <div class="product-info">
           <h3 class="product-name">Modern Sofa</h3>
-          <p class="product-price">$230</p>
+          <p class="product-price"></p>
         </div>
   </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa15.jpg" alt="Elegant Chair">
+          <img src="images/NL.WEBP" alt="Elegant Chair">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Elegant Chair</h3>
-          <p class="product-price">$120</p>
+          <h3 class="product-name">LG 288 L</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa16.jpg" alt="Recliner Chair">
+          <img src="images/NW.jpg" alt="Recliner Chair">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Recliner Chair</h3>
-          <p class="product-price">$150</p>
+          <h3 class="product-name">9.0 kg FRONT LOAD WASHING MACHINE</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa17.jpg" alt="Wooden Coffee Table">
+          <img src="images/NWT.JPG" alt="Wooden Coffee Table">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Wooden Coffee Table</h3>
-          <p class="product-price">$180</p>
+          <h3 class="product-name">9.0 kg TOP LOAD WASHING MACHINE</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
@@ -2965,30 +3093,30 @@ header .header-content h1 {
           <img src="images/sofa18.jpg" alt="Modern Bed">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Modern Bed</h3>
-          <p class="product-price">$400</p>
+          <h3 class="product-name">MODERN SOFA</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa19.jpg" alt="Luxury Wardrobe">
+          <img src="images/nsf.jpg" alt="Luxury Wardrobe">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Luxury Wardrobe</h3>
-          <p class="product-price">$350</p>
+          <h3 class="product-name">SUNSAMG 236 L CONVERTIBLE FREEZER</h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
       <div class="new-product">
         <div class="product-image">
           <span class="new-tag">New Arrival</span>
-          <img src="images/sofa20.jpg" alt="Stylish Recliner">
+          <img src="images/nsf.jpg" alt="Stylish Recliner">
         </div>
         <div class="product-info">
-          <h3 class="product-name">Stylish Recliner</h3>
-          <p class="product-price">$200</p>
+          <h3 class="product-name"></h3>
+          <p class="product-price"></p>
         </div>
       </div>
 
@@ -3084,7 +3212,7 @@ header .header-content h1 {
 
 
 <!-- Explore Button -->
-  <section id="products" class="explore-collection">
+<div class="explore-collection">
   <button id="exploreBtn" class="btn-explore">Explore Our products</button>
   </div>
 
@@ -3135,6 +3263,11 @@ header .header-content h1 {
 <div class="reviews-list" id="reviewsList"></div>
 
 
+
+
+
+
+
   <section id="contact" class="contact-map-section">  
     
     <h1 class="section-title">📍 Contact & Visit Us</h1>
@@ -3146,25 +3279,39 @@ header .header-content h1 {
         <h2 class="contact-title">Visit Our Showroom</h2>
         <p class="contact-meta">📍 Address: 354, SH 14, MAIN ROAD, near PADMAJA PICTURE PALACE, Malikipuram, Andhra Pradesh 533253</p>
         <p class="contact-meta">⏰ Open: Mon–Sat 10am–7pm</p>
-        <p class="contact-meta">📞 Phone: +91 98765 43210</p>
+        <p class="contact-meta">📞 Phone: +91 9666780228</p>
         <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
 
-        <!-- Contact Form -->
-        <form class="contact-form" id="contactForm">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="text" name="contact" placeholder="Phone or Email" required>
-          <textarea name="message" placeholder="Message" required></textarea>
-          <button type="submit" class="btn-submit">Send Enquiry</button>
-        </form>
-      </div>
+  <h2 class="contact-title">Contact & Visit Us</h2>
 
-      <!-- Right Map -->
-      <div class="contact-right">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11529.374086473676!2d81.79842761397704!3d16.408762646761126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1761150637163!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+  <div class="contact-container">
+    <!-- Left Glass Card -->
+    <div class="glass-card">
+      <h3 class="section-title">Get in Touch</h3>
+      <p class="contact-meta">We’d love to hear from you. Fill out the form below to connect with us!</p>
 
+      <!-- Contact Form -->
+      <form action="https://api.sheetmonkey.io/form/vUhnD77t8CEVMmPEX1qjKb" 
+            method="POST" 
+            class="contact-form">
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
     </div>
-  </section>
+
+    <!-- Right Side: Google Map -->
+    <div class="contact-right">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4826625607045!2d76.95782031411982!3d10.992347958785502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8593b4fd58315%3A0x25b233c1db6cb6c!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1698412345678!5m2!1sen!2sin" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -3231,21 +3378,22 @@ header .header-content h1 {
   <div class="footer-about-us">
       <h3>About Us</h3>
       <p>
-        Welcome to Jay's Furniture! We are dedicated to providing stylish, high-quality, and affordable furniture for every home.  
+        Welcome to Sri sai ganesh homeneeds & Furniture! We are dedicated to providing stylish, high-quality, and affordable furniture for every home.  
         Our collections combine modern design with comfort and functionality, ensuring your spaces look elegant and feel cozy.  
         Customer satisfaction is our top priority!
       </p>
   </div> 
 
-form name="subscribe" method="POST" data-netlify="true" id="subscribeForm">
-  <input type="hidden" name="form-name" value="subscribe">
-  <input type="text" name="name" placeholder="Your Name">
-  <input type="tel" name="phone" placeholder="Your Phone Number" required>
+    <form id="subscribeForm" class="subscribe-form">
+  <h2>Subscribe to Our Updates</h2>
+
+  <input type="text" name="Name" placeholder="Enter your name" required>
+  <input type="email" name="Email" placeholder="Enter your email" required>
+  <input type="tel" name="Phone" placeholder="Enter your phone (optional)">
+
   <button type="submit">Subscribe</button>
 </form>
-<div id="msg"></div>
- 
-  
+
       <!-- Navigation -->
     <nav class="nav">
       <div class="nav-toggle" id="navToggle">
@@ -3261,42 +3409,46 @@ form name="subscribe" method="POST" data-netlify="true" id="subscribeForm">
     </nav>
 
 
-      <div class="footer-payments">
-        <h4>We Accept</h4>
-        <div class="payment-icons">
-          <img src="images/payment1.png" alt="Visa">
-          <img src="images/payment2.png" alt="MasterCard">
-          <img src="images/payment3.png" alt="PayPal">
-          <img src="images/payment4.png" alt="UPI">
-          <img src="images/payment5.png" alt="Wallet">
-        </div>
-      </div>
+      
+  <!-- We Accept Section -->
+  <div class="footer-payments">
+    <h4>We Accept</h4>
+    <div class="payment-icons">
+      <img src="images/payment1.png" alt="Visa">
+      <img src="images/payment2.png" alt="MasterCard">
+      <img src="images/payment3.png" alt="PayPal">
+      <img src="images/payment4.png" alt="UPI">
+      <img src="images/payment5.png" alt="Wallet">
     </div>
   </div>
 
+  <!-- Follow Us Section -->
   <div class="footer-social">
-  <h3>Follow Us</h3>
-  <div class="social-icons">
-    <a href="https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/" target="_blank" rel="noopener noreferrer">
-      <img src="images/facebook.png" alt="Facebook">
-    </a>
-    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
-      <img src="images/twitter.png" alt="Twitter">
-    </a>
-    <a href="https://www.instagram.com/srisaiganeshhomeneeds/srisaiganeshhomeneeds" target="_blank" rel="noopener noreferrer">
-      <img src="images/instagram.png" alt="Instagram">
-    </a>
-    <a href=https://youtube.com/@sureshthota2345?si=63g2CXZrxqe3FVF_"  target="_blank" rel="noopener noreferrer">
-      <img src="images/youtube.png" alt="YouTube">
-    </a>
+    <h4>Follow Us</h4>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/" target="_blank" rel="noopener noreferrer">
+        <img src="images/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+        <img src="images/twitter.png" alt="Twitter">
+      </a>
+      <a href="https://www.instagram.com/srisaiganeshhomeneeds/srisaiganeshhomeneeds" target="_blank" rel="noopener noreferrer">
+        <img src="images/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://youtube.com/@sureshthota2345?si=63g2CXZrxqe3FVF_" target="_blank" rel="noopener noreferrer">
+        <img src="images/youtube.png" alt="YouTube">
+      </a>
+    </div>
   </div>
-  </div>
+
+</div>
 
 
   <p class="footer-copy">© 2025 Sri Sai Ganesha Furniture. All Rights Reserved.</p>
   </footer>
 
    <canvas id="fireworksCanvas"></canvas>
+
 
 
   <script>
@@ -3483,8 +3635,8 @@ form name="subscribe" method="POST" data-netlify="true" id="subscribeForm">
 
     // WhatsApp link
     const waLink = document.getElementById('waLink');
-    const phone = '919876543210'; // replace with your WhatsApp number + country code
-    waLink.href = `https://wa.me/${phone}?text=${encodeURIComponent('Hi Jay\'s Furniture, I have an enquiry.')}`;
+    const phone = '919666780228'; // replace with your WhatsApp number + country code
+    waLink.href = `https://wa.me/${phone}?text=${encodeURIComponent('Hi sai ganesh\'s Furniture, I have an enquiry.')}`;
     waLink.style.display='flex';
 
     // Contact form
@@ -3600,43 +3752,39 @@ document.querySelectorAll('nav a').forEach(link => {
     scrollToSection(target);
   });
 });
-
 const bottomNav = document.querySelector('.bottom-nav');
 const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
-const sectionIds = ['home', 'products', 'cart']; // match your section IDs
+document.querySelector('.bottom-nav').classList.add('visible');
 
-
-// ===== Show bottom nav only when scrolling =====
+// === Show bottom nav smoothly when scrolling ===
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    bottomNav.style.display = 'flex';
+    bottomNav.classList.add('visible');  // show with animation
   } else {
-    bottomNav.style.display = 'none';
+    bottomNav.classList.remove('visible'); // hide smoothly
   }
 });
 
+// === Handle click navigation ===
 bottomNavItems.forEach((item, i) => {
   item.addEventListener('click', () => {
     scrollToSection(sectionIds[i]);
 
-    // Update active class
     bottomNavItems.forEach(nav => nav.classList.remove('active'));
     item.classList.add('active');
   });
 });
 
-// ===== Highlight active section on scroll =====
+// === Highlight active section on scroll ===
 const sections = document.querySelectorAll('section');
 
 window.addEventListener('scroll', () => {
-  const scrollPos = window.scrollY + 100; // small offset to detect top
+  const scrollPos = window.scrollY + 100;
 
   sections.forEach((sec, i) => {
     if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
       bottomNavItems.forEach(nav => nav.classList.remove('active'));
       bottomNavItems[i]?.classList.add('active');
-
-      // Update URL hash
       history.replaceState(null, '', `#${sec.id}`);
     }
   });
@@ -3927,77 +4075,8 @@ cards.forEach(card => {
     index = (index + 1) % images.length;
   }, 4000);
 });
-// ⭐ Rating selection
-const stars = document.querySelectorAll("#starRating span");
-let selectedRating = 0;
-
-stars.forEach((star, index) => {
-  star.addEventListener("click", () => {
-    selectedRating = index + 1;
-    stars.forEach((s, i) => s.classList.toggle("selected", i < selectedRating));
-  });
-});
-
-// ✅ Submit review to MongoDB
-async function submitReview() {
-  const name = document.getElementById("reviewName").value.trim() || "Guest User";
-  const review = document.getElementById("reviewText").value.trim();
-
-  if (!review) {
-    alert("Please write a review!");
-    return;
-  }
-
-  const response = await fetch("/api/reviews", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name,
-      review,
-      rating: selectedRating
-    })
-  });
-
-  const result = await response.json();
-  alert(result.message);
-
-  // Clear after submit
-  document.getElementById("reviewText").value = "";
-  selectedRating = 0;
-  stars.forEach((s) => s.classList.remove("selected"));
-
-  loadReviews(); // Refresh list
-}
-
-// ✅ Load reviews from MongoDB on start
-async function loadReviews() {
-  const response = await fetch("/api/reviews");
-  const data = await response.json();
-
-  const list = document.getElementById("reviewsList");
-  list.innerHTML = "";
-
-  data.forEach(r => {
-    let starsHTML = "";
-    for (let i = 0; i < 5; i++) {
-      starsHTML += `<span style="color:${i < r.rating ? '#ffb703' : '#ccc'};">★</span>`;
-    }git push --set-upstream origin main
 
 
-    list.innerHTML += `
-      <div class="review-card">
-        <p><strong>${r.name || "Anonymous"}</strong></p>
-        <p>${r.review}</p>
-        <div class="rating">${starsHTML}</div>
-      </div>
-    `;
-  });
-}
-
-// ✅ Load reviews when page loads
-window.onload = loadReviews;
 
 // ✅ List of search items and locations
 const searchItems = {
@@ -4194,8 +4273,51 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById("https://script.google.com/u/0/home/projects/1OrF8HtPsIKVm7YIPnoeD-6QqRAfPmDbIXI_ueJyQ3VfvuFztFYX2st3q/edit").getSheetByName("Sheet1");
+  const data = e.parameter;
+
+  sheet.appendRow([new Date(), data.name, data.contact, data.message]);
+  return ContentService.createTextOutput("Success");
+}
+
+//Populate date and time before submit
+  document.getElementById("subscribeForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop normal submit
+
+    // Get current date and time
+    const now = new Date();
+    const date = now.toLocaleDateString();
+    const time = now.toLocaleTimeString();
+
+    // Collect form data
+    const formData = new FormData(this);
+    formData.append("Date", date);
+    formData.append("Time", time);
+
+    // Send data to SheetMonkey manually
+    fetch("https://api.sheetmonkey.io/form/h2fLAwLK9jbQYMfNBPQrPt", {
+      method: "POST",
+      body: formData
+    }).then(response => {
+      if (response.ok) {
+        alert("✅ Thanks for subscribing!");
+        this.reset();
+      } else {
+        alert("❌ Something went wrong. Try again!");
+      }
+    });
+  }); 
+
+  
+
+
+  
+
 
 
 </script>
+<script src="review.js"></script>
 </body>
 </html>
+

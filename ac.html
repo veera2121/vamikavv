@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jay's Furniture — Air Conditioners</title>
-
+<title>Sri Sai Ganesh — Air Conditioners</title>
 <style>
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -48,7 +48,7 @@ nav a:hover { color: #c99b55; }
 
 h2 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 10px;
   font-weight: 800;
   background: linear-gradient(90deg, #a855f7, #f97316);
@@ -64,9 +64,9 @@ h2 {
 @media(max-width:768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
 .card {
-  background: rgba(255,255,255,0.25);
+  background: rgb(7, 233, 214);
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(212, 7, 127, 0.959);
   transition: transform 0.4s ease;
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -77,14 +77,14 @@ h2 {
   width: 100%;
   max-height: 250px;
   object-fit: contain;
-  background: #fff;
+  background: #fdfdfd;
   border-radius: 12px;
   display: block;
 }
 .card-body { padding: 18px; text-align: center; }
 .title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
 .meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
-.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #b60773; margin-bottom: 12px; }
 .btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
   color: #fff;
@@ -100,6 +100,7 @@ h2 {
   background: linear-gradient(90deg, #00b4d8, #007bff);
 }
 
+
 .modal {
   display: none;
   position: fixed;
@@ -110,7 +111,7 @@ h2 {
   justify-content: center; align-items: center;
 }
 .modal-content {
-  background: #fff;
+  background: #4fcea4;
   border-radius: 18px;
   width: 90%; max-width: 500px; max-height: 90vh;
   padding: 20px; overflow-y: auto;
@@ -126,91 +127,112 @@ h2 {
 }
 
 /* Brand Filter Buttons */
+#brandFilter {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  flex-wrap: wrap;          /* wrap nicely on smaller screens */
+  gap: 10px;                /* space between buttons */
+  margin: 20px 0;
+}
+
 .filter-btn {
   background: #fff;
-  border: 2px solid #c99b55;
-  color: #c99b55;
+  border: 2px solid #fd00be;
+  color: #c008d1;
   padding: 8px 16px;
   border-radius: 25px;
-  margin: 5px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
 }
+
 .filter-btn:hover {
-  background: #c99b55;
+  background: #00f5fd;
   color: #fff;
 }
+
 .filter-btn.active {
-  background: linear-gradient(90deg, #c99b55, #e0b469);
+  background: linear-gradient(90deg, #be05a0, #9c0257);
   color: #fff;
-}    
-footer {
-  text-align: center; margin: 30px 0; font-weight: 600;
-}  
-
-nav a.active {
-  background: linear-gradient(90deg,#c99b55,#e0b469);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-  transform: scale(1.05);
 }
 
-html {
+        /* Active nav link styling */
+      nav a.active {
+        background: linear-gradient(90deg,#c99b55,#e0b469);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+        transform: scale(1.05);
+      }
+
+       
+    html {
   scroll-padding-top: 100px;
 }
-
-@media (max-width: 768px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  nav {
-    display:flex; overflow-x:auto; padding:10px 0; gap:10px;
-    -webkit-overflow-scrolling: touch;
+     @media (max-width: 768px) {
+      .grid { grid-template-columns: repeat(2, 1fr); } /* 2 per mobile */
+      
+      nav {
+    display:flex;                   /* horizontal layout */
+    overflow-x:auto;                /* allow scrolling */
+    padding:10px 0;
+    gap:10px;                       /* space between links */
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
   }
+
+  /* Hide scrollbar for cleaner look */
   nav::-webkit-scrollbar { display:none; }
+
   nav a {
-    flex:0 0 auto; font-size:0.9rem;
-    padding:8px 16px; white-space:nowrap;
+    flex:0 0 auto;                 /* prevent shrinking */
+    font-size:0.9rem;
+    padding:8px 16px;
+    white-space:nowrap;             /* prevent wrapping text */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius:10px;
     background: rgba(255,255,255,0.25);
     backdrop-filter: blur(5px);
     transition: transform 0.2s;
   }
+
   nav a:hover {
     transform: scale(1.05);
     background: rgba(255,255,255,0.35);
   }
 }
+
 </style>
 </head>
-
 <body>
 
-<header>
+<header> 
   <div class="brand">
     <div class="logo">sri</div>
     <h1>Sri's Furniture</h1>
   </div>
+  
+  <!-- NAVIGATION -->
   <nav id="navbar">
+    
     <a href="index.html">Home</a>
-    <a href="sofas.html">Sofas</a>
-    <a href="chairs.html">Chairs</a>
-    <a href="beds.html">Beds</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
     <a href="ac.html">ACs</a>
-    <a href="cooler.html">Coolers</a>
-    <a href="table.html">Tables</a>
-    <a href="mattress.html">Mattresses</a>
-    <a href="wardrobe.html">Wardrobe</a>
-    <a href="pillows.html">Pillows</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+      <a href="cooler.html">Coolers</a>
+    <a href="sofas.html">Sofas</a>
     <a href="tv.html">TV</a>
+     <a href="beds.html">Beds</a>
+      <a href="table.html">Tables</a>
+    <a href="mattress.html">Mattresses</a>
+     <a href="chairs.html">Chairs</a>
+         
+    <a href="wardrobe.html">Wardrobe</a>
+   
+    <a href="pillows.html">Pillows</a>
   </nav>
-</header>
+</header> 
 
 <section>
   <h2>Air Conditioners Collection</h2>
-  <div id="brandFilters" style="text-align:center; margin: 20px 0;"></div>
   <div id="productGrid" class="grid"></div>
 </section>
 
@@ -219,110 +241,65 @@ html {
     <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage">
     <h3 id="modalName"></h3>
-    <p id="modalDesc"></p>
     <p><b>Brand:</b> <span id="modalBrand"></span></p>
     <p><b>Model:</b> <span id="modalModel"></span></p>
-    <p><b>Type:</b> <span id="modalType"></span></p>
+    <p><b>Capacity:</b> <span id="modalCapacity"></span> Ton</p>
     <p><b>Price:</b> ₹<span id="modalPrice"></span></p>
+    <p id="modalDesc"></p>
   </div>
 </div>
 
-<footer>© 2025 Jay's Furniture. All rights reserved.</footer>
+<footer>© 2025 Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
 
 <script>
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvPibat9qkzagzBKCjK8idNHoNNSkC-EahaOSzqs5fccfWW90c95PKZ1Imw9inomqR6c7OwLO-mPb_/pub?output=csv";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQshTpRZ1uInHDiWHgpyMCqZU6adprvibEoLneEuEtJXrOHStsRI3FA9JpqMtLaoI20-y28xkA7eMNX/pub?output=csv";
 
 function parseCSV(text) {
-  text = text.replace(/\r/g, "");
-  const lines = text.split("\n").filter(l => l.trim().length > 0);
-  const rows = lines.map(line => {
-    const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-    return cols.map(c => {
-      c = c.trim();
-      if (c.startsWith('"') && c.endsWith('"')) c = c.slice(1, -1).replace(/""/g, '"');
-      return c;
-    });
+  const lines = text.trim().split("\n");
+  const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
+  return lines.map(line => {
+    const values = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/).map(v => v.replace(/^"|"$/g, "").trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = values[i] || "");
+    return obj;
   });
-  return rows;
 }
-
-let allProducts = [];
 
 async function loadProducts() {
   try {
     const res = await fetch(SHEET_URL + "&t=" + Date.now());
     const text = await res.text();
-    const cleanText = text.replace(/^\uFEFF/, "");
-    const rows = parseCSV(cleanText);
-    if (rows.length < 2) {
-      document.getElementById("productGrid").innerHTML = "<p style='text-align:center'>No products found in sheet.</p>";
-      return;
-    }
-    const headers = rows.shift().map(h => h.trim().toLowerCase());
-    allProducts = rows.map(r => {
-      const obj = {};
-      headers.forEach((h, i) => { obj[h] = (r[i] !== undefined) ? r[i].trim() : ""; });
-      return obj;
-    });
-    renderBrandFilters();
-    renderProducts(allProducts);
+    const products = parseCSV(text);
+    renderProducts(products);
   } catch (err) {
-    console.error("Error loading sheet:", err);
-    document.getElementById("productGrid").innerHTML = `<p style="text-align:center;color:red;">Failed to load data. Check sheet link and publish status.</p>`;
+    document.getElementById("productGrid").innerHTML = "<p style='text-align:center;color:red;'>Error loading products.</p>";
+    console.error(err);
   }
 }
 
-function renderBrandFilters() {
-  const brandSet = new Set(allProducts.map(p => p.brand?.trim()).filter(Boolean));
-  const container = document.getElementById("brandFilters");
-  container.innerHTML = `
-    <button class="filter-btn active" onclick="filterByBrand('All')">All</button>
-    ${[...brandSet].map(b => `<button class="filter-btn" onclick="filterByBrand('${b}')">${b}</button>`).join('')}
-  `;
-}
-
-function renderProducts(data) {
+function renderProducts(products) {
   const container = document.getElementById("productGrid");
-  container.innerHTML = data.map(item => {
-    const img = item.image || item.imageurl || "";
-    const name = item.name || item.product || "Unnamed";
-    const brand = item.brand || "";
-    const model = item.model || "";
-    const price = item.price || "";
-    const type = item.type || "";
-    const safeItem = JSON.stringify(item).replace(/'/g, "&#39;");
-    return `
-      <div class="card">
-        <img src="${img}" alt="${name}" loading="lazy"
-             onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250?text=No+Image';">
-        <div class="card-body">
-          <div class="title">${name}</div>
-          <div class="meta">${brand}${brand && model ? ' • ' : ''}${model}</div>
-          <div class="price">${price ? '₹' + price : ''}</div>
-          <div class="type"><b>Type:</b> ${type || "—"}</div>
-          <button class="btn" onclick='showDetails(${safeItem})'>View Details</button>
-        </div>
+  container.innerHTML = products.map(p => `
+    <div class="card">
+      <img src="${p.image || 'https://via.placeholder.com/400x250?text=No+Image'}" alt="${p.name}">
+      <div class="card-body">
+        <div class="title">${p.name}</div>
+        <div class="meta">${p.brand} • ${p.model}</div>
+        <div class="price">₹${p.price}</div>
+        <button class="btn" onclick='showDetails(${JSON.stringify(p).replace(/'/g, "&#39;")})'>View Details</button>
       </div>
-    `;
-  }).join("");
+    </div>
+  `).join("");
 }
 
-function filterByBrand(brand) {
-  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-  const activeBtn = Array.from(document.querySelectorAll(".filter-btn")).find(btn => btn.textContent === brand);
-  if (activeBtn) activeBtn.classList.add("active");
-  if (brand === "All") renderProducts(allProducts);
-  else renderProducts(allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase()));
-}
-
-function showDetails(item) {
-  document.getElementById("modalImage").src = item.image || item.imageurl || "https://via.placeholder.com/400x250?text=No+Image";
-  document.getElementById("modalName").textContent = item.name || item.product || "N/A";
-  document.getElementById("modalDesc").textContent = item.description || "";
-  document.getElementById("modalBrand").textContent = item.brand || "-";
-  document.getElementById("modalModel").textContent = item.model || "-";
-  document.getElementById("modalType").textContent = item.type || "-";
-  document.getElementById("modalPrice").textContent = item.price || "-";
+function showDetails(p) {
+  document.getElementById("modalImage").src = p.image || 'https://via.placeholder.com/400x250?text=No+Image';
+  document.getElementById("modalName").textContent = p.name;
+  document.getElementById("modalBrand").textContent = p.brand;
+  document.getElementById("modalModel").textContent = p.model;
+  document.getElementById("modalCapacity").textContent = p.capacity_ton;
+  document.getElementById("modalPrice").textContent = p.price;
+  document.getElementById("modalDesc").textContent = p.description;
   document.getElementById("productModal").style.display = "flex";
 }
 
@@ -330,17 +307,7 @@ function closeModal() {
   document.getElementById("productModal").style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadProducts();
-  const currentPage = location.pathname.split("/").pop();
-  const navLinks = document.querySelectorAll("#navbar a");
-  navLinks.forEach(link => {
-    if(link.getAttribute("href") === currentPage){
-      link.classList.add("active");
-      link.scrollIntoView({behavior: "smooth", inline: "center"});
-    }
-  });
-});
+document.addEventListener("DOMContentLoaded", loadProducts);
 </script>
 </body>
 </html>

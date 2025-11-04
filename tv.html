@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jay's Furniture — Tv </title>
+<title>Sri Sai Ganesh — TV</title>
 
 <style>
 body {
@@ -13,7 +13,6 @@ body {
   color: #111;
   min-height: 100vh;
 }
-a { text-decoration: none; color: inherit; }
 .container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
 
 header {
@@ -43,12 +42,19 @@ header {
 nav a {
   margin-left: 15px; font-weight: 600;
   color: #333; transition: color 0.3s;
+  text-decoration: none;
 }
 nav a:hover { color: #c99b55; }
+nav a.active {
+  background: linear-gradient(90deg,#c99b55,#e0b469);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+  transform: scale(1.05);
+}
 
 h2 {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-top: 10px;
   font-weight: 800;
   background: linear-gradient(90deg, #a855f7, #f97316);
@@ -64,11 +70,10 @@ h2 {
 @media(max-width:768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
 .card {
-  background: rgba(255,255,255,0.25);
+  background: #e0f7fa;
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(182, 1, 167, 0.4);
   transition: transform 0.4s ease;
-  backdrop-filter: blur(10px);
   cursor: pointer;
   overflow: hidden;
 }
@@ -79,32 +84,24 @@ h2 {
   object-fit: contain;
   background: #fff;
   border-radius: 12px;
-  display: block;
 }
 .card-body { padding: 18px; text-align: center; }
 .title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
 .meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
-.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
 .btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  color: #fff; border: none; padding: 10px 18px;
+  border-radius: 25px; cursor: pointer;
+  font-weight: 600; transition: all 0.3s ease;
 }
 .btn:hover {
   transform: scale(1.05);
   background: linear-gradient(90deg, #00b4d8, #007bff);
 }
 
-
+/* Modal */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
+  display: none; position: fixed; z-index: 9999;
   left: 0; top: 0; width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.65);
   backdrop-filter: blur(6px);
@@ -113,9 +110,8 @@ h2 {
 .modal-content {
   background: #fff;
   border-radius: 18px;
-  width: 90%; max-width: 500px; max-height: 90vh;
-  padding: 20px; overflow-y: auto;
-  text-align: left; position: relative;
+  width: 90%; max-width: 500px;
+  padding: 20px; text-align: left; position: relative;
 }
 .modal-content img {
   width: 100%; max-height: 250px; object-fit: contain;
@@ -129,8 +125,8 @@ h2 {
 /* Brand Filter Buttons */
 .filter-btn {
   background: #fff;
-  border: 2px solid #c99b55;
-  color: #c99b55;
+  border: 2px solid #fd00be;
+  color: #c008d1;
   padding: 8px 16px;
   border-radius: 25px;
   margin: 5px;
@@ -139,49 +135,16 @@ h2 {
   transition: all 0.3s ease;
 }
 .filter-btn:hover {
-  background: #c99b55;
+  background: #00f5fd;
   color: #fff;
 }
 .filter-btn.active {
-  background: linear-gradient(90deg, #c99b55, #e0b469);
+  background: linear-gradient(90deg, #00ebf3, #000000);
   color: #fff;
 }    
 footer {
   text-align: center; margin: 30px 0; font-weight: 600;
 }  
-
-nav a.active {
-  background: linear-gradient(90deg,#c99b55,#e0b469);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-  transform: scale(1.05);
-}
-
-html {
-  scroll-padding-top: 100px;
-}
-
-@media (max-width: 768px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  nav {
-    display:flex; overflow-x:auto; padding:10px 0; gap:10px;
-    -webkit-overflow-scrolling: touch;
-  }
-  nav::-webkit-scrollbar { display:none; }
-  nav a {
-    flex:0 0 auto; font-size:0.9rem;
-    padding:8px 16px; white-space:nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius:10px;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(5px);
-    transition: transform 0.2s;
-  }
-  nav a:hover {
-    transform: scale(1.05);
-    background: rgba(255,255,255,0.35);
-  }
-}
 </style>
 </head>
 
@@ -189,23 +152,25 @@ html {
 
 <header>
   <div class="brand">
-    <div class="logo">sri</div>
-    <h1>Sri's Furniture</h1>
+    <div class="logo">SG</div>
+    <h1>Sri Sai Ganesh Homeneeds</h1>
   </div>
-  <nav id="navbar">
+ <!-- NAVIGATION -->
+ <nav id="navbar">
+    
     <a href="index.html">Home</a>
-    <a href="sofas.html">Sofas</a>
-    <a href="chairs.html">Chairs</a>
-    <a href="beds.html">Beds</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
     <a href="ac.html">ACs</a>
-    <a href="cooler.html">Coolers</a>
-    <a href="table.html">Tables</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+      <a href="cooler.html">Coolers</a>
+    <a href="sofas.html">Sofas</a>
+    <a href="tv.html">TV</a>
+     <a href="beds.html">Beds</a>
+      <a href="table.html">Tables</a>
     <a href="mattress.html">Mattresses</a>
+     <a href="chairs.html">Chairs</a>  
     <a href="wardrobe.html">Wardrobe</a>
     <a href="pillows.html">Pillows</a>
-    <a href="tv.html">TV</a>
   </nav>
 </header>
 
@@ -215,6 +180,7 @@ html {
   <div id="productGrid" class="grid"></div>
 </section>
 
+<!-- Product Modal -->
 <div id="productModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -223,15 +189,14 @@ html {
     <p id="modalDesc"></p>
     <p><b>Brand:</b> <span id="modalBrand"></span></p>
     <p><b>Model:</b> <span id="modalModel"></span></p>
-    <p><b>Type:</b> <span id="modalType"></span></p>
-    <p><b>Price:</b> ₹<span id="modalPrice"></span></p>
+    <p><b>Display Size:</b> <span id="modalDisplaySize"></span></p>
+    <p><b>Display Type:</b> <span id="modalDisplayType"></span></p>
   </div>
 </div>
 
-<footer>© 2025 Jay's Furniture. All rights reserved.</footer>
-
+<footer>© 2025 Sri Sai Ganesh Homeneeds. All rights reserved.</footer>
 <script>
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvPibat9qkzagzBKCjK8idNHoNNSkC-EahaOSzqs5fccfWW90c95PKZ1Imw9inomqR6c7OwLO-mPb_/pub?output=csv";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRk7IcOTu8OPMdQJ7c-STRjuiKvarsLIn0NdBZe1rgyqW3bCx9HPuD_fHV5KysHzxam15MKq7Yudjru/pub?output=csv";
 
 function parseCSV(text) {
   text = text.replace(/\r/g, "");
@@ -240,7 +205,9 @@ function parseCSV(text) {
     const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
     return cols.map(c => {
       c = c.trim();
-      if (c.startsWith('"') && c.endsWith('"')) c = c.slice(1, -1).replace(/""/g, '"');
+      if (c.startsWith('"') && c.endsWith('"')) {
+        c = c.slice(1, -1).replace(/""/g, '"');
+      }
       return c;
     });
   });
@@ -255,18 +222,22 @@ async function loadProducts() {
     const text = await res.text();
     const cleanText = text.replace(/^\uFEFF/, "");
     const rows = parseCSV(cleanText);
+
     if (rows.length < 2) {
       document.getElementById("productGrid").innerHTML = "<p style='text-align:center'>No products found in sheet.</p>";
       return;
     }
+
     const headers = rows.shift().map(h => h.trim().toLowerCase());
     allProducts = rows.map(r => {
       const obj = {};
-      headers.forEach((h, i) => { obj[h] = (r[i] !== undefined) ? r[i].trim() : ""; });
+      headers.forEach((h, i) => obj[h] = (r[i] || "").trim());
       return obj;
     });
+
     renderBrandFilters();
     renderProducts(allProducts);
+
   } catch (err) {
     console.error("Error loading sheet:", err);
     document.getElementById("productGrid").innerHTML = `<p style="text-align:center;color:red;">Failed to load data. Check sheet link and publish status.</p>`;
@@ -285,22 +256,15 @@ function renderBrandFilters() {
 function renderProducts(data) {
   const container = document.getElementById("productGrid");
   container.innerHTML = data.map(item => {
-    const img = item.image || item.imageurl || "";
-    const name = item.name || item.product || "Unnamed";
-    const brand = item.brand || "";
-    const model = item.model || "";
-    const price = item.price || "";
-    const type = item.type || "";
     const safeItem = JSON.stringify(item).replace(/'/g, "&#39;");
     return `
       <div class="card">
-        <img src="${img}" alt="${name}" loading="lazy"
-             onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250?text=No+Image';">
+        <img src="${item.image || ''}" alt="${item.name}" 
+          onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
         <div class="card-body">
-          <div class="title">${name}</div>
-          <div class="meta">${brand}${brand && model ? ' • ' : ''}${model}</div>
-          <div class="price">${price ? '₹' + price : ''}</div>
-          <div class="type"><b>Type:</b> ${type || "—"}</div>
+          <div class="title">${item.name}</div>
+          <div class="meta">${item.brand} • ${item.model}</div>
+          <div class="meta"><b>Price:</b> ${item.price || '—'}</div>
           <button class="btn" onclick='showDetails(${safeItem})'>View Details</button>
         </div>
       </div>
@@ -312,36 +276,27 @@ function filterByBrand(brand) {
   document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
   const activeBtn = Array.from(document.querySelectorAll(".filter-btn")).find(btn => btn.textContent === brand);
   if (activeBtn) activeBtn.classList.add("active");
+
   if (brand === "All") renderProducts(allProducts);
   else renderProducts(allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase()));
 }
 
 function showDetails(item) {
-  document.getElementById("modalImage").src = item.image || item.imageurl || "https://via.placeholder.com/400x250?text=No+Image";
-  document.getElementById("modalName").textContent = item.name || item.product || "N/A";
-  document.getElementById("modalDesc").textContent = item.description || "";
+  document.getElementById("modalImage").src = item.image || "https://via.placeholder.com/400x250?text=No+Image";
+  document.getElementById("modalName").textContent = item.name || "-";
+  document.getElementById("modalDesc").textContent = item.description || "-";
   document.getElementById("modalBrand").textContent = item.brand || "-";
   document.getElementById("modalModel").textContent = item.model || "-";
-  document.getElementById("modalType").textContent = item.type || "-";
+  document.getElementById("modalDisplaySize").textContent = item["display size"] || "-";
+  document.getElementById("modalDisplayType").textContent = item["display type"] || "-";
   document.getElementById("modalPrice").textContent = item.price || "-";
   document.getElementById("productModal").style.display = "flex";
 }
-
 function closeModal() {
   document.getElementById("productModal").style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadProducts();
-  const currentPage = location.pathname.split("/").pop();
-  const navLinks = document.querySelectorAll("#navbar a");
-  navLinks.forEach(link => {
-    if(link.getAttribute("href") === currentPage){
-      link.classList.add("active");
-      link.scrollIntoView({behavior: "smooth", inline: "center"});
-    }
-  });
-});
+document.addEventListener("DOMContentLoaded", loadProducts);
 </script>
 </body>
 </html>

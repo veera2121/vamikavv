@@ -588,33 +588,50 @@ nav, #navLinks, #navLinks a {
  }
 
 
+ /* ---------------- SHRINK EFFECT ---------------- */
+@media (max-width: 768px) {
+  /* Shrink header on scroll */
+  header.shrink {
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  header.shrink .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  header.shrink .header-content h1 {
+    font-size: 1.2rem;
+  }
+}
+
 /* ---------------- MOBILE LAYOUT ---------------- */
- @media (max-width: 768px) { 
+@media (max-width: 768px) { 
   header {
     padding: 1px; 
-      position: relative; 
-      height:100px;
-     
+    position: relative; 
+    height: 100px;
   }
+
   /* Header top: logo left, text right */
   .header-top {
     display: flex;
-    flex-direction: row; /* side-by-side layout */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: left;
     gap: 0.8rem;  
-     width: 100%;
-    flex-wrap: wrap; /* allows 2nd row for hamburger */
+    width: 100%;
+    flex-wrap: wrap;
   }
 
   .brand {
-    position: static; /* reset absolute */
+    position: static;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* logo stays left */
+    justify-content: flex-start;
     margin: 0;  
-   
   }
 
   .logo {
@@ -622,72 +639,49 @@ nav, #navLinks, #navLinks a {
     width: 70px;
     border: 1px solid #fff;
     border-radius: 8px;
-    object-fit: contain; 
-   
-   
+    object-fit: contain;
   }
+
   header .logo {
-  position: relative;
-  top: 10px; /* move down 10px — adjust as needed */
-}
+    position: relative;
+    top: 10px;
+  }
+
   /* Header text (main title) */
   header .header-content {
-   flex: 1;
-  display: flex;
-  justify-content: flex-end;   /* center horizontally */
-  align-items: flex-end;       /* center vertically */
-  flex-direction: column;    /* stack text properly */
-  text-align: center;        /* center text inside */
-  height: 100%;    }      
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+  }
 
   header .header-content h1 {
-    
-    font-size: 20px;   /* smaller, fits nicely on mobile */
+    font-size: 20px;
     letter-spacing: 1px;
     line-height: 1.2;
-    white-space: normal; /* allow wrapping on small screens */
-  
-   
+    white-space: normal;
     background: linear-gradient(180deg, #ff0000, #ff0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: flext-start; /* align with logo */
-    line-height: 1.1;
-    margin: 0; 
-      margin: 25px 0 0 0; /* <-- top margin adds space */ 
-    
-    } 
-    header .header-content h1 {
+    text-align: flex-start;
+    margin: 25px 0 0 0;
     position: relative;
-    left: -30px; /* move slightly left — adjust value as needed */
+    left: -30px;
   }
-  
-  /* Navigation below */
-  nav {
-   /* Hamburger menu */
-     
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: #1A237E;
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px 5px;
-        border-radius: 10px;
-        display: none;
-      }
 
-  
-
-  /* Hamburger button below header content, aligned right */
-.nav-toggle {
+  /* ✅ Hamburger button */
+  .nav-toggle {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-top: 10px; /* adds a little spacing below text */
-    align-self: flex-end; /* right-aligns it in the new row */
-    margin-left: auto; /* pushes it to the right side */
-  
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    right: 20px; /* right side */
+    z-index: 2000;
   }
 
   .nav-toggle span {
@@ -709,27 +703,46 @@ nav, #navLinks, #navLinks a {
     transform: rotate(-45deg) translateY(-8px);
   }
 
-  /* Mobile navigation hidden initially */
-  nav {
-    position: absolute;
-    top: 100%; /* below header content */
-    right: 20px;
-    background: #1A237E;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    border-radius: 10px;
-    display: none;
-    z-index: 1000;
+/* ✅ Hidden by default */
+nav {
+  position: flex;
+  top: 30px;
+  right: -220px; /* start off-screen */
+  height: 100vh;
+  width: 200px;
+  background: #1A237E;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 120px 20px  20px;
+  border-radius: 10px 0 0 10px;
+  z-index: 9999;
+  transition: right 0.4s ease;
+  opacity: 0;                /* hide initially */
+  pointer-events: none;      /* disable clicks when closed */
+}
+
+/* ✅ When active, slide in and enable interaction */
+nav.active {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+  /* Slide-in animation */
+  @keyframes slideFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
+}
 
-  nav.active {
-    display: flex !important;
-  }
-
-
-
- }
 
     @media (max-width: 768px) { 
       /* Bottom Navigation */
@@ -4317,7 +4330,10 @@ function doPost(e) {
 
 
 </script>
-<script src="review.js"></script>
+<script src="review.js"></script> 
+
+<!--End of Tawk.to Script-->
+
 </body>
 </html>
 

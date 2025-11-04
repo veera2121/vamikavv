@@ -1,92 +1,92 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sri's Furniture — Chairs</title>
   <style>
-    body { 
-      font-family: 'Poppins', sans-serif;
-      margin:0;
-      background: linear-gradient(135deg,#e0e7ff,#fef6e4,#f3e8ff);
-      color:#111;
-      min-height:100vh;
-      scroll-behavior: smooth;
-    } 
-    html { scroll-padding-top: 100px; }
+   
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
+  color: #111;
+  min-height: 100vh;
+}
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
 
-    a { text-decoration:none; color:inherit; }
-    .container { max-width:1250px; margin:40px auto; padding:0 20px; }
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 55px; height: 55px;
+  background: linear-gradient(135deg, #c99b55, #e0b469);
+  color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px; font-size: 18px;
+  box-shadow: 0 4px 10px rgba(201,155,85,0.4);
+}
+.brand h1 {
+  font-size: 1.5rem; font-weight: 700;
+  background: linear-gradient(90deg, #a78bfa, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav a {
+  margin-left: 15px; font-weight: 600;
+  color: #333; transition: color 0.3s;
+}
+nav a:hover { color: #c99b55; }
 
-    /* Header */
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 25px;
-      background: rgba(255,255,255,0.25);
-      backdrop-filter: blur(10px);
-      border-radius:14px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.1);
-      margin-bottom:20px;
-      position: sticky;
-      top: 10px;
-      z-index: 1000;
-    }
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a855f7, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .brand { display:flex; align-items:center; gap:12px; }
-    .logo {
-      width:55px;height:55px;
-      background: linear-gradient(135deg,#c99b55,#e0b469);
-      color:#fff;font-weight:700;
-      display:flex;align-items:center;justify-content:center;
-      border-radius:14px;font-size:18px;
-      box-shadow:0 4px 10px rgba(201,155,85,0.4);
-    }
-    .brand h1 {
-      font-size:1.5rem;font-weight:700;
-      background: linear-gradient(90deg,#a78bfa,#f59e0b);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media(max-width:768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
-    nav a {
-      margin-left:15px;font-weight:600;color:#333;
-      transition: color 0.3s ease;
-    }
-    nav a:hover, nav a.active { color:#c99b55; }
-
-    h2 {
-      text-align:center;font-size:.2rem;margin-top:30px;font-weight:800;
-      background: linear-gradient(90deg,#a855f7,#f97316);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    }
-
-    /* Grid / Cards */
-    .grid {
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:25px;margin-top:35px;
-    }
-    @media(max-width:768px){ .grid{ grid-template-columns:repeat(2,1fr); } }
-
-    .card {
-      position:relative;
-      background: rgba(255,255,255,0.25);
-      border-radius:18px;overflow:hidden;
-      box-shadow:0 8px 25px rgba(0,0,0,0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      backdrop-filter: blur(10px); cursor:pointer;
-    }
-    .card:hover { transform: translateY(-10px) scale(1.02); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-
-    .card img {
-      width:100%; max-height:250px; object-fit:contain;
-      border-radius:12px; margin-bottom:10px; display:block; background:#f0f0f0;
-    }
-    .card-body { padding:18px; text-align:center; }
-    .title { font-weight:700;font-size:1.1rem;margin-bottom:8px;color:#2e2e2e; }
-    .meta { color:#6b6b6b;font-size:0.9rem;margin-bottom:10px; }
-    .price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
-   .btn {
+.card {
+  background: rgb(7, 233, 214);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(212, 7, 127, 0.959);
+  transition: transform 0.4s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  overflow: hidden;
+}
+.card:hover { transform: translateY(-10px) scale(1.02); }
+.card img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  background: #fdfdfd;
+  border-radius: 12px;
+  display: block;
+}
+.card-body { padding: 18px; text-align: center; }
+.title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
+.meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #b60773; margin-bottom: 12px; }
+.btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
   color: #fff;
   border: none;
@@ -102,79 +102,134 @@
 }
 
 
-    /* Modal */
-    .modal { display:none; position:fixed; z-index:9999; left:0;top:0;width:100%;height:100%;
-      background-color: rgba(0,0,0,0.65); backdrop-filter: blur(6px); justify-content:center;align-items:center;
-    }
-    .modal-content {
-      background: rgba(255,255,255,0.95);
-      border-radius:18px; width:90%; max-width:500px; max-height:90vh;
-      padding:20px;color:#333;text-align:left;
-      box-shadow:0 8px 30px rgba(0,0,0,0.25);
-      animation: zoomIn 0.4s ease;
-      position:absolute; top:50%; left:50%; transform: translate(-50%, -50%);
-      overflow-y:auto;
-    }
-    .modal-content img {
-      width:100%; max-height:250px; object-fit:contain;
-      border-radius:12px; margin-bottom:15px; background:#f0f0f0; display:block;
-    }
-    .close { float:right; font-size:24px; cursor:pointer; }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  justify-content: center; align-items: center;
+}
+.modal-content {
+  background: #4fcea4;
+  border-radius: 18px;
+  width: 90%; max-width: 500px; max-height: 90vh;
+  padding: 20px; overflow-y: auto;
+  text-align: left; position: relative;
+}
+.modal-content img {
+  width: 100%; max-height: 250px; object-fit: contain;
+  border-radius: 12px; margin-bottom: 15px;
+}
+.close {
+  position: absolute; top: 12px; right: 18px;
+  font-size: 24px; cursor: pointer;
+}
 
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity:0; }
-      to { transform: scale(1); opacity:1; }
-    }
+/* Brand Filter Buttons */
+#brandFilter {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  flex-wrap: wrap;          /* wrap nicely on smaller screens */
+  gap: 10px;                /* space between buttons */
+  margin: 20px 0;
+}
 
-    footer { margin-top:50px; text-align:center; color:#6b6b6b; font-size:0.9rem; }
+.filter-btn {
+  background: #fff;
+  border: 2px solid #fd00be;
+  color: #c008d1;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-    /* Active nav link styling */
-    nav a.active {
-      background: linear-gradient(90deg,#c99b55,#e0b469);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-      transform: scale(1.05);
-    }
+.filter-btn:hover {
+  background: #00f5fd;
+  color: #fff;
+}
 
-    /* Mobile nav scroll */
-    @media(max-width:768px){
+.filter-btn.active {
+  background: linear-gradient(90deg, #be05a0, #9c0257);
+  color: #fff;
+}
+
+        /* Active nav link styling */
+      nav a.active {
+        background: linear-gradient(90deg,#c99b55,#e0b469);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+        transform: scale(1.05);
+      }
+
+       
+    html {
+  scroll-padding-top: 100px;
+}
+     @media (max-width: 768px) {
+      .grid { grid-template-columns: repeat(2, 1fr); } /* 2 per mobile */
+      
       nav {
-        display:flex; overflow-x:auto; padding:10px 0; gap:10px; -webkit-overflow-scrolling: touch;
-      }
-      nav::-webkit-scrollbar { display:none; }
-      nav a {
-        flex:0 0 auto; font-size:0.9rem; padding:8px 16px; white-space:nowrap;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius:10px;
-        background: rgba(255,255,255,0.25); backdrop-filter: blur(5px);
-        transition: transform 0.2s;
-      }
-      nav a:hover { transform: scale(1.05); background: rgba(255,255,255,0.35); }
-    }
+    display:flex;                   /* horizontal layout */
+    overflow-x:auto;                /* allow scrolling */
+    padding:10px 0;
+    gap:10px;                       /* space between links */
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+  }
+
+  /* Hide scrollbar for cleaner look */
+  nav::-webkit-scrollbar { display:none; }
+
+  nav a {
+    flex:0 0 auto;                 /* prevent shrinking */
+    font-size:0.9rem;
+    padding:8px 16px;
+    white-space:nowrap;             /* prevent wrapping text */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius:10px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+  }
+
+  nav a:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.35);
+  }
+}
+
   </style>
 </head>
+
 <body>
   <header>
     <div class="brand">
       <div class="logo">Sri</div>
       <h1>Sri's Furniture</h1>
     </div>
+
+
+    <!-- NAVIGATION -->
+ <nav id="navbar">
     
-     
-  <!-- NAVIGATION -->
-  <nav id="navbar">
     <a href="index.html">Home</a>
-    <a href="sofas.html">Sofas</a>
-    <a href="chairs.html">Chairs</a>
-    <a href="beds.html">Beds</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
     <a href="ac.html">ACs</a>
-    <a href="cooler.html">Coolers</a>
-    <a href="table.html">Tables</a>
-    <a href="mattress.html">Mattresses</a>
-    <a href="wardrobe.html">Wardrobe</a>
-    <a href="pillows.html">Pillows</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+      <a href="cooler.html">Coolers</a>
+    <a href="sofas.html">Sofas</a>
     <a href="tv.html">TV</a>
+     <a href="beds.html">Beds</a>
+      <a href="table.html">Tables</a>
+    <a href="mattress.html">Mattresses</a>
+     <a href="chairs.html">Chairs</a>
+         
+    <a href="wardrobe.html">Wardrobe</a>
+   
+    <a href="pillows.html">Pillows</a>
   </nav>
   </header>
 
@@ -187,7 +242,9 @@
           <h4 class="title">Executive Leather Office Chair</h4>
           <div class="meta">High-back with thick padding for long-hour comfort.</div>
           <div class="price">under 8000</div>
-          <button class="btn" onclick="openModal('images/chair1.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair1.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -196,7 +253,9 @@
           <h4 class="title">Executive Leather Office Chair (Black)</h4>
           <div class="meta">Premium high-back executive chair with plush cushioning.</div>
           <div class="price">₹6,999</div>
-          <button class="btn" onclick="openModal('images/chair2.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair2.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -205,26 +264,32 @@
           <h4 class="title">Hanging Swing Chair</h4>
           <div class="meta">Rust-proof frame, Weather-resistant, Modern design.</div>
           <div class="price">₹7,499</div>
-          <button class="btn" onclick="openModal('images/chair13.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair13.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View
+            Details</button>
         </div>
-      </div> 
+      </div>
       <div class="card">
         <img src="images/chair4.webp" alt="Modern Lounge Chair">
         <div class="card-body">
           <h4 class="title">Modern Ergonomic Office Chair (Gray)</h4>
           <div class="meta">Workstations, computer desks, and conference rooms.</div>
           <div class="price">₹7,499</div>
-          <button class="btn" onclick="openModal('images/chair4.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair4.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View
+            Details</button>
         </div>
       </div>
-      
+
       <div class="card">
         <img src="images/chair5.webp" alt="Recliner Chair">
         <div class="card-body">
           <h4 class="title">Breathable Mesh Ergonomic Office Chair (Black)</h4>
           <div class="meta">Adjustable headrest and height.</div>
           <div class="price">₹9,499</div>
-          <button class="btn" onclick="openModal('images/chair5.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair5.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -233,16 +298,20 @@
           <h4 class="title">White Executive Office Chair</h4>
           <div class="meta">Cushioned headrest and lumbar support.</div>
           <div class="price">₹5,999</div>
-          <button class="btn" onclick="openModal('images/chair6.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair6.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View
+            Details</button>
         </div>
       </div>
-         <div class="card">
+      <div class="card">
         <img src="images/chair7.webp" alt="Classic Wooden Chair">
         <div class="card-body">
           <h4 class="title">Modern Executive High-Back Office Chair (White)</h4>
           <div class="meta">Premium PU leather with chrome armrests and base.</div>
           <div class="price">₹4,499</div>
-          <button class="btn" onclick="openModal('images/chair7.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair7.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -251,7 +320,9 @@
           <h4 class="title">Premium Leather Executive Chair (Beige)</h4>
           <div class="meta">Comfortable chair with adjustable height and back support.</div>
           <div class="price">₹6,999</div>
-          <button class="btn" onclick="openModal('images/chair8.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair8.webp','Ergonomic Office Chair','Comfortable chair with adjustable height and back support.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -260,7 +331,9 @@
           <h4 class="title">Fabric Ergonomic Office Chair (Grey)</h4>
           <div class="meta">A soft, cushioned fabric office chair with mid-back support..</div>
           <div class="price">₹7,499</div>
-          <button class="btn" onclick="openModal('images/chair9.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair9.webp','Modern Lounge Chair','Perfect for living rooms or reading corners.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -269,7 +342,9 @@
           <h4 class="title">Stackable Plastic Chairs (Green & Maroon)</h4>
           <div class="meta">Durable, lightweight plastic chairs for multipurpose use..</div>
           <div class="price">₹2,999</div>
-          <button class="btn" onclick="openModal('images/chair10.webp','Plastic Dining Chair','Durable, lightweight, and easy to clean.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair10.webp','Plastic Dining Chair','Durable, lightweight, and easy to clean.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -278,7 +353,9 @@
           <h4 class="title">Modern Metallic Hanging Egg Chair</h4>
           <div class="meta">Ideal for balconies, modern living rooms, lounges, or cafes..</div>
           <div class="price">₹9,499</div>
-          <button class="btn" onclick="openModal('images/chair11.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair11.webp','Recliner Chair','Luxury recliner with soft cushions for relaxation.')">View
+            Details</button>
         </div>
       </div>
       <div class="card">
@@ -287,19 +364,23 @@
           <h4 class="title">Hanging Wicker Swing Chair (Pink)</h4>
           <div class="meta">Perfect for balconies, gardens, living rooms, or patios..</div>
           <div class="price">₹5,999</div>
-          <button class="btn" onclick="openModal('images/chair12.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair12.webp','Rattan Chair','Handcrafted rattan chair with natural look.')">View
+            Details</button>
         </div>
-      </div> 
-         <div class="card">
+      </div>
+      <div class="card">
         <img src="images/chair3.webp" alt="Classic Wooden Chair">
         <div class="card-body">
           <h4 class="title">Modern Ergonomic Office Chair</h4>
           <div class="meta">Suitable for corporate setups, startups, and study rooms..</div>
           <div class="price">under10000</div>
-          <button class="btn" onclick="openModal('images/chair3.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View Details</button>
+          <button class="btn"
+            onclick="openModal('images/chair3.webp','Classic Wooden Chair','Sturdy and stylish, perfect for dining rooms.')">View
+            Details</button>
         </div>
       </div>
-      
+
     </div>
   </section>
 
@@ -316,32 +397,33 @@
   </div>
 
   <script>
-    function openModal(imgSrc, title, desc){
+    function openModal(imgSrc, title, desc) {
       document.getElementById('modalImage').src = imgSrc;
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalDesc').innerText = desc;
       document.getElementById('myModal').style.display = 'flex';
     }
 
-    document.querySelector('.close').onclick = function() {
+    document.querySelector('.close').onclick = function () {
       document.getElementById('myModal').style.display = 'none';
     }
 
-    window.onclick = function(event) {
-      if(event.target == document.getElementById('myModal')){
+    window.onclick = function (event) {
+      if (event.target == document.getElementById('myModal')) {
         document.getElementById('myModal').style.display = 'none';
       }
-    } 
+    }
 
     // Highlight current nav link
     const currentPage = "chairs.html"; // adjust based on file name
     const navLinks = document.querySelectorAll("#navbar a");
     navLinks.forEach(link => {
-      if(link.getAttribute("href") === currentPage){
+      if (link.getAttribute("href") === currentPage) {
         link.classList.add("active");
-        link.scrollIntoView({behavior: "smooth", inline: "center"});
+        link.scrollIntoView({ behavior: "smooth", inline: "center" });
       }
     });
   </script>
 </body>
+
 </html>

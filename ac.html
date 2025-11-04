@@ -213,7 +213,7 @@ h2 {
   <!-- NAVIGATION -->
   <nav id="navbar">
     
-    <a href="index.html">Home</a>
+    <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
      <a href="fridge.html">Fridges</a>
      <a href="washing.html">Washing Machines</a>
@@ -233,6 +233,7 @@ h2 {
 
 <section>
   <h2>Air Conditioners Collection</h2>
+   <div id="brandFilter"></div> <!-- 🔹 Add this line -->
   <div id="productGrid" class="grid"></div>
 </section>
 
@@ -249,10 +250,12 @@ h2 {
   </div>
 </div>
 
-<footer>© 2025 Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
+<footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
 
 <script>
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQshTpRZ1uInHDiWHgpyMCqZU6adprvibEoLneEuEtJXrOHStsRI3FA9JpqMtLaoI20-y28xkA7eMNX/pub?output=csv";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSlcS9AbTC3sVbP9JXxAPY6-63aYMKbGU1G00JHzFjQls2u0fn-xPYVH05vCetE3riG6mpDRDdrbLQl/pub?output=csv";
+
+let allProducts = [];
 
 function parseCSV(text) {
   const lines = text.trim().split("\n");
@@ -269,12 +272,23 @@ async function loadProducts() {
   try {
     const res = await fetch(SHEET_URL + "&t=" + Date.now());
     const text = await res.text();
-    const products = parseCSV(text);
-    renderProducts(products);
+    allProducts = parseCSV(text);
+
+    renderBrandFilters();
+    renderProducts(allProducts);
   } catch (err) {
     document.getElementById("productGrid").innerHTML = "<p style='text-align:center;color:red;'>Error loading products.</p>";
     console.error(err);
   }
+}
+
+function renderBrandFilters() {
+  const brands = [...new Set(allProducts.map(p => p.brand?.trim()).filter(Boolean))];
+  const container = document.getElementById("brandFilter");
+  container.innerHTML = `
+    <button class="filter-btn active" onclick="filterByBrand('All')">All</button>
+    ${brands.map(b => `<button class="filter-btn" onclick="filterByBrand('${b}')">${b}</button>`).join('')}
+  `;
 }
 
 function renderProducts(products) {
@@ -290,6 +304,15 @@ function renderProducts(products) {
       </div>
     </div>
   `).join("");
+}
+
+function filterByBrand(brand) {
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  const activeBtn = Array.from(document.querySelectorAll(".filter-btn")).find(btn => btn.textContent === brand);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  if (brand === "All") renderProducts(allProducts);
+  else renderProducts(allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase()));
 }
 
 function showDetails(p) {
@@ -308,6 +331,22 @@ function closeModal() {
 }
 
 document.addEventListener("DOMContentLoaded", loadProducts);
+
+
+ // Highlight current page link in navbar
+  const currentPage = location.pathname.split("/").pop(); // e.g., "fridge.html"
+  const navLinks = document.querySelectorAll("#navbar a");
+  navLinks.forEach(link => {
+    if(link.getAttribute("href") === currentPage){
+      link.classList.add("active");
+      // Scroll it into view for mobile horizontal nav
+      link.scrollIntoView({behavior: "smooth", inline: "center"});
+    }
+  });
 </script>
+
 </body>
 </html>
+
+
+

@@ -5,34 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jay's Furniture — Pillows</title>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin:0;
-      background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
-      color:#111;
-      min-height: 100vh;
-    }
-    a { text-decoration:none; color:inherit; }
-    .container { max-width:1250px; margin:40px auto; padding:0 20px; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:15px 25px; background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); border-radius:14px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); margin-bottom:20px; }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .logo { width:55px; height:55px; background: linear-gradient(135deg,#c99b55,#e0b469); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; border-radius:14px; font-size:18px; box-shadow: 0 4px 10px rgba(201,155,85,0.4); }
-    .brand h1 { font-size:1.5rem; font-weight:700; background: linear-gradient(90deg,#a78bfa,#f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    nav a { margin-left:15px; font-weight:600; color:#333; transition: color 0.3s ease; }
-    nav a:hover { color:#c99b55; }
-    h2 { text-align:center; font-size:1.2rem; margin-top:30px; font-weight:800; background: linear-gradient(90deg,#a855f7,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  body {
+ font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
+  color: #111;
+  min-height: 100vh;
+}
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
 
-    .grid { display:grid; grid-template-columns: repeat(4,1fr); gap:25px; margin-top:35px; }
-   
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 55px; height: 55px;
+  background: linear-gradient(135deg, #c99b55, #e0b469);
+  color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px; font-size: 18px;
+  box-shadow: 0 4px 10px rgba(201,155,85,0.4);
+}
+.brand h1 {
+  font-size: 1.5rem; font-weight: 700;
+  background: linear-gradient(90deg, #a78bfa, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav a {
+  margin-left: 15px; font-weight: 600;
+  color: #333; transition: color 0.3s;
+}
+nav a:hover { color: #c99b55; }
 
-    .card { position:relative; background: rgba(255,255,255,0.25); border-radius:18px; overflow:hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.4s ease, box-shadow 0.4s ease; backdrop-filter: blur(10px); cursor:pointer; }
-    .card:hover { transform: translateY(-10px) scale(1.02); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-    .card img { width:100%; max-height:150px; object-fit:contain; border-radius:12px; display:block; background:#f0f0f0; margin-bottom:10px; }
-    .card-body { padding:18px; text-align:center; }
-    .title { font-weight:700; font-size:1.1rem; margin-bottom:8px; color:#2e2e2e; }
-    .meta { color:#6b6b6b; font-size:0.9rem; margin-bottom:10px; }
-    .price { font-weight:800; font-size:1.1rem; color:#c99b55; margin-bottom:12px; }
-    .btn {
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a855f7, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media(max-width:768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+.card {
+  background: rgb(7, 233, 214);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(212, 7, 127, 0.959);
+  transition: transform 0.4s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  overflow: hidden;
+}
+.card:hover { transform: translateY(-10px) scale(1.02); }
+.card img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  background: #fdfdfd;
+  border-radius: 12px;
+  display: block;
+}
+.card-body { padding: 18px; text-align: center; }
+.title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
+.meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #b60773; margin-bottom: 12px; }
+.btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
   color: #fff;
   border: none;
@@ -48,28 +100,76 @@
 }
 
 
-    .modal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.65); backdrop-filter: blur(6px); justify-content:center; align-items:center; }
-    .modal-content { background: rgba(255,255,255,0.95); border-radius:18px; width:90%; max-width:500px; max-height:90vh; padding:20px; color:#333; text-align:left; box-shadow:0 8px 30px rgba(0,0,0,0.25); animation: zoomIn 0.4s ease; position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); overflow-y:auto; }
-    .modal-content img { width:100%; max-height:250px; object-fit:contain; border-radius:12px; margin-bottom:15px; background:#f0f0f0; display:block; }
-    #modalSpecs { list-style:none; padding:0; margin:0; font-size:0.95rem; }
-    #modalSpecs li { margin-bottom:8px; padding:8px; border-bottom:1px solid rgba(0,0,0,0.1); }
-    .close { float:right; font-size:24px; cursor:pointer; }
-    @keyframes zoomIn { from { transform: scale(0.8); opacity:0; } to { transform: scale(1); opacity:1; } }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  justify-content: center; align-items: center;
+}
+.modal-content {
+  background: #4fcea4;
+  border-radius: 18px;
+  width: 90%; max-width: 500px; max-height: 90vh;
+  padding: 20px; overflow-y: auto;
+  text-align: left; position: relative;
+}
+.modal-content img {
+  width: 100%; max-height: 250px; object-fit: contain;
+  border-radius: 12px; margin-bottom: 15px;
+}
+.close {
+  position: absolute; top: 12px; right: 18px;
+  font-size: 24px; cursor: pointer;
+}
 
-    footer { margin-top:50px; text-align:center; color:#6b6b6b; font-size:0.9rem; }  
-                /* Active nav link styling */
+/* Brand Filter Buttons */
+#brandFilter {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  flex-wrap: wrap;          /* wrap nicely on smaller screens */
+  gap: 10px;                /* space between buttons */
+  margin: 20px 0;
+}
+
+.filter-btn {
+  background: #fff;
+  border: 2px solid #fd00be;
+  color: #c008d1;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: #00f5fd;
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: linear-gradient(90deg, #be05a0, #9c0257);
+  color: #fff;
+}
+
+        /* Active nav link styling */
       nav a.active {
-        background: linear-gradient(180deg,#51690f,#96075a);
+        background: linear-gradient(90deg,#c99b55,#e0b469);
         color: #fff;
         box-shadow: 0 4px 12px rgba(201,155,85,0.4);
         transform: scale(1.05);
-      }    
-html {
+      }
+
+       
+    html {
   scroll-padding-top: 100px;
 }
-
-
-     @media(max-width:768px){ 
+     @media (max-width: 768px) {
+      .grid { grid-template-columns: repeat(2, 1fr); } /* 2 per mobile */
+      
       nav {
     display:flex;                   /* horizontal layout */
     overflow-x:auto;                /* allow scrolling */
@@ -97,52 +197,7 @@ html {
     transform: scale(1.05);
     background: rgba(255,255,255,0.35);
   }
-   }
-/* Responsive grid fix for mobile */
-@media (max-width: 768px) {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-    gap: 10px; /* smaller gap */
-    padding: 10px;
-  }
-
-  .card {
-    width: 100%;
-    font-size: 13px;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
-  .card-body {
-    padding: 6px;
-  }
-
-  .card .title {
-    font-size: 14px;
-  }
-
-  .card .price {
-    font-size: 13px;
-  }
-
-  .card .btn {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
 }
-
-/* Optional: for very small screens */
-@media (max-width: 480px) {
-  .product-grid {
-    grid-template-columns: repeat(1, 1fr); /* 1 card per row on very small phones */
-  }
-}
-
   </style>
 </head>
 <header>
@@ -153,20 +208,21 @@ html {
   
   
   <!-- NAVIGATION -->
-  <nav id="navbar">
-    <a href="index.html">Home</a>
-    <a href="sofas.html">Sofas</a>
-    <a href="chairs.html">Chairs</a>
-    <a href="beds.html">Beds</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
+ <nav id="navbar">
+    
+    <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
-    <a href="cooler.html">Coolers</a>
-    <a href="table.html">Tables</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+      <a href="cooler.html">Coolers</a>
+    <a href="sofas.html">Sofas</a>
+    <a href="tv.html">TV</a>
+     <a href="beds.html">Beds</a>
+      <a href="table.html">Tables</a>
     <a href="mattress.html">Mattresses</a>
+     <a href="chairs.html">Chairs</a>  
     <a href="wardrobe.html">Wardrobe</a>
     <a href="pillows.html">Pillows</a>
-    <a href="tv.html">TV</a>
   </nav>
 </header>
 <section id="pillows"> 
@@ -349,8 +405,7 @@ html {
       <div class="modal-content" id="modalContent"></div>
     </div>
 
-    <footer>© 2025 Jay's Furniture. All rights reserved.</footer>
-
+    <footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
 
   <script>
    /* const pillows = {

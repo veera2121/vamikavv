@@ -6,8 +6,8 @@
 <title>Jay's Furniture — Washing Machines</title>
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
+ body {
+ font-family: 'Poppins', sans-serif;
   margin: 0;
   background: linear-gradient(135deg, #e0e7ff, #fef6e4, #f3e8ff);
   color: #111;
@@ -66,7 +66,7 @@ h2 {
 .card {
   background: rgb(7, 233, 214);
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(182, 1, 167, 0.959);
+  box-shadow: 0 8px 25px rgba(212, 7, 127, 0.959);
   transition: transform 0.4s ease;
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -84,7 +84,7 @@ h2 {
 .card-body { padding: 18px; text-align: center; }
 .title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
 .meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
-.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #b60773; margin-bottom: 12px; }
 .btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
   color: #fff;
@@ -111,7 +111,7 @@ h2 {
   justify-content: center; align-items: center;
 }
 .modal-content {
-  background: #fff;
+  background: #4fcea4;
   border-radius: 18px;
   width: 90%; max-width: 500px; max-height: 90vh;
   padding: 20px; overflow-y: auto;
@@ -127,28 +127,34 @@ h2 {
 }
 
 /* Brand Filter Buttons */
+#brandFilter {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  flex-wrap: wrap;          /* wrap nicely on smaller screens */
+  gap: 10px;                /* space between buttons */
+  margin: 20px 0;
+}
+
 .filter-btn {
   background: #fff;
   border: 2px solid #fd00be;
   color: #c008d1;
   padding: 8px 16px;
   border-radius: 25px;
-  margin: 5px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
 }
+
 .filter-btn:hover {
   background: #00f5fd;
   color: #fff;
 }
+
 .filter-btn.active {
-  background: linear-gradient(90deg, #00ebf3, #000000);
+  background: linear-gradient(90deg, #be05a0, #9c0257);
   color: #fff;
-}    
-footer {
-  text-align: center; margin: 30px 0; font-weight: 600;
-}  
+}
 
         /* Active nav link styling */
       nav a.active {
@@ -193,7 +199,6 @@ footer {
     background: rgba(255,255,255,0.35);
   }
 }
-
 </style>
 </head>
 
@@ -206,7 +211,7 @@ footer {
   </div>
  <nav id="navbar">
     
-    <a href="index.html">Home</a>
+    <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
      <a href="fridge.html">Fridges</a>
      <a href="washing.html">Washing Machines</a>
@@ -241,7 +246,7 @@ footer {
   </div>
 </div>
 
-<footer>© 2025 Jay's Furniture. All rights reserved.</footer>
+<footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
 
 <script>
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSvPibat9qkzagzBKCjK8idNHoNNSkC-EahaOSzqs5fccfWW90c95PKZ1Imw9inomqR6c7OwLO-mPb_/pub?output=csv";

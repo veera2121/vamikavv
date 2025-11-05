@@ -19,7 +19,7 @@ License: free to use and customize.
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sri Sai Ganesha Home Needs and Fortniture  — Elegant Living</title>
+  <title>Sri Sai Ganesha Home Needs and Furtniture  — Elegant Living</title>
   <meta name="description" content="Jay's Furniture — Premium furniture showroom. Toggle to e-commerce to enable cart and checkout." />
    <link rel="stylesheet" href="style.css" />
   <title>Ganesh  Furniture</title>
@@ -48,7 +48,7 @@ License: free to use and customize.
       <h1>
 
         <span class="line1">Sri Sai Ganesh Home needs</span><br>
-        <span class="line2">and Fornitures</span><br>
+        <span class="line2">and Furnitures</span><br>
               
       </h1>
     </div>
@@ -61,8 +61,7 @@ License: free to use and customize.
 
 
     <a href="#Offer">Offer</a>
-    <button id="adminToggle" class="ghost">Admin</button>
-    <button id="cartBtn" class="btn">Cart (<span id="cartCount">0</span>)</button>
+    
   </nav>
 
 
@@ -431,23 +430,60 @@ header .header-top {
 
   
 }
+@keyframes float {
+  0% { transform: translateY(0px) rotateY(0deg); }
+  25% { transform: translateY(-5px) rotateY(2deg); }
+  50% { transform: translateY(-10px) rotateY(0deg); }
+  75% { transform: translateY(-5px) rotateY(-2deg); }
+  100% { transform: translateY(0px) rotateY(0deg); }
+}
+
+header .header-content h1 {
+  animation: float 6s ease-in-out infinite;
+}
+
 
 /* ---------------- TITLE CENTERED ---------------- */
+/* ---------------- TITLE CENTERED WITH 3D EFFECT ---------------- */
+/* ---------------- TITLE CENTERED WITH CLEAR 3D EFFECT ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 header .header-content h1 { 
-  font-family: 'Montserrat', sans-serif;
-  font-size: 42px;
-  font-weight: 800;
-  color: #ffffff;
+  font-family: 'Anton', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  line-height: 1.1;
+  letter-spacing: 2px;
+  line-height: 1.2;
   text-align: center;
-  background: linear-gradient(100deg, #ff0000, #ff0000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  white-space: nowrap; /* keep on one line */
-} 
+  white-space: nowrap;
+
+  /* Solid red color for text */
+  color: #ff1a1a;
+
+  /* Layered 3D shadows */
+  text-shadow:
+      1px 1px 0 #e0e0e0,
+      2px 2px 0 #c0c0c0,
+      3px 3px 0 #a0a0a0,
+      4px 4px 0 #808080,
+      5px 5px 0 #606060,
+      6px 6px 0 #404040;
+
+  /* Floating 3D animation */
+  transform-style: preserve-3d;
+  display: inline-block;
+  animation: float3D 6s ease-in-out infinite alternate;
+}
+
+/* Floating 3D animation */
+@keyframes float3D {
+  0% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-5px) rotateY(3deg); }
+  100% { transform: translateY(0px) rotateY(-3deg); }
+}
+
+
  .bottom-nav {
     display: none !important;
   }
@@ -491,7 +527,7 @@ nav a:hover {
 .btn, .ghost {
   background: #FFD700;
   border: 1px solid #FFD700;
-  padding: 3px 10px;
+  padding:  10px;
   border-radius: 6px;
   cursor: pointer;
   color: #000;
@@ -569,7 +605,7 @@ nav, #navLinks, #navLinks a {
 .header-content h1, .header-content span {
   pointer-events: auto;
 }
-   /* ---------------- DESKTOP HEADER ---------------- */
+
 
  /* ---------------- SHRINK EFFECT ---------------- */
 @media (max-width: 768px) {
@@ -590,23 +626,7 @@ nav, #navLinks, #navLinks a {
  }
 
 
- /* ---------------- SHRINK EFFECT ---------------- */
-@media (max-width: 768px) {
-  /* Shrink header on scroll */
-  header.shrink {
-    padding: 10px 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  header.shrink .logo {
-    height: 50px;
-    width: 50px;
-  }
-
-  header.shrink .header-content h1 {
-    font-size: 1.2rem;
-  }
-}
+ 
 
 /* ---------------- MOBILE LAYOUT ---------------- */
 @media (max-width: 768px) { 
@@ -660,19 +680,21 @@ nav, #navLinks, #navLinks a {
     height: 100%;
   }
 
-  header .header-content h1 {
+header .header-content h1 {
     font-size: 20px;
     letter-spacing: 1px;
     line-height: 1.2;
     white-space: normal;
-    background: linear-gradient(180deg, #ff0000, #ff0000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    
+    /* Solid red color instead of gradient */
+    color: #ff0000;
+    
     text-align: flex-start;
     margin: 25px 0 0 0;
     position: relative;
     left: -30px;
-  }
+    top:15px;
+}
 
   /* ✅ Hamburger button */
 .nav-toggle {
@@ -2663,120 +2685,120 @@ nav.active {
     background-color: #000; /* optional – adds black background behind if image doesn’t fill */
   }
 }
-/* Bottom row: We Accept (left) + Follow Us (right) */
-.footer-bottom-row {
+
+.contact-map-section {
+  padding: 50px 20px;
+  color: #fff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.contact-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  flex-direction: column;
+  gap: 50px;
 }
 
-.footer-bottom-row .footer-payments,
-.footer-bottom-row .footer-social {
+.branch {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Equal width for info and map */
+.branch-info, .branch-map {
   flex: 1;
+  min-width: 300px;
 }
 
-/* Headings */
-.footer-bottom-row h4 {
-  font-family: 'Playfair Display', serif;
-  color: #1A237E;
-  margin-bottom: 10px;
+.branch-info .contact-title {
+  font-size: 28px;
+  margin-bottom: 15px;
 }
 
-/* Payment Icons */
-.footer-bottom-row .payment-icons img {
-  width: 50px;
-  height: 30px;
-  object-fit: contain;
-  margin-right: 8px;
+.branch-info .contact-meta {
+  margin: 5px 0;
 }
 
-/* Social Icons */
-.footer-bottom-row .social-icons img {
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
-  transition: transform 0.3s;
+.branch-map iframe {
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  border: none; /* remove default iframe border */
 }
 
-.footer-bottom-row .social-icons img:hover {
-  transform: scale(1.2);
-}
-
-/* Responsive Design */
-/* -------- MOBILE FOOTER SPACING FIX -------- */
-/* -------- MOBILE FOOTER FIX -------- */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-
-  .footer-bottom-row {
-    flex-direction: column; /* stack items vertically */
-    align-items: center;
-    justify-content: center;
-    margin-top: 5px; /* reduce top space */
-     /* tight spacing between Follow Us & Payments */
-  }
-
-  .footer-bottom-row .footer-payments,
-  .footer-bottom-row .footer-social {
-    flex: none;
-    text-align: center;
-    margin: 5px 0; /* compact vertical spacing */
-  }
-
-  .footer-payments h4,
-  .footer-social h4 {
-    margin-bottom: 5px;
-  }
-
-  .footer-bottom-row .payment-icons img {
-    width: 40px;
-    height: 25px;
-    margin: 0 4px;
-  }
-
-  .footer-bottom-row .social-icons img {
-    width: 30px;
-    height: 30px;
-    margin: 0 6px;
-  }
-
-  .footer-top {
+  .branch {
     flex-direction: column;
-    text-align: center;
-    gap: 1px;
   }
 
-  .footer-products,
-  .footer-about-us {
-    margin-bottom: 1px;
+  .branch-map iframe {
+    height: 200px;
+  }
+
+  .branch-info .contact-title {
+    font-size: 24px;
   }
 }
-/* -------- MOBILE FOOTER ORDER FIX -------- */
+.forms-container {
+  display: flex;
+  gap: 40px;           /* space between forms */
+  flex-wrap: wrap;      /* wrap on smaller screens */
+  justify-content: center; /* center horizontally */
+  margin: 50px 0;
+}
+
+.contact-form, .subscribe-form {
+  flex: 1;
+  min-width: 300px;     /* ensures forms shrink on mobile */
+  max-width: 500px;     /* limits width on large screens */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.contact-form h2, .subscribe-form h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+input, textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff1a1a;
+}
+
+/* Mobile responsive: stack forms */
 @media (max-width: 768px) {
-  .footer-bottom-row {
-    display: flex;
+  .forms-container {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  /* Set the order for mobile stacking */
-  .footer-payments {
-    order: 1; /* We Accept first */
-    margin-bottom: 10px;
-  }
-
-  .footer-about-us {
-    order: 2; /* About Us below We Accept */
-    margin-bottom: 10px;
-  }
-
-  .footer-social {
-    order: 3; /* Follow Us last */
+    gap: 10px;
   }
 }
-
 
 </style>
   </style> 
@@ -3000,13 +3022,6 @@ nav.active {
 </div>
 </section>
 
-<section class="shopbanner">
-  <!-- Desktop Banner -->
-  <img src="images/yanambanner.png" alt="Yanam Branch Banner" class="banner-img desktop-banner">
-
-  <!-- Mobile Banner -->
-  <img src="images/mobilebanner.png" alt="Yanam Branch Banner Mobile" class="banner-img mobile-banner">
-</section>
 
     <!-- Media Grid Section -->
     <div class="media-grid">
@@ -3025,7 +3040,7 @@ nav.active {
     </div>
       
   <section class="emi-banner">
-    <img src="images/emis on credit cards.png" alt="EMI on Cards Banner">
+    <img src="images/more........jpg" alt="EMI on Cards Banner">
   </section>
 
 
@@ -3384,83 +3399,73 @@ nav.active {
 
 
 
-
-  <section id="contact" class="contact-map-section">  
-    
-    <h1 class="section-title">📍 Contact & Visit Us</h1>
-
-    <div class="contact-container">
-
-      <!-- Left Glass Card -->
-      <div class="glass-card">
-        <h2 class="contact-title">Visit Our Showroom</h2>
-        <p class="contact-meta">📍 Address: 354, SH 14, MAIN ROAD, near PADMAJA PICTURE PALACE, Malikipuram, Andhra Pradesh 533253</p>
-        <p class="contact-meta">⏰ Open: Mon–Sat 10am–7pm</p>
-        <p class="contact-meta">📞 Phone: +91 9666780228</p>
-        <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
-
-  <h2 class="contact-title">Contact & Visit Us</h2>
+<section id="contact" class="contact-map-section">  
+  <h1 class="section-title">📍 Contact & Visit Us</h1>
 
   <div class="contact-container">
+
+    <!-- Main Branch Yanam -->
+    <div class="branch">
+      <div class="branch-info glass-card">
+        <h2 class="contact-title">Our Main Branch - Yanam</h2>
+        <p class="contact-meta">📍 Draksharama - Yanam Rd, near Nayara Petrol Bunk, NALLACHERUVU Yanam, Puducherry 533464</p>
+        <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
+        <p class="contact-meta">📞 Phone: +9198482 33246</p>
+        <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+      </div>
+      <div class="branch-map glass-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122265.2065912021!2d82.06392288208005!3d16.73744115889682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a381fd8adaf0a21%3A0xf9457a730a532006!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES!5e0!3m2!1sen!2sin!4v1762364353369!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    </div>
+
+    <!-- Sub Branch Malikipuram -->
+    <div class="branch">
+      <div class="branch-info glass-card">
+        <h2 class="contact-title">Our Sub Branch - Malikipuram</h2>
+        <p class="contact-meta">📍 Address: 354, SH 14, MAIN ROAD, near PADMAJA PICTURE PALACE, Malikipuram, Andhra Pradesh 533253</p>
+        <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
+        <p class="contact-meta">📞 Phone: +91 9666780228</p>
+        <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+      </div>
+      <div class="branch-map glass-card">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61235.27657465096!2d81.7342150211334!3d16.41442264932445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1762364533763!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+     </div>
+    </div>
+
+  </div>
+</section>
+
+
     <!-- Left Glass Card -->
     <div class="glass-card">
       <h3 class="section-title">Get in Touch</h3>
       <p class="contact-meta">We’d love to hear from you. Fill out the form below to connect with us!</p>
 
-      <!-- Contact Form -->
-      <form action="https://api.sheetmonkey.io/form/vUhnD77t8CEVMmPEX1qjKb" 
-            method="POST" 
-            class="contact-form">
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn-submit">Send Message</button>
-      </form>
-    </div>
+  <div class="forms-container">
+  <!-- Contact Form -->
+  <form action="https://api.sheetmonkey.io/form/vUhnD77t8CEVMmPEX1qjKb" 
+        method="POST" 
+        class="contact-form">
+    <h2>Contact Us</h2>
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn-submit">Send Message</button>
+  </form>
 
-    <!-- Right Side: Google Map -->
-    <div class="contact-right">
-     <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7654.409723717745!2d81.7990308050698!3d16.414418789989607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1762335374276!5m2!1sen!2sin" 
-  width="100%" 
-  height="250" 
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-  </div>
-</section>
-
-    <form id="subscribeForm" class="subscribe-form">
-  <h2>Subscribe to Our Updates</h2>
-
-  <input type="text" name="Name" placeholder="Enter your name" required>
-  <input type="email" name="Email" placeholder="Enter your email" required>
-  <input type="tel" name="Phone" placeholder="Enter your phone (optional)">
-
-  <button type="submit">Subscribe</button>
-</form>
+  <!-- Subscribe Form -->
+  <form id="subscribeForm" class="subscribe-form">
+    <h2>Subscribe to Our Updates</h2>
+    <input type="text" name="Name" placeholder="Enter your name" required>
+    <input type="email" name="Email" placeholder="Enter your email" required>
+    <input type="tel" name="Phone" placeholder="Enter your phone (optional)">
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
 
 
-  <!-- Modal template -->
-  <div id="modalRoot" style="display:none"></div>
 
-  <!-- Cart Drawer -->
-  <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <h3 style="margin:0">Your Cart</h3>
-      <button id="closeCart" class="close-x">✕</button>
-    </div>
-    <div id="cartItems" style="overflow:auto;max-height:66vh;padding-right:6px"></div>
-    <div style="position:absolute;left:18px;right:18px;bottom:18px">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid rgba(0,0,0,0.04)">
-        <div style="font-weight:700">Total</div>
-        <div id="cartTotal">₹0</div>
-      </div>
-      <button id="checkoutBtn" class="btn" style="width:100%;margin-top:8px">Checkout</button>
-    </div>
-  </div>
 
     <!-- Bottom Nav for Mobile -->
   <div class="bottom-nav">
@@ -3510,26 +3515,7 @@ nav.active {
         Our collections combine modern design with comfort and functionality, ensuring your spaces look elegant and feel cozy.  
         Customer satisfaction is our top priority!
       </p>
-  </div> 
-
-
-
-      <!-- Navigation -->
-    <nav class="nav">
-      <div class="nav-toggle" id="navToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#Offer">offer</a></li>
-      </ul>
-    </nav>
-
-
-      
+  </div>  
   <!-- We Accept Section -->
   <div class="footer-payments">
     <h4>We Accept</h4>

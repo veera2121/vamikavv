@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome | Sri Sai Ganesh Homeneeds and Fornitures</title>
- 
 
   <style>
     * {
@@ -19,13 +18,15 @@
       overflow: hidden;
       background: #000;
       position: relative;
-      color: white; 
-       animation: fadeOut 1s ease forwards;
-  animation-delay: 3.5s;
-  @keyframes fadeOut {
-  to { opacity: 0; }
+      color: white;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 3.5s;
     }
-  }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
     /* Background video */
     #bg-video {
       position: absolute;
@@ -39,7 +40,7 @@
       filter: brightness(0.65);
     }
 
-    /* Blur overlay to hide prices */
+    /* Blur overlay to hide bottom text */
     .blur-bottom {
       position: absolute;
       bottom: 0;
@@ -48,6 +49,20 @@
       background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3), transparent);
       z-index: 5;
       backdrop-filter: blur(6px);
+    }
+
+    /* Blur overlay for middle text "While we are waiting" */
+    .blur-center {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 160px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      z-index: 4;
+      border-radius: 10px;
     }
 
     /* Shop name container */
@@ -129,8 +144,8 @@
     .fade-overlay.active {
       opacity: 1;
       transform: translateY(-100%);
-    } 
-   
+    }
+
     @media (max-width: 768px) {
       .shop-name {
         top: 16%;
@@ -146,33 +161,22 @@
         object-position: center;
         filter: brightness(0.7);
       }
-      
-    .shop-name h1 {
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      animation-delay: 0.3s;
-    }
 
-    .shop-name h2 {
-      font-size: 1rem;
-      margin-top: 8px;
-      color: #f3eaff;
-      animation-delay: 0.6s;
-    }
+      .shop-name h1 {
+        font-size: 1.8rem;
+      }
 
-    .shop-name h3 {
-      font-size: 1.2rem;
-      margin-top: 8px;
-      animation-delay: 0.9s;
-    }
-    }
+      .shop-name h2 {
+        font-size: 1rem;
+      }
 
-    @media (max-width: 480px) {
-      .shop-name {
-        top: 18%;
-        font-size: 1.4rem;
-        line-height: 1.4;
-        padding: 0 15px;
+      .shop-name h3 {
+        font-size: 1.2rem;
+      }
+
+      .blur-center {
+        height: 120px;
+        top: 55%;
       }
     }
   </style>
@@ -185,10 +189,13 @@
     Your browser does not support the video tag.
   </video>
 
+  <!-- Blur overlay for "While we are waiting" text -->
+  <div class="blur-center"></div>
+
   <!-- Blur overlay to hide bottom text -->
   <div class="blur-bottom"></div>
 
-  <!-- Shop name in upper-middle -->
+  <!-- Shop name -->
   <div class="shop-name">
     <h1>Sri Sai Ganesh Homeneeds</h1>
     <h2>and</h2>
@@ -210,7 +217,7 @@
       // Redirect to homepage
       setTimeout(() => {
         window.location.href = 'home.html';
-      },3000);
+      }, 3000);
     });
   </script>
 

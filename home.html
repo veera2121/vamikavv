@@ -37,6 +37,8 @@ License: free to use and customize.
 
 <!-- Sticky header -->
 <header>
+      <div class="sparkle-bg"></div>
+      <div class="balloon-container"></div>
   <div class="header-top">
     <!-- Left logo -->
     <div class="brand">
@@ -641,7 +643,100 @@ nav, #navLinks, #navLinks a {
 .header-content h1, .header-content span {
   pointer-events: auto;
 }
+/* ---------------- SPARKLE BACKGROUND ---------------- */
+/* Sparkle background container */
 
+/* Container stays behind header content */
+.sparkle-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* behind header content */
+}
+
+/* Common styles for stars and bubbles */
+.sparkle, .bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Star shape */
+.star {
+  width: 1.2vw; /* responsive size */
+  height: 1.2vw;
+  min-width: 8px;  /* minimum size for very small screens */
+  min-height: 8px;
+  max-width: 20px; /* maximum size for large screens */
+  max-height: 20px;
+  background: rgb(247, 0, 255);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+    79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+    2% 35%, 39% 35%
+  );
+  animation: float 6s linear infinite, twinkle 2s ease-in-out infinite alternate, shine 2s ease-in-out infinite;
+}
+
+/* Bubble shape */
+.bubble {
+  width: 1vw; /* responsive size */
+  height: 1vw;
+  min-width: 6px;
+  min-height: 6px;
+  max-width: 15px;
+  max-height: 15px;
+  background: rgb(0, 136, 129);
+  animation: float 8s linear infinite, bubbleTwinkle 3s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Floating movement */
+@keyframes float {
+  0% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(2vw, -2vw) scale(1.1); }
+  50% { transform: translate(-2vw, 2vw) scale(1.2); }
+  75% { transform: translate(1.5vw, -1.5vw) scale(1.1); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Star shine glow */
+@keyframes shine {
+  0%, 100% { filter: drop-shadow(0 0 3px gold); }
+  50% { filter: drop-shadow(0 0 10px gold); }
+}
+
+/* Bubble twinkle */
+@keyframes bubbleTwinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .star {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 10px;
+    min-height: 10px;
+  }
+
+  .bubble {
+    width: 2.2vw;
+    height: 2.2vw;
+    min-width: 5px;
+    min-height: 5px;
+  }
+}
 
  /* ---------------- SHRINK EFFECT ---------------- */
 @media (max-width: 768px) {
@@ -3780,6 +3875,17 @@ button:hover {
 
   <button onclick="scrollToTop()" class="btn-top" id="btnTop">↑</button>
 
+<div id="fireworks">
+  <canvas id="fireworksCanvas"></canvas>
+</div>
+
+<div class="diwali-container">
+  <div class="diya" style="left:50px;"></div>
+  <div class="diya" style="left:120px;"></div>
+  <!-- more diyas -->
+</div>
+
+<div id="diyaSparks"></div>
 
   <!-- edn of thee pageeeeeeee-->
   <!-- Footer Section -->
@@ -4803,6 +4909,62 @@ function calculateEMI() {
     driverIndex = 0;
     alert('✅ Driver list reset. You can call again.');
   }
+const container = document.querySelector('.sparkle-bg');
+const colors = ['#ff6347', '#ffd700', '#ff4500', '#ffa500', '#ffffff', '#00ffff', '#ff69b4'];
+
+// Remove existing stars/bubbles
+container.innerHTML = "";
+
+// Number of stars/bubbles based on screen size
+let starCount = window.innerWidth < 768 ? 15 : 30; // fewer on mobile
+let bubbleCount = window.innerWidth < 768 ? 5 : 10;
+
+// Create stars
+for(let i = 0; i < starCount; i++){
+  const star = document.createElement('div');
+  star.classList.add('sparkle', 'star');
+  star.style.background = colors[Math.floor(Math.random() * colors.length)];
+  star.style.left = Math.random() * container.offsetWidth + 'px';
+  star.style.top = Math.random() * container.offsetHeight + 'px';
+  star.style.animationDuration = (4 + Math.random() * 4) + 's';
+  container.appendChild(star);
+}
+
+// Create bubbles
+for(let i = 0; i < bubbleCount; i++){
+  const bubble = document.createElement('div');
+  bubble.classList.add('sparkle', 'bubble');
+  bubble.style.left = Math.random() * container.offsetWidth + 'px';
+  bubble.style.top = Math.random() * container.offsetHeight + 'px';
+  bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+  container.appendChild(bubble);
+}
+
+// Update stars/bubbles on resize
+window.addEventListener('resize', () => {
+  container.innerHTML = "";
+  starCount = window.innerWidth < 768 ? 15 : 30;
+  bubbleCount = window.innerWidth < 768 ? 5 : 10;
+  // repeat the creation code
+  for(let i = 0; i < starCount; i++){
+    const star = document.createElement('div');
+    star.classList.add('sparkle', 'star');
+    star.style.background = colors[Math.floor(Math.random() * colors.length)];
+    star.style.left = Math.random() * container.offsetWidth + 'px';
+    star.style.top = Math.random() * container.offsetHeight + 'px';
+    star.style.animationDuration = (4 + Math.random() * 4) + 's';
+    container.appendChild(star);
+  }
+  for(let i = 0; i < bubbleCount; i++){
+    const bubble = document.createElement('div');
+    bubble.classList.add('sparkle', 'bubble');
+    bubble.style.left = Math.random() * container.offsetWidth + 'px';
+    bubble.style.top = Math.random() * container.offsetHeight + 'px';
+    bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+    container.appendChild(bubble);
+  }
+})
+
 
 </script>
 <script src="review.js"></script> 

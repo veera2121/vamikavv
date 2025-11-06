@@ -63,6 +63,7 @@ License: free to use and customize.
 
 
     <a href="#Offer">Offer</a>
+    <a href="#emi-calculator-section">Emi calculator</a>
     
   </nav>
 
@@ -420,7 +421,7 @@ header .header-top {
   
  
 }
-
+/* Base logo style */
 .logo {
   height: 120px;
   width: 120px;
@@ -428,10 +429,24 @@ header .header-top {
   border: 1px solid #fff;
   display: block;
   border-radius: 5px; 
-  top :10px;
-
-  
+  position: relative; /* needed if you want to use top */
+  top: 10px;
 }
+
+/* 3D hover effect */
+.logo-3d {
+  width: 160px;
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.4))
+          drop-shadow(-2px -2px 3px rgba(255, 255, 255, 0.3));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo-3d:hover {
+  transform: scale(1.05) rotateX(10deg) rotateY(10deg);
+  filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.6))
+          drop-shadow(-3px -3px 5px rgba(255, 255, 255, 0.3));
+}
+
 @keyframes float {
   0% { transform: translateY(0px) rotateY(0deg); }
   25% { transform: translateY(-5px) rotateY(2deg); }
@@ -688,7 +703,7 @@ header .header-content h1 {
   line-height: 1.1;
   white-space: normal;
   display: inline-block;    /* ✅ required for transform to work correctly */
-  transform: scaleX(4.5);   /* try 1.3 or 1.5, not 7.2 (7.2 is extreme) */
+  transform: scaleX(g4.5);   /* try 1.3 or 1.5, not 7.2 (7.2 is extreme) */
   color: #ff0000;
   text-align: flex-start;
   margin: 25px 0 0 0;
@@ -2801,11 +2816,222 @@ button:hover {
     gap: 10px;
   }
 }
+/* --- Button --- */
+.emi-open-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin: 25px auto;
+}
+.emi-open-btn:hover { transform: scale(1.05); opacity: 0.9; }
 
-</style>
+/* --- Popup background --- */
+.emi-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 10px;
+}
+
+/* --- Popup box (Compact) --- */
+.emi-content {
+  background: rgb(148, 7, 66);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 20px;
+  width: 90%;
+  max-width: 360px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: popupIn 0.4s ease;
+  position: relative;
+}
+@keyframes popupIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* --- Inputs --- */
+.emi-content input,
+.emi-content select {
+  width: 100%;
+  padding: 9px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  outline: none;
+  background: rgba(5, 173, 137, 0.692);
+  color: #000;
+  font-size: 14px;
+}
+.emi-content input::placeholder { color: #333; }
+.emi-content input:focus,
+.emi-content select:focus {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid #ff7e5f;
+}
+
+/* --- Buttons --- */
+.emi-content button {
+  margin-top: 10px;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #9600c4, #af0353);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.emi-content button:hover { opacity: 0.9; }
+
+/* --- Result --- */
+.result {
+  margin-top: 12px;
+  background: rgba(23, 146, 140, 0.808);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* --- Close button --- */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+.close-btn:hover { color: #ff7e5f; }
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+  .emi-content {
+    padding: 15px;
+    max-width: 92%;
+  }
+  .emi-content h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .emi-content input,
+  .emi-content select {
+    font-size: 13px;
+    padding: 8px;
+  }
+  .emi-content button {
+    font-size: 13px;
+    padding: 9px 20px;
+  }
+  .result {
+    font-size: 13px;
+  }
+}
+#countdown-container {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;      /* centers vertically (if needed) */
+}
+
+    /* 💥 Offer Bar */
+    .offer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-weight: 600;
+      animation: glow 2s ease-in-out infinite alternate;
+      width: 100%;
+      max-width: 600px;
+    }
+
+  
+    .offer-bar h3 {
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 8px;
+      font-size: 18px;
+    }
+
+    .countdown div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 10px;
+      border-radius: 10px;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .countdown span {
+      display: block;
+      font-size: 12px;
+      color: #ffe;
+    }
+
+    /* 📱 Responsive Adjustments */
+    @media (max-width: 768px) {
+      #countdown-container {
+        justify-content: center;
+        padding: 10px 0;
+      }
+
+      .offer-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 12px;
+      }
+
+      .countdown {
+        justify-content: center;
+      }
+    }
+    .call-auto-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #ff512f;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+.call-auto-btn:hover {
+  transform: scale(1.05);
+  background: #dd2476;
+}
   </style> 
 </head>
 <body> 
+
 
     <!-- =================== Search Section =================== -->
     <!-- ✅ UNIVERSAL SEARCH SECTION -->
@@ -2815,6 +3041,7 @@ button:hover {
 
       <ul id="suggestions" class="suggestions-list"></ul>
     </div>
+
 
     <section id="home" class="categories-section">
       <!-- Section Title -->
@@ -3024,7 +3251,17 @@ button:hover {
 </div>
 </section>
 
-
+  <div id="countdown-container">
+    <div class="offer-bar">
+      <h3>🎉 Diwali Mega Offer Ends In:</h3>
+      <div class="countdown" id="countdown">
+        <div><span id="days">00</span>Days</div>
+        <div><span id="hours">00</span>Hrs</div>
+        <div><span id="minutes">00</span>Min</div>
+        <div><span id="seconds">00</span>Sec</div>
+      </div>
+    </div>
+  </div>
     <!-- Media Grid Section -->
     <div class="media-grid">
       <!-- Left column: Video + Square Image -->
@@ -3341,10 +3578,44 @@ button:hover {
   </div>
   </section>
 
+<!-- 💰 EMI Button -->
+ <section id="emi-calculator-section"></section>
 
+<button class="emi-open-btn" onclick="openEMI()">💰 Check EMI</button>
+</section>
+<!-- 💳 EMI Popup (Hidden by Default) -->
+<div class="emi-popup" id="emiPopup">
+  <div class="emi-content">
+    <span class="close-btn" onclick="closeEMI()">&times;</span>
+    <h2>Finance & EMI Calculator</h2>
 
+    <label>Product Price (₹)</label>
+    <input type="number" id="price" placeholder="Enter price" />
 
+    <label>Down Payment (₹)</label>
+    <input type="number" id="down" placeholder="Enter down payment" />
 
+    <label>Interest Rate (%)</label>
+    <input type="number" id="rate" placeholder="e.g. 12" value="12" />
+
+    <label>Tenure (Months)</label>
+    <input type="number" id="months" placeholder="e.g. 12" />
+
+    <label>EMI Type</label>
+    <select id="emiType">
+      <option value="standard">Standard EMI</option>
+      <option value="bajaj">Bajaj No-Cost EMI</option>
+    </select>
+
+    <button onclick="calculateEMI()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+</div>
+
+<!-- Buttons -->
+<button class="call-auto-btn" onclick="callNextDriver()">📞 Call Auto</button>
+<button class="call-auto-btn" onclick="resetDrivers()">🔄 Reset Drivers</button>
 <!-- Explore Button 
 <div class="explore-collection">
   <button id="exploreBtn" class="btn-explore">Explore Our products</button>
@@ -4422,7 +4693,97 @@ function doPost(e) {
 
   
 
+function openEMI() {
+  document.getElementById("emiPopup").style.display = "flex";
+}
+function closeEMI() {
+  document.getElementById("emiPopup").style.display = "none";
+}
 
+function calculateEMI() {
+  const price = parseFloat(document.getElementById("price").value);
+  const down = parseFloat(document.getElementById("down").value);
+  const rate = parseFloat(document.getElementById("rate").value);
+  const months = parseFloat(document.getElementById("months").value);
+  const type = document.getElementById("emiType").value;
+
+  if (!price || !months) {
+    document.getElementById("result").innerHTML = "⚠️ Please fill all required fields.";
+    return;
+  }
+
+  let P = price - (down || 0);
+  let r = type === "bajaj" ? 0 : (rate / 12) / 100;
+  let n = months;
+
+  let EMI = r === 0 ? (P / n) : (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  let total = EMI * n;
+  let interest = total - P;
+
+  document.getElementById("result").innerHTML = `
+    <strong>${type === "bajaj" ? "Bajaj No-Cost EMI" : "Standard EMI"}</strong><br><br>
+    💵 Monthly EMI: ₹${EMI.toFixed(2)}<br>
+    💰 Total Interest: ₹${interest.toFixed(2)}<br>
+    💳 Total Payment: ₹${total.toFixed(2)}
+  `;
+}
+
+ // ⏳ Countdown Timer Logic
+    const offerEndDate = new Date();
+    offerEndDate.setDate(offerEndDate.getDate() + 3); // Ends in 3 days
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = offerEndDate - now;
+
+      if (distance <= 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "<b>Offer Expired!</b>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days.toString().padStart(2, '0');
+      document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    }, 1000);
+     // List of driver numbers (hidden from site)
+  const drivers = [
+    '+919502963841',
+    '+91970454250',
+    
+  ];
+
+  let driverIndex = 0; // track which driver to call
+
+  function callNextDriver() {
+    if(driverIndex >= drivers.length) {
+      alert('⚠️ All drivers tried, please try again later.');
+      return;
+    }
+
+    const number = drivers[driverIndex++];
+
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // Mobile: open dialer
+      window.location.href = `tel:${number}`;
+    } else {
+      // Desktop: open WhatsApp chat
+      const whatsappLink = `https://wa.me/${number.replace(/\D/g,'')}`;
+      window.open(whatsappLink, '_blank');
+      alert('Opening WhatsApp chat with driver');
+    }
+  }
+
+  function resetDrivers() {
+    driverIndex = 0;
+    alert('✅ Driver list reset. You can call again.');
+  }
 
 </script>
 <script src="review.js"></script> 

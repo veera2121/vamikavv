@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call Auto Demo</title>
+<style>
+.call-auto-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #ff512f;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+.call-auto-btn:hover {
+  transform: scale(1.05);
+  background: #dd2476;
+}
+</style>
+</head>
+<body>
+
+<h2>Call Auto Demo</h2>
+
+<button class="call-auto-btn" onclick="callAuto()">📞 Call Auto</button>
+
+<script>
+  // List of driver numbers (hidden from site)
+  const drivers = [
+    '+919876543210',
+    '+919812345678',
+    '+919800112233'
+  ];
+
+  function callAuto() {
+    // Pick a random driver
+    const randomDriver = drivers[Math.floor(Math.random() * drivers.length)];
+    // Open phone dialer
+    window.location.href = `tel:${randomDriver}`;
+  }
+</script>
+
+</body>
+</html>

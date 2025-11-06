@@ -3,47 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Call Auto Demo</title>
+<title>Fireworks Rockets</title>
 <style>
-.call-auto-btn {
-  display: inline-block;
-  padding: 12px 25px;
-  background: #ff512f;
-  color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s, background 0.3s;
-}
-.call-auto-btn:hover {
-  transform: scale(1.05);
-  background: #dd2476;
-}
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #111; /* dark background for fireworks */
+    height: 100vh;
+  }
+
+  /* Fireworks canvas */
+  #fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
 </style>
 </head>
 <body>
 
-<h2>Call Auto Demo</h2>
-
-<button class="call-auto-btn" onclick="callAuto()">📞 Call Auto</button>
+<canvas id="fireworksCanvas"></canvas>
 
 <script>
-  // List of driver numbers (hidden from site)
-  const drivers = [
-    '+919876543210',
-    '+919812345678',
-    '+919800112233'
-  ];
+const canvas = document.getElementById('fireworksCanvas');
+const ctx = canvas.getContext('2d');
 
-  function callAuto() {
-    // Pick a random driver
-    const randomDriver = drivers[Math.floor(Math.random() * drivers.length)];
-    // Open phone dialer
-    window.location.href = `tel:${randomDriver}`;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+// Particle class for explosion
+class Particle {
+  constructor(x, y, color, vx, vy) {
+    this.x = x;
+    this.y = y;
+    this.vx = vx;
+    this.vy = vy;
+    this.alpha = 1;
+    this.color = color;
   }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += 0.02; // gravity
+    this.alpha -= 0.02;
+  }
+  draw() {
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+// Rocket class
+class Rocket {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height;
+    this.vx = (Math.random() - 0.5) * 2;
+    this.vy = - (6 + Math.random() * 4);
+    this.color = `hsl(${Math.random()*360}, 100%, 60%)`;
+    this.exploded = false;
+    this.particles = [];
+  }
+  update() {
+    if (!this.exploded) {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.05; // gravity
+      if(this.vy >= 0) this.explode();
+    } else {
+      this.particles.forEach(p => p.update());
+      this.particles = this.particles.filter(p => p.alpha > 0);
+    }
+  }
+  explode() {
+    this.exploded = true;
+    const count = 30 + Math.random() * 30;
+    for(let i=0;i<count;i++){
+      const angle = Math.random()*Math.PI*2;
+      const speed = Math.random()*4;
+      this.particles.push(new Particle(
+        this.x, this.y, 
+        `hsl(${Math.random()*360}, 100%, 60%)`,
+        Math.cos(angle)*speed,
+        Math.sin(angle)*speed
+      ));
+    }
+  }
+  draw() {
+    if(!this.exploded){
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
+      ctx.fill();
+    } else {
+      this.particles.forEach(p => p.draw());
+    }
+  }
+}
+
+const rockets = [];
+
+// Animation loop
+function animate() {
+  ctx.fillStyle = "rgba(0,0,0,0.2)"; // trail effect
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  
+  if(Math.random() < 0.05) rockets.push(new Rocket());
+
+  rockets.forEach((r, index) => {
+    r.update();
+    r.draw();
+    if(r.exploded && r.particles.length === 0){
+      rockets.splice(index, 1);
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
 </script>
 
 </body>
 </html>
+

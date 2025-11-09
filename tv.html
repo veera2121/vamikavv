@@ -100,7 +100,6 @@ h2 {
   background: linear-gradient(90deg, #00b4d8, #007bff);
 }
 
-
 .modal {
   display: none;
   position: fixed;
@@ -129,9 +128,9 @@ h2 {
 /* Brand Filter Buttons */
 #brandFilter {
   display: flex;
-  justify-content: center; /* horizontally center */
-  flex-wrap: wrap;          /* wrap nicely on smaller screens */
-  gap: 10px;                /* space between buttons */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 20px 0;
 }
 
@@ -145,59 +144,47 @@ h2 {
   font-weight: 600;
   transition: all 0.3s ease;
 }
-
-.filter-btn:hover {
-  background: #00f5fd;
-  color: #fff;
-}
-
+.filter-btn:hover { background: #00f5fd; color: #fff; }
 .filter-btn.active {
   background: linear-gradient(90deg, #be05a0, #9c0257);
   color: #fff;
 }
 
-        /* Active nav link styling */
-      nav a.active {
-        background: linear-gradient(90deg,#c99b55,#e0b469);
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-        transform: scale(1.05);
-      }
-
-       
-    html {
-  scroll-padding-top: 100px;
+nav a.active {
+  background: linear-gradient(90deg,#c99b55,#e0b469);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+  transform: scale(1.05);
 }
-     @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); } /* 2 per mobile */
-      
-      nav {
-    display:flex;                   /* horizontal layout */
-    overflow-x:auto;                /* allow scrolling */
-    padding:10px 0;
-    gap:10px;                       /* space between links */
-    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+
+html { scroll-padding-top: 100px; }
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  nav {
+    display:flex; overflow-x:auto; padding:10px 0; gap:10px;
+    -webkit-overflow-scrolling: touch;
   }
-
-  /* Hide scrollbar for cleaner look */
   nav::-webkit-scrollbar { display:none; }
-
   nav a {
-    flex:0 0 auto;                 /* prevent shrinking */
-    font-size:0.9rem;
-    padding:8px 16px;
-    white-space:nowrap;             /* prevent wrapping text */
+    flex:0 0 auto; font-size:0.9rem;
+    padding:8px 16px; white-space:nowrap;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius:10px;
     background: rgba(255,255,255,0.25);
     backdrop-filter: blur(5px);
     transition: transform 0.2s;
   }
-
   nav a:hover {
     transform: scale(1.05);
     background: rgba(255,255,255,0.35);
   }
+}
+footer {
+  text-align:center;
+  padding:20px;
+  background:#fff;
+  margin-top:40px;
+  font-weight:600;
 }
 </style>
 </head>
@@ -239,14 +226,15 @@ h2 {
     <h3 id="modalName"></h3>
     <p id="modalDesc"></p>
     <p><b>Brand:</b> <span id="modalBrand"></span></p>
-    <p><b>Model:</b> <span id="modalModel"></span></p>
     <p><b>Display Size:</b> <span id="modalDisplaySize"></span></p>
     <p><b>Display Type:</b> <span id="modalDisplayType"></span></p>
-    <p><b>Price:</b> ₹<span id="modalPrice"></span></p>
   </div>
 </div>
 
-<footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
+<footer>
+  © Sri Sai Ganesh Homeneeds and Furnitures.<br>
+  📍 Visit: <b>Yanam and malikipuram</b> 
+</footer>
 
 <script>
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRk7IcOTu8OPMdQJ7c-STRjuiKvarsLIn0NdBZe1rgyqW3bCx9HPuD_fHV5KysHzxam15MKq7Yudjru/pub?output=csv";
@@ -317,8 +305,7 @@ function renderProducts(data) {
           onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
         <div class="card-body">
           <div class="title">${item.name}</div>
-          <div class="meta">${item.brand} • ${item.model}</div>
-          <div class="meta"><b>Price:</b> ${item.price || '—'}</div>
+          <div class="meta">${item.brand}</div>
           <button class="btn" onclick='showDetails(${safeItem})'>View Details</button>
         </div>
       </div>
@@ -340,10 +327,8 @@ function showDetails(item) {
   document.getElementById("modalName").textContent = item.name || "-";
   document.getElementById("modalDesc").textContent = item.description || "-";
   document.getElementById("modalBrand").textContent = item.brand || "-";
-  document.getElementById("modalModel").textContent = item.model || "-";
   document.getElementById("modalDisplaySize").textContent = item["display size"] || "-";
   document.getElementById("modalDisplayType").textContent = item["display type"] || "-";
-  document.getElementById("modalPrice").textContent = item.price || "-";
   document.getElementById("productModal").style.display = "flex";
 }
 function closeModal() {

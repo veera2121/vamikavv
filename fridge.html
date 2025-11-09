@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sri's Furniture — Fridges</title>
+
 <style>
-
-
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -85,7 +84,8 @@ h2 {
 .card-body { padding: 18px; text-align: center; }
 .title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #2e2e2e; }
 .meta { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 10px; }
-.price { font-weight: 800; font-size: 1.1rem; color: #b60773; margin-bottom: 12px; }
+.price { display: none; }
+
 .btn {
   background: linear-gradient(90deg, #007bff, #00b4d8);
   color: #fff;
@@ -100,7 +100,6 @@ h2 {
   transform: scale(1.05);
   background: linear-gradient(90deg, #00b4d8, #007bff);
 }
-
 
 .modal {
   display: none;
@@ -130,9 +129,9 @@ h2 {
 /* Brand Filter Buttons */
 #brandFilter {
   display: flex;
-  justify-content: center; /* horizontally center */
-  flex-wrap: wrap;          /* wrap nicely on smaller screens */
-  gap: 10px;                /* space between buttons */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 20px 0;
 }
 
@@ -157,50 +156,48 @@ h2 {
   color: #fff;
 }
 
-        /* Active nav link styling */
-      nav a.active {
-        background: linear-gradient(90deg,#c99b55,#e0b469);
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(201,155,85,0.4);
-        transform: scale(1.05);
-      }
-
-       
-    html {
-  scroll-padding-top: 100px;
+nav a.active {
+  background: linear-gradient(90deg,#c99b55,#e0b469);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(201,155,85,0.4);
+  transform: scale(1.05);
 }
-     @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); } /* 2 per mobile */
-      
-      nav {
-    display:flex;                   /* horizontal layout */
-    overflow-x:auto;                /* allow scrolling */
+
+html { scroll-padding-top: 100px; }
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  nav {
+    display:flex;
+    overflow-x:auto;
     padding:10px 0;
-    gap:10px;                       /* space between links */
-    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    gap:10px;
+    -webkit-overflow-scrolling: touch;
   }
-
-  /* Hide scrollbar for cleaner look */
   nav::-webkit-scrollbar { display:none; }
-
   nav a {
-    flex:0 0 auto;                 /* prevent shrinking */
+    flex:0 0 auto;
     font-size:0.9rem;
     padding:8px 16px;
-    white-space:nowrap;             /* prevent wrapping text */
+    white-space:nowrap;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius:10px;
     background: rgba(255,255,255,0.25);
     backdrop-filter: blur(5px);
     transition: transform 0.2s;
   }
-
   nav a:hover {
     transform: scale(1.05);
     background: rgba(255,255,255,0.35);
   }
 }
-
+footer {
+  text-align:center;
+  padding:20px;
+  background:#fff;
+  margin-top:40px;
+  font-weight:600;
+}
 </style>
 </head>
 
@@ -212,21 +209,18 @@ h2 {
     <h1>Sri's Furniture</h1>
   </div>
    <nav id="navbar">
-    
     <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
-     <a href="fridge.html">Fridges</a>
-     <a href="washing.html">Washing Machines</a>
-      <a href="cooler.html">Coolers</a>
+    <a href="fridge.html">Fridges</a>
+    <a href="washing.html">Washing Machines</a>
+    <a href="cooler.html">Coolers</a>
     <a href="sofas.html">Sofas</a>
     <a href="tv.html">TV</a>
-     <a href="beds.html">Beds</a>
-      <a href="table.html">Tables</a>
+    <a href="beds.html">Beds</a>
+    <a href="table.html">Tables</a>
     <a href="mattress.html">Mattresses</a>
-     <a href="chairs.html">Chairs</a>
-         
+    <a href="chairs.html">Chairs</a>
     <a href="wardrobe.html">Wardrobe</a>
-   
     <a href="pillows.html">Pillows</a>
   </nav>
 </header>
@@ -234,7 +228,6 @@ h2 {
 <section>
   <h2>Fridge Collection</h2>
 
-  <!-- ✅ Brand Filter Buttons -->
   <div id="brandFilter">
     <button class="filter-btn active" data-brand="all">All</button>
     <button class="filter-btn" data-brand="Samsung">Samsung</button>
@@ -247,6 +240,7 @@ h2 {
   <div id="productGrid" class="grid"></div>
 </section>
 
+<!-- ✅ Clean Modal -->
 <div id="productModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -254,13 +248,14 @@ h2 {
     <h3 id="modalName"></h3>
     <p id="modalDesc"></p>
     <p><b>Brand:</b> <span id="modalBrand"></span></p>
-    <p><b>Model:</b> <span id="modalModel"></span></p>
     <p><b>Type:</b> <span id="modalType"></span></p>
-    <p><b>Price:</b> ₹<span id="modalPrice"></span></p>
   </div>
 </div>
 
-<footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
+<footer>
+  © Sri Sai Ganesh Homeneeds and Furnitures.<br>
+  📍 Visit: <b>Yanam and malikipuram</b> 
+</footer>
 
 <script>
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqG4ijKJ-sj8SGom7u4VPmvq47YuIXLWAmBBDyfWdb_elnVPhPBR2fjUVehpmZbzalWvPsEdy0TuBS/pub?output=csv";
@@ -306,8 +301,6 @@ function renderProducts(data) {
     const img = item.image || item.imageurl || "";
     const name = item.name || item.product || "Unnamed";
     const brand = item.brand || "";
-    const model = item.model || "";
-    const price = item.price || "";
     const type = item.type || "";
     const safeItem = JSON.stringify(item).replace(/'/g, "&#39;");
     return `
@@ -315,8 +308,7 @@ function renderProducts(data) {
         <img src="${img}" alt="${name}" onerror="this.src='https://via.placeholder.com/400x250?text=No+Image';">
         <div class="card-body">
           <div class="title">${name}</div>
-          <div class="meta">${brand}${brand && model ? ' • ' : ''}${model}</div>
-          <div class="price">${price ? '₹' + price : ''}</div>
+          <div class="meta">${brand}</div>
           <div class="type"><b>Type:</b> ${type || "—"}</div>
           <button class="btn" onclick='showDetails(${safeItem})'>View Details</button>
         </div>
@@ -330,16 +322,13 @@ function showDetails(item) {
   document.getElementById("modalName").textContent = item.name || item.product || "N/A";
   document.getElementById("modalDesc").textContent = item.description || "";
   document.getElementById("modalBrand").textContent = item.brand || "-";
-  document.getElementById("modalModel").textContent = item.model || "-";
   document.getElementById("modalType").textContent = item.type || "-";
-  document.getElementById("modalPrice").textContent = item.price || "-";
   document.getElementById("productModal").style.display = "flex";
 }
 function closeModal() {
   document.getElementById("productModal").style.display = "none";
 }
 
-// ✅ Brand filter
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   const filterButtons = document.querySelectorAll(".filter-btn");
@@ -352,17 +341,16 @@ document.addEventListener("DOMContentLoaded", () => {
       else renderProducts(allProducts.filter(p => (p.brand || "").toLowerCase() === brand.toLowerCase()));
     });
   });
-}); 
-  // Highlight current page link in navbar
-  const currentPage = location.pathname.split("/").pop(); // e.g., "fridge.html"
-  const navLinks = document.querySelectorAll("#navbar a");
-  navLinks.forEach(link => {
-    if(link.getAttribute("href") === currentPage){
-      link.classList.add("active");
-      // Scroll it into view for mobile horizontal nav
-      link.scrollIntoView({behavior: "smooth", inline: "center"});
-    }
-  });
+});
+
+const currentPage = location.pathname.split("/").pop();
+const navLinks = document.querySelectorAll("#navbar a");
+navLinks.forEach(link => {
+  if(link.getAttribute("href") === currentPage){
+    link.classList.add("active");
+    link.scrollIntoView({behavior: "smooth", inline: "center"});
+  }
+});
 </script>
 </body>
 </html>

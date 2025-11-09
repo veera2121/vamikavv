@@ -5,305 +5,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jay's Furniture — Sofas</title>
   <style>
-  /* CSS same as AC page */
 body {
-  scroll-padding-top: 100px; /* adjust to your header height */
-
-font-family:'Poppins',sans-serif; margin:0; background: linear-gradient(135deg,#e0e7ff,#fef6e4,#f3e8ff); color:#111; min-height:100vh;}
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  background: linear-gradient(135deg,#e0e7ff,#fef6e4,#f3e8ff);
+  color:#111;
+  min-height:100vh;
+}
 a{text-decoration:none;color:inherit;}
 .container{max-width:1250px;margin:40px auto;padding:0 20px;}
-header{display:flex;justify-content:space-between;align-items:center;padding:15px 25px;background: rgba(255,255,255,0.25);backdrop-filter: blur(10px);border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.1);margin-bottom:20px;}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom:20px;
+}
 .brand{display:flex;align-items:center;gap:12px;}
-.logo{width:55px;height:55px;background: linear-gradient(135deg,#c99b55,#e0b469);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:14px;font-size:18px;box-shadow:0 4px 10px rgba(201,155,85,0.4);}
-.brand h1{font-size:1.5rem;font-weight:700;background:linear-gradient(90deg,#a78bfa,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-nav a{margin-left:15px;font-weight:600;color:#333;transition:color 0.3s;}
+.logo{
+  width:55px;height:55px;
+  background: linear-gradient(135deg,#c99b55,#e0b469);
+  color:#fff;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:14px;font-size:18px;
+  box-shadow:0 4px 10px rgba(201,155,85,0.4);
+}
+.brand h1{
+  font-size:1.5rem;font-weight:700;
+  background:linear-gradient(90deg,#a78bfa,#f59e0b);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+nav a{
+  margin-left:15px;font-weight:600;color:#333;
+  transition:color 0.3s;
+}
 nav a:hover{color:#c99b55;}
-h2{text-align:center;font-size:1.2rem;margin-top:30px;font-weight:800;background:linear-gradient(90deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;margin-top:35px;}
-@media(max-width:768px){.grid{grid-template-columns:repeat(1,1fr);}}
-.card{position:relative;background: rgba(255,255,255,0.25);border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,0.15);transition: transform 0.4s ease, box-shadow 0.4s ease;backdrop-filter: blur(10px);cursor:pointer;}
-.card:hover{transform: translateY(-10px) scale(1.02);box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-.card img{width:100%;max-height:250px;object-fit:contain;border-radius:12px;display:block;background:#f0f0f0;margin-bottom:10px;}
-.card-body{padding:18px;text-align:center;}
-.title{font-weight:700;font-size:1.1rem;margin-bottom:8px;color:#2e2e2e;}
-.meta{color:#6b6b6b;font-size:0.9rem;margin-bottom:10px;}
-.price { font-weight: 800; font-size: 1.1rem; color: #bd02bd; margin-bottom: 12px; }
-.btn {
-  background: linear-gradient(90deg, #007bff, #00b4d8);
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+h2{text-align:center;font-size:1.4rem;margin-top:30px;font-weight:800;
+background:linear-gradient(90deg,#a855f7,#f97316);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;margin-top:35px;
+  padding: 0 20px;
 }
-.btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, #00b4d8, #007bff);
+.card{
+  position:relative;
+  background: rgba(255,255,255,0.25);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(10px);
+  text-align:center;
 }
-
-.modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background-color: rgba(0,0,0,0.65);backdrop-filter: blur(6px);justify-content:center;align-items:center;}
-.modal-content{background: rgba(255,255,255,0.95);border-radius:18px;width:90%;max-width:500px;max-height:90vh;padding:20px;color:#333;text-align:left;box-shadow:0 8px 30px rgba(0,0,0,0.25);animation:zoomIn 0.4s ease;position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);overflow-y:auto;}
-.modal-content img{width:100%;max-height:250px;object-fit:contain;border-radius:12px;margin-bottom:15px;background:#f0f0f0;display:block;}
-#modalSpecs{list-style:none;padding:0;margin:0;font-size:0.95rem;}
-#modalSpecs li{margin-bottom:8px;padding:8px;border-bottom:1px solid rgba(0,0,0,0.1);}
-.close{float:right;font-size:24px;cursor:pointer;}
-@keyframes zoomIn{from{transform:scale(0.8);opacity:0;}to{transform:scale(1);opacity:1;}}
-footer{margin-top:50px;text-align:center;color:#6b6b6b;font-size:0.9rem;}   
-     /* Active nav link styling */
+.card:hover{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+.card img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  display:block;
+  border-radius:12px;
+  background:#f0f0f0;
+}
+.card-body{padding:15px;}
+.title{
+  font-weight:700;
+  font-size:1.05rem;
+  margin-top:5px;
+  color:#2e2e2e;
+}
+footer {
+  text-align:center;
+  padding:20px;
+  background:#fff;
+  margin-top:40px;
+  font-weight:600;
+}
 nav a.active {
   background: linear-gradient(30deg,#c99b55,#aca2a6);
   color: #fff;
-    box-shadow: 0 4px 12px rgb(0, 0, 0);
+  box-shadow: 0 4px 12px rgb(0, 0, 0);
   transform: scale(1.05);
 }
-
-.container {
-  padding-top: 100px; /* slightly more than header height */
-}
-
-/* Mobile product buttons/cards like nav links */
-/* Mobile nav links */
-@media(max-width:768px){
-  nav {
-    display:flex;                   /* horizontal layout */
-    overflow-x:auto;                /* allow scrolling */
-    padding:10px 0;
-    gap:10px;                       /* space between links */
-    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-  }
-
-  /* Hide scrollbar for cleaner look */
-  nav::-webkit-scrollbar { display:none; }
-
-  nav a {
-    flex:0 0 auto;                 /* prevent shrinking */
-    font-size:0.9rem;
-    padding:8px 16px;
-    white-space:nowrap;             /* prevent wrapping text */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius:10px;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(5px);
-    transition: transform 0.2s;
-  }
-
-  nav a:hover {
-    transform: scale(1.05);
-    background: rgba(255,255,255,0.35);
-  }
-}
-html {
-  scroll-padding-top: 100px;
-} 
-.sofa-types {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.sofa-types a.type-btn {
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(5px);
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-weight: 600;
-  color: #333;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.sofa-types a.type-btn:hover {
-  transform: scale(1.05);
-  background: rgba(255,255,255,0.35);
-  color: #c99b55;
-}
-
-@media(max-width:768px){
-  .sofa-types {
-    overflow-x:auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 8px;
-    padding-bottom: 10px;
-  }
-
-  .sofa-types::-webkit-scrollbar { display:none; }
-  
-  .sofa-types a.type-btn {
-    flex:0 0 auto;
-    white-space: nowrap;
-    font-size: 0.9rem;
-    padding: 6px 12px;
-  }
-}
-
-
   </style>
 </head>
+<body>
 <header>
   <div class="brand">
     <div class="logo">Sri</div>
     <h1>Sri's Furniture</h1>
   </div>
-  
-  <!-- NAVIGATION -->
- <nav id="navbar">
-    
+  <nav id="navbar">
     <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
-     <a href="fridge.html">Fridges</a>
-     <a href="washing.html">Washing Machines</a>
-      <a href="cooler.html">Coolers</a>
+    <a href="fridge.html">Fridges</a>
+    <a href="washing.html">Washing Machines</a>
+    <a href="cooler.html">Coolers</a>
     <a href="sofas.html">Sofas</a>
     <a href="tv.html">TV</a>
-     <a href="beds.html">Beds</a>
-      <a href="table.html">Tables</a>
+    <a href="beds.html">Beds</a>
+    <a href="table.html">Tables</a>
     <a href="mattress.html">Mattresses</a>
-     <a href="chairs.html">Chairs</a>
-         
+    <a href="chairs.html">Chairs</a>
     <a href="wardrobe.html">Wardrobe</a>
-   
     <a href="pillows.html">Pillows</a>
   </nav>
 </header>
-  <!-- Sofa Types Section -->
-<div class="sofa-types">
-  <a href="#3seater" class="type-btn">3 Seater</a>
-  <a href="#recliner" class="type-btn">Recliner</a>
-  <a href="#sectional" class="type-btn">Sectional</a>
-  <a href="#chaise" class="type-btn">Chaise Lounge</a>
-  <a href="#corner" class="type-btn">Corner Sofa</a>
-  <a href="#loveseat" class="type-btn">Loveseat</a>
-</div>
 
 <section id="sofas">
-  <h2>Sofas Collection</h2>
+  <h2>Sofa Collection</h2>
   <div class="grid">
-    <div class="card">
-      <img src="images/s21.webp" alt="Leather Sofa">
-      <div class="card-body">
-        <h4 class="title">Leather Sofa</h4>
-        <div class="meta">Premium leather with classic design.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(1)">View Details</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/s21.webp" alt="Fabric Sofa">
-      <div class="card-body">
-        <h4 class="title">Fabric Sofa</h4>
-        <div class="meta">Comfortable fabric upholstery with soft cushions.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(2)">View Details</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/s23.webp" alt="Recliner Sofa">
-      <div class="card-body">
-        <h4 class="title">Recliner Sofa</h4>
-        <div class="meta">Modern recliner for ultimate comfort.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(3)">View Details</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/s24.webp" alt="Sectional Sofa">
-      <div class="card-body">
-        <h4 class="title">Sectional Sofa</h4>
-        <div class="meta">Spacious L-shaped sectional for family comfort.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(4)">View Details</button>
-      </div> 
-      </div> 
-
-       <div class="card">
-      <img src="images/s31.webp" alt="Leather Sofa">
-      <div class="card-body">
-        <h4 class="title">Leather Sofa</h4>
-        <div class="meta">Premium leather with classic design.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(1)">View Details</button>
-      </div>
-      </div> 
-
-       <div class="card">
-      <img src="images/s32.webp" alt="Leather Sofa">
-      <div class="card-body">
-        <h4 class="title">Leather Sofa</h4>
-        <div class="meta">Premium leather with classic design.</div>
-        <div class="price"></div>
-        <button class="btn" onclick="showDetails(1)">View Details</button>
-      </div>
-      </div> 
-    </section>
-    
-    
-
-
-  <!-- Modal -->
-  <div id="sofaModal" class="modal">
-    <div class="modal-content" id="modalContent"></div>
+    <!-- 20 Sofa Cards -->
+    <div class="card"><img src="images/sc1.webp" alt=""><div class="card-body"><div class="title">Ivory Comfort L-Shaped Sofa</div></div></div>
+    <div class="card"><img src="images/sc2.webp" alt=""><div class="card-body"><div class="title">Urban Corner Lounge Sofa</div></div></div>
+    <div class="card"><img src="images/sc3.webp" alt=""><div class="card-body"><div class="title">Premium Velvet Modular Sofa</div></div></div>
+    <div class="card"><img src="images/sc4.webp" alt=""><div class="card-body"><div class="title">Minimalist Grey Living Sofa</div></div></div>
+    <div class="card"><img src="images/sc5.webp" alt=""><div class="card-body"><div class="title">L-shaped sectional sofa</div></div></div>
+    <div class="card"><img src="images/sc6.webp" alt=""><div class="card-body"><div class="title">contemporary white chaise sofa</div></div></div>
+    <div class="card"><img src="images/s21.webp" alt=""><div class="card-body"><div class="title">Velvet Comfort Sofa</div></div></div>
+    <div class="card"><img src="images/s22.webp" alt=""><div class="card-body"><div class="title">Minimalist Grey Sofa</div></div></div>
+    <div class="card"><img src="images/s23.webp" alt=""><div class="card-body"><div class="title">Luxury White Sofa</div></div></div>
+    <div class="card"><img src="images/s24.webp" alt=""><div class="card-body"><div class="title">Stylish Office Sofa</div></div></div>
+    <div class="card"><img src="images/s31.webp" alt=""><div class="card-body"><div class="title">Brown Leather Sofa</div></div></div>
+    <div class="card"><img src="images/s32.webp" alt=""><div class="card-body"><div class="title">Soft Fabric 3-Seater</div></div></div>
+    <div class="card"><img src="images/s41.webp" alt=""><div class="card-body"><div class="title">Contemporary Sofa</div></div></div>
+    <div class="card"><img src="images/ss6.webp.jpg" alt=""><div class="card-body"><div class="title">Elegant Beige Sofa</div></div></div>
+    <div class="card"><img src="images/ss1.webp" alt=""><div class="card-body"><div class="title">Luxury Recliner Set</div></div></div>
+    <div class="card"><img src="images/ss2.webp" alt=""><div class="card-body"><div class="title">Compact Loveseat</div></div></div>
+    <div class="card"><img src="images/ss3.webp" alt=""><div class="card-body"><div class="title">Vintage Wooden Sofa</div></div></div>
+    <div class="card"><img src="images/ss4.webp" alt=""><div class="card-body"><div class="title">Stylish Black Sofa</div></div></div>
+    <div class="card"><img src="images/ss5.webp" alt=""><div class="card-body"><div class="title">Cozy Cushion Sofa</div></div></div>
+    <div class="card"><img src="images/ss7.webp.jpg" alt=""><div class="card-body"><div class="title">Royal Blue Sofa</div></div></div>
   </div>
-<footer>© Sri Sai Ganesh Homeneeds and Furnitures. All rights reserved.</footer>
+</section>
 
+<footer>
+  © Sri Sai Ganesh Homeneeds and Furnitures.<br>
+  📍 Visit: <b>Yanam and Malikipuram</b> 
+</footer>
 
 <script>
-  const sofas = {
-    1: { name:"Leather Sofa", size:"3 Seater", color:"Brown", model:"LS-001", features:"Premium leather, classic design, durable frame.", image:"sofa1.jpg" },
-    2: { name:"Fabric Sofa", size:"3 Seater", color:"Grey", model:"FS-002", features:"Comfortable fabric upholstery with soft cushions.", image:"sofa2.jpg" },
-    3: { name:"Recliner Sofa", size:"2 Seater", color:"Black", model:"RS-003", features:"Modern recliner for ultimate comfort.", image:"sofa3.jpg" },
-    4: { name:"Sectional Sofa", size:"L-Shape", color:"Beige", model:"SS-004", features:"Spacious L-shaped sectional for family comfort.", image:"sofa4.jpg" },
-    5: { name:"Chaise Sofa", size:"2 Seater", color:"Blue", model:"CS-005", features:"Stylish chaise lounge for living rooms.", image:"sofa5.jpg" },
-    6: { name:"Corner Sofa", size:"L-Shape", color:"Grey", model:"CNS-006", features:"Corner sofa for modern interiors.", image:"sofa6.jpg" }
-  };
-
-  function showDetails(id) {
-    const product = sofas[id];
-    const modal = document.getElementById('sofaModal');
-    const content = document.getElementById('modalContent');
-
-    content.innerHTML = `
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img src="images/${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <ul id="modalSpecs">
-        <li><strong>Size:</strong> ${product.size}</li>
-        <li><strong>Color:</strong> ${product.color}</li>
-        <li><strong>Model:</strong> ${product.model}</li>
-        <li><strong>Features:</strong> ${product.features}</li>
-      </ul>
-    `;
-
-    modal.style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('sofaModal').style.display = 'none';
-  }
-
-  window.onclick = function(event) {
-    const modal = document.getElementById('sofaModal');
-    if(event.target === modal) closeModal();
-  }
-  
-
-   
-  // Highlight current page link in navbar
-  const currentPage = location.pathname.split("/").pop(); // e.g., "fridge.html"
-  const navLinks = document.querySelectorAll("#navbar a");
-  navLinks.forEach(link => {
-    if(link.getAttribute("href") === currentPage){
+  const currentPage = location.pathname.split("/").pop();
+  document.querySelectorAll("#navbar a").forEach(link=>{
+    if(link.getAttribute("href")===currentPage){
       link.classList.add("active");
-      // Scroll it into view for mobile horizontal nav
-      link.scrollIntoView({behavior: "smooth", inline: "center"});
     }
   });
 </script>

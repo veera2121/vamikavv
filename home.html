@@ -120,7 +120,7 @@ License: free to use and customize.
     /* Desktop view: 6 products per row */
     .categories {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(8, 1fr);
       gap: 15px;
       max-width: 1200px;
       margin: 20px auto;
@@ -205,17 +205,18 @@ License: free to use and customize.
 
     /* --- Mobile View --- */
     @media (max-width: 768px) {
-      .categories {
-        display: grid;
-        grid-auto-flow: column; /* horizontal scrolling */
-        grid-template-rows: repeat(2, auto); /* two rows */
-        gap: 10px;
-        overflow-x: auto;
-        padding-bottom: 0;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        margin-bottom:5px;
-      } 
+    .categories {
+  column-count: 2;
+  column-gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.categories > * {
+  display: inline-block;
+  width: 150px; /* or your item width */
+  margin-bottom: 10px;
+}
+
       @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(179,14,63,0.4); }
       50% { box-shadow: 0 0 15px rgba(179,14,63,0.8); }
@@ -401,7 +402,7 @@ header {
   display: flex;
   flex-direction: column;
   padding: 30px 25px;
-  background: url("images/mk1.png") center/cover no-repeat;
+  background: url("images/mk7.png") center/cover no-repeat;
 
   border-bottom: 2px solid rgba(255,255,255,0.2);
   border-radius: 0 0 8px 8px;
@@ -517,7 +518,7 @@ header .header-content h1 {
     }
     header.shrink {
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      background: url("images/mk1.png") center/cover no-repeat;
+      background: url("images/mk7.png") center/cover no-repeat;
     } 
     header {
   transition: all 0.3s ease;
@@ -526,24 +527,59 @@ header .header-content h1 {
   white-space: nowrap; /* keep entire name on one line */
 }
 /* ---------------- NAVIGATION BELOW ---------------- */
+/* Nav container */
 nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
-  height:100px;
+  height: 100px;
+  gap: 10px; /* space between nav items */
 }
 
+/* Small nav buttons */
 nav a {
-  color: rgb(0, 248, 227);
-  text-decoration: none;
+  display: inline-block;
+  width: 6em;       /* smaller width */
+  height: 2.5em;    /* smaller height */
+  line-height: 2.5em; /* vertically center text */
+  text-align: center;
+  border-radius: 30em;
+  font-size: 13px;  /* smaller text */
+  font-family: inherit;
   font-weight: 600;
-  font-size: 0.9rem;
+  color: rgba(117, 0, 117, 0.685);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 4px 8px #000000,
+              -4px -4px 8px #8a8a8a;
+  transition: color 0.5s ease;
 }
 
-nav a:hover {
-  color: #FFD700;
+/* Background gradient effect */
+nav a::before {
+  content: '';
+  width: 0;
+  height: 2.5em;   /* match button height */
+  border-radius: 30em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #d80fa6 0%, #47f9db 100%);
+  transition: 0.5s ease;
+  z-index: -1;
+  display: block;
 }
+
+/* Hover effect */
+nav a:hover::before {
+  width: 6em;  /* match button width */
+}
+
+
+
 
 /* Buttons */
 .btn, .ghost {
@@ -749,7 +785,7 @@ nav, #navLinks, #navLinks a {
     padding: 1px; 
     position: relative; 
     height: 130px;
-     background: url("images/vk.png") center/cover no-repeat;
+     background: url("images/vm1.png") center/cover no-repeat;
   }
 
   /* Header top: logo left, text right */
@@ -3318,15 +3354,26 @@ button:hover {
           <img src="images/cooler.jpg" alt="cooler">
           <div class="cat-name">Coolers</div>
         </div>
-        <div class="cat" onclick="window.location.href='sofas.html'">
-          <img src="images/sofa.jpg" alt="sofa">
-          <div class="cat-name">Sofa set</div>
-        </div>
+        
           <div class="cat" onclick="window.location.href='tv.html'">
           <img src="images/tv.jpg" alt="tv">
           <div class="cat-name">TVs</div>
+           </div>
+          <div class="cat" onclick="window.location.href='speaker.html'">
+          <img src="images/sony.webp" alt="tv">
+          <div class="cat-name">Speakers</div>
+           </div>
+          
+          <div class="cat" onclick="window.location.href='battery.html'">
+          <img src="images/battery.webp" alt="tv">
+          <div class="cat-name">Inventer Battery</div>
+          
         </div> 
         <!-- Second row --> 
+         <div class="cat" onclick="window.location.href='sofas.html'">
+          <img src="images/sofa.jpg" alt="sofa">
+          <div class="cat-name">Sofa set</div>
+        </div>
            <div class="cat" onclick="window.location.href='beds.html'">
           <img src="images/bed.jpg" alt="bed">
           <div class="cat-name">Beds</div>
@@ -3521,7 +3568,7 @@ button:hover {
     </div>
       
   <section class="emi-banner">
-    <img src="images/more........jpg" alt="EMI on Cards Banner">
+    <img src="images/more.......png" alt="EMI on Cards Banner">
   </section>
 
 
@@ -3532,17 +3579,17 @@ button:hover {
 
     <div class="promo-grid">
       <!-- Offer Card -->
-      <div class="promo-card" id="card1" data-images='["images/offer.jpg","images/offer1.jpg","images/offer2.jpg","images/offer3.jpg"]'>
+      <div class="promo-card" id="card1" data-images='["images/offer.jpg","images/voltas.png","images/offer2.jpg","images/offer3.jpg"]'>
         <div class="promo-inner">
           <div class="promo-front">
-            <img src="images/offer1.jpg" alt="Offer 1">
+            <img src="images/voltas.png" alt="Offer 1">
             <span class="promo-tag offer">Offer</span>
-            <div class="promo-name">Big Offer</div>
+            <div class="promo-name"></div>
           </div>
           <div class="promo-back">
-            <img src="images/offer1.jpg" alt="Offer 1">
+            <img src="images/voltas.png" alt="Offer 1">
             <span class="promo-tag offer">Offer</span>
-            <div class="promo-name">Big Offer</div>
+            <div class="promo-name"></div>
           </div>
         </div>
       </div>
@@ -3598,13 +3645,14 @@ button:hover {
       <a href="#"><img src="images/regular fan.webp" alt="Pedestal Fan"></a>
       <p>regular fan</p>
     </div>
-    <div class="fan-slide">
-      <a href="#"><img src="images/Foldable.webp" alt="Exhaust Fan"></a>
-      <p>Foldable</p>
-    </div>
+   
     <div class="fan-slide">
       <a href="#"><img src="images/Slim Tower Fan.webp" alt="Tower Fan"></a>
       <p>Slim Tower Fan.</p>
+    </div>
+     <div class="fan-slide">
+      <a href="#"><img src="images/geyser.webp" alt="water heater"></a>
+      <p>water Geyser</p>
     </div>
   </div>
 </div>

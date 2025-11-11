@@ -1370,36 +1370,66 @@ nav.active {
       margin-right: 8px;
       margin-top: 5px;
     }
+/* Footer Social Media (3D/glass style) */
+.footer-social {
+  text-align: center;
+  margin-top: 30px;
+}
 
-    /* Social Media (centered) */
-    .footer-social {
-      text-align: center;
-      margin-top: 30px;
-    }
+.footer-social h3 {
+  font-family: 'Playfair Display', serif;
+  color: #1A237E;
+  margin-bottom: 10px;
+}
 
-    .footer-social h3 {
-      font-family: 'Playfair Display', serif;
-      color: #1A237E;
-      margin-bottom: 10px;
-    }
+/* Social icons container */
+.footer-social .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  perspective: 1000px; /* for 3D effect */
+}
 
-    .footer-social .social-icons a {
-      margin: 0 10px;
-      display: inline-block;
-    }
+/* Social icon links as 3D buttons */
+.footer-social .social-icons a {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(5, 71, 17, 0.5) 0px 7px 5px -5px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
-    .footer-social .social-icons img {
+/* The SVG inside the link */
+.footer-social .social-icons a svg {
+  width: 20px;
+  height: 20px;
+  fill: #00894d;
+  transition: fill 0.3s ease-in-out;
+}
 
-      width: 40px;       /* same width */
-      height: 40px;      /* same height */
-      object-fit: contain; /* preserves ratio */
-      transition: transform 0.3s;
-      transition: transform 0.3s;
-    }
+/* Hover effect (pop out in 3D) */
+.footer-social .social-icons a:hover {
+  transform: translate3d(0, 0, 20px);
+  box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
+}
 
-    .footer-social .social-icons img:hover {
-      transform: scale(1.2);
-    }
+.footer-social .social-icons a:hover svg {
+  fill: #fff;
+}
+
+/* Active / click effect */
+.footer-social .social-icons a:active {
+  background: rgb(255, 234, 0);
+}
+
+.footer-social .social-icons a:active svg {
+  fill: black;
+}
 
     /* Footer Copy */
     .footer-copy {
@@ -2736,155 +2766,181 @@ nav.active {
     font-size: 12px;
   }
 } 
- /* HERO SECTION */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 50px 10%;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      color: white;
-      flex-wrap: wrap;
-    }
+ /* ===== HERO SECTION ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  flex-wrap: wrap;
+}
 
-    .hero-content {
-      flex: 1;
-      min-width: 300px;
-    }
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+  animation: fadeInLeft 1s ease forwards;
+}
 
-    .hero h1 {
-      font-size: 2.2rem;
-      line-height: 1.3;
-      font-weight: 700;
-    }
+.hero h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00fff5, #ff00f5, #ffea00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s linear infinite;
+}
 
-    .hero h1 span {
-      color: #00c6ff;
-    }
+@keyframes textShimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
 
-    .hero p {
-      font-size: 1rem;
-      margin: 10px 0 25px;
-      color: #d1d5db;
-    }
+.hero h1 span {
+  color: #00fff5;
+}
 
-    .shop-btn {
-      background: #00c6ff;
-      border: none;
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-    }
+.hero p {
+  font-size: 1.05rem;
+  margin: 15px 0 30px;
+  color: #d1d5db;
+  line-height: 1.5;
+}
 
-    .shop-btn:hover {
-      background: #009ad6;
-    }
+.shop-btn {
+  background: #ff00f5;
+  border: none;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 5px 20px rgba(255, 0, 245, 0.4);
+  transition: all 0.3s ease;
+}
 
-    /* Right-side Mobiles */
-    .hero-images {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      min-width: 300px;
-    }
+.shop-btn:hover {
+  background: #ff00d0;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 0, 245, 0.6);
+}
 
-    .hero-images img {
-      width: 200px;
-      height: 280px;
-      object-fit:cover;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-    }
+/* Right-side Mobiles */
+.hero-images {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  min-width: 300px;
+  animation: fadeInRight 1s ease forwards;
+}
 
-    .hero-images img:hover {
-      transform: translateY(-8px);
-    }
+.hero-images img {
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+}
 
-    /* BRANDS SECTION */
-    .brands {
-      padding: 50px 20px;
-      text-align: center;
-    }
+.hero-images img:hover {
+  transform: translateY(-10px) rotate(-2deg);
+  box-shadow: 0 20px 35px rgba(0, 255, 245, 0.6);
+}
 
-    .brands h2 {
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      color: #111;
-    }
+/* ===== BRANDS SECTION ===== */
+.brands {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  border-radius: 30px 30px 0 0;
+  margin-top: 50px;
+}
 
-    .scroll-container {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 15px;
-    }
+.brands h2 {
+  font-size: 2rem;
+  margin-bottom: 35px;
+  color: #fff;
+  text-shadow: 0 0 10px #00fff5, 0 0 20px #ff00f5;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
 
-    .scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
+@keyframes glowText {
+  0% { text-shadow: 0 0 5px #00fff5, 0 0 10px #ff00f5; }
+  100% { text-shadow: 0 0 15px #00fff5, 0 0 30px #ff00f5; }
+}
 
-    .scroll-container::-webkit-scrollbar-thumb {
-      background: #00c6ff;
-      border-radius: 4px;
-    }
+.scroll-container {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
 
-    .brand-card {
-      flex: 0 0 auto;
-      width: 150px;
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
+.scroll-container::-webkit-scrollbar {
+  height: 10px;
+}
 
-    .brand-card:hover {
-      transform: scale(1.08);
-    }
+.scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00fff5, #ff00f5);
+  border-radius: 5px;
+}
 
-    .brand-card img {
-      width: 100%;
-      height: 100px;
-      object-fit: contain;
-    }
+.brand-card {
+  flex: 0 0 auto;
+  width: 160px;
+  background: linear-gradient(135deg, #ff00f5, #00fff5);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+}
 
-    .brand-card p {
-      margin-top: 10px;
-      font-weight: 600;
-      color: #333;
-    }
+.brand-card:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 15px 25px rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #ffea00, #ff00f5, #00fff5);
+}
 
-    /* FOOTER */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
-    }
+.brand-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-      .hero-content {
-        margin-bottom: 30px;
-      }
-      .hero-images img {
-        width: 140px;
-        height: 200px;
-      }
-    }
+.brand-card p {
+  margin-top: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 0.95rem; }
+  .hero-images img { width: 150px; height: 220px; }
+  .brand-card { width: 130px; }
+  .brands h2 { font-size: 1.6rem; }
+}
 
 .subscribe-form {
     max-width: 400px;
@@ -3090,6 +3146,45 @@ button {
 
 button:hover {
   background: #ff1a1a;
+}
+
+/* 3D Glass Call Button */
+.call-button {
+  display: inline-block;
+  position: relative;
+  padding: 8px 18px;      /* smaller size */
+  font-size: 14px; 
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ff0080 0%, #e20887 100%);
+  box-shadow: rgba(5, 71, 17, 0.2) 0px 7px 10px;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Glass overlay effect */
+.call-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.6) 100%);
+  transform: translate3d(0,0,20px);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect (pop out in 3D) */
+.call-button:hover {
+  transform: translateY(-5px) translateZ(10px);
+  box-shadow: rgba(5, 71, 17, 0.4) 0px 12px 20px;
+}
+
+.call-button:hover::before {
+  transform: translate3d(0,0,30px);
 }
 
 /* Mobile responsive: stack forms */
@@ -3311,6 +3406,79 @@ button:hover {
   transform: scale(1.05);
   background: #dd2476;
 }
+
+
+
+.cards-section {
+  padding: 40px 20px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns desktop */
+  gap: 20px;
+  justify-items: center;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card, .card2 {
+  width: 250px;
+  height: 234px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.8);
+  transform: translateY(-5px);
+  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+}
+
+.card2 {
+  background-color: #1a1a1a;
+}
+
+.card2:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 25px 2px rgba(255, 255, 0, 0.7);
+  background-image: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-title {
+  margin-top: 10px; /* space below card for title */
+  text-align: center;
+}
+
+.card-title h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Responsive: stack cards on mobile */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+
+  }
+}
+
+
   </style> 
 </head>
 <body> 
@@ -3956,9 +4124,36 @@ button:hover {
   </div>
 </div>
 
-<!-- Buttons -->
-<button class="call-auto-btn" onclick="callNextDriver()">📞 Call Auto</button>
-<button class="call-auto-btn" onclick="resetDrivers()">🔄 Reset Drivers</button>
+
+<section class="cards-section">
+  <div class="cards-container">
+    
+    <!-- Card 1 -->
+    <div class="card-wrapper">
+      <div class="card">
+        <!-- Add your image here -->
+        <img src="images/ynm.jpg" alt="Card 1" class="card-img">
+      </div>
+      <div class="card-title">
+        <h4>Yanam Branch</h4>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card-wrapper">
+      <div class="card2">
+        <!-- Add your image here -->
+        <img src="images/card2.jpg" alt="Card 2" class="card-img">
+      </div>
+      <div class="card-title">
+        <h4>Malikipuram Branch</h4>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- Explore Button 
 <div class="explore-collection">
   <button id="exploreBtn" class="btn-explore">Explore Our products</button>
@@ -4014,7 +4209,6 @@ button:hover {
 
 
 
-
 <section id="contact" class="contact-map-section">  
   <h1 class="section-title">📍 Contact & Visit Us</h1>
 
@@ -4024,15 +4218,22 @@ button:hover {
     <div class="branch">
       <div class="branch-info glass-card">
         <h2 class="contact-title">Our Main Branch - Yanam</h2>
-         <p><strong>Yanam Furniture & Mobile Shop</strong></p>
+        <p><strong>Yanam Furniture & Mobile Shop</strong></p>
         <p class="contact-meta">📍 Draksharama - Yanam Rd, near Nayara Petrol Bunk, NALLACHERUVU Yanam, Puducherry 533464</p>
         <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
-        <p class="contact-meta">📞 Phone: +9198482 33246</p>
+        <p class="contact-meta">📞 Phone: +919848233246</p>
         <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+
+        <!-- Call Button -->
+       <!-- Inside each .branch-info -->
+<div class="branch-actions">
+  <a href="tel:+919848233246" class="call-button">📞 Call Now</a>
+</div>
+
       </div>
       <div class="branch-map glass-card">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122265.2065912021!2d82.06392288208005!3d16.73744115889682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a381fd8adaf0a21%3A0xf9457a730a532006!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES!5e0!3m2!1sen!2sin!4v1762364353369!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+      </div>
     </div>
 
     <!-- Sub Branch Malikipuram -->
@@ -4043,11 +4244,15 @@ button:hover {
         <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
         <p class="contact-meta">📞 Phone: +91 9666780228</p>
         <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+
+        <!-- Call Button -->
+           <div class="branch-actions">
+  <a href="tel:+919666780228" class="call-button">📞 Call Now</a>
+</div>
       </div>
       <div class="branch-map glass-card">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61235.27657465096!2d81.7342150211334!3d16.41442264932445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1762364533763!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61235.27657465096!2d81.7342150211334!3d16.41442264932445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1762364533763!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-     </div>
     </div>
 
   </div>
@@ -4144,29 +4349,47 @@ button:hover {
     </div>
   </div>
 
-  <!-- Follow Us Section -->
-  <div class="footer-social">
-    <h4>Follow Us</h4>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/" target="_blank" rel="noopener noreferrer">
-        <img src="images/facebook.png" alt="Facebook">
-      </a>
-      <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
-        <img src="images/twitter.png" alt="Twitter">
-      </a>
-      <a href="https://www.instagram.com/srisaiganeshhomeneeds/srisaiganeshhomeneeds" target="_blank" rel="noopener noreferrer">
-        <img src="images/instagram.png" alt="Instagram">
-      </a>
-      <a href="https://youtube.com/@sureshthota2345?si=63g2CXZrxqe3FVF_" target="_blank" rel="noopener noreferrer">
-        <img src="images/youtube.png" alt="YouTube">
-      </a>
-    </div>
+<!-- Footer Social Media Section -->
+<div class="footer-social">
+  <h4>Follow Us</h4>
+  <div class="social-icons">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24">
+        <path d="M22 12c0-5.522-4.478-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.462h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+      </svg>
+    </a>
+
+    <!-- Twitter -->
+    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24">
+        <path d="M22.46 6c-.77.35-1.5.58-2.28.69a3.97 3.97 0 0 0 1.73-2.19 7.86 7.86 0 0 1-2.5.95 3.93 3.93 0 0 0-6.7 3.58 11.14 11.14 0 0 1-8.09-4.1 3.93 3.93 0 0 0 1.21 5.25A3.87 3.87 0 0 1 2 9.71v.05a3.93 3.93 0 0 0 3.15 3.85 3.94 3.94 0 0 1-1.76.07 3.93 3.93 0 0 0 3.67 2.73A7.88 7.88 0 0 1 2 19.54a11.1 11.1 0 0 0 6.03 1.77c7.23 0 11.18-6 11.18-11.18 0-.17-.01-.34-.02-.51A7.94 7.94 0 0 0 22.46 6z"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/srisaiganeshhomeneeds/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2.16c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.4a4.92 4.92 0 0 1 1.78 1.03 4.92 4.92 0 0 1 1.03 1.78c.16.46.344 1.26.4 2.43.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.4 2.43a4.92 4.92 0 0 1-1.03 1.78 4.92 4.92 0 0 1-1.78 1.03c-.46.16-1.26.344-2.43.4-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.4a4.92 4.92 0 0 1-1.78-1.03 4.92 4.92 0 0 1-1.03-1.78c-.16-.46-.344-1.26-.4-2.43-.058-1.266-.07-1.65-.07-4.85s.012-3.584.07-4.85c.056-1.17.24-1.97.4-2.43a4.92 4.92 0 0 1 1.03-1.78 4.92 4.92 0 0 1 1.78-1.03c.46-.16 1.26-.344 2.43-.4 1.266-.058 1.65-.07 4.85-.07M12 0C8.74 0 8.332.013 7.052.072 5.772.131 4.875.314 4.072.636a6.92 6.92 0 0 0-2.5 1.64A6.92 6.92 0 0 0 .636 4.072C.314 4.875.131 5.772.072 7.052.013 8.332 0 8.74 0 12c0 3.26.013 3.668.072 4.948.059 1.28.242 2.177.564 2.98a6.92 6.92 0 0 0 1.64 2.5 6.92 6.92 0 0 0 2.5 1.64c.803.322 1.7.505 2.98.564 1.28.059 1.688.072 4.948.072s3.668-.013 4.948-.072c1.28-.059 2.177-.242 2.98-.564a6.92 6.92 0 0 0 2.5-1.64 6.92 6.92 0 0 0 1.64-2.5c.322-.803.505-1.7.564-2.98.059-1.28.072-1.688.072-4.948s-.013-3.668-.072-4.948c-.059-1.28-.242-2.177-.564-2.98a6.92 6.92 0 0 0-1.64-2.5A6.92 6.92 0 0 0 19.928.636c-.803-.322-1.7-.505-2.98-.564C15.668.013 15.26 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://youtube.com/@sureshthota2345?si=63g2CXZrxqe3FVF_" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24">
+        <path d="M19.615 3.184C18.403 2.76 12 2.76 12 2.76s-6.403 0-7.615.424c-1.21.42-1.86 1.49-1.86 3.08v7.472c0 1.59.65 2.66 1.86 3.08C5.597 18.24 12 18.24 12 18.24s6.403 0 7.615-.424c1.21-.42 1.86-1.49 1.86-3.08V6.264c0-1.59-.65-2.66-1.86-3.08zM10 15V7l6 4-6 4z"/>
+      </svg>
+    </a>
   </div>
+</div>
 
 </div>
 
 
-  <p class="footer-copy">© 2025 Sri Sai Ganesha Furniture. All Rights Reserved.</p>
+  <p class="footer-copy">© 2025 Sri Sai Ganesha Furniture. All Rights Reserved.
+   
+  📍 Visit: <b>Yanam and malikipuram</b> 
+  </p>
   </footer>
 
    <canvas id="fireworksCanvas"></canvas>

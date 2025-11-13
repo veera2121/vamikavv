@@ -179,25 +179,32 @@ footer {
   </div>
   <nav>
     <nav id="navbar">
-    <a href="home.html">Home</a>
+  <a href="home.html">Home</a>
     <a href="ac.html">ACs</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
-    <a href="cooler.html">Coolers</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+      <a href="cooler.html">Coolers</a>
+      <a href="tv.html">TV</a>
+      <a href="speaker.html">Speakers</a>
+      <a href="battery.html">Batteries</a>
     <a href="sofas.html">Sofas</a>
-    <a href="tv.html">TV</a>
-    <a href="beds.html">Beds</a>
-    <a href="table.html">Tables</a>
+     <a href="beds.html">Beds</a>
+      <a href="table.html">Tables</a>
     <a href="mattress.html">Mattresses</a>
-    <a href="chairs.html">Chairs</a>
+     <a href="chairs.html">Chairs</a>  
     <a href="wardrobe.html">Wardrobe</a>
     <a href="pillows.html">Pillows</a>
+
   </nav>
 </header>
 
 <section>
   <h2>Inverter Battery Collection</h2>
-  <div id="brandFilters" style="text-align:center; margin: 20px 0;"></div>
+  <div id="filters" style="text-align:center; margin: 20px 0;">
+  <div id="categoryFilters" style="margin-bottom: 15px;"></div>
+  <div id="brandFilters"></div>
+</div>
+
   <div id="productGrid" class="grid"></div>
 </section>
 
@@ -211,7 +218,7 @@ footer {
     <p><b>Battery Type:</b> <span id="modalType"></span></p>
     <p><b>Voltage:</b> <span id="modalVoltage"></span></p>
     <p><b>Capacity (Ah):</b> <span id="modalCapacity"></span></p>
-    <p><b>Price:</b> <span id="modalPrice"></span></p>
+    
   </div>
 </div>
 
@@ -220,22 +227,20 @@ footer {
   📍 Visit: <b>Yanam and Malikipuram</b>
 </footer>
 
-<script>
-// Replace with your Google Sheet CSV link
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQM9P2BUhyfwBzq1Ikpl7V6T-NUKb75hUMqpIQeDv2BTczZReG3LzE7Ar5ZSt9Nwyy85aeDgvJeizqp/pub?output=csv";
 
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR1p3mrfCkLmFefOosAd2g73H6fYygLDEg_foNilWHta7Ps5kGaaDAl1RXclpw6m3v2TP5daN7myQWW/pub?output=csv";
+
+// Parse CSV safely
 function parseCSV(text) {
-  text = text.replace(/\r/g, "");
-  const lines = text.split("\n").filter(l => l.trim().length > 0);
-  const rows = lines.map(line => {
-    const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-    return cols.map(c => {
-      c = c.trim();
-      if (c.startsWith('"') && c.endsWith('"')) c = c.slice(1, -1).replace(/""/g, '"');
-      return c;
-    });
+  const lines = text.trim().split("\n");
+  const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
+  return lines.map(line => {
+    const values = line.split(",").map(v => v.replace(/^"|"$/g, "").trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = values[i] || "");
+    return obj;
   });
-  return rows;
 }
 
 let allProducts = [];
@@ -243,26 +248,40 @@ let allProducts = [];
 async function loadProducts() {
   try {
     const res = await fetch(SHEET_URL + "&t=" + Date.now());
+    if (!res.ok) throw new Error("Network error");
     const text = await res.text();
-    const rows = parseCSV(text);
-    if (rows.length < 2) return document.getElementById("productGrid").innerHTML = "<p>No data found.</p>";
-    
-    const headers = rows.shift().map(h => h.trim().toLowerCase());
-    allProducts = rows.map(r => {
-      const obj = {};
-      headers.forEach((h, i) => obj[h] = (r[i] || "").trim());
-      return obj;
-    });
-    
-    renderBrandFilters();
+    allProducts = parseCSV(text);
+    renderCategoryFilters();
+    renderBrandFilters(allProducts);
     renderProducts(allProducts);
   } catch (err) {
-    document.getElementById("productGrid").innerHTML = "<p style='color:red;text-align:center;'>Failed to load sheet data.</p>";
+    console.error(err);
+    document.getElementById("productGrid").innerHTML = "<p style='color:red;text-align:center;'>⚠️ Failed to load sheet data.</p>";
   }
 }
 
-function renderBrandFilters() {
-  const brands = [...new Set(allProducts.map(p => p.brand).filter(Boolean))];
+/* CATEGORY FILTERS */
+function renderCategoryFilters() {
+  const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
+  const container = document.getElementById("categoryFilters");
+  container.innerHTML = `
+    <button class="filter-btn active" onclick="filterByCategory('All')">All</button>
+    ${categories.map(c => `<button class="filter-btn" onclick="filterByCategory('${c}')">${c}</button>`).join('')}
+  `;
+}
+
+function filterByCategory(category) {
+  document.querySelectorAll("#categoryFilters .filter-btn").forEach(b => b.classList.remove("active"));
+  const btn = [...document.querySelectorAll("#categoryFilters .filter-btn")].find(b => b.textContent === category);
+  if (btn) btn.classList.add("active");
+  const filtered = category === "All" ? allProducts : allProducts.filter(p => p.category?.toLowerCase() === category.toLowerCase());
+  renderBrandFilters(filtered);
+  renderProducts(filtered);
+}
+
+/* BRAND FILTERS */
+function renderBrandFilters(data = allProducts) {
+  const brands = [...new Set(data.map(p => p.brand).filter(Boolean))];
   const container = document.getElementById("brandFilters");
   container.innerHTML = `
     <button class="filter-btn active" onclick="filterByBrand('All')">All</button>
@@ -270,30 +289,36 @@ function renderBrandFilters() {
   `;
 }
 
+function filterByBrand(brand) {
+  document.querySelectorAll("#brandFilters .filter-btn").forEach(b => b.classList.remove("active"));
+  const btn = [...document.querySelectorAll("#brandFilters .filter-btn")].find(b => b.textContent === brand);
+  if (btn) btn.classList.add("active");
+  const filtered = brand === "All" ? allProducts : allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase());
+  renderProducts(filtered);
+}
+
+/* PRODUCT CARDS */
 function renderProducts(data) {
   const container = document.getElementById("productGrid");
+  if (!data.length) {
+    container.innerHTML = "<p style='text-align:center;'>No products available.</p>";
+    return;
+  }
+
   container.innerHTML = data.map(item => `
     <div class="card">
       <img src="${item['image link'] || 'https://via.placeholder.com/400x250?text=No+Image'}" alt="${item['model name']}">
       <div class="card-body">
         <div class="title">${item['model name'] || '-'}</div>
         <div class="meta">${item.brand || '-'}</div>
-        <div class="price">${item.price ? '₹' + item.price : '-'}</div>
+        
         <button class="btn" onclick='showDetails(${JSON.stringify(item).replace(/'/g, "&#39;")})'>View Details</button>
       </div>
     </div>
   `).join('');
 }
 
-function filterByBrand(brand) {
-  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-  const btn = Array.from(document.querySelectorAll(".filter-btn")).find(b => b.textContent === brand);
-  if (btn) btn.classList.add("active");
-  
-  if (brand === "All") renderProducts(allProducts);
-  else renderProducts(allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase()));
-}
-
+/* MODAL */
 function showDetails(item) {
   document.getElementById("modalImage").src = item["image link"] || "https://via.placeholder.com/400x250?text=No+Image";
   document.getElementById("modalName").textContent = item["model name"] || "-";
@@ -301,29 +326,23 @@ function showDetails(item) {
   document.getElementById("modalType").textContent = item["battery type"] || "-";
   document.getElementById("modalVoltage").textContent = item.voltage || "-";
   document.getElementById("modalCapacity").textContent = item.capacity || "-";
-  document.getElementById("modalPrice").textContent = item.price ? "₹" + item.price : "-";
+
   document.getElementById("productModal").style.display = "flex";
 }
 
-function closeModal() { document.getElementById("productModal").style.display = "none"; }
+function closeModal() {
+  document.getElementById("productModal").style.display = "none";
+}
 
-document.addEventListener("DOMContentLoaded", loadProducts);
-
-// Highlight current nav link
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentPage = window.location.pathname.split("/").pop(); 
-    const menuLinks = document.querySelectorAll("#navbar a");
-
-    menuLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-
-        // Auto scroll in mobile horizontal navigation
-        link.scrollIntoView({ behavior: "smooth", inline: "center" });
-      }
-    });
+/* NAVBAR ACTIVE LINK + INITIAL LOAD */
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  const currentPage = window.location.pathname.split("/").pop();
+  document.querySelectorAll("#navbar a").forEach(link => {
+    if (link.getAttribute("href") === currentPage) link.classList.add("active");
   });
+});
 </script>
+
 </body>
 </html>

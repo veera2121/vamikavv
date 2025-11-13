@@ -6,6 +6,7 @@
 <title>Sai Ganesh — Speakers</title>
 
 <style>
+
 /* ========== ROYAL THEME STYLING ========== */
 body {
   font-family: 'Poppins', sans-serif;
@@ -177,22 +178,24 @@ footer {
     <div class="logo">sri</div>
     <h1>Sri's Furniture</h1>
   </div>
-  <nav>
-    <nav id="navbar">
-    <a href="home.html">Home</a>
-    <a href="ac.html">ACs</a>
-    <a href="fridge.html">Fridges</a>
-    <a href="washing.html">Washing Machines</a>
-    <a href="cooler.html">Coolers</a>
-    <a href="sofas.html">Sofas</a>
-    <a href="tv.html">TV</a>
-    <a href="beds.html">Beds</a>
-    <a href="table.html">Tables</a>
-    <a href="mattress.html">Mattresses</a>
-    <a href="chairs.html">Chairs</a>
-    <a href="wardrobe.html">Wardrobe</a>
-    <a href="pillows.html">Pillows</a>
-  </nav>
+ <nav id="navbar">
+     <a href="home.html">Home</a>
+     <a href="ac.html">ACs</a>
+     <a href="fridge.html">Fridges</a>
+     <a href="washing.html">Washing Machines</a>
+     <a href="cooler.html">Coolers</a>
+     <a href="tv.html">TV</a>
+     <a href="speaker.html">Speakers</a>
+     <a href="battery.html">Batteries</a>
+     <a href="sofas.html">Sofas</a>
+     <a href="beds.html">Beds</a>
+     <a href="table.html">Tables</a>
+     <a href="mattress.html">Mattresses</a>
+     <a href="chairs.html">Chairs</a>  
+     <a href="wardrobe.html">Wardrobe</a>
+     <a href="pillows.html">Pillows</a>
+</nav>
+
 </header>
 
 <section>
@@ -306,19 +309,14 @@ document.addEventListener("DOMContentLoaded", loadProducts);
 
 // Highlight current nav link
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentPage = window.location.pathname.split("/").pop(); 
-    const menuLinks = document.querySelectorAll("#navbar a");
-
-    menuLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-
-        // Auto scroll in mobile horizontal navigation
-        link.scrollIntoView({ behavior: "smooth", inline: "center" });
-      }
-    });
-  });
+const currentPage = location.pathname.split("/").pop();
+const navLinks = document.querySelectorAll("#navbar a");
+navLinks.forEach(link => {
+  if(link.getAttribute("href") === currentPage){
+    link.classList.add("active");
+    link.scrollIntoView({behavior: "smooth", inline: "center"});
+  }
+});
 </script>
 </body>
 </html>

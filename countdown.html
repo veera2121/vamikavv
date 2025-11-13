@@ -1,79 +1,345 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furniture Hero Section</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f4f4f4;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sai Ganesh — Batteries</title>
 
-    .hero {
-      position: relative;
-      height: 100vh;
-      padding: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') 
-                  center/cover no-repeat;
-      border-radius: 30px;
-      margin: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
+<style>
+/* ========== ROYAL THEME STYLING ========== */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #2e0057, #4b0082, #6f42c1);
+  color: #f5f5f5;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
 
-    .quote-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 40px 50px;
-      color: #fff;
-      max-width: 650px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
+a { text-decoration: none; color: inherit; }
 
-    .quote-box h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+.container { max-width: 1250px; margin: 40px auto; padding: 0 20px; }
 
-    .quote-box p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #f0f0f0;
-    }
+/* ---------------- HEADER ---------------- */
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
 
-    @media (max-width: 768px) {
-      .hero {
-        height: 80vh;
-        padding: 30px;
-        margin: 15px;
-      }
+.logo {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, #c6a34f, #f6e27f);
+  color: #2e0057;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(255, 223, 0, 0.4);
+  text-shadow: 0 0 3px #fff;
+}
+.brand h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f9d423, #ff4e50);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
 
-      .quote-box {
-        padding: 25px;
-        font-size: 0.9rem;
-      }
+/* ---------------- NAV ---------------- */
+nav a {
+  margin-left: 4px;
+  font-weight: 600;
+  color: #f8f8f8;
+  transition: all 0.3s ease;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+nav a:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #f6e27f, #d4af37);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+nav a.active {
+  background: linear-gradient(90deg, #c6a34f, #d4af37);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 223, 0, 0.5);
+  transform: scale(1.05);
+}
 
-      .quote-box h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+/* ---------------- HEADINGS ---------------- */
+h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 15px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffd700, #ffae00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* ---------------- GRID ---------------- */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+@media(max-width:768px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+
+/* ---------------- CARD ---------------- */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3); }
+.card img { width: 100%; max-height: 260px; object-fit: contain; background: rgba(255, 255, 255, 0.1); border-radius: 12px; display: block; }
+
+.card-body { padding: 18px; text-align: center; }
+.title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: #fff3c4; }
+.meta { color: #e0c97e; font-size: 0.9rem; margin-bottom: 10px; }
+.price { font-weight: 800; font-size: 1.1rem; color: #ffda44; margin-bottom: 12px; }
+
+/* ---------------- BUTTON ---------------- */
+.btn {
+  background: linear-gradient(90deg, #d4af37, #ffd700);
+  color: #2e0057;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.btn:hover { transform: scale(1.07); background: linear-gradient(90deg, #ffd700, #d4af37); box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4); }
+
+/* ---------------- MODAL ---------------- */
+.modal {
+  display: none; position: fixed; z-index: 9999; left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(46, 0, 87, 0.8);
+  backdrop-filter: blur(6px);
+  justify-content: center; align-items: center;
+}
+.modal-content {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  width: 90%; max-width: 500px;
+  padding: 20px; text-align: left;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+}
+.modal-content img { width: 100%; max-height: 250px; object-fit: contain; border-radius: 12px; margin-bottom: 15px; }
+.close { position: absolute; top: 12px; right: 18px; font-size: 24px; cursor: pointer; color: #ffd700; }
+
+/* ---------------- FILTER BUTTONS ---------------- */
+#brandFilter {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0;
+}
+.filter-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid #ffd700;
+  color: #ffda44;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.filter-btn:hover { background: linear-gradient(90deg, #ffd700, #d4af37); color: #2e0057; }
+.filter-btn.active { background: linear-gradient(90deg, #d4af37, #ffd700); color: #2e0057; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+
+/* ---------------- FOOTER ---------------- */
+footer {
+  text-align: center; padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600; color: #ffeb99;
+  margin-top: 40px; border-radius: 12px 12px 0 0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+</style>
 </head>
+
 <body>
-  <section class="hero">
-    <div class="quote-box">
-      <h2>"Transform Your Home into a Work of Art"</h2>
-      <p>Experience timeless designs and elegant furniture that define comfort and sophistication.</p>
+<header>
+  <div class="brand">
+    <div class="logo">sri</div>
+    <h1>Sri's Furniture</h1>
+  </div>
+  <nav>
+    <nav id="navbar">
+    <a href="home.html">Home</a>
+    <a href="ac.html">ACs</a>
+    <a href="fridge.html">Fridges</a>
+    <a href="washing.html">Washing Machines</a>
+    <a href="cooler.html">Coolers</a>
+    <a href="sofas.html">Sofas</a>
+    <a href="tv.html">TV</a>
+    <a href="beds.html">Beds</a>
+    <a href="table.html">Tables</a>
+    <a href="mattress.html">Mattresses</a>
+    <a href="chairs.html">Chairs</a>
+    <a href="wardrobe.html">Wardrobe</a>
+    <a href="pillows.html">Pillows</a>
+  </nav>
+</header>
+
+<section>
+  <h2>Inverter Battery Collection</h2>
+  <div id="filters" style="text-align:center; margin: 20px 0;">
+  <div id="categoryFilters" style="margin-bottom: 15px;"></div>
+  <div id="brandFilters"></div>
+</div>
+
+  <div id="productGrid" class="grid"></div>
+</section>
+
+<!-- MODAL -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage">
+    <h3 id="modalName"></h3>
+    <p><b>Brand:</b> <span id="modalBrand"></span></p>
+    <p><b>Battery Type:</b> <span id="modalType"></span></p>
+    <p><b>Voltage:</b> <span id="modalVoltage"></span></p>
+    <p><b>Capacity (Ah):</b> <span id="modalCapacity"></span></p>
+    <p><b>Price:</b> <span id="modalPrice"></span></p>
+  </div>
+</div>
+
+<footer>
+  © Sri Sai Ganesh Homeneeds and Furnitures.<br>
+  📍 Visit: <b>Yanam and Malikipuram</b>
+</footer>
+
+
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3eldWB4-P_kmXqblGECwrxwbg_C_cvqCqOJayn9O_a1e1EJexyzGJ_kxc4kguwAkOjPEkEwPf4Woi/pub?output=csv";
+
+// Parse CSV safely
+function parseCSV(text) {
+  const lines = text.trim().split("\n");
+  const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
+  return lines.map(line => {
+    const values = line.split(",").map(v => v.replace(/^"|"$/g, "").trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = values[i] || "");
+    return obj;
+  });
+}
+
+let allProducts = [];
+
+async function loadProducts() {
+  try {
+    const res = await fetch(SHEET_URL + "&t=" + Date.now());
+    if (!res.ok) throw new Error("Network error");
+    const text = await res.text();
+    allProducts = parseCSV(text);
+    renderCategoryFilters();
+    renderBrandFilters(allProducts);
+    renderProducts(allProducts);
+  } catch (err) {
+    console.error(err);
+    document.getElementById("productGrid").innerHTML = "<p style='color:red;text-align:center;'>⚠️ Failed to load sheet data.</p>";
+  }
+}
+
+/* CATEGORY FILTERS */
+function renderCategoryFilters() {
+  const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
+  const container = document.getElementById("categoryFilters");
+  container.innerHTML = `
+    <button class="filter-btn active" onclick="filterByCategory('All')">All</button>
+    ${categories.map(c => `<button class="filter-btn" onclick="filterByCategory('${c}')">${c}</button>`).join('')}
+  `;
+}
+
+function filterByCategory(category) {
+  document.querySelectorAll("#categoryFilters .filter-btn").forEach(b => b.classList.remove("active"));
+  const btn = [...document.querySelectorAll("#categoryFilters .filter-btn")].find(b => b.textContent === category);
+  if (btn) btn.classList.add("active");
+  const filtered = category === "All" ? allProducts : allProducts.filter(p => p.category?.toLowerCase() === category.toLowerCase());
+  renderBrandFilters(filtered);
+  renderProducts(filtered);
+}
+
+/* BRAND FILTERS */
+function renderBrandFilters(data = allProducts) {
+  const brands = [...new Set(data.map(p => p.brand).filter(Boolean))];
+  const container = document.getElementById("brandFilters");
+  container.innerHTML = `
+    <button class="filter-btn active" onclick="filterByBrand('All')">All</button>
+    ${brands.map(b => `<button class="filter-btn" onclick="filterByBrand('${b}')">${b}</button>`).join('')}
+  `;
+}
+
+function filterByBrand(brand) {
+  document.querySelectorAll("#brandFilters .filter-btn").forEach(b => b.classList.remove("active"));
+  const btn = [...document.querySelectorAll("#brandFilters .filter-btn")].find(b => b.textContent === brand);
+  if (btn) btn.classList.add("active");
+  const filtered = brand === "All" ? allProducts : allProducts.filter(p => p.brand?.toLowerCase() === brand.toLowerCase());
+  renderProducts(filtered);
+}
+
+/* PRODUCT CARDS */
+function renderProducts(data) {
+  const container = document.getElementById("productGrid");
+  if (!data.length) {
+    container.innerHTML = "<p style='text-align:center;'>No products available.</p>";
+    return;
+  }
+
+  container.innerHTML = data.map(item => `
+    <div class="card">
+      <img src="${item['image link'] || 'https://via.placeholder.com/400x250?text=No+Image'}" alt="${item['model name']}">
+      <div class="card-body">
+        <div class="title">${item['model name'] || '-'}</div>
+        <div class="meta">${item.brand || '-'}</div>
+        <div class="price">${item.price ? '₹' + item.price : '-'}</div>
+        <button class="btn" onclick='showDetails(${JSON.stringify(item).replace(/'/g, "&#39;")})'>View Details</button>
+      </div>
     </div>
-  </section>
+  `).join('');
+}
+
+/* MODAL */
+function showDetails(item) {
+  document.getElementById("modalImage").src = item["image link"] || "https://via.placeholder.com/400x250?text=No+Image";
+  document.getElementById("modalName").textContent = item["model name"] || "-";
+  document.getElementById("modalBrand").textContent = item.brand || "-";
+  document.getElementById("modalType").textContent = item["battery type"] || "-";
+  document.getElementById("modalVoltage").textContent = item.voltage || "-";
+  document.getElementById("modalCapacity").textContent = item.capacity || "-";
+  document.getElementById("modalPrice").textContent = item.price ? "₹" + item.price : "-";
+  document.getElementById("productModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("productModal").style.display = "none";
+}
+
+/* NAVBAR ACTIVE LINK + INITIAL LOAD */
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  const currentPage = window.location.pathname.split("/").pop();
+  document.querySelectorAll("#navbar a").forEach(link => {
+    if (link.getAttribute("href") === currentPage) link.classList.add("active");
+  });
+});
+</script>
+
 </body>
 </html>

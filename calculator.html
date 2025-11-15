@@ -3,141 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fireworks Rockets</title>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background: #111; /* dark background for fireworks */
-    height: 100vh;
-  }
+<title>Realistic Christmas Effect</title>
 
-  /* Fireworks canvas */
-  #fireworksCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-  }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(#00204a, #00111f);
+        overflow: hidden;
+        position: relative;
+        font-family: Arial;
+    }
+
+    /* ---- Christmas Lights ---- */
+    .lights {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 80px;
+        pointer-events: none;
+        display: flex;
+        justify-content: space-around;
+        z-index: 20;
+    }
+
+    .bulb {
+        width: 18px;
+        height: 30px;
+        border-radius: 50%;
+        opacity: 0.9;
+        animation: glow 1.5s infinite alternate ease-in-out;
+        box-shadow: 0 0 15px currentColor;
+    }
+
+    .bulb:nth-child(1) { background: red;     color: red;     }
+    .bulb:nth-child(2) { background: yellow;  color: yellow;  animation-delay: .3s; }
+    .bulb:nth-child(3) { background: green;   color: green;   animation-delay: .6s; }
+    .bulb:nth-child(4) { background: blue;    color: blue;    animation-delay: .9s; }
+    .bulb:nth-child(5) { background: orange;  color: orange;  animation-delay: 1.2s; }
+
+    @keyframes glow {
+        from { opacity: .4; transform: scale(.9); }
+        to   { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ---- Snow ---- */
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        font-size: 12px;
+        animation: fall linear infinite, sway ease-in-out infinite;
+        user-select: none;
+        pointer-events: none;
+        z-index: 999;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px); }
+        100% { transform: translateY(110vh); }
+    }
+
+    @keyframes sway {
+        0% { margin-left: 0; }
+        50% { margin-left: 20px; }
+        100% { margin-left: 0; }
+    }
 </style>
 </head>
+
 <body>
 
-<canvas id="fireworksCanvas"></canvas>
+<!-- Christmas Lights -->
+<div class="lights">
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+</div>
 
 <script>
-const canvas = document.getElementById('fireworksCanvas');
-const ctx = canvas.getContext('2d');
+/* ---- Realistic Falling Snow ---- */
+const snowCount = 60; // Increase if needed
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+for (let i = 0; i < snowCount; i++) {
+    let snow = document.createElement("div");
+    snow.classList.add("snowflake");
+    snow.innerHTML = "❄";
 
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+    let size = Math.random() * 18 + 8; 
+    snow.style.fontSize = size + "px";
 
-// Particle class for explosion
-class Particle {
-  constructor(x, y, color, vx, vy) {
-    this.x = x;
-    this.y = y;
-    this.vx = vx;
-    this.vy = vy;
-    this.alpha = 1;
-    this.color = color;
-  }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.vy += 0.02; // gravity
-    this.alpha -= 0.02;
-  }
-  draw() {
-    ctx.globalAlpha = this.alpha;
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
-    ctx.fill();
-    ctx.globalAlpha = 1;
-  }
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = Math.random() * 5 + 5 + "s";
+    snow.style.animationDelay = Math.random() * 5 + "s";
+
+    document.body.appendChild(snow);
 }
-
-// Rocket class
-class Rocket {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = canvas.height;
-    this.vx = (Math.random() - 0.5) * 2;
-    this.vy = - (6 + Math.random() * 4);
-    this.color = `hsl(${Math.random()*360}, 100%, 60%)`;
-    this.exploded = false;
-    this.particles = [];
-  }
-  update() {
-    if (!this.exploded) {
-      this.x += this.vx;
-      this.y += this.vy;
-      this.vy += 0.05; // gravity
-      if(this.vy >= 0) this.explode();
-    } else {
-      this.particles.forEach(p => p.update());
-      this.particles = this.particles.filter(p => p.alpha > 0);
-    }
-  }
-  explode() {
-    this.exploded = true;
-    const count = 30 + Math.random() * 30;
-    for(let i=0;i<count;i++){
-      const angle = Math.random()*Math.PI*2;
-      const speed = Math.random()*4;
-      this.particles.push(new Particle(
-        this.x, this.y, 
-        `hsl(${Math.random()*360}, 100%, 60%)`,
-        Math.cos(angle)*speed,
-        Math.sin(angle)*speed
-      ));
-    }
-  }
-  draw() {
-    if(!this.exploded){
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
-      ctx.fill();
-    } else {
-      this.particles.forEach(p => p.draw());
-    }
-  }
-}
-
-const rockets = [];
-
-// Animation loop
-function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.2)"; // trail effect
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  
-  if(Math.random() < 0.05) rockets.push(new Rocket());
-
-  rockets.forEach((r, index) => {
-    r.update();
-    r.draw();
-    if(r.exploded && r.particles.length === 0){
-      rockets.splice(index, 1);
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 </script>
 
 </body>
 </html>
-

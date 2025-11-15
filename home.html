@@ -138,6 +138,8 @@ License: free to use and customize.
 
  
   <style> 
+ 
+
     :root{
       --bg: linear-gradient(0deg, #ff0000 100%, #ff0000 100%);; --card:#949494; --muted:#6b6b6b;
       --accent:rgb(138, 138, 138); --accent-dark:#000000; --accent-contrast:#fff;
@@ -147,8 +149,16 @@ License: free to use and customize.
     html,body{height:100%}
     body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0; background:var(--bg); color:#000000;}
     a{text-decoration:none;color:#06a79f}
-    .container{max-width:var(--maxw);margin:26px auto;padding:0 20px}
-      
+    .container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 26px auto;
+  padding: 0 20px;
+  overflow-x: hidden;
+  
+}
+
+
 
     /* Header */
    
@@ -1100,7 +1110,7 @@ nav a::before {
         width: 36px;
         height: 36px;
         font-size: 18px;
-        bottom: 55px;
+        bottom: 25px;
       }
 
       .whatsapp-chat img {
@@ -1308,19 +1318,20 @@ nav a::before {
     }
 
 
-  /* Fireworks canvas */
-#fireworksCanvas {
+ #fireworksCanvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   height: 100%;
-  pointer-events: none; /* allows clicks through */
-  z-index: 9999;        /* stays above other elements */
-  background: transparent; /* optional, transparent overlay */
+  max-height: 100% !important;
+  pointer-events: none;
+  z-index: 9999;
+  background: transparent;
+  overflow: hidden !important;
 }
-
-    /* diwali section text */
+  /* diwali section text */
     .diwali-container {
       position: fixed;
       bottom: 0;
@@ -2394,7 +2405,7 @@ nav a::before {
       .floating-map-icon {
         width: 36px;       /* smaller on mobile */
         height: 36px;
-        bottom: 130px;     /* adjust above WhatsApp */
+        bottom: 80px;     /* adjust above WhatsApp */
       }
 
       .floating-map-icon img {
@@ -2657,6 +2668,7 @@ nav a::before {
 .slide-track {
   display: inline-flex;
   animation: scroll 25s linear infinite;
+ 
 }
 
 .slide-item {
@@ -4059,7 +4071,7 @@ button:hover {
     </div>
     <div class="video-item">
       <video autoplay muted loop playsinline>
-        <source src="videos/v1.webm" type="video/webm">
+        <source src="videos/microwen.webm.mp4" type="video/webm">
       </video>
     </div>
     <div class="video-item">

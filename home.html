@@ -1380,15 +1380,58 @@ nav a::before {
 
     /* diwali section text */
 
-    .footer {
-      background: #8d8d8d; /* Glassmorphism feel */
-      backdrop-filter: blur(12px);
-      color: #fff;
-      padding: 40px 20px;
-      font-family: 'Poppins', sans-serif;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-    }
+/* Premium Steel-Glass Footer */
+.footer {
+  position: relative;
+  padding: 40px 30px;
+  border-radius: 15px 15px 0 0; /* rounded top corners */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: rgb(209, 9, 9); /* nav button style text */
+
+  /* Steel-Glass background */
+  background-color: rgba(255, 255, 255, 0); /* faint glass */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+ 
+  
+  /* Shadow for depth */
+  box-shadow: 0 -4px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+/* Optional floating highlights like Uiverse container */
+.footer::before,
+.footer::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(250, 181, 112, 0.3); /* soft glow */
+  width: 6rem;
+  height: 6rem;
+}
+
+.footer::before {
+  top: 20%;
+  right: 10%;
+}
+
+.footer::after {
+  top: 10%;
+  left: 5%;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Ensure footer text stays above highlights */
+.footer * {
+  position: relative;
+  z-index: 1;
+}
+
+
 
     /* Top row: Products + Newsletter */
     .footer-top {
@@ -1473,7 +1516,7 @@ nav a::before {
 
 .footer-social h3 {
   font-family: 'Playfair Display', serif;
-  color: #1A237E;
+  color: #0217f7;
   margin-bottom: 10px;
 }
 
@@ -1609,7 +1652,10 @@ nav a::before {
 .footer-appliances h3,
 .footer-location h3,
 .footer-keywords h3,
-.footer-about h3 {
+.footer-about h3,
+.footer-social h3,
+.footer-payments h3
+ {
   font-family: 'Playfair Display', serif;
   color: #1A237E;
   margin-bottom: 10px;
@@ -4531,7 +4577,7 @@ button:hover {
     <div class="footer-about">
       <h3>Sri Sai Ganesh Homeneeds & Furnitures</h3>
       <p>
-        Your trusted shop in Malikipuram for premium furniture and home 
+        Your trusted shop in Malikipuram & Yanamfor premium furniture and home 
         appliances including ACs, refrigerators, washing machines, TVs, 
         and kitchen essentials. Providing high-quality products with 
         excellent customer support.
@@ -4543,7 +4589,7 @@ button:hover {
   <!-- ====================== PAYMENT METHODS ====================== -->
 
   <div class="footer-payments">
-    <h4>We Accept</h4>
+    <h3>We Accept</h3>
     <div class="payment-icons">
       <img src="images/payment1.png" alt="Visa">
       <img src="images/payment2.png" alt="MasterCard">
@@ -4556,7 +4602,7 @@ button:hover {
   <!-- ====================== SOCIAL MEDIA ====================== -->
 
   <div class="footer-social">
-    <h4>Follow Us</h4>
+    <h3>Follow Us</h3>
     <div class="social-icons">
 
       <!-- Facebook -->

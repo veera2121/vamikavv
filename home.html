@@ -257,12 +257,23 @@ License: free to use and customize.
 
     /* --- Mobile View --- */
     @media (max-width: 768px) {
-    .categories {
-  column-count: 2;
-  column-gap: 10px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
+ .categories {
+    column-count: 2;
+    column-gap: 10px;
+    overflow-x: auto;
+    /* REMOVE nowrap */
+    white-space: normal; 
+  }
+
+  .cat div {
+    font-size: 13px;
+    text-align: center;
+    white-space: normal;   /* allow line break */
+    word-wrap: break-word; /* break long words */
+    line-height: 1.1;      /* compact two lines */
+    max-width: 100%;       /* no overflow */
+  }
+
 .categories > * {
   display: inline-block;
   width: 150px; /* or your item width */
@@ -916,7 +927,7 @@ header .header-content h1 {
   .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: rgb(7, 109, 100);
+    background: rgb(109, 7, 70);
     transition: 0.3s;
   }
 
@@ -1071,15 +1082,26 @@ nav.active {
         width: 36px;
         height: 36px;
         font-size: 18px;
-        bottom: 55px;
+        bottom: 40px;
       }
 
       .whatsapp-chat img {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
     }
 
+/* Adjust WhatsApp icon on small screens */
+@media (max-width: 480px) {
+  .whatsapp-chat {
+    right: 10px !important;
+    
+  }
+  .whatsapp-chat img {
+        width: 18px;
+        height: 18px;
+      }
+}
 
 
    
@@ -2347,6 +2369,11 @@ nav.active {
       width: 28px;
       height: 28px;
     }
+ 
+
+html, body {
+  overflow-x: hidden;
+}
 
     /* Floating animation for map icon */
     @keyframes floatMap {
@@ -2358,7 +2385,8 @@ nav.active {
       .floating-map-icon {
         width: 36px;       /* smaller on mobile */
         height: 36px;
-        bottom: 130px;     /* adjust above WhatsApp */
+        bottom: 140px; 
+           /* adjust above WhatsApp */
       }
 
       .floating-map-icon img {
@@ -2367,6 +2395,23 @@ nav.active {
       }
     }
 
+@media (max-width: 400px) {
+  .floating-map-icon {
+    width: 30px;
+    height: 30px;
+  
+    right: 10px !important;
+  
+
+   /* more safe margin */
+    bottom: 95px;
+  }
+
+  .floating-map-icon img {
+    width: 18px;
+    height: 18px;
+  }
+}
     /* Banner Section */
     /* Desktop */
     .desktop-banner { display: block; }
@@ -5453,7 +5498,7 @@ window.addEventListener('resize', () => {
     container.appendChild(bubble);
   }
 })
-
+/*
 
 (function() {
   const canvas = document.getElementById('fireworksCanvas');
@@ -5561,14 +5606,22 @@ window.addEventListener('resize', () => {
 
   animate();
 })();
+*/
+window.addEventListener("scroll", function () {
+  const mapIcon = document.querySelector(".floating-map-icon");
 
-
+  if (window.scrollY > 150) { 
+    mapIcon.style.opacity = "1";
+    mapIcon.style.pointerEvents = "auto";
+  } else {
+    mapIcon.style.opacity = "0";
+    mapIcon.style.pointerEvents = "none";
+  }
+});
 </script>
 <script src="review.js"></script> 
 
 <!--End of Tawk.to Script-->
-<!-- Fireworks Container -->
-<canvas id="fireworksCanvas"></canvas>
 
 
 </body>

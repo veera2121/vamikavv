@@ -257,7 +257,7 @@ License: free to use and customize.
 
     /* --- Mobile View --- */
     @media (max-width: 768px) {
- .categories {
+     .categories {
     column-count: 2;
     column-gap: 10px;
     overflow-x: auto;
@@ -322,6 +322,8 @@ License: free to use and customize.
         transform: scale(1.15);
       }
     }
+ 
+
     /* Products */
     .section-title{display:flex;align-items:center;justify-content:space-between;margin:28px 0}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
@@ -611,7 +613,7 @@ nav a {
   font-size: 13px;  /* smaller text */
   font-family: inherit;
   font-weight: 900;
-  color: rgb(9, 136, 209);
+  color: rgb(209, 9, 9);
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -927,7 +929,7 @@ header .header-content h1 {
   .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: rgb(109, 7, 70);
+    background: rgb(7, 109, 100);
     transition: 0.3s;
   }
 
@@ -950,7 +952,12 @@ nav {
   right: -220px; /* start off-screen */
   height: 100vh;
   width: 200px;
-  background: #018f94f3;
+    color: #0080ff; /* dark steel text */
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.6),       /* steel shadow */
+    -4px -4px 8px rgba(255, 255, 255, 0.7); /* steel shine */
+
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -981,6 +988,17 @@ nav.active {
       transform: translateX(0);
     }
   }
+  nav a {
+  color: #0080ff !important; /* Steel Blue Text */
+  font-weight: 700;
+}
+nav a::before {
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 180, 200, 0.8) 0%, 
+    rgba(219, 0, 248, 0.9) 100%
+  ); /* steel glass gradient */
+}
 }
 
 
@@ -1082,7 +1100,7 @@ nav.active {
         width: 36px;
         height: 36px;
         font-size: 18px;
-        bottom: 40px;
+        bottom: 55px;
       }
 
       .whatsapp-chat img {
@@ -1090,18 +1108,14 @@ nav.active {
         height: 18px;
       }
     }
-
-/* Adjust WhatsApp icon on small screens */
+    /* Adjust WhatsApp icon on small screens */
 @media (max-width: 480px) {
   .whatsapp-chat {
-    right: 10px !important;
-    
+    right: 12px !important;
   }
-  .whatsapp-chat img {
-        width: 18px;
-        height: 18px;
-      }
 }
+
+
 
 
    
@@ -2369,11 +2383,6 @@ nav.active {
       width: 28px;
       height: 28px;
     }
- 
-
-html, body {
-  overflow-x: hidden;
-}
 
     /* Floating animation for map icon */
     @keyframes floatMap {
@@ -2385,8 +2394,7 @@ html, body {
       .floating-map-icon {
         width: 36px;       /* smaller on mobile */
         height: 36px;
-        bottom: 140px; 
-           /* adjust above WhatsApp */
+        bottom: 130px;     /* adjust above WhatsApp */
       }
 
       .floating-map-icon img {
@@ -2394,24 +2402,12 @@ html, body {
         height: 20px;
       }
     }
-
-@media (max-width: 400px) {
+    @media (max-width: 480px) {
   .floating-map-icon {
-    width: 30px;
-    height: 30px;
-  
-    right: 10px !important;
-  
-
-   /* more safe margin */
-    bottom: 95px;
-  }
-
-  .floating-map-icon img {
-    width: 18px;
-    height: 18px;
+    right: 12px !important;
   }
 }
+
     /* Banner Section */
     /* Desktop */
     .desktop-banner { display: block; }
@@ -5607,17 +5603,7 @@ window.addEventListener('resize', () => {
   animate();
 })();
 */
-window.addEventListener("scroll", function () {
-  const mapIcon = document.querySelector(".floating-map-icon");
 
-  if (window.scrollY > 150) { 
-    mapIcon.style.opacity = "1";
-    mapIcon.style.pointerEvents = "auto";
-  } else {
-    mapIcon.style.opacity = "0";
-    mapIcon.style.pointerEvents = "none";
-  }
-});
 </script>
 <script src="review.js"></script> 
 

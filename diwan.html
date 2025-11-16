@@ -329,22 +329,25 @@ html {
   <!-- NAVIGATION -->
    <nav id="navbar">
     
-<a href="home.html">Home</a>
-    <a href="ac.html">ACs</a>
-     <a href="fridge.html">Fridges</a>
-     <a href="washing.html">Washing Machines</a>
-      <a href="cooler.html">Coolers</a>
-      <a href="tv.html">TV</a>
-      <a href="speaker.html">Speakers</a>
-      <a href="battery.html">Batteries</a>
-    <a href="sofas.html">Sofas</a>
-     <a href="beds.html">Beds</a>
-      <a href="table.html">Tables</a>
-    <a href="mattress.html">Mattresses</a>
-     <a href="chairs.html">Chairs</a>  
-    <a href="wardrobe.html">Wardrobe</a>
-    <a href="pillows.html">Pillows</a>
 
+   <nav id="navbar">
+    <a href="home.html">Home</a>
+    <a href="ac.html">ACs</a>
+    <a href="fridge.html">Fridges</a>
+    <a href="washing.html">Washing Machines</a>
+    <a href="cooler.html">Coolers</a>
+    <a href="tv.html">TV</a>
+    <a href="speaker.html">Speakers</a>
+    <a href="battery.html">Batteries</a>
+    <a href="sofas.html">Sofas</a>
+    <a href="beds.html">Beds</a>
+    <a href="table.html">Tables</a>
+    <a href="mattress.html">Mattresses</a>
+    <a href="chairs.html">Chairs</a>  
+    <a href="wardrobe.html">Wardrobe</a>
+    <a href="dressing.html">Dressing Table</a>
+    <a href="pillows.html">Pillows</a>
+    <a href="diwan.html">Diwan</a>
   </nav>
 </header>
 
@@ -371,6 +374,15 @@ html {
     }
   });
 });
+    // Highlight current nav link
+    const currentPage = "diwan.html"; // adjust based on file name
+    const navLinks = document.querySelectorAll("#navbar a");
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+        link.scrollIntoView({ behavior: "smooth", inline: "center" });
+      }
+    });
   </script>
 </body>
 </html>

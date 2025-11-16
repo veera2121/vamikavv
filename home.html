@@ -5313,6 +5313,16 @@ const searchItems = {
 
   "pillow": "pillow.html",
   "pillows": "pillow.html",
+  "speaker":"speaker.html",
+  "speker":"speaker.html",
+  "speakr":"speaker.html",
+  "battery":"battery.html",
+  "battary":"battery.html",
+  "dressing table":"dressing.html",
+  "dressintable":"dressing.html",
+  "diwan":"diwan.html",
+
+
 
   // ✅ Scroll to page sections instead of opening new pages
   "contact": "#contact",
@@ -5770,6 +5780,16 @@ window.addEventListener('resize', () => {
   animate();
 })();
 */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
+
 
 </script>
 <script src="review.js"></script> 

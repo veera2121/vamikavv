@@ -1085,7 +1085,7 @@ nav a::before {
       align-items: center;
       position: fixed;
       bottom: 70px;       /* adjust as needed */
-      right: 25px;
+      left: 15px;
       width: 40px;
       height: 40px;
       font-size: 20px;
@@ -1107,10 +1107,11 @@ nav a::before {
     /* Hide "Chat on WhatsApp" text button on mobile */
     @media (max-width: 768px) {
       .whatsapp-chat {
-        width: 36px;
-        height: 36px;
+        width: 26px;
+        height: 26px;
         font-size: 18px;
         bottom: 25px;
+        left:10px;
       }
 
       .whatsapp-chat img {
@@ -2473,7 +2474,7 @@ nav a::before {
     .floating-map-icon {
       position: fixed;
       bottom: 130px;  /* 60px above WhatsApp icon at 70px */
-    left: 25px;
+     left: 15px;
       z-index: 10001;  /* above WhatsApp icon */
       width: 40px;
       height: 40px;
@@ -2502,9 +2503,10 @@ nav a::before {
     /* ===== Mobile Responsive ===== */
     @media (max-width: 768px) {
       .floating-map-icon {
-        width: 36px;       /* smaller on mobile */
-        height: 36px;
-        bottom: 80px;     /* adjust above WhatsApp */
+        width: 25px;       /* smaller on mobile */
+        height: 25px;
+        bottom: 80px;
+        left:10px;     /* adjust above WhatsApp */
       }
 
       .floating-map-icon img {

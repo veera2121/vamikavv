@@ -1,0 +1,5920 @@
+<!--
+Furniture Showroom — Convertible to E-commerce
+File: Jay's Furniture — Full Code (showroom -> ecommerce).html
+Branding: Jay's
+
+Instructions:
+1) Open this file in a browser. It's a single-file static site.
+2) Use the top-right "Admin: Toggle E‑commerce Mode" button to switch between SHOWROOM and E‑COMMERCE modes.
+   - SHOWROOM: product enquiry buttons (mailto/WhatsApp)
+   - E-COMMERCE: Add to Cart, Cart Drawer, Checkout simulation (orders stored in localStorage)
+3) Replace placeholder images (unsplash links) with your product photos.
+4) To go live: connect to a backend for products and payments (Stripe/Razorpay/PayPal).
+
+License: free to use and customize.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- ✅ SEO Optimized for Google Search -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Sri Sai Ganesh Homeneeds & Furnitures | Best Furniture Shop in Malikipuram</title>
+  <meta name="description" content="Sri Sai Ganesh Homeneeds & Furnitures — your trusted furniture showroom in Malikipuram. Explore premium sofas, beds, wardrobes, dining sets, and home decor at affordable prices." />
+  <meta name="keywords" content="Sri Sai Ganesh Furnitures, furniture shop Malikipuram, home needs, sofas, beds, wardrobes, dining sets, Malikipuram furniture showroom" />
+
+  <!-- ✅ Canonical Domain -->
+  <link rel="canonical" href="https://srisaiganeshhomeneeds.shop/" />
+  <link rel="icon" type="image/png" href="https://srisaiganeshhomeneeds.shop/images/logo.png" />
+
+  <!-- ✅ Open Graph / Social Preview -->
+  <meta property="og:title" content="Sri Sai Ganesh Home Needs & Furnitures | Malikipuram" />
+  <meta property="og:description" content="Top furniture showroom in Malikipuram offering sofas, beds, wardrobes, and more. Visit Sri Sai Ganesh Home Needs for elegant home furniture." />
+  <meta property="og:image" content="https://srisaiganeshhomeneeds.shop/images/og-preview.jpg" />
+  <meta property="og:url" content="https://srisaiganeshhomeneeds.shop/" />
+  <meta property="og:type" content="website" />
+
+  <!-- ✅ Schema Markup for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FurnitureStore",
+    "name": "Sri Sai Ganesh Home Needs & Furniture",
+    "image": "https://srisaiganeshhomeneeds.shop/images/logo.png",
+    "url": "https://srisaiganeshhomeneeds.shop/",
+    "telephone": "+919666780228",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Main Road, Malikipuram",
+      "addressLocality": "Malikipuram",
+      "addressRegion": "Andhra Pradesh",
+      "postalCode": "533253",
+      "addressCountry": "IN"
+    },
+    "openingHours": "Mo-Su 09:00-21:00",
+    "sameAs": [
+      "https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/",
+      "https://www.instagram.com/srisaiganeshhomeneeds/"
+    ]
+  }
+  </script>
+
+  <!-- ✅ Fonts and Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- ✅ Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H27MR3FH4Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H27MR3FH4Q');
+  </script>
+
+  <!-- Other meta tags, title, styles, etc. -->
+
+</head>
+
+
+  <!-- Your page content here -->
+</body>
+
+
+<!-- Main HTML file -->
+  <a href="3d.html" target="_blank"></a>
+
+<!-- Sticky header -->
+<header>
+      <div class="sparkle-bg"></div>
+      <div class="balloon-container"></div>
+  <div class="header-top">
+    <!-- Left logo -->
+    <div class="brand">
+      <img src="images/logo.png" alt="Logo" class="logo logo-3d logo-flip">
+    </div>
+
+    <!-- Centered shop name -->
+     <div class="header-content">
+      <div class="text-scale">
+      <h1>
+
+        <span class="line1">Sri Sai Ganesh Homeneeds</span><br>
+    <span class="line2"> and</span><br>
+    <span class="line3">Furnitures</span> 
+      </h1> 
+    </div>
+    </div>
+  </div>
+
+  <!-- Navigation below -->
+  <nav id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#kitchen">Products</a>
+
+
+    <a href="#Offer">Offer</a>
+    <a href="#mobile">Mobile Shop</a>
+    
+  </nav>
+
+
+
+  <!-- Hamburger button bottom-right corner -->
+  <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+
+    
+  </div>
+
+</header>
+
+ 
+  <style> 
+ 
+
+    :root{
+      --bg: linear-gradient(0deg, #ff0000 100%, #ff0000 100%);; --card:#949494; --muted:#6b6b6b;
+      --accent:rgb(138, 138, 138); --accent-dark:#000000; --accent-contrast:#fff;
+      --radius:14px; --maxw:1200px; --shadow:0 8px 30px rgba(18,22,28,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0; background:var(--bg); color:#000000;}
+    a{text-decoration:none;color:#06a79f}
+    .container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 26px auto;
+  padding: 0 20px;
+  overflow-x: hidden;
+ 
+  position: relative; /* keep nav outside if necessary */
+}
+  
+
+@media (max-width: 768px) {
+  .container {
+    padding:  10px;
+  }
+}
+
+html, body {
+  overflow-x: hidden; /* prevents right-drag */
+  overflow-y: auto;   /* ensures vertical scrolling works */
+}
+
+
+
+    /* Header */
+   
+    .brand{display:flex;gap:14px;align-items:center}
+    
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+   
+    .btn{background:var(--accent);color:var(--accent-contrast);padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(166,124,54,0.14)}
+    .ghost{background:transparent;border:1px solid rgba(17, 245, 233, 0.06);padding:8px 12px;border-radius:10px}
+ /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin:10px 0;align-items:center}
+    .hero-card{background:var(--card);padding:28px;border-radius:18px;box-shadow:var(--shadow)}
+    .hero h2{margin:0 0 8px;font-size:32px;line-height:1.02}
+    .hero p{margin:0;color:var(--muted);font-size:15px}
+    .hero-cta{margin-top:18px;display:flex;gap:12px}
+    .hero-cta .btn{font-size:15px}
+    .hero-image{border-radius:14px;overflow:hidden;height:320px;box-shadow:var(--shadow)}
+    .hero-image img{width:100%;height:100%;object-fit:cover;display:block}
+    /* Desktop view: 6 products per row */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 15px;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 5px;
+    }
+    .categories-section {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .categories-section .section-header h2 {
+       font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #a70972, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+
+    .categories-section .section-header p {
+      font-size: 1.1rem;
+      color: #4e0538;
+      margin-bottom: 20px;
+    }
+
+    /*.cat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s;*/
+.cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
+  padding: 8px;
+  
+  /* Neon gradient for contrast on red bg */
+  background: linear-gradient(270deg, #ff00ff, #00ffff, #0c7e09, #ff8c00);
+  background-size: 800% 800%;
+  animation: neonGradient 6s ease infinite;
+  
+  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.7), 0 0 15px rgba(0, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  max-width: 110px;
+  height: auto;
+  color: #fff;
+  text-align: center;
+}
+
+/* Neon gradient animation */
+@keyframes neonGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hover / active glow effect */
+.cat:hover,
+.cat:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.9), 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+
+
+    .cat img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+  
+.cat div {
+  margin-top: 6px; /* reduced from 8px */
+  font-size: 13px; /* slightly smaller text */
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700; 
+   
+}
+
+
+
+    .cat:hover img {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgb(243, 8, 231);
+    }
+
+    /* --- Mobile View --- */
+    @media (max-width: 768px) {
+     .categories {
+    column-count: 2;
+    column-gap: 10px;
+    overflow-x: auto;
+    /* REMOVE nowrap */
+    white-space: normal; 
+  }
+
+  .cat div {
+    font-size: 13px;
+    text-align: center;
+    white-space: normal;   /* allow line break */
+    word-wrap: break-word; /* break long words */
+    line-height: 1.1;      /* compact two lines */
+    max-width: 100%;       /* no overflow */
+  }
+
+.categories > * {
+  display: inline-block;
+  width: 150px; /* or your item width */
+  margin-bottom: 10px;
+}
+
+      @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(179,14,63,0.4); }
+      50% { box-shadow: 0 0 15px rgba(179,14,63,0.8); }
+      100% { box-shadow: 0 0 5px rgba(179,14,63,0.4); }
+      }
+
+      .categories::-webkit-scrollbar {
+        display: none;
+      }
+
+      .cat {
+        flex: 0 0 32%; /* 3 fully visible */
+        scroll-snap-align: start;
+        width: 100%;
+      }
+
+      /* Partially visible 4th item */
+      .cat:nth-child(4) {
+        flex: 0 0 50%;
+      }
+
+      .cat img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      animation: glow 2s infinite ease-in-out;
+      transition: transform 0.3s;
+      }
+
+      .cat div {
+        font-size: 13px;
+      }
+
+      .cat:hover img {
+        transform: scale(1.15);
+        box-shadow: 0 0 12px rgba(179, 14, 63, 0.6);
+      }
+        
+      .cat:active img {
+        transform: scale(1.15);
+      }
+    }
+ 
+
+    /* Products */
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin:28px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:210px;object-fit:cover;display:block}
+    .card-body{padding:14px}
+    .title{font-weight:600;margin:0 0 6px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .price{font-weight:700;font-size:16px;color:var(--accent-dark)}
+    .card-actions{display:flex;gap:8px;margin-top:10px}
+    .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px;cursor:pointer}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(5,10,15,0.5);display:flex;align-items:center;justify-content:center;padding:22px;z-index:60}
+    .modal{background:var(--card);width:100%;max-width:920px;border-radius:14px;overflow:hidden;display:flex;gap:18px}
+    .modal .left{flex:1;min-height:360px}
+    .modal .left img{width:100%;height:100%;object-fit:cover}
+    .modal .right{width:420px;padding:18px}
+    .close-x{background:transparent;border:none;font-size:20px;cursor:pointer}
+
+    /* Floating WhatsApp */
+    .wa{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;padding:12px;border-radius:14px;display:flex;align-items:center;gap:10px;z-index:80;box-shadow:0 8px 30px rgba(2,100,56,0.18)}
+
+    /* Cart Drawer */
+    .cart-drawer{position:fixed;right:0;top:0;height:100vh;width:360px;background:var(--card);box-shadow: -24px 0 40px rgba(13,17,22,0.12);z-index:70;padding:18px;transform:translateX(110%);transition:transform .28s ease}
+    .cart-drawer.open{transform:translateX(0)}
+    .cart-item{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.04)}
+    .cart-item img{width:72px;height:72px;object-fit:cover;border-radius:8px}
+
+    /* Footer */
+    footer{margin:36px 0;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero-image{height:260px}
+      .modal{flex-direction:column}
+      .modal .right{width:100%}
+      .cart-drawer{width:100%}
+    }
+    /* rwossssssssssssss*/
+      
+    .featured-collection {
+      padding: 20px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 20px; 
+      justify-content: center; }
+
+
+    .product-card {
+      width: calc(33.333% - 30px);
+      border: 3px solid #5e052e;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.3s;
+      height: 400px; /* 👈 fix height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px; /* 👈 fixed height */
+      object-fit: contain; /* ✅ keep full image visible */ /* keeps image proportion */
+      border-radius: 4px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product-actions button {
+      margin: 5px;
+      padding: 6px 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .product-actions button:first-child {
+      background: #333;
+      color: #fff;
+    }
+
+    .product-actions button:last-child {
+      background: #fff;
+      border: 1px solid #333;
+      color: #333;
+    }
+
+    /* Tablet: 2 per row */
+    @media (max-width: 768px) {
+      .product-card {
+        width: calc(50% - 15px);
+      }
+    }
+
+    /* ✅ Mobile: 2 per row (same as tablet) */
+    @media (max-width: 480px) {
+      .product-card {
+        width: calc(50% - 15px); /* 👈 changed from 100% to 50% */
+        height: auto; 
+      } 
+
+    }  
+    /* ---------------- HEADER BASE ---------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 25px;
+  background: url("images/mk7.png") center/cover no-repeat;
+
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 0 15px rgb(255, 0, 0), 0 3px 8px rgba(0,0,0,0.25);
+  height:150px;
+}
+
+/* ---------------- HEADER TOP (LOGO + TITLE) ---------------- */
+header .header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center title */
+  position: relative;
+  width: 100%;
+  height: 80px;
+  top:8;
+} 
+
+/* Brand section (logo left) */
+.brand {
+  position: absolute; 
+
+  left: 0;
+  display: flex;
+  align-items: center; 
+  gap:10px;
+  
+ 
+}
+/* Base logo style */
+.logo {
+  height: 40%;
+  width: 40%;
+  object-fit: contain;
+  display: block;
+  border-radius: 5px; 
+  position: relative;
+  top: 10px;
+
+  /* Floating effect */
+  transition: transform 0.4376s ease-in-out, box-shadow 0.6s ease-in-out;
+}
+/* ✅ Smooth flip every 3 seconds, both sides visible */
+@keyframes logoFlipVisible {
+  0%, 40% { transform: rotateY(0deg); }      /* front visible */
+  50%, 90% { transform: rotateY(180deg); }   /* back visible */
+  100% { transform: rotateY(360deg); }       /* return smoothly */
+}
+
+.logo-flip {
+  display: inline-block;
+  animation: logoFlipVisible 6s ease-in-out infinite; /* full flip cycle */
+  transform-style: preserve-3d;
+  transform-origin: center;
+  backface-visibility: visible; /* ✅ show both sides */
+}
+
+
+header .header-content h1 {
+  animation: float 6s ease-in-out infinite;
+}
+
+
+/* ---------------- TITLE CENTERED ---------------- */
+/* ---------------- TITLE CENTERED WITH 3D EFFECT ---------------- */
+/* ---------------- TITLE CENTERED WITH CLEAR 3D EFFECT ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+header .header-content h1 { 
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
+
+  /* Solid red color for text */
+  color: #ff1a1a;
+
+  /* Layered 3D shadows */
+  text-shadow:
+      1px 1px 0 #e0e0e0,
+      2px 2px 0 #c0c0c0,
+      3px 3px 0 #a0a0a0,
+      4px 4px 0 #808080,
+      5px 5px 0 #606060,
+      6px 6px 0 #404040;
+
+  /* Floating 3D animation */
+  transform-style: preserve-3d;
+  display: inline-block;
+  animation: float3D 6s ease-in-out infinite alternate;
+}
+
+/* Floating 3D animation */
+@keyframes float3D {
+  0% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-5px) rotateY(3deg); }
+  100% { transform: translateY(0px) rotateY(-3deg); }
+}
+
+
+ .bottom-nav {
+    display: none !important;
+  }
+
+/* ---------------- SHRINK HEADER ---------------- */
+ /* ---------------- Shrink header ---------------- */
+    header.shrink {
+      padding: 8px 20px;
+    }
+    header.shrink {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      background: url("images/mk7.png") center/cover no-repeat;
+    } 
+    header {
+  transition: all 0.3s ease;
+}
+header .header-content h1 {
+  white-space: nowrap; /* keep entire name on one line */
+}
+/* ---------------- NAVIGATION BELOW ---------------- */
+/* Nav container */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100px;
+  gap: 10px; /* space between nav items */
+}
+
+/* Small nav buttons */
+nav a {
+  display: inline-block;
+  width: 6em;       /* smaller width */
+  height: 2.5em;    /* smaller height */
+  line-height: 2.5em; /* vertically center text */
+  text-align: center;
+  border-radius: 30em;
+  font-size: 13px;  /* smaller text */
+  font-family: inherit;
+  font-weight: 900;
+  color: rgb(10, 141, 119);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 4px 8px #000000,
+              -4px -4px 8px #8a8a8a;
+  transition: color 0.5s ease;
+}
+
+/* Background gradient effect */
+nav a::before {
+  content: '';
+  width: 0;
+  height: 2.5em;   /* match button height */
+  border-radius: 30em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #d80fa6 0%, #47f9db 100%);
+  transition: 0.5s ease;
+  z-index: -1;
+  display: block;
+}
+
+/* Hover effect */
+nav a:hover::before {
+  width: 6em;  /* match button width */
+}
+
+
+
+
+/* Buttons */
+.btn, .ghost {
+  background: #FFD700;
+  border: 1px solid #FFD700;
+  padding:  10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  font-weight: 600;
+}
+
+.btn:hover, .ghost:hover {
+  background: #FFD700;
+  color: #1A237E;
+}
+
+/* ---------------- HAMBURGER MENU ---------------- */
+ .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+.nav-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+ 
+    /* ---------------- ANIMATIONS ---------------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      } 
+     
+/* ✅ FIX: Make Home & Products clickable */
+nav, #navLinks, #navLinks a {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+/* ✅ Allow clicks to pass through content above */
+.header-content, .header-top {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✅ Keep text selectable */
+.header-content h1, .header-content span {
+  pointer-events: auto;
+}
+/* ---------------- SPARKLE BACKGROUND ---------------- */
+/* Sparkle background container */
+
+/* Container stays behind header content */
+.sparkle-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* behind header content */
+}
+
+/* Common styles for stars and bubbles */
+.sparkle, .bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Star shape */
+.star {
+  width: 1.2vw; /* responsive size */
+  height: 1.2vw;
+  min-width: 8px;  /* minimum size for very small screens */
+  min-height: 8px;
+  max-width: 20px; /* maximum size for large screens */
+  max-height: 20px;
+  background: rgb(247, 0, 255);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+    79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+    2% 35%, 39% 35%
+  );
+  animation: float 6s linear infinite, twinkle 2s ease-in-out infinite alternate, shine 2s ease-in-out infinite;
+}
+
+/* Bubble shape */
+.bubble {
+  width: 1vw; /* responsive size */
+  height: 1vw;
+  min-width: 6px;
+  min-height: 6px;
+  max-width: 15px;
+  max-height: 15px;
+  background: rgb(0, 136, 129);
+  animation: float 8s linear infinite, bubbleTwinkle 3s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Floating movement */
+@keyframes float {
+  0% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(2vw, -2vw) scale(1.1); }
+  50% { transform: translate(-2vw, 2vw) scale(1.2); }
+  75% { transform: translate(1.5vw, -1.5vw) scale(1.1); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Star shine glow */
+@keyframes shine {
+  0%, 100% { filter: drop-shadow(0 0 3px gold); }
+  50% { filter: drop-shadow(0 0 10px gold); }
+}
+
+/* Bubble twinkle */
+@keyframes bubbleTwinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .star {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 10px;
+    min-height: 10px;
+  }
+
+  .bubble {
+    width: 2.2vw;
+    height: 2.2vw;
+    min-width: 5px;
+    min-height: 5px;
+  }
+}
+
+ /* ---------------- SHRINK EFFECT ---------------- */
+@media (max-width: 768px) {
+  /* Shrink header on scroll */
+  header.shrink {
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  header.shrink .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  header.shrink .header-content h1 {
+    font-size: 1.2rem;
+ }
+ }
+
+
+ 
+
+/* ---------------- MOBILE LAYOUT ---------------- */
+@media (max-width: 768px) { 
+  header {
+    padding: 1px; 
+    position: relative; 
+    height: 130px;
+     background: url("images/vm1.png") center/cover no-repeat;
+  }
+
+  /* Header top: logo left, text right */
+  .header-top { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    gap: 0.8rem;  
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;  
+  }
+
+  .logo {
+    height: 80px;
+    width: 80px;
+    left:px;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  header .logo {
+    position: relative;
+    top: 50px;
+  }
+
+  /* Header text (main title) */
+  header .header-content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+  }
+
+header .header-content h1 {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  white-space: normal;
+  display: inline-block;    /* ✅ required for transform to work correctly */
+  transform: scaleX(g4.5);   /* try 1.3 or 1.5, not 7.2 (7.2 is extreme) */
+  color: #ff0000;
+  text-align: flex-start;
+  margin: 25px 0 0 0;
+  position: relative;
+  left: -50px;
+  top: 50px;
+  transform-origin: left center; /* ✅ ensures stretching starts from left */
+}
+
+  /* ✅ Hamburger button */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  position: absolute; /* or fixed if you want it to stay on screen */
+  top: 90px;       /* change this value for vertical position */
+  right: 20px;         /* change this for horizontal position */
+  z-index: 2000;
+  align-items: center;
+}
+
+  .nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: rgb(7, 109, 100);
+    transition: 0.3s;
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+/* ✅ Hidden by default */
+nav {
+  position: fixed;        /* IMPORTANT */
+  top: 60px;
+  right: -220px;
+  z-index: 99999;         /* VERY HIGH */
+  background: #ffffff;
+  height: 100vh;
+  width: 200px;
+  padding: 50px 10px 10px;
+  border-radius: 10px 0 0 10px;
+  transition: right 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ✅ When active, slide in and enable interaction */
+nav.active {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+  /* Slide-in animation */
+  @keyframes slideFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  nav a {
+  color: #04805a !important; /* Steel Blue Text */
+  font-weight: 700;
+}
+nav a::before {
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 180, 200, 0.8) 0%, 
+    rgba(219, 0, 248, 0.9) 100%
+  ); /* steel glass gradient */
+}
+}
+
+
+    @media (max-width: 768px) { 
+      /* Bottom Navigation */
+      .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 45px;
+        background: #2ba898; /* solid background */
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        box-shadow: 0 -3px 10px rgba(0,0,0,0.25);
+        border-radius: 0; /* square corners */
+        z-index: 9999;
+        transition: all 0.3s ease; }
+
+      .bottom-nav .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgb(0, 0, 0);
+        font-size: 12px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        position: relative;
+      }
+
+      .bottom-nav .nav-item i {
+        font-size: 18px;
+        margin-bottom: 2px;
+        transition: color 0.2s, transform 0.2s;
+      }
+
+      .bottom-nav .nav-item span {
+        font-size: 11px;
+      }
+
+      /* Active icon */
+      .bottom-nav .nav-item.active i,
+      .bottom-nav .nav-item.active span {
+        color: #b40ec4d2; /* highlight color */
+        transform: scale(1.2);
+      }
+
+      /* Tap effect */
+      .bottom-nav .nav-item:active {
+        transform: translateY(-3px);
+      }
+      
+      .bottom-nav {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: all 0.4s ease;
+      }
+
+      .bottom-nav.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+ }
+
+    /* ---------------- Desktop hides bottom nav ---------------- */
+ 
+
+    .whatsapp-chat {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 70px;       /* adjust as needed */
+      left: 15px;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      border-radius: 50%;
+      background: #25D366;  /* WhatsApp green */
+      color: white;
+      z-index: 110000;       /* above other content */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      animation: float 1.5s ease-in-out infinite; /* floating animation */
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Hide "Chat on WhatsApp" text button on mobile */
+    @media (max-width: 768px) {
+      .whatsapp-chat {
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+        bottom: 25px;
+        left:10px;
+      }
+
+      .whatsapp-chat img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    /* Adjust WhatsApp icon on small screens */
+@media (max-width: 480px) {
+  .whatsapp-chat {
+    right: 12px !important;
+  }
+}
+
+
+
+
+   
+      /* Slider container */ 
+      /* --- New Products Section --- */
+    .new-products-section {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 10px;
+      text-align: center;
+    }
+
+    .new-products-section .section-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, #c0119a, #000000f8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .new-products-section .section-header p {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    /* --- Slider wrapper --- */
+    .new-products-slider {
+      overflow-x: auto; /* enable horizontal scroll */
+      width: 100%;
+      position: relative;
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+      scrollbar-width: thin;
+      margin-top: 0;
+      margin-bottom: 0; /* small gap below slider */
+      padding-bottom: 0;
+    }
+
+    /* Wrapper for all products */
+    .new-products-wrapper {
+      display: flex;
+      gap: 10px;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    /* --- Product Card --- */
+    .new-product {
+      flex: 0 0 calc(33.333% - 10px); /* 3 products per row on desktop */
+      text-align: center;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+   /* Product image */
+.product-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3; /* maintain 4:3 ratio */
+  overflow: hidden;
+  background: #fff; /* optional: add clean background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ show full image without cropping */
+  transition: transform 0.3s ease;
+}
+
+
+    /* New tag */
+    .new-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #FF3C3C;
+      color: #fff;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    /* Product info */
+    .product-info {
+      margin-top: 6px;
+      padding: 5px 0;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .product-price {
+      font-size: 13px;
+      color: #555;
+    }
+
+
+    /* Mobile view: horizontal sliding */
+    @media (max-width: 768px) {
+      .new-products-wrapper {
+        flex-wrap: nowrap; /* keep horizontal sliding */}
+    .new-products-slider {
+        margin-top:0;
+      }
+    .new-products-section .section-header h2 {
+      font-size: 1.5rem;}
+      .new-product {
+        flex: 0 0 70%; /* each card takes 70% of viewport width */
+      }
+
+      .product-image {
+        height: auto; /* height adjusts automatically */
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* fit entire image without cropping */
+      }
+    }
+
+    
+    /* EMI Banner */
+    .emi-banner img {
+      width: 99%;       /* full width */
+      height: auto;      /* maintain aspect ratio */
+      display: block;
+      margin:  10;
+      padding: 20;     /* small gap above and below banner */
+      border-radius: 5px; /* optional rounded corners */
+    }
+
+    /* Reduce spacing for surrounding sections */
+    .above-section {
+      margin-top: 15px;  /* gap below above-section */
+    }
+
+    .feature {
+      margin-top: 5px;     /* gap above feature section */
+    }
+
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+      .emi-banner img {
+        margin: 15px auto;     /* keep small gaps on mobile */
+        border-radius: 3px; /* slightly smaller corners */
+      }
+
+      .below-section {
+        margin-bottom: 5px;
+      }
+
+
+    } 
+
+    /* Contact section text */
+    /* Contact section text */
+    #contact h3 {
+      color: #7f0c8a;      /* heading color */
+      font-weight: 700;    /* bold text */
+      font-size: 2rem;     /* slightly larger heading */
+    }
+
+    #contact p.meta {
+      color: #333333;      /* paragraph color */
+      font-weight: 500;    /* make text a bit bold for readability */
+    }
+
+    #contact a.btn {
+      color: #ffffff;              /* button text color */
+      background-color: #1e4619;   /* button background */
+      font-weight: 600;            /* bold button text */
+      padding: 12px 25px;          /* slightly larger button for emphasis */
+      border-radius: 8px;          /* smooth rounded button */
+      transition: all 0.3s ease;  /* smooth hover effect */
+    }
+
+    #contact a.btn:hover {
+      background-color: #4d44cf;   /* brighter orange on hover */
+      transform: scale(1.05);      /* subtle zoom effect */
+    }
+
+
+ #fireworksCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100%;
+  max-height: 100% !important;
+  pointer-events: none;
+  z-index: 9999;
+  background: transparent;
+  overflow: hidden !important;
+}
+  /* diwali section text */
+    .diwali-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .diya {
+      position: absolute;
+      bottom: 0;
+      width: 30px;
+      height: 50px;
+      background: radial-gradient(circle at center, #ff9500, #a33200);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 0 15px rgba(255,200,50,0.6);
+    }
+
+    .diya::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 20px;
+      background: radial-gradient(circle at top, #fffacd, #ffcc33);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 1; }
+      50% { transform: translateX(-50%) scaleY(1.2); opacity: 0.7; }
+    }
+
+    #diyaSparks {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+    }
+      
+
+    /* diwali section text */
+
+/* Premium Steel-Glass Footer */
+.footer {
+  position: relative;
+  padding: 40px 30px;
+  border-radius: 15px 15px 0 0; /* rounded top corners */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: rgb(209, 9, 9); /* nav button style text */
+
+  /* Steel-Glass background */
+  background-color: rgba(255, 255, 255, 0); /* faint glass */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+ 
+  
+  /* Shadow for depth */
+  box-shadow: 0 -4px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+/* Optional floating highlights like Uiverse container */
+.footer::before,
+.footer::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(250, 181, 112, 0.3); /* soft glow */
+  width: 6rem;
+  height: 6rem;
+}
+
+.footer::before {
+  top: 20%;
+  right: 10%;
+}
+
+.footer::after {
+  top: 10%;
+  left: 5%;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Ensure footer text stays above highlights */
+.footer * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+    /* Top row: Products + Newsletter */
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Product Categories */
+    .footer-products h3 {
+      font-family: 'Playfair Display', serif;
+      color: #1A237E;
+      margin-bottom: 10px;
+    }
+
+    .footer-products ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-products li {
+      margin-bottom: 6px;
+      color: #ddd;
+    }
+
+    /* Newsletter + Payments */
+    .footer-newsletter h3, .footer-payments h4 {
+      font-family: 'Playfair Display', serif;
+      color: #1A237E;
+      margin-bottom: 8px;
+    }
+
+    .footer-newsletter p {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer-newsletter form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-newsletter input[type="email"] {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .footer-newsletter button {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: none;
+      background: #028543;
+      color: #1A237E;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .footer-newsletter button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Payment Icons */
+    .payment-icons img {
+      width: 50px;       /* same width for all */
+      height: 30px;      /* same height for all */
+      object-fit: contain; /* keeps aspect ratio, no stretching */
+      margin-right: 10px;
+
+      margin-right: 8px;
+      margin-top: 5px;
+    }
+/* Footer Social Media (3D/glass style) */
+.footer-social {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-social h3 {
+  font-family: 'Playfair Display', serif;
+  color: #0217f7;
+  margin-bottom: 10px;
+}
+
+/* Social icons container */
+.footer-social .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  perspective: 1000px; /* for 3D effect */
+}
+
+/* Social icon links as 3D buttons */
+.footer-social .social-icons a {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(5, 71, 17, 0.5) 0px 7px 5px -5px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* The SVG inside the link */
+.footer-social .social-icons a svg {
+  width: 20px;
+  height: 20px;
+  fill: #00894d;
+  transition: fill 0.3s ease-in-out;
+}
+
+/* Hover effect (pop out in 3D) */
+.footer-social .social-icons a:hover {
+  transform: translate3d(0, 0, 20px);
+  box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
+}
+
+.footer-social .social-icons a:hover svg {
+  fill: #fff;
+}
+
+/* Active / click effect */
+.footer-social .social-icons a:active {
+  background: rgb(255, 234, 0);
+}
+
+.footer-social .social-icons a:active svg {
+  fill: black;
+}
+
+    /* Footer Copy */
+    .footer-copy {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .footer-top {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .footer-newsletter form {
+        flex-direction: column;
+      }
+
+      .footer-newsletter input[type="email"],
+      .footer-newsletter button {
+        width: 100%;
+      }
+    }
+    .footer-about-us {
+      flex: 1 1 300px; /* similar to other columns */
+      color: #fff;
+    }
+
+    .footer-about-us h3 {
+      font-family: 'Playfair Display', serif;
+      color: #1A237E;
+      margin-bottom: 10px;
+    }
+
+    .footer-about-us p {
+      font-size: 0.95rem;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    /* Ensure all three columns are side by side on desktop */
+    .footer-top > div {
+      flex: 1 1 300px; /* min-width 300px, flexible */
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .footer-top {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .footer-newsletter form {
+        flex-direction: column;
+      }
+
+      .footer-newsletter input[type="email"],
+      .footer-newsletter button {
+        width: 100%;
+      }
+    @keyframes float {
+
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+    }
+    .floating-item {
+      animation: float 4s ease-in-out infinite;
+    }
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    .footer-social {
+      top: 10px;
+    }
+  }
+/* Section Titles */
+.footer-products h3,
+.footer-appliances h3,
+.footer-location h3,
+.footer-keywords h3,
+.footer-about h3,
+.footer-social h3,
+.footer-payments h3
+ {
+  font-family: 'Playfair Display', serif;
+  color: #1A237E;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* UL Styling */
+.footer-products ul,
+.footer-appliances ul,
+.footer-location ul,
+.footer-keywords ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-products li,
+.footer-appliances li,
+.footer-location li,
+.footer-keywords li {
+  margin-bottom: 6px;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+/* About Paragraph */
+.footer-about p {
+  color: #e8e8e8;
+  line-height: 1.5;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+/* Make all columns equal */
+.footer-top > div {
+  flex: 1 1 250px;
+  min-width: 230px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+    /* Container */
+    .media-grid {
+      display: flex;
+      justify-content: center; /* 👈 center the grid horizontally */
+      align-items: flex-start;
+      gap: 10px;
+      margin: 25px auto; /* 👈 auto left and right margins center the container */
+      padding: 15px;
+
+      border-radius: 14px;
+      width: fit-content; /* only take space of content */
+      max-width: 100%;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+   
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(12, 30, 134, 0.377);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Left Column */
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 0 0 380px;
+      max-width: 100%;
+    }
+   .video,
+    .square {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+
+
+
+    .tall {
+      flex: 0 0 240px;
+      width: 240px;
+      height: calc(250px + 250px + 12px);
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    /* ===== MOBILE FIX ===== */
+    @media (max-width: 768px) {
+      .media-grid {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;    /* ✅ centers the grid horizontally */
+        width: 100%;                /* ✅ fill entire width */
+        max-width: 100%;            /* remove fixed 70% */
+        gap: 1px;                   /* ✅ smaller, equal gap on both sides */
+        padding: 8px;                 /* remove side paddings */
+        margin: 0 auto;             /* center */
+        box-sizing: border-box;
+      }
+
+      .left-column {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 0 0 60vw;             /* left column takes 60% of width */
+        margin: 0;
+        padding: 0;
+      }
+
+      .video,
+      .square {
+        width: 100%;
+        height: 180px;
+      }
+
+      .tall {
+        width: 40vw;               /* right column takes 40% of width */
+        height: calc(180px * 2 + 4px);
+        margin: 0;
+      }
+
+      .media-grid > * {
+        margin: 0;
+      }
+
+      .media-grid img,
+      .media-grid video {
+        display: block;
+        border-radius: 10px;
+        padding: 5px;
+        gap:5px;
+    
+      
+      }
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 videos per row */
+      gap: 20px;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 15px;
+    }
+
+    .video-item {
+      position: relative; /* required for glow overlay */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
+    }
+
+    /* Hover effects */
+    .video-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 10px rgba(255,255,255,0.05);
+    }
+
+    /* Floating animation */
+    @keyframes floatVideo {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .video-item video {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      animation: floatVideo 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .video-item:hover video {
+      transform: scale(1.03);
+    }
+
+    /* Bottom glow overlay */
+    .video-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px; /* height of glow */
+      background: linear-gradient(to top, rgba(183, 0, 255, 0.4), rgba(255, 200, 0, 0));
+      pointer-events: none;
+      border-radius: 0 0 12px 12px;
+    }
+    .section-header h2 {
+        font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #a70972, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 30px;
+        text-align: center; /* Center the title and paragraph */
+
+    }
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .video-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row on mobile */
+        gap: 15px;
+      }
+
+      .video-item video {
+        height: 150px; /* smaller height for mobile */
+      }
+    }
+
+    /* Container and Title */
+    .choose-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+    
+      margin: 0 auto;
+      padding: 20px 20px;
+      text-align: center;
+    }
+
+    .choose-text h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(180deg, #d81ec9, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0px;
+      letter-spacing: 1px;
+    }
+
+    .choose-text p {
+      color: #444;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Cards Horizontal Layout */
+    .choose-models {
+      display: flex;
+      flex-wrap: nowrap; /* keep horizontal */
+      gap: 20px;
+      overflow-x: auto; /* horizontal scroll on small screens */
+      padding-bottom: 10px;
+      justify-content: center;
+      scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar */
+    .choose-models::-webkit-scrollbar { display: none; }
+    .choose-models { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Card Design - No background */
+    .choose-card { 
+      position: center;
+      border-radius: 20px;
+      padding: 25px 20px;
+      width: 190px;
+      height: 280px;
+      text-align: center;
+      transition: all 0.5s ease, transform 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient ring animation */
+    .choose-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #00b4d8, #0096c7, #0077b6, #00b4d8);
+      animation: spin 8s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* Card Content */
+    .choose-card img {
+      width: 45px;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .choose-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0a2540;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .choose-card p {
+      color: #000000;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hover Effects */
+    .choose-card:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
+
+    .choose-card:hover::before {
+      opacity: 1;
+    }
+
+    .choose-card:hover img {
+      transform: scale(1.1) rotate(5deg);
+    }
+    /* Mobile adjustments */
+@media (max-width: 768px) {
+  .choose-container { 
+    padding: 20px 10px; 
+  }
+
+  .choose-text h2 { 
+    font-size: 1.4rem; 
+    text-align: center;
+  }
+
+  .choose-text p { 
+    font-size: 0.9rem; 
+    max-width: 100%; 
+    text-align: center;
+  }
+
+  .choose-card { 
+    width: 100%; 
+    height: auto; 
+    padding: 12px 15px; 
+    margin: 10px auto;
+  }
+
+  .choose-card img { 
+    width: 35px; 
+    margin-bottom: 8px; 
+  }
+
+  .choose-card h3 { 
+    font-size: 1rem; 
+  }
+
+  .choose-card p { 
+    font-size: 0.8rem; 
+    line-height: 1.3;
+  }
+}
+
+        /* Section Title */
+    .promo-section {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .promo-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #a70972, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+
+    /* Grid Layout */
+    .promo-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    /* Flip Card Setup */
+    .promo-card {
+      width: 280px;
+      height: 300px;
+      perspective: 1000px;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+
+    .promo-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .promo-card.flipped .promo-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Front & Back */
+    .promo-front, .promo-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .promo-front img, .promo-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* Back side */
+    .promo-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Tags */
+    .promo-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    @media (max-width: 768px) {
+      .promo-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      }
+    }
+    /* Different colors for each type */
+    .promo-tag.offer { background: #ff6b6b; }
+    .promo-tag.winter { background: #1e90ff; }
+    .promo-tag.trending { background: #fcbf49; color: #000; }
+
+    /* Promo Name at bottom-left */
+    .promo-name {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+
+ 
+    /* Section Title */
+    .customer-reviews h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #a70972, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+
+    .cta-text {
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: #fff;
+      animation: glowCTA 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowCTA {
+      0% { text-shadow: 0 0 5px rgba(239,71,111,0.5); }
+      100% { text-shadow: 0 0 20px rgba(239,71,111,0.8); }
+    }
+
+    .review-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 50px;
+    }
+    .review-form textarea {
+      width: 100%;
+      max-width: 500px;
+      min-height: 80px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    .review-form button {
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: none;
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .review-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .rating span {
+      font-size: 1.8rem;
+      cursor: pointer;
+      margin: 0 4px;
+      color: #ccc;
+      transition: 0.2s;
+    }
+    .rating span.selected {
+      color: #ffb703;
+    }
+
+    .reviews-list {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .reviews-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Glassmorphism Card */
+    .review-card {
+      flex: 0 0 auto;
+      min-width: calc((100% / 4) - 16px);
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 8px 32px rgba(31,38,135,0.2);
+      transition: transform 0.3s ease;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: white;
+    }
+    .review-card:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+    .review-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #00b4d8;
+      margin-bottom: 10px;
+    }
+    .review-card p {
+      flex-grow: 1;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      margin-bottom: 8px;
+      padding-right: 4px;
+    }
+
+    /* Show More Button */
+    .show-more {
+      color: #00b4d8;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Reward Popup */
+    .reward-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      background: rgba(255,255,255,0.9);
+      padding: 15px 20px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transition: 0.4s ease;
+      z-index: 999;
+    }
+    .reward-popup.show {
+      transform: translate(-50%,-50%) scale(1);
+      opacity: 1;
+    }
+    .reward-popup img { width: 40px; height: 40px; }
+    .reward-popup .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Responsive for Mobile */
+    @media (max-width: 768px) {
+      .review-card {
+        min-width: calc((100% / 3) - 12px);
+        height: 270px;
+      }
+      .reviews-list {
+        padding-right: calc((100% / 3) / 2);
+      }
+    }
+
+    /* Explore Button */
+    .btn-explore {
+      padding: 12px 30px;
+      background: linear-gradient(90deg, #00b4d8, #0077b6);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 40px auto;
+    }
+
+    .btn-explore:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+    }
+
+    /* Optional: Featured section fade-in animation */
+    #featuredWrapper {
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    #featuredWrapper.show {
+      opacity: 1;
+    }
+
+    /* 📬 Contact + Map Section */
+    .contact-map-section {
+      padding: 50px 20px;
+      background: transparent;
+    }
+
+    .contact-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .contact-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 35px;
+      background: linear-gradient(180deg, #80028b, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Left Glass Card */
+    .glass-card {
+      flex: 1;
+      min-width: 300px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-meta {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-submit {
+      background: #1a237e;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #3949ab;
+    }
+
+    /* Right Map */
+    .contact-right {
+      flex: 1;
+      min-width: 300px;
+      margin-top: 80px; /* map slightly down */
+    }
+
+    .contact-right iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-right iframe {
+        height: 300px;
+        margin-top: 0;
+      }
+    }
+    /* contact and visit  */
+    .section-title {
+      justify-content: center;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #dd1572, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Floating Lollipop Map Icon */
+    /* Floating Map Icon (above WhatsApp) */
+    .floating-map-icon {
+      position: fixed;
+      bottom: 130px;  /* 60px above WhatsApp icon at 70px */
+     left: 15px;
+      z-index: 10001;  /* above WhatsApp icon */
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #056063;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      animation: floatMap 1.5s ease-in-out infinite;
+      right: max(20px, env(safe-area-inset-right));
+
+    }
+
+    .floating-map-icon img {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Floating animation for map icon */
+    @keyframes floatMap {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 768px) {
+      .floating-map-icon {
+        width: 25px;       /* smaller on mobile */
+        height: 25px;
+        bottom: 80px;
+        left:10px;     /* adjust above WhatsApp */
+      }
+
+      .floating-map-icon img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+  .floating-map-icon {
+    right: 12px !important;
+  }
+}
+
+    /* Banner Section */
+    /* Desktop */
+    .desktop-banner { display: block; }
+    .mobile-grid-section { display: none; }
+
+    .banner-section {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      margin-bottom: 30px;
+    }
+
+    .banner-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .banner-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      filter: brightness(0.8);
+    }
+
+    /* Overlay Images - Desktop */
+    .overlay-images {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .overlay-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative; /* for price tag */
+    }
+
+    .overlay-item img {
+      width: 150px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .overlay-item img:hover {
+      transform: scale(1.05);
+    }
+
+
+      .overlay-item .price-tag {
+        margin-top: 6px; /* space between image and tag */
+        background: rgba(6, 238, 199, 0.6);
+        color: #fff;
+        padding: 4px 6px;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+        width: 100%; /* match image width */
+        box-sizing: border-box;
+      }
+
+   /* ✅ Search box & button layout */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 10px auto;
+  width: 100%;
+  position: relative;
+}
+.search-container {
+  position: relative;
+  z-index: 10; /* lower than nav */
+}
+
+
+/* Input */
+#searchInput {
+  padding: 12px 14px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid #fafafa;
+  font-size: 16px;
+  outline: none;
+  background: #ffffff;
+  color: #7a0033;
+}
+
+/* Button */
+.search-btn {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #91007d;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Suggestions */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #54acbb;
+  border: 1px solid #ea00ff;
+  border-radius: 10px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: none;
+  z-index: 999;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.suggestions-list li:hover {
+  background: #eee;
+}
+/* FIX: Any element overlapping search box */
+.search-container,
+#searchInput,
+.search-btn {
+  position: relative;
+  z-index: 9999 !important;
+}
+
+/* ✅ Mobile Responsive */
+@media (max-width: 480px) {
+
+  #searchInput {
+    width: 60%;
+  }
+
+  .search-btn {
+    padding: 12px 14px;
+  }
+
+  .suggestions-list {
+    width: 60%;
+  }
+}
+
+    /* Mobile Only */
+    @media (max-width: 768px) { 
+      /* Mobile Grid */
+
+      .desktop-banner { display: none; }
+      .mobile-grid-section { display: block; }
+
+
+      .mobile-grid-section {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      /* Section title */
+      .mobile-grid-title {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #00179b;
+      }
+
+      .mobile-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+        gap: 12px 10px; /* vertical and horizontal gaps */
+      }
+
+      .grid-item {
+        display: flex;
+        flex-direction: column; /* image on top, tag below */
+        align-items: center;
+        width: 100%;
+      }
+
+      .grid-item img {
+        width: 100%;
+        height: 150px; /* fixed image height */
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgb(6, 127, 136);
+      }
+
+      /* Tag below image */
+      .price-tag {
+        margin-top: 6px; /* space between image and tag */
+        background: rgba(205, 11, 223, 0.6);
+        color: #fff;
+        padding: 4px 6px;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+        width: 100%; /* match image width */
+        box-sizing: border-box;
+      }
+    }
+    /* Smooth scroll behavior for all anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Back to top button */
+    .btn-top {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(90deg, #c99b55, #e0b469);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(224,180,105,0.4);
+      z-index: 9999;
+      display: none;  /* Hidden by default */
+      transition: all 0.3s ease;
+    }
+    /* Hover effect */
+    .btn-top:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #e0b469, #c99b55);
+    } 
+          /* Hide on mobile devices */
+      @media (max-width: 768px) { 
+        .btn-top {
+          display: none !important;
+        }
+      }  
+
+.slider {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+  border-radius: 10px;
+  /* No background */
+  background: transparent;
+  padding: 10px 0;
+}
+
+.slide-track {
+  display: inline-flex;
+  animation: scroll 25s linear infinite;
+ 
+}
+
+.slide-item {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 12px;
+  border-radius: 15px;
+  background: rgba(8, 146, 151, 0.884); /* glass tint */
+  backdrop-filter: blur(10px); /* frosted blur */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.slide-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+}
+
+.slide-item img {
+  width: 150px;   /* adjustable width */
+  height: auto;   /* keeps full image ratio (no crop) */
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s;
+}
+
+.slide-item img:hover {
+  transform: scale(1.05);
+}
+
+.slide-item p {
+ 
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 700; /* BOLD */
+  color: #ffffff;
+  text-align: center;
+  text-transform: capitalize; /* Optional - makes text look neat */
+}
+
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+} 
+/* Section Title Styling */
+.slider-title {
+      justify-content: center;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #dd1572, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+     
+      letter-spacing: 1px;
+      backdrop-filter: blur(10px);
+    }
+
+
+/* Animation for title */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Adjust spacing for section */
+.slider-section {
+  padding: 60px 20px;
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+
+/* ✅ Responsive adjustments */
+@media (max-width: 768px) {
+  .slide-item img {
+    width: 120px;
+  }
+  .slide-item p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-item img {
+    width: 90px;
+  }
+  .slide-item p {
+    font-size: 11px;
+  }
+}
+
+/* 🔹 Slider Wrapper */
+.fan-slider-box {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* 🔹 Track / container */
+.fan-slider-track {
+  display: flex;
+  flex-wrap: nowrap; /* Desktop: single row */
+  justify-content: center;
+  gap: 20px;
+}
+
+/* 🔹 Individual Slide */
+.fan-slide {
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.fan-slide a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* 🔹 Adjustable image size — keep aspect ratio */
+:root {
+  --fan-size: 150px; /* Change this to adjust all images */
+}
+
+.fan-slide img {
+  width: var(--fan-size);
+  height: auto;       /* keeps full image ratio, no crop */
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s;
+}
+
+.fan-slide img:hover {
+  transform: scale(1.05);
+}
+
+/* 🔹 Text under image, bold, center, wrap 2 lines */
+.fan-slide p {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 700;      /* bold */
+  color: #ffffff;
+  text-align: center;
+  max-width: var(--fan-size); /* wrap text within image width */
+  white-space: normal;         /* allow wrapping */
+  line-height: 1.3;
+}
+
+/* ✅ MOBILE VIEW — 2 ROW GRID, NO SLIDE */
+@media (max-width: 768px) {
+  .fan-slider-box {
+    display: block;
+  }
+
+  .fan-slider-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 per row → 2 rows for 6 fans */
+    gap: 15px 10px;
+    justify-items: center;
+  }
+
+  :root {
+    --fan-size: 120px; /* mobile image size */
+  }
+
+  .fan-slide p {
+    font-size: 13px;
+  }
+}
+
+/* ✅ SMALL MOBILE */
+@media (max-width: 480px) {
+  .fan-slider-track {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  }
+
+  :root {
+    --fan-size: 100px; /* small phones */
+  }
+
+  .fan-slide p {
+    font-size: 12px;
+  }
+} 
+ /* ===== HERO SECTION ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+  animation: fadeInLeft 1s ease forwards;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00fff5, #ff00f5, #ffea00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s linear infinite;
+}
+
+@keyframes textShimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+.hero h1 span {
+  color: #00fff5;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  margin: 15px 0 30px;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+.shop-btn {
+  background: #ff00f5;
+  border: none;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 5px 20px rgba(255, 0, 245, 0.4);
+  transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+  background: #ff00d0;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 0, 245, 0.6);
+}
+
+/* Right-side Mobiles */
+.hero-images {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  min-width: 300px;
+  animation: fadeInRight 1s ease forwards;
+}
+
+.hero-images img {
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+}
+
+.hero-images img:hover {
+  transform: translateY(-10px) rotate(-2deg);
+  box-shadow: 0 20px 35px rgba(0, 255, 245, 0.6);
+}
+
+/* ===== BRANDS SECTION ===== */
+.brands {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  border-radius: 30px 30px 0 0;
+  margin-top: 50px;
+}
+
+.brands h2 {
+  font-size: 2rem;
+  margin-bottom: 35px;
+  color: #fff;
+  text-shadow: 0 0 10px #00fff5, 0 0 20px #ff00f5;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 5px #00fff5, 0 0 10px #ff00f5; }
+  100% { text-shadow: 0 0 15px #00fff5, 0 0 30px #ff00f5; }
+}
+
+.scroll-container {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00fff5, #ff00f5);
+  border-radius: 5px;
+}
+
+.brand-card {
+  flex: 0 0 auto;
+  width: 160px;
+  background: linear-gradient(135deg, #ff00f5, #00fff5);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+}
+
+.brand-card:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 15px 25px rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #ffea00, #ff00f5, #00fff5);
+}
+
+.brand-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+
+.brand-card p {
+  margin-top: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 0.95rem; }
+  .hero-images img { width: 150px; height: 220px; }
+  .brand-card { width: 130px; }
+  .brands h2 { font-size: 1.6rem; }
+}
+
+.subscribe-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px 30px;
+    background: #ffffffcc;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .subscribe-form:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .subscribe-form h2 {
+    font-size: 22px;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .subscribe-form input {
+    width: 90%;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .subscribe-form input:focus {
+    border-color: #b58b00; /* gold tone */
+    box-shadow: 0 0 5px rgba(181, 139, 0, 0.3);
+  }
+
+  .subscribe-form button {
+    margin-top: 12px;
+    background: linear-gradient(135deg, #b58b00, #f7ca18);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .subscribe-form button:hover {
+    background: linear-gradient(135deg, #f7ca18, #b58b00);
+  }
+
+  .success-msg {
+    color: green;
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+.shopbanner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Show desktop banner normally */
+.desktop-banner {
+  display: block;
+}
+
+/* Hide mobile by default */
+.mobile-banner {
+  display: none;
+}
+
+/* ✅ Mobile version fix */
+@media (max-width: 768px) {
+  .desktop-banner {
+    display: none;
+  }
+
+  .mobile-banner {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;  /* ✅ shows full image without cropping */
+    object-position: center;
+    background-color: #000; /* optional – adds black background behind if image doesn’t fill */
+  }
+}
+
+.contact-map-section {
+  padding: 50px 20px;
+  color: #fff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.branch {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Equal width for info and map */
+.branch-info, .branch-map {
+  flex: 1;
+  min-width: 300px;
+}
+
+.branch-info .contact-title {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.branch-info .contact-meta {
+  margin: 5px 0;
+}
+
+.branch-map iframe {
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  border: none; /* remove default iframe border */
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .branch {
+    flex-direction: column;
+  }
+
+  .branch-map iframe {
+    height: 200px;
+  }
+
+  .branch-info .contact-title {
+    font-size: 24px;
+  }
+}
+.forms-container {
+  display: flex;
+  gap: 40px;           /* space between forms */
+  flex-wrap: wrap;      /* wrap on smaller screens */
+  justify-content: center; /* center horizontally */
+  margin: 50px 0;
+}
+
+.contact-form, .subscribe-form {
+  flex: 1;
+  min-width: 300px;     /* ensures forms shrink on mobile */
+  max-width: 500px;     /* limits width on large screens */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.contact-form h2, .subscribe-form h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+input, textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff1a1a;
+}
+
+/* 3D Glass Call Button */
+.call-button {
+  display: inline-block;
+  position: relative;
+  padding: 8px 18px;      /* smaller size */
+  font-size: 14px; 
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ff0080 0%, #e20887 100%);
+  box-shadow: rgba(5, 71, 17, 0.2) 0px 7px 10px;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Glass overlay effect */
+.call-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.6) 100%);
+  transform: translate3d(0,0,20px);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect (pop out in 3D) */
+.call-button:hover {
+  transform: translateY(-5px) translateZ(10px);
+  box-shadow: rgba(5, 71, 17, 0.4) 0px 12px 20px;
+}
+
+.call-button:hover::before {
+  transform: translate3d(0,0,30px);
+}
+
+/* Mobile responsive: stack forms */
+@media (max-width: 768px) {
+  .forms-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* --- Button --- */
+.emi-open-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin: 25px auto;
+}
+.emi-open-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+/* --- Popup background --- */
+.emi-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 10px;
+}
+
+/* --- Popup box (Compact) --- */
+.emi-content {
+  background: rgb(148, 7, 66);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 20px;
+  width: 90%;
+  max-width: 360px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: popupIn 0.4s ease;
+  position: relative;
+}
+@keyframes popupIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* --- Inputs --- */
+.emi-content input,
+.emi-content select {
+  width: 100%;
+  padding: 9px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  outline: none;
+  background: rgba(5, 173, 137, 0.692);
+  color: #000;
+  font-size: 14px;
+}
+.emi-content input::placeholder { color: #333; }
+.emi-content input:focus,
+.emi-content select:focus {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid #ff7e5f;
+}
+
+/* --- Buttons --- */
+.emi-content button {
+  margin-top: 10px;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #9600c4, #af0353);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.emi-content button:hover { opacity: 0.9; }
+
+/* --- Result --- */
+.result {
+  margin-top: 12px;
+  background: rgba(23, 146, 140, 0.808);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* --- Close button --- */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+.close-btn:hover { color: #ff7e5f; }
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+  .emi-content {
+    padding: 15px;
+    max-width: 92%;
+  }
+  .emi-content h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .emi-content input,
+  .emi-content select {
+    font-size: 13px;
+    padding: 8px;
+  }
+  .emi-content button {
+    font-size: 13px;
+    padding: 9px 20px;
+  }
+  .result {
+    font-size: 13px;
+  }
+}
+#countdown-container {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;      /* centers vertically (if needed) */
+}
+
+    /* 💥 Offer Bar */
+    .offer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-weight: 600;
+      animation: glow 2s ease-in-out infinite alternate;
+      width: 100%;
+      max-width: 600px;
+    }
+
+  
+    .offer-bar h3 {
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 8px;
+      font-size: 18px;
+    }
+
+    .countdown div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 10px;
+      border-radius: 10px;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .countdown span {
+      display: block;
+      font-size: 12px;
+      color: #ffe;
+    }
+
+    /* 📱 Responsive Adjustments */
+    @media (max-width: 768px) {
+      #countdown-container {
+        justify-content: center;
+        padding: 10px 0;
+      }
+
+      .offer-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 12px;
+      }
+
+      .countdown {
+        justify-content: center;
+      }
+    }
+    .call-auto-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #ff512f;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+.call-auto-btn:hover {
+  transform: scale(1.05);
+  background: #dd2476;
+}
+
+
+
+.cards-section {
+  padding: 40px 20px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns desktop */
+  gap: 20px;
+  justify-items: center;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card, .card2 {
+  width: 270px;
+  height: 234px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.8);
+  transform: translateY(-5px);
+  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+}
+
+.card2 {
+  background-color: #1a1a1a;
+}
+
+.card2:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 25px 2px rgba(255, 255, 0, 0.7);
+  background-image: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-title {
+  margin-top: 10px;
+  text-align: center;
+  background: rgba(3, 133, 94, 0.877);
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.card-title:hover,
+.card-title:active {   /* same effect for mobile */
+  background: rgba(0, 255, 150, 0.9);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 255, 140, 0.7);
+}
+
+.card-title h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+/* Responsive: stack cards on mobile */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  </style> 
+</head>
+<body> 
+
+<!-- Fireworks Container -->
+<canvas id="fireworksCanvas"></canvas>
+
+    <!-- =================== Search Section =================== -->
+    <!-- ✅ UNIVERSAL SEARCH SECTION -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search any product, contact, map..." oninput="showSuggestions()">
+      <button class="search-btn" onclick="searchPage()">Search</button>
+
+      <ul id="suggestions" class="suggestions-list"></ul>
+    </div>
+
+
+    <section id="home" class="categories-section">
+      <!-- Section Title -->
+      <div class="section-header">
+        <h2>Our collection</h2>
+        <p>Explore our wide range of furniture and home essentials</p>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="categories">
+        <!-- First row --> 
+           <div class="cat" onclick="window.location.href='ac.html'">
+          <img src="images/ac21.jpg" alt="air conditioner">
+          <div class="cat-name">Air Conditioners</div>
+        </div> 
+        <div class="cat" onclick="window.location.href='fridge.html'">
+          <img src="images/fridge.jpg" alt="fridge">
+          <div class="cat-name">Fridges</div>
+        </div>  
+        <div class="cat" onclick="window.location.href='washing.html'">
+          <img src="images/washing.jpg" alt="washing machine">
+          <div class="cat-name">Washing Machines</div>
+        </div>
+            <div class="cat" onclick="window.location.href='cooler.html'">
+          <img src="images/cooler.jpg" alt="cooler">
+          <div class="cat-name">Coolers</div>
+        </div>
+        
+          <div class="cat" onclick="window.location.href='tv.html'">
+          <img src="images/tv.jpg" alt="tv">
+          <div class="cat-name">TVs</div>
+           </div>
+          <div class="cat" onclick="window.location.href='speaker.html'">
+          <img src="images/sony.webp" alt="tv">
+          <div class="cat-name">Speakers</div>
+           </div>
+          
+          <div class="cat" onclick="window.location.href='battery.html'">
+          <img src="images/battery.webp" alt="tv">
+          <div class="cat-name">Inventer Battery</div>
+          
+        </div> 
+        <!-- Second row --> 
+         <div class="cat" onclick="window.location.href='sofas.html'">
+          <img src="images/sofa.jpg" alt="sofa">
+          <div class="cat-name">Sofa set</div>
+        </div>
+           <div class="cat" onclick="window.location.href='beds.html'">
+          <img src="images/bed.jpg" alt="bed">
+          <div class="cat-name">Beds</div>
+        </div>
+         <div class="cat" onclick="window.location.href='diwan.html'">
+          <img src="images/diwan.webp" alt="pillows">
+          <div class="cat-name">Diwan</div>
+        </div> 
+         <div class="cat" onclick="window.location.href='dressing.html'">
+          <img src="images/dressing table.webp" alt="pillows">
+          <div class="cat-name">Dressing Table</div>
+        </div> 
+        <div class="cat" onclick="window.location.href='table.html'">
+          <img src="images/table.jpg" alt="tables">
+          <div class="cat-name">Tables</div>
+        </div>
+        <div class="cat" onclick="window.location.href='mattress.html'">
+          <img src="images/mattress.jpg" alt="mattress">
+          <div class="cat-name">Mattress</div>
+        </div>
+         <div class="cat" onclick="window.location.href='chairs.html'">
+          <img src="images/chair.jpg" alt="chair">
+          <div class="cat-name">Chairs</div>
+        </div>
+    
+        <div class="cat" onclick="window.location.href='wardrobe.html'">
+          <img src="images/wardrobe.jpg" alt="wardrobe">
+          <div class="cat-name">Wardrobes</div>
+        </div>
+      
+          <div class="cat" onclick="window.location.href='pillows.html'">
+          <img src="images/pillows.jpg" alt="pillows">
+          <div class="cat-name">Pillows</div>
+        </div> 
+        
+      </div>
+    </section>
+
+
+
+    <a href="https://wa.me/+919666780228" class="whatsapp-chat" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Floating Lollipop Map Icon -->
+    <!-- Floating Map Icon -->
+      
+    <a href="#contact" class="floating-map-icon" title="View Map">
+      <img src="images/map.png" alt="Map Icon">
+    </a>
+
+    <!-- 3D Gallery between Featured Collection and Categories -->
+    <section class="gallery-section"></section>
+      <iframe src="3d.html" width="100%" height="450" frameborder="0" style="border-radius:10px;"></iframe>
+    </section>
+     
+
+
+   <section id="kitchen" class="slider">
+      <h2 class="slider-title">Kitchen Appliances</h2>
+  <div class="slide-track">
+    <div class="slide-item">
+      <img src="images/Mixer Grinder.webp" alt="Sofa 1">
+      <p>Mixer Grinder</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Wet Grinder.webp" alt="Sofa 2">
+      <p>Wet Grinder</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Pressure Cooker.webp" alt="Sofa 3">
+      <p>Pressure Cooker</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Electric Cooker.webp" alt="Sofa 4">
+      <p>Electric Cooker</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Electric Kettle.webp" alt="Sofa 5">
+      <p>Electric Kettle</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove.webp" alt="Sofa 6">
+      <p>Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove1.webp" alt="Sofa 7">
+      <p>3 Burner Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove2.webp" alt="Sofa 8">
+      <p>4 Burner Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/microwave oven.webp" alt="Sofa 9">
+      <p>Microwave oven</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Water Purifier.webp" alt="Sofa 10">
+      <p>Water Purifier</p>
+    </div>
+
+    <!-- Repeat same images for continuous scroll -->
+    <div class="slide-item">
+      <img src="images/Chimney.webp" alt="Sofa 1">
+      <p>Chimney</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Induction Stove.webp" alt="Sofa 2">
+      <p>Induction Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Mixer Grinder.webp" alt="Sofa 1">
+      <p>Mixer Grinder</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Wet Grinder.webp" alt="Sofa 2">
+      <p>Wet Grinder</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Pressure Cooker.webp" alt="Sofa 3">
+      <p>Pressure Cooker</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Electric Cooker.webp" alt="Sofa 4">
+      <p>Electric Cooker</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Electric Kettle.webp" alt="Sofa 5">
+      <p>Electric Kettle</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove.webp" alt="Sofa 6">
+      <p>Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove1.webp" alt="Sofa 7">
+      <p>3 Burner Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Gas Stove2.webp" alt="Sofa 8">
+      <p>4 Burner Gas Stove</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/microwave oven.webp" alt="Sofa 9">
+      <p>Microwave oven</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Water Purifier.webp" alt="Sofa 10">
+      <p>Water Purifier</p>
+    </div>
+
+    <!-- Repeat same images for continuous scroll -->
+    <div class="slide-item">
+      <img src="images/Chimney.webp" alt="Sofa 1">
+      <p>Chimney</p>
+    </div>
+    <div class="slide-item">
+      <img src="images/Induction Stove.webp" alt="Sofa 2">
+      <p>Induction Stove</p>
+    </div>
+    
+  </div>
+</div>
+</section>
+
+  <div id="countdown-container">
+    <div class="offer-bar">
+      <h3>🎉 Diwali Mega Offer Ends In:</h3>
+      <div class="countdown" id="countdown">
+        <div><span id="days">00</span>Days</div>
+        <div><span id="hours">00</span>Hrs</div>
+        <div><span id="minutes">00</span>Min</div>
+        <div><span id="seconds">00</span>Sec</div>
+      </div>
+    </div>
+  </div>
+    <!-- Media Grid Section -->
+    <div class="media-grid">
+      <!-- Left column: Video + Square Image -->
+      <div class="left-column">
+        <video id="myVideo" class="video" muted playsinline autoplay loop>
+          <source src="videos/diwali.webm" type="video/webm">
+        </video>
+        <img src="images/diwali.jpg" alt="Square Image" class="square">
+      </div>
+
+      <!-- Right column: Tall Image -->
+      <div class="right-column">
+        <img src="images/diwali1.jpg" alt="Tall Image" class="tall">
+      </div>
+    </div>
+      
+  <section class="emi-banner">
+    <img src="images/more.......png" alt="EMI on Cards Banner">
+  </section>
+
+
+
+  <!-- Offers & Seasonal Highlights Section -->
+  <section id="Offer" class="promo-section">
+    <h2 class="promo-title">🔥 Offers & Seasonal Highlights</h2>
+
+    <div class="promo-grid">
+      <!-- Offer Card -->
+      <div class="promo-card" id="card1" data-images='["images/offer.jpg","images/voltas.png","images/offer2.jpg","images/offer3.jpg"]'>
+        <div class="promo-inner">
+          <div class="promo-front">
+            <img src="images/voltas.png" alt="Offer 1">
+            <span class="promo-tag offer">Offer</span>
+            <div class="promo-name"></div>
+          </div>
+          <div class="promo-back">
+            <img src="images/voltas.png" alt="Offer 1">
+            <span class="promo-tag offer">Offer</span>
+            <div class="promo-name"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Winter Sale Card -->
+      <div class="promo-card" id="card2" data-images='["images/winter.jpg","images/winter1.jpg","images/winter2.jpg","images/winter3.jpg"]'>
+        <div class="promo-inner">
+          <div class="promo-front">
+            <img src="images/winter1.jpg" alt="Winter 1">
+            <span class="promo-tag winter">Winter</span>
+          </div>
+          <div class="promo-back">
+            <img src="images/winter1.jpg" alt="Winter 1">
+            <span class="promo-tag winter">Winter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending Card -->
+      <div class="promo-card" id="card3" data-images='["images/trending.jpg","images/trending1.jpg","images/trending2.jpg","images/trending3.jpg"]'>
+        <div class="promo-inner">
+          <div class="promo-front">
+            <img src="images/trend1.jpg" alt="Trend 1">
+            <span class="promo-tag trending">Trending</span>
+          </div>
+          <div class="promo-back">
+            <img src="images/trend1.jpg" alt="Trend 1">
+            <span class="promo-tag trending">Trending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>  
+
+  
+
+<section id="Fan"></section>
+<div class="fan-slider-box">
+  <div class="fan-slider-track">
+    <div class="fan-slide">
+      <a href="#"><img src="images/smart.webp" alt="Ceiling Fan"></a>
+      <p>Smart/Wi-Fi Ceiling Fan</p>
+    </div>
+    <div class="fan-slide">
+      <a href="#"><img src="images/stand fan.webp" alt="Table Fan"></a>
+      <p>stand fan</p>
+    </div>
+    <div class="fan-slide">
+      <a href="#"><img src="images/Regular Table Fan.webp" alt="Wall Fan"></a>
+      <p>Regular Table Fan</p>
+    </div>
+    <div class="fan-slide">
+      <a href="#"><img src="images/regular fan.webp" alt="Pedestal Fan"></a>
+      <p>regular fan</p>
+    </div>
+   
+    <div class="fan-slide">
+      <a href="#"><img src="images/Slim Tower Fan.webp" alt="Tower Fan"></a>
+      <p>Slim Tower Fan.</p>
+    </div>
+     <div class="fan-slide">
+      <a href="#"><img src="images/geyser.webp" alt="water heater"></a>
+      <p>water Geyser</p>
+    </div>
+  </div>
+</div>
+  </section>
+
+    
+
+  <section id="new-arrivals" class="new-products-section">
+  <!-- Section Title -->
+  <div class="section-header">
+    <h2>New Arrivals</h2>
+    <p>Discover our latest furniture collection for your home</p>
+  </div>
+
+  <!-- New Products Slider -->
+  <div class="new-products-slider">
+    <div class="new-products-wrapper">
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/ac4.webp" alt="Luxury Sofa">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">BLUE STAR AC</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/chair5.webp" alt="Comfort Sofa">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">OFFICE CHAIR</h3>
+          <p class="product-price"></p>
+        </div>
+  </div>
+
+  <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/cooler.jpg" alt="Classic Sofa">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">NEW MODEL COOLER </h3>
+          <p class="product-price"></p>
+        </div>
+  </div>
+
+  <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/sofa14.jpg" alt="Modern Sofa">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Modern Sofa</h3>
+          <p class="product-price"></p>
+        </div>
+  </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/NL.WEBP" alt="Elegant Chair">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">LG 288 L</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/NW.jpg" alt="Recliner Chair">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">9.0 kg FRONT LOAD WASHING MACHINE</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/NWT.JPG" alt="Wooden Coffee Table">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">9.0 kg TOP LOAD WASHING MACHINE</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/sofa18.jpg" alt="Modern Bed">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">MODERN SOFA</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/nsf.jpg" alt="Luxury Wardrobe">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">SUNSAMG 236 L CONVERTIBLE FREEZER</h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+      <div class="new-product">
+        <div class="product-image">
+          <span class="new-tag">New Arrival</span>
+          <img src="images/nsf.jpg" alt="Stylish Recliner">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name"></h3>
+          <p class="product-price"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </section>
+
+
+  <section class="video-section">
+  <!-- Section Title -->
+  <div class="section-header">
+    <h2>Our Video Showcase</h2>
+    <p>Explore the latest demos and designs in action</p>
+  </div>
+
+  <!-- Video Grid -->
+  <div class="video-grid">
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/t3.webm" type="video/webm">
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/microwen.webm.mp4" type="video/webm">
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/v3.webm" type="video/webm">
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/v2.webm" type="video/webm">
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/t1.webm" type="video/webm">
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="videos/s1.webm" type="video/webm">
+      </video>
+    </div>
+  </div>
+  </section>
+  <!-- HERO SECTION -->
+  <section id="mobile" class="hero">
+    <div class="hero-content">
+      <h1>Sri Sai Ganesh<br><span>Mobile Shop-Yanam</span></h1>
+      <p>Latest Smartphones at Best Prices</p>
+     
+    </div>
+
+    <div class="hero-images">
+      <img src="images/apple2.webp" alt="iPhone 15 Pro Max">
+      <img src="images/vivo2.webp" alt="Samsung S24 Ultra">
+     
+    </div>
+  
+</section>
+  <!-- BRANDS SECTION -->
+  <section class="brands">
+    <h2>Top Mobile Brands</h2>
+    <div class="scroll-container">
+      <div class="brand-card">
+        <img src="images/samsung.webp" alt="Samsung">
+        <p>Samsung</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/apple.webp" alt="Apple">
+        <p>Apple</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/vivo.webp" alt="Vivo">
+        <p>Vivo</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/oppo.webp" alt="Oppo">
+        <p>Oppo</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/realme.webp" alt="Realme">
+        <p>Realme</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/redmi.webp" alt="Redmi">
+        <p>Redmi</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/oneplus.webp" alt="OnePlus">
+        <p>OnePlus</p>
+      </div>
+      <div class="brand-card">
+        <img src="images/moto.webp" alt="Motorola">
+        <p>Motorola</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+  <div class="choose-container">
+    <div class="choose-text">
+      <h2>We Create Experiences, Not Just Products</h2>
+      <p>From design to delivery, every detail is crafted with passion and precision.  
+      We blend innovation, quality, and trust to redefine your experience.</p>
+    </div>
+
+    <div class="choose-models">
+      <!-- Card 1 -->
+      <div class="choose-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Design Icon">
+        <h3>Elegant Design</h3>
+        <p>Sleek, minimal, and timeless — every product is designed to inspire modern living.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="choose-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="Quality Icon">
+        <h3>Uncompromised Quality</h3>
+        <p>Premium materials and careful craftsmanship that make every piece last longer.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="choose-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3523/3523063.png" alt="Innovation Icon">
+        <h3>Smart Innovation</h3>
+        <p>We constantly evolve with trends and technology to give you cutting-edge comfort.</p>
+      </div>
+    </div>
+
+    <!-- Quote Line -->
+    <blockquote class="quote-line">
+      “Rate is not important — your presence is important.”
+    </blockquote>
+  </div>
+  </section>
+
+<!-- 💰 EMI Button -->
+ <section id="emi-calculator-section"></section>
+
+<button class="emi-open-btn" onclick="openEMI()">💰 Check EMI</button>
+</section>
+<!-- 💳 EMI Popup (Hidden by Default) -->
+<div class="emi-popup" id="emiPopup">
+  <div class="emi-content">
+    <span class="close-btn" onclick="closeEMI()">&times;</span>
+    <h2>Finance & EMI Calculator</h2>
+
+    <label>Product Price (₹)</label>
+    <input type="number" id="price" placeholder="Enter price" />
+
+    <label>Down Payment (₹)</label>
+    <input type="number" id="down" placeholder="Enter down payment" />
+
+    <label>Interest Rate (%)</label>
+    <input type="number" id="rate" placeholder="e.g. 12" value="12" />
+
+    <label>Tenure (Months)</label>
+    <input type="number" id="months" placeholder="e.g. 12" />
+
+    <label>EMI Type</label>
+    <select id="emiType">
+      <option value="standard">Standard EMI</option>
+      <option value="bajaj">Bajaj No-Cost EMI</option>
+    </select>
+
+    <button onclick="calculateEMI()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+</div>
+
+
+<section class="cards-section">
+  <div class="cards-container">
+    
+    <!-- Card 1 -->
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="images/ynm.jpg" alt="Card 1" class="card-img">
+      </div>
+      <div class="card-title">
+        <a href="#yanam-branch">
+          <h4>Yanam Branch</h4>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card-wrapper">
+      <div class="card2">
+        <img src="images/malikipuram.jpg" alt="Card 2" class="card-img">
+      </div>
+      <div class="card-title">
+        <a href="#malikipuram-branch">
+          <h4>Malikipuram Branch</h4>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Explore Button 
+<div class="explore-collection">
+  <button id="exploreBtn" class="btn-explore">Explore Our products</button>
+  </div>
+
+ Featured Collection (Hidden Initially) 
+  <div id="featuredWrapper" style="display: none;">
+  <div class="section-title">
+    <h3 style="margin:0">Featured Collection</h3>
+    <div style="color:var(--muted)"></div>
+  </div>
+
+ 
+    <div class="grid" id="productGrid">
+      <!-- Product cards inserted by JS 
+    </div>
+  </section>
+  </div> -->
+
+
+          
+ <!--  <section class="customer-reviews">
+  <h2>What Our Customers Say</h2>
+  <p class="cta-text">Share your experience & win a surprise reward 🎁</p>
+⭐ Review Form 
+<form class="review-form" id="reviewForm">
+    <div class="rating" id="starRating">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+    </div>
+
+    <input id="reviewName" placeholder="Your Name">
+    <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+    <input type="file" id="reviewImage" accept="image/*">
+
+    <button type="submit">Submit Review ✅</button>
+</form>
+
+<!-- 🎁 Reward Popup 
+<div class="reward-popup" id="rewardPopup">
+    <span class="close-btn" onclick="closePopup()">×</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="gift">
+    <span>🎉 Thanks! You’ve earned a Reward!</span>
+</div>
+
+<!-- 💬 Reviews List
+<div class="reviews-list" id="reviewsList"></div>-->
+
+
+
+
+
+<section id="contact" class="contact-map-section">  
+  <h1 class="section-title">📍 Contact & Visit Us</h1>
+
+  <div class="contact-container">
+
+    <!-- Main Branch Yanam -->
+    <div class="branch">
+      <div class="branch" id="yanam-branch">
+
+      <div class="branch-info glass-card">
+        <h2 class="contact-title">Our Main Branch - Yanam</h2>
+        <p><strong>Yanam Furniture & Mobile Shop</strong></p>
+        <p class="contact-meta">📍 Draksharama - Yanam Rd, near Nayara Petrol Bunk, NALLACHERUVU Yanam, Puducherry 533464</p>
+        <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
+        <p class="contact-meta">📞 Phone: +91 8142336007</p>
+         <!--<p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>-->
+
+        <!-- Call Button -->
+       <!-- Inside each .branch-info -->
+<div class="branch-actions">
+  <a href="tel:+919848233246" class="call-button">📞 Call Now</a>
+</div>
+
+      </div>
+      <div class="branch-map glass-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122265.2065912021!2d82.06392288208005!3d16.73744115889682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a381fd8adaf0a21%3A0xf9457a730a532006!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES!5e0!3m2!1sen!2sin!4v1762364353369!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <!-- Sub Branch Malikipuram -->
+    <div class="branch">
+      <div class="branch" id="malikipuram-branch">
+
+      <div class="branch-info glass-card">
+        <h2 class="contact-title">Our Sub Branch - Malikipuram</h2>
+        <p class="contact-meta">📍 Address: 354, SH 14, MAIN ROAD, near PADMAJA PICTURE PALACE, Malikipuram, Andhra Pradesh 533253</p>
+        <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
+        <p class="contact-meta">📞 Phone: +91 9666780228</p>
+        <!--<p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>-->
+
+        <!-- Call Button -->
+           <div class="branch-actions">
+  <a href="tel:+919666780228" class="call-button">📞 Call Now</a>
+</div>
+      </div>
+      <div class="branch-map glass-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61235.27657465096!2d81.7342150211334!3d16.41442264932445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37df6b508354dd%3A0x246f756714c90975!2sSRI%20SAI%20GANESH%20HOME%20NEEDS%20AND%20FURNITURES%2CMALIKIPURAM!5e0!3m2!1sen!2sin!4v1762364533763!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- Left Glass Card -->
+    <div class="glass-card">
+      <h3 class="section-title">Get in Touch</h3>
+      <p class="contact-meta">We’d love to hear from you. Fill out the form below to connect with us!</p>
+
+  <div class="forms-container">
+  <!-- Contact Form -->
+  <form action="https://api.sheetmonkey.io/form/vUhnD77t8CEVMmPEX1qjKb" 
+        method="POST" 
+        class="contact-form">
+    <h2>Contact Us</h2>
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn-submit">Send Message</button>
+  </form>
+
+ <!-- Subscribe Form -->
+<form id="subscribeForm" class="subscribe-form">
+  <h2>Subscribe to Our Updates</h2>
+  
+  <input type="text" name="Name" placeholder="Enter your name" required>
+  
+  <input type="email" name="Email" placeholder="Enter your email (optional)">
+  
+  <input type="tel" name="Phone" placeholder="Enter your phone" required>
+  
+  <button type="submit">Subscribe</button>
+</form>
+
+
+
+
+    <!-- Bottom Nav for Mobile -->
+  <div class="bottom-nav">
+      <div class="nav-item active" onclick="scrollToSection('home')">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Home</span>
+        <div class="dot"></div>
+      </div>
+      <div class="nav-item" onclick="scrollToSection('products')">
+        <i class="fa-solid fa-bed"></i>
+        <span>Products</span>
+        <div class="dot"></div>
+      </div>
+      <div class="nav-item" onclick="scrollToSection('Offer')">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Offer</span>
+        <div class="dot"></div>
+      </div>
+  </div>
+
+  <button onclick="scrollToTop()" class="btn-top" id="btnTop">↑</button>
+
+
+  <!-- ====================== FOOTER START ====================== -->
+
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <!-- 🌟 Furniture Categories -->
+    <div class="footer-products">
+      <h3>Furniture Categories</h3>
+      <ul>
+        <li>Sofas & Recliners</li>
+        <li>Beds & Mattresses</li>
+        <li>Wardrobes & Dressers</li>
+        <li>Dining Tables & Chairs</li>
+        <li>TV Units & Stands</li>
+        <li>Pillows & Cushions</li>
+        <li>Diwans & Cots</li>
+        <li>Office Furniture</li>
+        <li>Wooden Furniture</li>
+        <li>Home Decor Items</li>
+      </ul>
+    </div>
+
+    <!-- ⚡ Home Appliances -->
+    <div class="footer-appliances">
+      <h3>Home Appliances</h3>
+      <ul>
+        <li>Air Conditioners (AC)</li>
+        <li>Refrigerators</li>
+        <li>Washing Machines</li>
+        <li>Televisions (LED / Smart TV)</li>
+        <li>Coolers & Fans</li>
+        <li>Microwave Ovens</li>
+        <li>Grinders & Mixers</li>
+        <li>Kitchen Appliances</li>
+        <li>Electrical Home Needs</li>
+      </ul>
+    </div>
+
+    <!-- 📍 Location-based SEO Keywords -->
+    <div class="footer-location">
+      <h3>Popular Searches</h3>
+      <ul>
+        <li>Furniture Shop in Malikipuram & Yanam </li>
+  
+        <li>Electronics Store in Malikipuram & Yanam</li>
+        <li>Furniture & Appliances Near Me</li>
+        <li>Best Furniture Store in East Godavari & Yanam</li>
+        <li>AC & Fridge Dealers in Malikipuram & Yanam</li>
+      </ul>
+    </div>
+
+    <!-- ⭐ Business Highlights -->
+    <div class="footer-keywords">
+      <h3>Why Choose Us?</h3>
+      <ul>
+        <li>Premium Quality Products</li>
+        <li>Affordable Prices</li>
+        <li>Home Delivery Available</li>
+        <li>Custom Furniture Orders</li>
+        <li>Warranty on Appliances</li>
+        <li>EMI Options Available</li>
+      </ul>
+    </div>
+
+    <!-- 🏬 About Company -->
+    <div class="footer-about">
+      <h3>Sri Sai Ganesh Homeneeds & Furnitures</h3>
+      <p>
+        Your trusted shop in Malikipuram & Yanamfor premium furniture and home 
+        appliances including ACs, refrigerators, washing machines, TVs, 
+        and kitchen essentials. Providing high-quality products with 
+        excellent customer support.
+      </p>
+    </div>
+
+  </div> <!-- footer-top end -->
+
+  <!-- ====================== PAYMENT METHODS ====================== -->
+
+  <div class="footer-payments">
+    <h3>We Accept</h3>
+    <div class="payment-icons">
+      <img src="images/payment1.png" alt="Visa">
+      <img src="images/payment2.png" alt="MasterCard">
+      <img src="images/payment3.png" alt="PayPal">
+      <img src="images/gi" alt="UPI">
+      <img src="images/payment5.png" alt="Wallet">
+    </div>
+  </div>
+
+  <!-- ====================== SOCIAL MEDIA ====================== -->
+
+  <div class="footer-social">
+    <h3>Follow Us</h3>
+    <div class="social-icons">
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/people/Sri-Sai-Ganesh-Home-Needs-And-Furniture/61576153976543/" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M22 12c0-5.522-4.478-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.462h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+        </svg>
+      </a>
+
+      <!-- Twitter -->
+      <a href="https://twitter.com/yourprofile" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M22.46 6c-.77.35-1.5.58-2.28.69a3.97 3.97 0 0 0 1.73-2.19 7.86 7.86 0 0 1-2.5.95 3.93 3.93 0 0 0-6.7 3.58 11.14 11.14 0 0 1-8.09-4.1 3.93 3.93 0 0 0 1.21 5.25A3.87 3.87 0 0 1 2 9.71v.05a3.93 3.93 0 0 0 3.15 3.85 3.94 3.94 0 0 1-1.76.07 3.93 3.93 0 0 0 3.67 2.73A7.88 7.88 0 0 1 2 19.54a11.1 11.1 0 0 0 6.03 1.77c7.23 0 11.18-6 11.18-11.18 0-.17-.01-.34-.02-.51A7.94 7.94 0 0 0 22.46 6z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/srisaiganeshhomeneeds/" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2.16c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.4a4.92 4.92 0 0 1 1.78 1.03 4.92 4.92 0 0 1 1.03 1.78c.16.46.344 1.26.4 2.43.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.4 2.43a4.92 4.92 0 0 1-1.03 1.78 4.92 4.92 0 0 1-1.78 1.03c-.46.16-1.26.344-2.43.4-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.4a4.92 4.92 0 0 1-1.78-1.03 4.92 4.92 0 0 1-1.03-1.78c-.16-.46-.344-1.26-.4-2.43-.058-1.266-.07-1.65-.07-4.85s.012-3.584.07-4.85c.056-1.17.24-1.97.4-2.43a4.92 4.92 0 0 1 1.03-1.78 4.92 4.92 0 0 1 1.78-1.03c.46-.16 1.26-.344 2.43-.4 1.266-.058 1.65-.07 4.85-.07M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324z"/>
+        </svg>
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@sureshthota2345?si=63g2CXZrxqe3FVF_" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M19.615 3.184C18.403 2.76 12 2.76 12 2.76s-6.403 0-7.615.424c-1.21.42-1.86 1.49-1.86 3.08v7.472c0 1.59.65 2.66 1.86 3.08C5.597 18.24 12 18.24 12 18.24s6.403 0 7.615-.424c1.21-.42 1.86-1.49 1.86-3.08V6.264c0-1.59-.65-2.66-1.86-3.08zM10 15V7l6 4-6 4z"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ====================== BOTTOM COPYRIGHT ====================== -->
+
+  <p class="footer-copy">
+    © 2025 Sri Sai Ganesha Furniture. All Rights Reserved.<br>
+    📍 Visit: <b>Yanam and Malikipuram</b>
+  </p>
+
+</footer>
+
+<!-- ====================== FOOTER END ====================== -->
+
+
+  <!-- <canvas id="fireworksCanvas"></canvas> -->
+
+
+
+  <script>
+    // Sample products (replace with your real product data or fetch from API)
+    const products = [
+  // Row 1 - Sofas
+  {id:1, title:"Sofa 1", desc:"Comfortable 3-seater sofa", price:29999, img:"images/sofa1.jpg"},
+  {id:2, title:"Sofa 2", desc:"Elegant 2-seater sofa", price:24999, img:"images/sofa2.jpg"},
+  {id:3, title:"Sofa 3", desc:"Modern L-shaped sofa", price:39999, img:"images/sofa3.jpg"},
+
+  // Row 2 - Chairs
+  {id:4, title:"Chair 1", desc:"Ergonomic office chair", price:6999, img:"images/chair1.jpg"},
+  {id:5, title:"Chair 2", desc:"Wooden dining chair", price:4999, img:"images/chair2.jpg"},
+  {id:6, title:"Chair 3", desc:"Swivel chair", price:5999, img:"images/chair3.jpg"},
+
+  // Row 3 - Fridges
+  {id:7, title:"Fridge 1", desc:"Double-door refrigerator", price:34999, img:"images/fridge1.jpg"},
+  {id:8, title:"Fridge 2", desc:"Single-door compact fridge", price:14999, img:"images/fridge2.jpg"},
+  {id:9, title:"Fridge 3", desc:"Smart fridge with touch control", price:49999, img:"images/fridge3.jpg"},
+
+  // Row 4 - Beds
+  {id:10, title:"Bed 1", desc:"Queen size bed with storage", price:24999, img:"images/bed1.jpg"},
+  {id:11, title:"Bed 2", desc:"King size bed with headboard", price:39999, img:"images/bed2.jpg"},
+  {id:12, title:"Bed 3", desc:"Single bed for kids room", price:14999, img:"images/bed3.jpg"},
+
+  // Row 5 - Washing Machines
+  {id:13, title:"Washing 1", desc:"Front-load washing machine 7kg", price:19999, img:"images/washing1.jpg"},
+  {id:14, title:"Washing 2", desc:"Top-load washing machine 6.5kg", price:14999, img:"images/washing2.jpg"},
+  {id:15, title:"Washing 3", desc:"Semi-automatic washing machine", price:8999, img:"images/washing3.jpg"},
+
+  // Row 6 - Air Conditioners
+  {id:16, title:"AC 1", desc:"1.5 Ton Split AC", price:34999, img:"images/ac1.jpg"},
+  {id:17, title:"AC 2", desc:"1 Ton Window AC", price:24999, img:"images/ac2.jpg"},
+  {id:18, title:"AC 3", desc:"2 Ton Split AC", price:49999, img:"images/ac3.jpg"},
+];
+
+
+
+    // State
+    let ecommerceMode = false;
+    let cart = JSON.parse(localStorage.getItem('jays_cart')||'[]');
+
+    const productGrid = document.getElementById('productGrid');
+    const modalRoot = document.getElementById('modalRoot');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const adminToggle = document.getElementById('adminToggle');
+    const closeCart = document.getElementById('closeCart');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    function money(x){return '₹'+x.toLocaleString('en-IN')}
+
+    function renderProducts(){
+  const productGrid = document.getElementById('productGrid');
+  productGrid.innerHTML = '';
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.title}">
+      <div class="product-name">${p.title}</div>
+      <div class="product-desc">${p.desc}</div>
+      <div class="product-price">₹${p.price.toLocaleString('en-IN')}</div>
+      <div class="product-actions">
+        <button onclick="openDetails(${p.id})">View</button>
+        <button onclick="enquireProduct(${p.id})">Enquire</button>
+      </div>
+    `;
+    productGrid.appendChild(card);
+  });
+}
+
+
+    function openDetails(id){
+      const p = products.find(x=>x.id===id);
+      modalRoot.style.display='block';
+      modalRoot.innerHTML = `
+        <div class="modal-backdrop" onclick="closeModal(event)">
+          <div class="modal" onclick="event.stopPropagation()">
+            <div class="left"><img src="${p.img}" alt="${p.title}"></div>
+            <div class="right">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 style="margin:0">${p.title}</h3>
+                <button class="close-x" onclick="closeModal()">✕</button>
+              </div>
+              <p class="meta">${p.desc}</p>
+              <div style="font-size:18px;font-weight:800;margin-top:6px">${money(p.price)}</div>
+              <div style="margin-top:12px;display:flex;gap:8px">
+                ${ecommerceMode?`<button class=\"btn\" onclick=\"addToCart(${p.id})\">Add to Cart</button>`:`<button class=\"btn\" onclick=\"enquireProduct(${p.id})\">Enquire Now</button>`}
+                <button class="btn-ghost" onclick="closeModal()">Close</button>
+              </div>
+              <div style="margin-top:14px;color:var(--muted)">Dimensions, materials and delivery options available on request.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    function closeModal(e){
+      if(e && e.target && e.target.classList && e.target.classList.contains('modal-backdrop')){
+        modalRoot.style.display='none';modalRoot.innerHTML='';return;
+      }
+      modalRoot.style.display='none';modalRoot.innerHTML='';
+    }
+
+    function enquireProduct(id){
+      const p = products.find(x=>x.id===id);
+      const subject = encodeURIComponent(`Enquiry about ${p.title}`);
+      const body = encodeURIComponent(`Hi Jay's team,\n\nI am interested in ${p.title} (product id ${p.id}). Please share more details and pricing.\n\nThanks,`);
+     window.location.href = `mailto:vamika2650@gmail.com?subject=${subject}&body=${body}`;
+
+    }
+
+    function addToCart(id){
+      const p = products.find(x=>x.id===id);
+      const existing = cart.find(i=>i.id===id);
+      if(existing){ existing.qty += 1; } else { cart.push({id:p.id,title:p.title,price:p.price,img:p.img,qty:1}); }
+      syncCart();
+      openCart();
+    }
+
+    function syncCart(){
+      localStorage.setItem('jays_cart',JSON.stringify(cart));
+      cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
+      cartTotal.textContent = money(cart.reduce((s,i)=>s+i.price*i.qty,0));
+      renderCartItems();
+    }
+
+    function renderCartItems(){
+      cartItemsEl.innerHTML = '';
+      if(cart.length===0){ cartItemsEl.innerHTML='<div style="padding:18px;color:var(--muted)">Your cart is empty.</div>'; return; }
+      cart.forEach(item=>{
+        const div = document.createElement('div');div.className='cart-item';
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.title}">
+          <div style="flex:1">
+            <div style="font-weight:700">${item.title}</div>
+            <div style="color:var(--muted);font-size:13px">${money(item.price)} • Qty: <strong>${item.qty}</strong></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button class=\"btn-ghost\" onclick=\"changeQty(${item.id},1)\">＋</button>
+            <button class=\"btn-ghost\" onclick=\"changeQty(${item.id},-1)\">−</button>
+            <button class=\"btn-ghost\" onclick=\"removeItem(${item.id})\">Remove</button>
+          </div>
+        `;
+        cartItemsEl.appendChild(div);
+      });
+    }
+
+    function changeQty(id,delta){
+      const it = cart.find(x=>x.id===id); if(!it) return;
+      it.qty += delta; if(it.qty<=0) cart = cart.filter(x=>x.id!==id);
+      syncCart();
+    }
+    function removeItem(id){ cart = cart.filter(x=>x.id!==id); syncCart(); }
+
+    function openCart(){ cartDrawer.classList.add('open'); cartDrawer.setAttribute('aria-hidden','false'); }
+    function closeCartFn(){ cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); }
+
+    cartBtn.addEventListener('click',()=>{ openCart(); });
+    closeCart.addEventListener('click',closeCartFn);
+
+    checkoutBtn.addEventListener('click',()=>{
+      if(cart.length===0){ alert('Your cart is empty'); return; }
+      // Simulated checkout: collect name and phone
+      const name = prompt('Customer name for order:');
+      if(!name) return;
+      const phone = prompt('Phone or email:');
+      if(!phone) return;
+      const order = {id:Date.now(),name,phone,items:cart,total:cart.reduce((s,i)=>s+i.price*i.qty,0),date:new Date().toISOString()};
+      // Save orders locally as demo
+      const orders = JSON.parse(localStorage.getItem('jays_orders')||'[]'); orders.push(order); localStorage.setItem('jays_orders',JSON.stringify(orders));
+      // Clear cart
+      cart = []; syncCart(); closeCartFn();
+      alert('Thank you! Your order has been placed. We will contact you shortly. (Demo mode)');
+    });
+
+    adminToggle.addEventListener('click',()=>{
+      ecommerceMode = !ecommerceMode; adminToggle.textContent = ecommerceMode? 'Admin: E‑commerce ON' : 'Admin: Toggle E‑commerce Mode';
+      renderProducts();
+    });
+
+    // WhatsApp link
+    const waLink = document.getElementById('waLink');
+    const phone = '919666780228'; // replace with your WhatsApp number + country code
+    waLink.href = `https://wa.me/${phone}?text=${encodeURIComponent('Hi sai ganesh\'s Furniture, I have an enquiry.')}`;
+    waLink.style.display='flex';
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const form = new FormData(this); const name = form.get('name'); const contact = form.get('contact'); const msg = form.get('message');
+      // Demo: open mailto
+      const subject = encodeURIComponent(`Showroom enquiry from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nContact: ${contact}\n\n${msg}`);
+      window.location.href = `mailto:info@jaysfurniture.com?subject=${subject}&body=${body}`;
+    });
+
+    // Load cart from storage
+    function init(){
+      // init cart
+      cart = JSON.parse(localStorage.getItem('jays_cart')||'[]');
+      syncCart();
+      renderProducts();
+    }
+    init();
+
+    // Expose a few functions globally for inline handlers
+    window.openDetails = openDetails; window.closeModal = closeModal; window.enquireProduct = enquireProduct;
+    window.addToCart = addToCart; window.changeQty = changeQty; window.removeItem = removeItem; window.openCart = openCart;
+    
+</script> 
+<script>
+const slides = document.querySelectorAll('.slide-card');
+const next = document.querySelector('.next');
+const prev = document.querySelector('.prev');
+let current = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+}
+
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+function prevSlide() {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+
+next.addEventListener('click', nextSlide);
+prev.addEventListener('click', prevSlide);
+
+// Auto slide every 5 seconds
+setInterval(nextSlide, 5000);
+</script>
+
+<script>
+ function init(){
+  cart = JSON.parse(localStorage.getItem('jays_cart')||'[]');
+  syncCart();
+  renderProducts(); // this will render all 6 rows
+}
+init();
+
+</script>
+ 
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    navToggle.classList.toggle('open');
+  });
+</script>
+
+ 
+<script> 
+// JS to add active class on scroll
+const reveals = document.querySelectorAll('.reveal');
+window.addEventListener('scroll', () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+}); 
+
+
+// Shrink header when scrolling
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 50) {
+    header.classList.add('shrink');
+  } else {
+    header.classList.remove('shrink');
+  }
+})
+  
+// ===== Scroll to section (desktop & mobile) =====
+function scrollToSection(id) {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// ===== Desktop nav smooth scroll =====
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = this.getAttribute('href').substring(1);
+    scrollToSection(target);
+  });
+});
+const bottomNav = document.querySelector('.bottom-nav');
+const bottomNavItems = document.querySelectorAll('.bottom-nav .nav-item');
+document.querySelector('.bottom-nav').classList.add('visible');
+
+// === Show bottom nav smoothly when scrolling ===
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    bottomNav.classList.add('visible');  // show with animation
+  } else {
+    bottomNav.classList.remove('visible'); // hide smoothly
+  }
+});
+
+// === Handle click navigation ===
+bottomNavItems.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    scrollToSection(sectionIds[i]);
+
+    bottomNavItems.forEach(nav => nav.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+// === Highlight active section on scroll ===
+const sections = document.querySelectorAll('section');
+
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + 100;
+
+  sections.forEach((sec, i) => {
+    if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+      bottomNavItems.forEach(nav => nav.classList.remove('active'));
+      bottomNavItems[i]?.classList.add('active');
+      history.replaceState(null, '', `#${sec.id}`);
+    }
+  });
+});
+
+// =======================
+// 2️⃣ New Arrivals auto-slide
+// =======================
+const newWrapper = document.querySelector('.new-products-wrapper');
+const newProducts = document.querySelectorAll('.new-product');
+
+let scrollAmount = 0;
+const gap = 10; // gap between products in px
+const productWidth = newProducts[0].offsetWidth + gap;
+
+function slideNewProducts() {
+  scrollAmount += productWidth;
+
+  if(scrollAmount > newWrapper.scrollWidth - newWrapper.clientWidth){
+    scrollAmount = 0; // loop back to start
+  }
+
+  newWrapper.style.transform = `translateX(-${scrollAmount}px)`;
+}
+
+// smooth transition
+newWrapper.style.transition = 'transform 0.5s ease-in-out';
+
+// Auto-slide every 2.5 seconds
+setInterval(slideNewProducts, 2500);
+
+// 3️⃣ 3D Gallery
+// =======================
+
+// Wrap this in a function in case we load dynamically
+function init3DGallery(wrapperSelector){
+  const carouselWrapper = document.querySelector(wrapperSelector);
+  if(!carouselWrapper) return;
+
+  const images = carouselWrapper.querySelectorAll('img');
+  const total = images.length;
+
+  // Arrange images in a circle
+  const radius = 200; // distance from center
+  images.forEach((img, i) => {
+    const angle = (360 / total) * i;
+    img.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+  });
+
+  // Mobile swipe
+  let startX = 0;
+  let currentRotation = 0;
+
+  carouselWrapper.addEventListener('touchstart', (e) => {
+    carouselWrapper.style.animation = 'none'; // stop auto-rotate
+    startX = e.touches[0].clientX;
+  });
+
+  carouselWrapper.addEventListener('touchmove', (e) => {
+    const deltaX = e.touches[0].clientX - startX;
+    currentRotation += deltaX * 0.5; // rotation speed
+    carouselWrapper.style.transform = `rotateY(${currentRotation}deg)`;
+    startX = e.touches[0].clientX;
+  });
+
+  carouselWrapper.addEventListener('touchend', () => {
+    // optional: resume auto-rotation
+    carouselWrapper.style.animation = 'rotate 20s infinite linear';
+  });
+}
+
+// If you load 3D gallery via fetch
+fetch('3d.html')
+  .then(r => r.text())
+  .then(data => {
+    document.getElementById('gallery-container').innerHTML = data;
+    // Initialize 3D gallery after HTML is loaded
+    init3DGallery('#gallery-container .carousel-wrapper');
+  });
+
+const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if(section) {
+    window.scrollTo({
+      top: section.offsetTop - 70, // adjust for sticky header
+      behavior: 'smooth'
+    });
+  }
+}
+
+// Update active nav on scroll
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + window.innerHeight / 2;
+  navItems.forEach(item => {
+    const targetId = item.getAttribute('onclick').match(/'(.+?)'/)[1];
+    const sec = document.getElementById(targetId);
+    if(sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+});
+
+/*
+const canvas = document.getElementById('fireworksCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+function random(min, max) { return Math.random() * (max - min) + min; }
+
+class Particle {
+  constructor(x, y, color, vx, vy, life, size) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.vx = vx;
+    this.vy = vy;
+    this.life = life;
+    this.size = size;
+    this.alpha = 1;
+    this.trail = [{x:this.x, y:this.y}];
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += 0.02; // gravity
+    this.alpha -= 0.015;
+    this.life--;
+    this.trail.push({x:this.x, y:this.y});
+    if(this.trail.length>5) this.trail.shift();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.moveTo(this.trail[0].x, this.trail[0].y);
+    for (let i=1; i<this.trail.length; i++){
+      ctx.lineTo(this.trail[i].x, this.trail[i].y);
+    }
+    ctx.strokeStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fill();
+  }
+}
+
+class Rocket {
+  constructor() {
+    this.x = random(50, canvas.width-50);
+    this.y = canvas.height;
+    this.vy = random(-8,-12);
+    this.color = `hsl(${Math.random()*360}, 100%, 50%)`;
+    this.exploded = false;
+    this.type = Math.random()<0.5 ? 'circle':'star';
+    this.trail = [];
+  }
+  update() {
+    if(!this.exploded){
+      this.y += this.vy;
+      this.vy += 0.15; // gravity
+      this.trail.push({x:this.x, y:this.y});
+      if(this.trail.length>8) this.trail.shift();
+      if(this.vy>=0) this.explode();
+    }
+  }
+  explode() {
+    this.exploded = true;
+    let count = random(30,70);
+    for(let i=0;i<count;i++){
+      const angle = Math.random()*Math.PI*2;
+      const speed = random(2,6);
+      const vx = Math.cos(angle)*speed;
+      const vy = Math.sin(angle)*speed;
+      const size = random(1,3);
+      const color = `hsl(${Math.random()*360},100%,50%)`;
+      particles.push(new Particle(this.x, this.y, color, vx, vy, 50, size));
+    }
+  }
+  draw() {
+    if(!this.exploded){
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
+      ctx.fill();
+      // trail
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      for(let i=0;i<this.trail.length;i++){
+        ctx.lineTo(this.trail[i].x, this.trail[i].y);
+      }
+      ctx.strokeStyle = this.color;
+      ctx.stroke();
+    }
+  }
+}
+
+let rockets = [];
+let particles = [];
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  if(Math.random()<0.04) rockets.push(new Rocket());
+
+  rockets.forEach((r,i)=>{
+    r.update();
+    r.draw();
+    if(r.exploded) rockets.splice(i,1);
+  });
+
+  particles.forEach((p,i)=>{
+    p.update();
+    p.draw();
+    if(p.alpha<=0 || p.life<=0) particles.splice(i,1);
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+*/
+
+// Select the video element
+const video = document.getElementById('myVideo');
+
+// Create an Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      video.play();   // play video when visible
+    } else {
+      video.pause();  // pause video when out of view
+    }
+  });
+}, {
+  threshold: 0.5 // 50% of video should be visible to trigger
+});
+
+// Observe the video element
+observer.observe(video);
+
+// Only run on mobile
+if (window.innerWidth <= 768) {
+  const cards = document.querySelectorAll('.choose-card');
+  let current = 0;
+  
+  cards[current].classList.add('active');
+
+  setInterval(() => {
+    cards[current].classList.remove('active');
+    current = (current + 1) % cards.length;
+    cards[current].classList.add('active');
+  }, 3000); // change every 3 seconds
+}
+const cards = document.querySelectorAll('.promo-card');
+
+cards.forEach(card => {
+  const images = JSON.parse(card.dataset.images);
+  let index = 0;
+
+  setInterval(() => {
+    const frontImg = card.querySelector(".promo-front img");
+    const backImg = card.querySelector(".promo-back img");
+
+    // Set same image on front & back
+    frontImg.src = images[index];
+    backImg.src = images[index];
+
+    // Flip
+    card.classList.add("flipped");
+
+    // Flip back after 2s
+    setTimeout(() => card.classList.remove("flipped"), 2000);
+
+    // Next image
+    index = (index + 1) % images.length;
+  }, 4000);
+});
+
+
+
+// ✅ List of search items and locations
+const searchItems = {
+  "sofa": "sofas.html",
+  "sofas": "sofas.html",
+  "soofa": "sofas.html",
+  "soffa": "sofas.html",
+
+  "chair": "chairs.html",
+  "chairs": "chairs.html",
+
+  "bed": "beds.html",
+  "beds": "beds.html",
+
+  "washing machine": "washing.html",
+  "washing": "washing.html",
+  "washer": "washing.html",
+
+  "fridge": "fridge.html",
+  "refrigerator": "fridge.html",
+
+  "ac": "ac.html",
+  "cooler": "cooler.html",
+
+  "table": "tables.html",
+  "tables": "tables.html",
+
+  "mattress": "mattress.html",
+  "matress": "mattress.html",
+
+  "tv": "tv.html",
+  "television": "tv.html",
+
+  "pillow": "pillow.html",
+  "pillows": "pillow.html",
+  "speaker":"speaker.html",
+  "speker":"speaker.html",
+  "speakr":"speaker.html",
+  "battery":"battery.html",
+  "battary":"battery.html",
+  "dressing table":"dressing.html",
+  "dressintable":"dressing.html",
+  "diwan":"diwan.html",
+
+
+
+  // ✅ Scroll to page sections instead of opening new pages
+  "contact": "#contact",
+  "phone": "#contact",
+  "call": "#contact",
+  "help": "#contact",
+
+  "map": "#contact",
+  "location": "#contact",
+  "direction": "#contact",
+
+  "videos": "#videos",
+  "video": "#videos",
+  "new arrival": "#new-arrivals",
+    "new arrivals": "#new-arrivals",
+    "latest": "#new-arrivals",
+    "new products" :"#new-arrivals",
+
+    "offer": "#offers",
+    "offers": "#offers",
+    "discount": "#offers",
+    "sale": "#offers",
+    "trending": "#offers",
+     
+    "kitchen": "#kitchen",
+    "kitchen items": "#kitchen",
+    "kitchenware": "#kitchen",
+    "cookware": "#kitchen",
+    "cooker" :"#kitchen",
+    "cokker":"#kitchen",
+    "fans":"#kitchen",
+    "fan":"#kitchen",
+    "geinder":"#kitchen",
+    "mixer":"#kitchen"
+}
+
+
+// ✅ Levenshtein distance for typo correction
+function levenshtein(a, b) {
+  const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      matrix[i][j] = b[i-1] === a[j-1]
+        ? matrix[i-1][j-1]
+        : Math.min(matrix[i-1][j-1]+1, matrix[i][j-1]+1, matrix[i-1][j]+1);
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+// ✅ Suggestions dropdown
+function showSuggestions() {
+  const input = document.getElementById('searchInput').value.toLowerCase().trim();
+  const suggestionsBox = document.getElementById('suggestions');
+
+  suggestionsBox.innerHTML = "";
+  if (!input) {
+    suggestionsBox.style.display = "none";
+    return;
+  }
+
+  const ranked = Object.keys(searchItems)
+    .map(key => ({ key, distance: levenshtein(input,key) }))
+    .sort((a,b) => a.distance - b.distance)
+    .slice(0,3);
+
+  ranked.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item.key;
+    li.onclick = () => redirect(item.key);
+    suggestionsBox.appendChild(li);
+  });
+
+  suggestionsBox.style.display = "block";
+}
+
+// ✅ ENTER button support
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") searchPage();
+});
+
+// ✅ Final Redirect + Scroll Support
+function redirect(key) {
+  const inputBox = document.getElementById("searchInput");
+  const suggestionsBox = document.getElementById("suggestions");
+
+  // Clear search box & hide suggestions
+  inputBox.value = "";
+  suggestionsBox.innerHTML = "";
+  suggestionsBox.style.display = "none";
+
+  const destination = searchItems[key];
+
+  if (destination.startsWith("#")) {
+    document.querySelector(destination)?.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = destination;
+  }
+}
+
+// ✅ Main search handler
+function searchPage() {
+  const input = document.getElementById("searchInput").value.toLowerCase().trim();
+  const matches = Object.keys(searchItems).map(key => ({
+    key,
+    distance: levenshtein(input, key)
+  })).sort((a,b) => a.distance - b.distance);
+
+  if (matches[0].distance <= 2) redirect(matches[0].key);
+  else alert("❌ No results found!");
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// ✅ Fix: Hide suggestions when clicking outside (mobile + desktop)
+document.addEventListener("click", function (e) {
+  const box = document.getElementById("suggestions");
+  const input = document.getElementById("searchInput");
+
+  if (!input.contains(e.target) && !box.contains(e.target)) {
+    box.style.display = "none";
+  }
+});
+
+// ✅ Fix: Mobile keyboard search button
+document.getElementById("searchInput").addEventListener("search", function () {
+  searchPage();   // runs search when mobile user presses search/done/enter
+});
+
+// ✅ Fix: Mobile tap support for suggestion clicks
+document.getElementById("suggestions").addEventListener("touchstart", function (e) {
+  if (e.target.tagName === "LI") {
+    redirect(e.target.textContent);
+  }
+});
+
+// ✅ Fix: Remove section results immediately after redirect
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("searchInput");
+  const suggestions = document.getElementById("suggestions");
+
+  input.value = "";
+  suggestions.innerHTML = "";
+  suggestions.style.display = "none";
+});
+
+
+
+
+// Show/hide button when scrolling
+window.addEventListener("scroll", () => {
+  const btn = document.getElementById("btnTop");
+  if (document.documentElement.scrollTop > 300 || document.body.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+
+
+document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  fetch('/', {
+    method: 'POST',
+    body: new URLSearchParams(formData)
+  })
+  .then(() => {
+    document.getElementById('msg').innerText = '✅ Thank you! Your number has been submitted.';
+    this.reset();
+  })
+  .catch(() => {
+    document.getElementById('msg').innerText = '❌ Submission failed. Try again.';
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const whatsappBtn = document.querySelector('.whatsapp-chat');
+
+  // Show WhatsApp icon after page loads
+  if (whatsappBtn) {
+    // Make visible after a short delay (optional)
+    setTimeout(() => {
+      whatsappBtn.style.display = 'flex';
+    }, 1000); // show after 1 second
+  }
+
+  // If you want to show only after scrolling
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      whatsappBtn.style.display = 'flex';
+    } else {
+      whatsappBtn.style.display = 'none';
+    }
+  });
+});
+
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById("https://script.google.com/u/0/home/projects/1OrF8HtPsIKVm7YIPnoeD-6QqRAfPmDbIXI_ueJyQ3VfvuFztFYX2st3q/edit").getSheetByName("Sheet1");
+  const data = e.parameter;
+
+  sheet.appendRow([new Date(), data.name, data.contact, data.message]);
+  return ContentService.createTextOutput("Success");
+}
+// Populate date and time before submit
+document.getElementById("subscribeForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop normal form submission
+
+    const now = new Date();
+
+    // Format date as YYYY-MM-DD
+    const formattedDate = now.getFullYear() + "-" 
+                        + String(now.getMonth() + 1).padStart(2,'0') + "-" 
+                        + String(now.getDate()).padStart(2,'0');
+
+    // Format time as HH:MM:SS
+    const formattedTime = String(now.getHours()).padStart(2,'0') + ":" 
+                        + String(now.getMinutes()).padStart(2,'0') + ":" 
+                        + String(now.getSeconds()).padStart(2,'0');
+
+    // Collect form data
+    const formData = new FormData(this);
+
+    // Append separate Date and Time
+    formData.append("Date", formattedDate);
+    formData.append("Time", formattedTime);
+
+    // Send data to SheetMonkey
+    fetch("https://api.sheetmonkey.io/form/g1QC4UHHuNVbM6RwmqCtJc", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("✅ Thanks for subscribing!");
+            this.reset();
+        } else {
+            alert("❌ Something went wrong. Try again!");
+        }
+    });
+});
+
+  
+
+
+  
+
+function openEMI() {
+  document.getElementById("emiPopup").style.display = "flex";
+}
+function closeEMI() {
+  document.getElementById("emiPopup").style.display = "none";
+}
+
+function calculateEMI() {
+  const price = parseFloat(document.getElementById("price").value);
+  const down = parseFloat(document.getElementById("down").value);
+  const rate = parseFloat(document.getElementById("rate").value);
+  const months = parseFloat(document.getElementById("months").value);
+  const type = document.getElementById("emiType").value;
+
+  if (!price || !months) {
+    document.getElementById("result").innerHTML = "⚠️ Please fill all required fields.";
+    return;
+  }
+
+  let P = price - (down || 0);
+  let r = type === "bajaj" ? 0 : (rate / 12) / 100;
+  let n = months;
+
+  let EMI = r === 0 ? (P / n) : (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  let total = EMI * n;
+  let interest = total - P;
+
+  document.getElementById("result").innerHTML = `
+    <strong>${type === "bajaj" ? "Bajaj No-Cost EMI" : "Standard EMI"}</strong><br><br>
+    💵 Monthly EMI: ₹${EMI.toFixed(2)}<br>
+    💰 Total Interest: ₹${interest.toFixed(2)}<br>
+    💳 Total Payment: ₹${total.toFixed(2)}
+  `;
+}
+
+ // ⏳ Countdown Timer Logic
+    const offerEndDate = new Date();
+    offerEndDate.setDate(offerEndDate.getDate() + 3); // Ends in 3 days
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = offerEndDate - now;
+
+      if (distance <= 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "<b>Offer Expired!</b>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days.toString().padStart(2, '0');
+      document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    }, 1000);
+     // List of driver numbers (hidden from site)
+  const drivers = [
+    '+919502963841',
+    '+91970454250',
+    
+  ];
+
+  let driverIndex = 0; // track which driver to call
+
+  function callNextDriver() {
+    if(driverIndex >= drivers.length) {
+      alert('⚠️ All drivers tried, please try again later.');
+      return;
+    }
+
+    const number = drivers[driverIndex++];
+
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // Mobile: open dialer
+      window.location.href = `tel:${number}`;
+    } else {
+      // Desktop: open WhatsApp chat
+      const whatsappLink = `https://wa.me/${number.replace(/\D/g,'')}`;
+      window.open(whatsappLink, '_blank');
+      alert('Opening WhatsApp chat with driver');
+    }
+  }
+
+  function resetDrivers() {
+    driverIndex = 0;
+    alert('✅ Driver list reset. You can call again.');
+  }
+const container = document.querySelector('.sparkle-bg');
+const colors = ['#ff6347', '#ffd700', '#ff4500', '#ffa500', '#ffffff', '#00ffff', '#ff69b4'];
+
+// Remove existing stars/bubbles
+container.innerHTML = "";
+
+// Number of stars/bubbles based on screen size
+let starCount = window.innerWidth < 768 ? 15 : 30; // fewer on mobile
+let bubbleCount = window.innerWidth < 768 ? 5 : 10;
+
+// Create stars
+for(let i = 0; i < starCount; i++){
+  const star = document.createElement('div');
+  star.classList.add('sparkle', 'star');
+  star.style.background = colors[Math.floor(Math.random() * colors.length)];
+  star.style.left = Math.random() * container.offsetWidth + 'px';
+  star.style.top = Math.random() * container.offsetHeight + 'px';
+  star.style.animationDuration = (4 + Math.random() * 4) + 's';
+  container.appendChild(star);
+}
+
+// Create bubbles
+for(let i = 0; i < bubbleCount; i++){
+  const bubble = document.createElement('div');
+  bubble.classList.add('sparkle', 'bubble');
+  bubble.style.left = Math.random() * container.offsetWidth + 'px';
+  bubble.style.top = Math.random() * container.offsetHeight + 'px';
+  bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+  container.appendChild(bubble);
+}
+
+// Update stars/bubbles on resize
+window.addEventListener('resize', () => {
+  container.innerHTML = "";
+  starCount = window.innerWidth < 768 ? 15 : 30;
+  bubbleCount = window.innerWidth < 768 ? 5 : 10;
+  // repeat the creation code
+  for(let i = 0; i < starCount; i++){
+    const star = document.createElement('div');
+    star.classList.add('sparkle', 'star');
+    star.style.background = colors[Math.floor(Math.random() * colors.length)];
+    star.style.left = Math.random() * container.offsetWidth + 'px';
+    star.style.top = Math.random() * container.offsetHeight + 'px';
+    star.style.animationDuration = (4 + Math.random() * 4) + 's';
+    container.appendChild(star);
+  }
+  for(let i = 0; i < bubbleCount; i++){
+    const bubble = document.createElement('div');
+    bubble.classList.add('sparkle', 'bubble');
+    bubble.style.left = Math.random() * container.offsetWidth + 'px';
+    bubble.style.top = Math.random() * container.offsetHeight + 'px';
+    bubble.style.animationDuration = (6 + Math.random() * 4) + 's';
+    container.appendChild(bubble);
+  }
+})
+/*
+
+(function() {
+  const canvas = document.getElementById('fireworksCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Particle class
+  class Particle {
+    constructor(x, y, color, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx;
+      this.vy = vy;
+      this.alpha = 1;
+      this.color = color;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.02; // gravity
+      this.alpha -= 0.02;
+    }
+    draw() {
+      ctx.globalAlpha = this.alpha;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  // Rocket class
+  class Rocket {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height;
+      this.vx = (Math.random() - 0.5) * 2;
+      this.vy = - (6 + Math.random() * 4);
+      this.color = `hsl(${Math.random()*360}, 100%, 60%)`;
+      this.exploded = false;
+      this.particles = [];
+    }
+    update() {
+      if (!this.exploded) {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.05; // gravity
+        if(this.vy >= 0) this.explode();
+      } else {
+        this.particles.forEach(p => p.update());
+        this.particles = this.particles.filter(p => p.alpha > 0);
+      }
+    }
+    explode() {
+      this.exploded = true;
+      const count = 30 + Math.random() * 30;
+      for(let i=0;i<count;i++){
+        const angle = Math.random()*Math.PI*2;
+        const speed = Math.random()*4;
+        this.particles.push(new Particle(
+          this.x, this.y, 
+          `hsl(${Math.random()*360}, 100%, 60%)`,
+          Math.cos(angle)*speed,
+          Math.sin(angle)*speed
+        ));
+      }
+    }
+    draw() {
+      if(!this.exploded){
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
+        ctx.fill();
+      } else {
+        this.particles.forEach(p => p.draw());
+      }
+    }
+  }
+
+  const rockets = [];
+
+  function animate() {
+    ctx.fillStyle = "rgba(0,0,0,0.2)"; // trail effect
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    if(Math.random() < 0.05) rockets.push(new Rocket());
+
+    rockets.forEach((r, index) => {
+      r.update();
+      r.draw();
+      if(r.exploded && r.particles.length === 0){
+        rockets.splice(index, 1);
+      }
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+*/
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
+
+
+</script>
+<script src="review.js"></script> 
+
+<!--End of Tawk.to Script-->
+
+
+</body>
+</html>
+

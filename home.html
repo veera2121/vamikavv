@@ -119,7 +119,7 @@ License: free to use and customize.
 
 
     <a href="#Offer">Offer</a>
-    <a href="#emi-calculator-section">Emi calculator</a>
+    <a href="#mobile">Mobile Shop</a>
     
   </nav>
 
@@ -623,7 +623,7 @@ nav a {
   font-size: 13px;  /* smaller text */
   font-family: inherit;
   font-weight: 900;
-  color: rgb(209, 9, 9);
+  color: rgb(10, 141, 119);
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -957,28 +957,20 @@ header .header-content h1 {
 
 /* ✅ Hidden by default */
 nav {
-  position: flex;
-  top: 30px;
-  right: -220px; /* start off-screen */
+  position: fixed;        /* IMPORTANT */
+  top: 60px;
+  right: -220px;
+  z-index: 99999;         /* VERY HIGH */
+  background: #ffffff;
   height: 100vh;
   width: 200px;
-    color: #0080ff; /* dark steel text */
-  box-shadow:
-    4px 4px 8px rgba(0, 0, 0, 0.6),       /* steel shadow */
-    -4px -4px 8px rgba(255, 255, 255, 0.7); /* steel shine */
-
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 50px 1dvb  10px;
+  padding: 50px 10px 10px;
   border-radius: 10px 0 0 10px;
-  z-index: 9999;
   transition: right 0.4s ease;
-  opacity: 0;                /* hide initially */
-  pointer-events: none;      /* disable clicks when closed */
+  opacity: 0;
+  pointer-events: none;
 }
+
 
 /* ✅ When active, slide in and enable interaction */
 nav.active {
@@ -999,7 +991,7 @@ nav.active {
     }
   }
   nav a {
-  color: #0080ff !important; /* Steel Blue Text */
+  color: #04805a !important; /* Steel Blue Text */
   font-weight: 700;
 }
 nav a::before {
@@ -2593,73 +2585,94 @@ nav a::before {
         box-sizing: border-box;
       }
 
-    /* ✅ Styling */
-    .search-container {
-      text-align: center;
-      margin:10px auto;
-      position: relative;
-    }
+   /* ✅ Search box & button layout */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 10px auto;
+  width: 100%;
+  position: relative;
+}
+.search-container {
+  position: relative;
+  z-index: 10; /* lower than nav */
+}
 
-    #searchInput {
-      padding: 12px 14px;
-      width: 250px;
-      border-radius: 10px;
-      border: 1px solid #fafafa;
-      font-size: 16px;
-      outline: none;
-       background: #ffffff;   /* <-- new background color */
-  color: #7a0033;           /* <-- text color */
-    }
 
-    .search-btn {
-      padding: 12px 16px;
-      margin-left: 6px;
-      border-radius: 10px;
-      border: none;
-      background: #91007d;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
+/* Input */
+#searchInput {
+  padding: 12px 14px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid #fafafa;
+  font-size: 16px;
+  outline: none;
+  background: #ffffff;
+  color: #7a0033;
+}
 
-    .suggestions-list {
-      position: absolute;
-      width: 250px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #54acbb;
-      border: 1px solid #ea00ff;
-      border-radius: 10px;
-      list-style: none;
-      margin: 2px 0 0;
-      padding: 0;
-      display: none;
-      z-index: 999;
-    }
+/* Button */
+.search-btn {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #91007d;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    .suggestions-list li {
-      padding: 10px;
-      cursor: pointer;
-      text-align: left;
-    }
+/* Suggestions */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #54acbb;
+  border: 1px solid #ea00ff;
+  border-radius: 10px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: none;
+  z-index: 999;
+}
 
-    .suggestions-list li:hover {
-      background: #eee;
-    }
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+}
 
-    /* ✅ Mobile Responsive */
-    @media (max-width: 480px) {
-      #searchInput {
-        width: 65%;
-      }
-      .suggestions-list {
-        width: 65%;
-      }
-    }
-    /* Hide on desktop */
-    .mobile-grid-section {
-      display: none;
-    }
+.suggestions-list li:hover {
+  background: #eee;
+}
+/* FIX: Any element overlapping search box */
+.search-container,
+#searchInput,
+.search-btn {
+  position: relative;
+  z-index: 9999 !important;
+}
+
+/* ✅ Mobile Responsive */
+@media (max-width: 480px) {
+
+  #searchInput {
+    width: 60%;
+  }
+
+  .search-btn {
+    padding: 12px 14px;
+  }
+
+  .suggestions-list {
+    width: 60%;
+  }
+}
 
     /* Mobile Only */
     @media (max-width: 768px) { 
@@ -3660,23 +3673,37 @@ button:hover {
   height: 100%;
   object-fit: cover;
 }
-
 .card-title {
-  margin-top: 10px; /* space below card for title */
+  margin-top: 10px;
   text-align: center;
+  background: rgba(3, 133, 94, 0.877);
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.card-title:hover,
+.card-title:active {   /* same effect for mobile */
+  background: rgba(0, 255, 150, 0.9);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 255, 140, 0.7);
 }
 
 .card-title h4 {
   font-size: 16px;
   font-weight: 600;
   color: #fff;
+  margin: 0;
 }
 
 /* Responsive: stack cards on mobile */
 @media (max-width: 768px) {
   .cards-container {
     grid-template-columns: 1fr;
-
   }
 }
 
@@ -4333,22 +4360,24 @@ button:hover {
     <!-- Card 1 -->
     <div class="card-wrapper">
       <div class="card">
-        <!-- Add your image here -->
         <img src="images/ynm.jpg" alt="Card 1" class="card-img">
       </div>
       <div class="card-title">
-        <h4>Yanam Branch</h4>
+        <a href="#yanam-branch">
+          <h4>Yanam Branch</h4>
+        </a>
       </div>
     </div>
 
     <!-- Card 2 -->
     <div class="card-wrapper">
       <div class="card2">
-        <!-- Add your image here -->
         <img src="images/malikipuram.jpg" alt="Card 2" class="card-img">
       </div>
       <div class="card-title">
-        <h4>Malikipuram Branch</h4>
+        <a href="#malikipuram-branch">
+          <h4>Malikipuram Branch</h4>
+        </a>
       </div>
     </div>
 
@@ -4418,13 +4447,15 @@ button:hover {
 
     <!-- Main Branch Yanam -->
     <div class="branch">
+      <div class="branch" id="yanam-branch">
+
       <div class="branch-info glass-card">
         <h2 class="contact-title">Our Main Branch - Yanam</h2>
         <p><strong>Yanam Furniture & Mobile Shop</strong></p>
         <p class="contact-meta">📍 Draksharama - Yanam Rd, near Nayara Petrol Bunk, NALLACHERUVU Yanam, Puducherry 533464</p>
         <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
-        <p class="contact-meta">📞 Phone: +919848233246</p>
-        <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+        <p class="contact-meta">📞 Phone: +91 8142336007</p>
+         <!--<p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>-->
 
         <!-- Call Button -->
        <!-- Inside each .branch-info -->
@@ -4440,12 +4471,14 @@ button:hover {
 
     <!-- Sub Branch Malikipuram -->
     <div class="branch">
+      <div class="branch" id="malikipuram-branch">
+
       <div class="branch-info glass-card">
         <h2 class="contact-title">Our Sub Branch - Malikipuram</h2>
         <p class="contact-meta">📍 Address: 354, SH 14, MAIN ROAD, near PADMAJA PICTURE PALACE, Malikipuram, Andhra Pradesh 533253</p>
         <p class="contact-meta">⏰ Open: Mon–Sat 10am–9pm</p>
         <p class="contact-meta">📞 Phone: +91 9666780228</p>
-        <p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>
+        <!--<p class="contact-meta">✉ Email: <a href="mailto:info@jaysfurniture.com" style="color:#fff;text-decoration:underline;">info@jaysfurniture.com</a></p>-->
 
         <!-- Call Button -->
            <div class="branch-actions">
@@ -5411,6 +5444,14 @@ document.getElementById("searchInput").addEventListener("keypress", function(e) 
 
 // ✅ Final Redirect + Scroll Support
 function redirect(key) {
+  const inputBox = document.getElementById("searchInput");
+  const suggestionsBox = document.getElementById("suggestions");
+
+  // Clear search box & hide suggestions
+  inputBox.value = "";
+  suggestionsBox.innerHTML = "";
+  suggestionsBox.style.display = "none";
+
   const destination = searchItems[key];
 
   if (destination.startsWith("#")) {
@@ -5435,6 +5476,40 @@ function searchPage() {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+// ✅ Fix: Hide suggestions when clicking outside (mobile + desktop)
+document.addEventListener("click", function (e) {
+  const box = document.getElementById("suggestions");
+  const input = document.getElementById("searchInput");
+
+  if (!input.contains(e.target) && !box.contains(e.target)) {
+    box.style.display = "none";
+  }
+});
+
+// ✅ Fix: Mobile keyboard search button
+document.getElementById("searchInput").addEventListener("search", function () {
+  searchPage();   // runs search when mobile user presses search/done/enter
+});
+
+// ✅ Fix: Mobile tap support for suggestion clicks
+document.getElementById("suggestions").addEventListener("touchstart", function (e) {
+  if (e.target.tagName === "LI") {
+    redirect(e.target.textContent);
+  }
+});
+
+// ✅ Fix: Remove section results immediately after redirect
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("searchInput");
+  const suggestions = document.getElementById("suggestions");
+
+  input.value = "";
+  suggestions.innerHTML = "";
+  suggestions.style.display = "none";
+});
+
+
+
 
 // Show/hide button when scrolling
 window.addEventListener("scroll", () => {

@@ -4525,15 +4525,19 @@ button:hover {
     <button type="submit" class="btn-submit">Send Message</button>
   </form>
 
-  <!-- Subscribe Form -->
-  <form id="subscribeForm" class="subscribe-form">
-    <h2>Subscribe to Our Updates</h2>
-    <input type="text" name="Name" placeholder="Enter your name" required>
-    <input type="email" name="Email" placeholder="Enter your email" required>
-    <input type="tel" name="Phone" placeholder="Enter your phone (optional)">
-    <button type="submit">Subscribe</button>
-  </form>
-</div>
+ <!-- Subscribe Form -->
+<form id="subscribeForm" class="subscribe-form">
+  <h2>Subscribe to Our Updates</h2>
+  
+  <input type="text" name="Name" placeholder="Enter your name" required>
+  
+  <input type="email" name="Email" placeholder="Enter your email (optional)">
+  
+  <input type="tel" name="Phone" placeholder="Enter your phone" required>
+  
+  <button type="submit">Subscribe</button>
+</form>
+
 
 
 
@@ -5584,34 +5588,43 @@ function doPost(e) {
   sheet.appendRow([new Date(), data.name, data.contact, data.message]);
   return ContentService.createTextOutput("Success");
 }
+// Populate date and time before submit
+document.getElementById("subscribeForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop normal form submission
 
-//Populate date and time before submit
-  document.getElementById("subscribeForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Stop normal submit
-
-    // Get current date and time
     const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
+
+    // Format date as YYYY-MM-DD
+    const formattedDate = now.getFullYear() + "-" 
+                        + String(now.getMonth() + 1).padStart(2,'0') + "-" 
+                        + String(now.getDate()).padStart(2,'0');
+
+    // Format time as HH:MM:SS
+    const formattedTime = String(now.getHours()).padStart(2,'0') + ":" 
+                        + String(now.getMinutes()).padStart(2,'0') + ":" 
+                        + String(now.getSeconds()).padStart(2,'0');
 
     // Collect form data
     const formData = new FormData(this);
-    formData.append("Date", date);
-    formData.append("Time", time);
 
-    // Send data to SheetMonkey manually
-    fetch("https://api.sheetmonkey.io/form/h2fLAwLK9jbQYMfNBPQrPt", {
-      method: "POST",
-      body: formData
-    }).then(response => {
-      if (response.ok) {
-        alert("✅ Thanks for subscribing!");
-        this.reset();
-      } else {
-        alert("❌ Something went wrong. Try again!");
-      }
+    // Append separate Date and Time
+    formData.append("Date", formattedDate);
+    formData.append("Time", formattedTime);
+
+    // Send data to SheetMonkey
+    fetch("https://api.sheetmonkey.io/form/g1QC4UHHuNVbM6RwmqCtJc", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("✅ Thanks for subscribing!");
+            this.reset();
+        } else {
+            alert("❌ Something went wrong. Try again!");
+        }
     });
-  }); 
+});
 
   
 

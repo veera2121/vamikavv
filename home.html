@@ -225,20 +225,34 @@ License: free to use and customize.
   transition: transform 0.3s, box-shadow 0.3s;
   border-radius: 12px;
   padding: 8px;
-  background: rgba(255, 255, 255, 0.15); /* glassy transparency */
-  backdrop-filter: blur(12px); /* glass blur effect */
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* soft depth */
-  border: 1px solid rgba(255, 255, 255, 0.25); /* subtle glass border */
+  
+  /* Neon gradient for contrast on red bg */
+  background: linear-gradient(270deg, #ff00ff, #00ffff, #0c7e09, #ff8c00);
+  background-size: 800% 800%;
+  animation: neonGradient 6s ease infinite;
+  
+  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.7), 0 0 15px rgba(0, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   max-width: 110px;
   height: auto;
+  color: #fff;
+  text-align: center;
 }
 
+/* Neon gradient animation */
+@keyframes neonGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .cat:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgb(10, 226, 172), 0 0 10px rgba(179, 14, 63, 0.4) inset;
-    }
+/* Hover / active glow effect */
+.cat:hover,
+.cat:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.9), 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
 
 
     .cat img {
@@ -2790,10 +2804,10 @@ nav a::before {
   margin: 0 10px;
   padding: 12px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.15); /* glass tint */
+  background: rgba(8, 146, 151, 0.884); /* glass tint */
   backdrop-filter: blur(10px); /* frosted blur */
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgb(255, 255, 255);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
 }

@@ -497,7 +497,8 @@ html, body {
     }  
     /* ---------------- HEADER BASE ---------------- */
 header {
-  position: relative;
+ 
+ position: relative;
   top: 0;
   z-index: 9999;
   display: flex;
@@ -640,7 +641,7 @@ nav {
 
 /* Small nav buttons */
 nav a {
-  display :none;
+  display: inline-block;
   width: 6em;       /* smaller width */
   height: 2.5em;    /* smaller height */
   line-height: 2.5em; /* vertically center text */
@@ -698,13 +699,13 @@ nav a:hover::before {
   color: #1A237E;
 }
 
-/* ---------------- HAMBURGER MENU ----------------*/
+/* ---------------- HAMBURGER MENU ---------------- */
  .nav-toggle {
       display: none;
       flex-direction: column;
       gap: 10px;
       cursor: pointer;
-    } 
+    }
 
 .nav-toggle span {
   width: 25px;
@@ -995,9 +996,6 @@ nav {
   transition: right 0.4s ease;
   opacity: 0;
   pointer-events: none;
-  
-  z-index: 1010; /* above search-container */
-
 }
 
 
@@ -4389,12 +4387,10 @@ button:hover {
     <!-- Card 1 -->
     <div class="card-wrapper">
       <div class="card">
-        <a href="yanam.html">
-          <img src="images/ynm.jpg" alt="Yanam Branch" class="card-img">
-        </a>
+        <img src="images/ynm.jpg" alt="Card 1" class="card-img">
       </div>
       <div class="card-title">
-        <a href="yanam.html">
+        <a href="#yanam-branch">
           <h4>Yanam Branch</h4>
         </a>
       </div>
@@ -4559,7 +4555,7 @@ button:hover {
 
 
     <!-- Bottom Nav for Mobile -->
-   <div class="bottom-nav">
+  <div class="bottom-nav">
       <div class="nav-item active" onclick="scrollToSection('home')">
         <i class="fa-solid fa-house-chimney"></i>
         <span>Home</span>
@@ -5922,4 +5918,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
-

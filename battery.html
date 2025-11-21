@@ -269,7 +269,9 @@ footer {
 <script>
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR1p3mrfCkLmFefOosAd2g73H6fYygLDEg_foNilWHta7Ps5kGaaDAl1RXclpw6m3v2TP5daN7myQWW/pub?output=csv";
 
-// Parse CSV safely
+
+
+// Parse CSV into objects
 function parseCSV(text) {
   const lines = text.trim().split("\n");
   const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
@@ -283,6 +285,7 @@ function parseCSV(text) {
 
 let allProducts = [];
 
+// Load products from Google Sheets
 async function loadProducts() {
   try {
     const res = await fetch(SHEET_URL + "&t=" + Date.now());
@@ -298,7 +301,7 @@ async function loadProducts() {
   }
 }
 
-/* CATEGORY FILTERS */
+// Render Category Filters
 function renderCategoryFilters() {
   const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
   const container = document.getElementById("categoryFilters");
@@ -317,7 +320,7 @@ function filterByCategory(category) {
   renderProducts(filtered);
 }
 
-/* BRAND FILTERS */
+// Render Brand Filters
 function renderBrandFilters(data = allProducts) {
   const brands = [...new Set(data.map(p => p.brand).filter(Boolean))];
   const container = document.getElementById("brandFilters");
@@ -335,7 +338,7 @@ function filterByBrand(brand) {
   renderProducts(filtered);
 }
 
-/* PRODUCT CARDS */
+// Render Product Cards
 function renderProducts(data) {
   const container = document.getElementById("productGrid");
   if (!data.length) {
@@ -349,14 +352,13 @@ function renderProducts(data) {
       <div class="card-body">
         <div class="title">${item['model name'] || '-'}</div>
         <div class="meta">${item.brand || '-'}</div>
-        
         <button class="btn" onclick='showDetails(${JSON.stringify(item).replace(/'/g, "&#39;")})'>View Details</button>
       </div>
     </div>
   `).join('');
 }
 
-/* MODAL */
+// Modal Functions
 function showDetails(item) {
   document.getElementById("modalImage").src = item["image link"] || "https://via.placeholder.com/400x250?text=No+Image";
   document.getElementById("modalName").textContent = item["model name"] || "-";
@@ -364,7 +366,6 @@ function showDetails(item) {
   document.getElementById("modalType").textContent = item["battery type"] || "-";
   document.getElementById("modalVoltage").textContent = item.voltage || "-";
   document.getElementById("modalCapacity").textContent = item.capacity || "-";
-
   document.getElementById("productModal").style.display = "flex";
 }
 
@@ -372,17 +373,20 @@ function closeModal() {
   document.getElementById("productModal").style.display = "none";
 }
 
-// Highlight current nav link
+// Initialize
+loadProducts();
 
-const currentPage = location.pathname.split("/").pop();
-const navLinks = document.querySelectorAll("#navbar a");
-navLinks.forEach(link => {
-  if(link.getAttribute("href") === currentPage){
-    link.classList.add("active");
-    link.scrollIntoView({behavior: "smooth", inline: "center"});
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  const currentPage = location.pathname.split("/").pop();
+  const navLinks = document.querySelectorAll("#navbar a");
+  navLinks.forEach(link => {
+    if(link.getAttribute("href") === currentPage){
+      link.classList.add("active");
+      link.scrollIntoView({behavior: "smooth", inline: "center"});
+    }
+  });
 });
 </script>
-
 </body>
 </html>

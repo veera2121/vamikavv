@@ -597,13 +597,12 @@ header .header-content h1 {
   color: #ff1a1a;
 
   /* Layered 3D shadows */
-  text-shadow:
-      1px 1px 0 #e0e0e0,
-      2px 2px 0 #c0c0c0,
-      3px 3px 0 #a0a0a0,
-      4px 4px 0 #808080,
-      5px 5px 0 #606060,
-      6px 6px 0 #404040;
+ text-shadow:
+    2px 2px 0 #a7faff,   /* neon aqua */
+    4px 4px 0 #ffb3ff,   /* neon pink */
+    6px 6px 0 #ffe56e,   /* neon yellow */
+    8px 8px 0 #87ff8a,   /* neon green */
+    10px 10px 0 #d941e7; /* neon blue */
 
   /* Floating 3D animation */
   transform-style: preserve-3d;
@@ -3745,6 +3744,82 @@ button:hover {
 }
 
 
+.gallery-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.big-image img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.side-images {
+  display: grid;
+  gap: 10px;
+}
+
+.small-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Dots pagination */
+.dots {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 6px;
+  background: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dot.active {
+  background: #000;
+}
+
+.dot.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 18px;
+  background: #000;
+  border-radius: 10px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .gallery-container {
+    grid-template-columns: 1.5fr 1fr;  /* still left big, right small */
+    gap: 8px;
+  }
+
+  .big-image img {
+    height: 250px;    /* smaller height for mobile */
+  }
+
+  .small-img img {
+    height: 120px;
+  }
+}
   </style> 
 </head>
 <body> 
@@ -3858,6 +3933,32 @@ button:hover {
     <a href="#contact" class="floating-map-icon" title="View Map">
       <img src="images/map.png" alt="Map Icon">
     </a>
+
+       
+  <div class="gallery-container">
+  <div id="mainImage" class="big-image">
+    <img src="images/img1.webp" id="bigImg">
+  </div>
+
+  <div class="side-images">
+    <div class="small-img">
+      <img src="images/img2.webp" id="smallImg1">
+    </div>
+    <div class="small-img">
+      <img src="images/img3.webp" id="smallImg2">
+    </div>
+  </div>
+</div>
+
+<div class="dots">
+  <span class="dot active" onclick="changeImage(0)"></span>
+  <span class="dot" onclick="changeImage(1)"></span>
+  <span class="dot" onclick="changeImage(2)"></span>
+  <span class="dot" onclick="changeImage(3)"></span>
+  <span class="dot" onclick="changeImage(4)"></span>
+  <span class="dot" onclick="changeImage(5)"></span>
+</div>
+
 
     <!-- 3D Gallery between Featured Collection and Categories -->
     <section class="gallery-section"></section>
@@ -5919,6 +6020,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+
+
+// 6 images
+const images = [
+  "images/img1.webp",
+  "images/img2.webp",
+  "images/img3.webp",
+  "images/img4.webp",
+  "images/img5.webp",
+  "images/img6.webp"
+];
+
+let index = 0;
+
+function changeImage(i) {
+  index = i;
+
+  document.getElementById("bigImg").src = images[i];
+
+  // Next 2 images for small boxes
+  document.getElementById("smallImg1").src = images[(i + 1) % images.length];
+  document.getElementById("smallImg2").src = images[(i + 2) % images.length];
+
+  updateDots();
+}
+
+function updateDots() {
+  let dots = document.getElementsByClassName("dot");
+  for (let d = 0; d < dots.length; d++) {
+    dots[d].classList.remove("active");
+  }
+  dots[index].classList.add("active");
+}
+
+// default load
+changeImage(0);
 
 </script>
 <script src="review.js"></script> 

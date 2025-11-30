@@ -1725,24 +1725,29 @@ nav a::before {
   }
 }
     /* Container */
-    .media-grid {
-      display: flex;
-      justify-content: center; /* 👈 center the grid horizontally */
-      align-items: flex-start;
-      gap: 10px;
-      margin: 25px auto; /* 👈 auto left and right margins center the container */
-      padding: 15px;
+   .media-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 25px auto;
+  padding: 15px;
 
-      border-radius: 14px;
-      width: fit-content; /* only take space of content */
-      max-width: 100%;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-   
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(12, 30, 134, 0.377);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
+  border-radius: 14px;
+  width: fit-content;
+  max-width: 100%;
+  
+  /* 🔥 Background Image */
+  background-image: url("images/backgroundchridtamas.png"); /* Replace with your image URL */
+  background-size: cover;      /* makes image fill the box */
+  background-position: center; /* keeps image centered */
+  background-repeat: no-repeat;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(12, 30, 134, 0.377);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
 
     /* Left Column */
     .left-column {
@@ -4067,30 +4072,31 @@ button:hover {
 </div>
 </section>
 
-  <div id="countdown-container">
-    <div class="offer-bar">
-      <h3>🎉 Diwali Mega Offer Ends In:</h3>
-      <div class="countdown" id="countdown">
-        <div><span id="days">00</span>Days</div>
-        <div><span id="hours">00</span>Hrs</div>
-        <div><span id="minutes">00</span>Min</div>
-        <div><span id="seconds">00</span>Sec</div>
-      </div>
+<div id="countdown-container">
+  <div class="offer-bar">
+    <h3>🎄 Christmas Mega Deals Start In:</h3>
+    <div class="countdown" id="countdown">
+      <div><span id="days">00</span> Days</div>
+      <div><span id="hours">00</span> Hrs</div>
+      <div><span id="minutes">00</span> Min</div>
+      <div><span id="seconds">00</span> Sec</div>
     </div>
   </div>
+</div>
+
     <!-- Media Grid Section -->
     <div class="media-grid">
       <!-- Left column: Video + Square Image -->
       <div class="left-column">
         <video id="myVideo" class="video" muted playsinline autoplay loop>
-          <source src="videos/diwali.webm" type="video/webm">
+          <source src="videos/christmas.webm" type="video/webm">
         </video>
-        <img src="images/diwali.jpg" alt="Square Image" class="square">
+        <img src="images/christams.webp" alt="Square Image" class="square">
       </div>
 
       <!-- Right column: Tall Image -->
       <div class="right-column">
-        <img src="images/diwali1.jpg" alt="Tall Image" class="tall">
+        <img src="images/christams.jpg" alt="Tall Image" class="tall">
       </div>
     </div>
       
@@ -5789,29 +5795,7 @@ function calculateEMI() {
 }
 
  // ⏳ Countdown Timer Logic
-    const offerEndDate = new Date();
-    offerEndDate.setDate(offerEndDate.getDate() + 3); // Ends in 3 days
-
-    const countdown = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = offerEndDate - now;
-
-      if (distance <= 0) {
-        clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = "<b>Offer Expired!</b>";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days.toString().padStart(2, '0');
-      document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-      document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-      document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-    }, 1000);
+    
      // List of driver numbers (hidden from site)
   const drivers = [
     '+919502963841',
@@ -6052,6 +6036,36 @@ function updateDots() {
 
 // default load
 changeImage(0);
+
+
+
+
+  // Set Christmas Sale Start Date → December 5 (this year)
+  const saleDate = new Date(new Date().getFullYear(), 11, 5, 0, 0, 0); 
+  // Month is 0-based → 11 = December
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = saleDate - now;
+
+    if (distance <= 0) {
+      document.getElementById("countdown").innerHTML = "✨ Christmas Sale Started!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+  }
+
+  setInterval(updateCountdown, 1000);
+
 
 </script>
 <script src="review.js"></script> 

@@ -3818,6 +3818,23 @@ button:hover {
     height: 120px;
   }
 }
+
+
+.quote-box { position: relative; }
+
+.quote-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 3px 5px rgba(0,0,0,0.8);
+}
+
+
   </style> 
 </head>
 <body> 
@@ -3933,21 +3950,28 @@ button:hover {
     </a>
 
     
-  <div class="gallery-container">
-  <div id="mainImage" class="big-image">
+ <div class="gallery-container">
+
+  <!-- BIG IMAGE -->
+  <div id="mainImage" class="big-image quote-box">
     <img src="images/img1.webp" id="bigImg">
+    <p id="quoteText" class="quote-text"></p>
   </div>
 
+  <!-- SMALL IMAGES -->
   <div class="side-images">
-    <div class="small-img">
+    <div class="small-img quote-box">
       <img src="images/img2.webp" id="smallImg1">
     </div>
-    <div class="small-img">
+
+    <div class="small-img quote-box">
       <img src="images/img3.webp" id="smallImg2">
     </div>
   </div>
+
 </div>
 
+<!-- DOTS -->
 <div class="dots">
   <span class="dot active" onclick="changeImage(0)"></span>
   <span class="dot" onclick="changeImage(1)"></span>
@@ -3956,6 +3980,7 @@ button:hover {
   <span class="dot" onclick="changeImage(4)"></span>
   <span class="dot" onclick="changeImage(5)"></span>
 </div>
+
 
     <!-- 3D Gallery between Featured Collection and Categories -->
     <section class="gallery-section"></section>
@@ -4157,6 +4182,10 @@ button:hover {
     </div>
     </section>  
 
+
+
+
+    
   
 
 <section id="Fan"></section>
@@ -6002,40 +6031,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// 6 images
-const images = [
-  "images/img1.webp",
-  "images/img2.webp",
-  "images/img3.webp",
-  "images/img4.webp",
-  "images/img5.webp",
-  "images/img6.webp"
-];
 
-let index = 0;
 
-function changeImage(i) {
-  index = i;
 
-  document.getElementById("bigImg").src = images[i];
-
-  // Next 2 images for small boxes
-  document.getElementById("smallImg1").src = images[(i + 1) % images.length];
-  document.getElementById("smallImg2").src = images[(i + 2) % images.length];
-
-  updateDots();
-}
-
-function updateDots() {
-  let dots = document.getElementsByClassName("dot");
-  for (let d = 0; d < dots.length; d++) {
-    dots[d].classList.remove("active");
-  }
-  dots[index].classList.add("active");
-}
-
-// default load
-changeImage(0);
 
 
 
@@ -6065,6 +6063,64 @@ changeImage(0);
   }
 
   setInterval(updateCountdown, 1000);
+
+
+
+
+
+// 6 images
+const images = [
+  "images/img1.webp",
+  "images/img2.webp",
+  "images/img3.webp",
+  "images/img4.webp",
+  "images/img5.webp",
+  "images/img6.webp"
+];
+
+// Quotes for each image
+const quotes = [
+  "Furniture that speaks your style.",
+  "Crafted for your comfort.",
+  "Bringing beauty to every corner.",
+  "Luxury begins at home.",
+  "Design your home, design your life.",
+  "Style that stays. Comfort that lasts."
+];
+
+let index = 0;
+
+function changeImage(i) {
+  index = i;
+
+  // Update big image
+  document.getElementById("bigImg").src = images[i];
+
+  // Update small images
+  document.getElementById("smallImg1").src = images[(i + 1) % images.length];
+  document.getElementById("smallImg2").src = images[(i + 2) % images.length];
+
+  // Update quote
+  document.getElementById("quoteText").innerText = quotes[i];
+
+  // Update dots
+  updateDots();
+}
+
+function updateDots() {
+  let dots = document.getElementsByClassName("dot");
+  for (let d = 0; d < dots.length; d++) {
+    dots[d].classList.remove("active");
+  }
+  dots[index].classList.add("active");
+}
+
+// First load
+changeImage(0);
+
+
+
+
 
 
 </script>

@@ -4505,41 +4505,48 @@ button:hover {
 .review-btn:hover {
   background: #e96b00;
 } 
-#reviews-section {
-    margin-top: 40px;
-    max-width: 700px;
+
+
+
+ .review-box {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #fafafa;
+    transition: box-shadow 0.2s;
   }
 
-  .review-box {
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  .review-box:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
 
   .review-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
+    align-items: center;
+    margin-bottom: 8px;
   }
 
   .review-name {
-    font-weight: 600;
+    font-weight: bold;
+    color: #333;
   }
 
   .review-stars {
-    color: #ffc107;
+    color: #ffc107; /* gold stars */
     font-size: 16px;
   }
 
   .review-text {
-    color: #444;
+    color: #555;
     font-size: 14px;
+    line-height: 1.4;
   }
 
   .no-reviews {
-    color: #777;
+    text-align: center;
+    color: #999;
     font-style: italic;
   }
 </style>
@@ -4550,8 +4557,8 @@ function openReviewPage() {
   window.location.href = `review-test.html?product_id=101`;
 }
 </script>
-<section id="reviews-section">
-  <h3>Customer Reviews</h3>
+<section id="reviews-section" style="max-width:600px; margin:50px auto; font-family:Arial, sans-serif;">
+  <h3 style="text-align:center; margin-bottom:20px;">Customer Reviews</h3>
   <div id="reviewsList"></div>
 </section>
 <!-- 💰 EMI Button -->
@@ -6189,8 +6196,6 @@ function updateDots() {
 // First load
 changeImage(0);
 
-
-
 </script>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
@@ -6205,7 +6210,13 @@ changeImage(0);
   const productId = params.get("product_id");
 
   async function loadReviews() {
-    if (!productId) return;
+    const list = document.getElementById("reviewsList");
+    list.innerHTML = "";
+
+    if (!productId) {
+      list.innerHTML = "<p class='no-reviews'>Product ID missing</p>";
+      return;
+    }
 
     const { data, error } = await supabase
       .from("reviews")
@@ -6213,16 +6224,13 @@ changeImage(0);
       .eq("product_id", productId)
       .order("created_at", { ascending: false });
 
-    const list = document.getElementById("reviewsList");
-    list.innerHTML = "";
-
     if (error) {
-      list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
       console.error(error);
+      list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
       return;
     }
 
-    if (!data.length) {
+    if (!data || data.length === 0) {
       list.innerHTML = "<p class='no-reviews'>No reviews yet</p>";
       return;
     }
@@ -6240,15 +6248,15 @@ changeImage(0);
     });
   }
 
+  // Load reviews on page load
   loadReviews();
-</script>
 
 
 
 </script>
 
 
-<!--End of Tawk.to Script-->
+
 
 
 </body>

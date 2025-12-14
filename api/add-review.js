@@ -11,14 +11,26 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = await req.json();  // ✅ Parse JSON manually
+    const body = await req.json();
     const { product_id, name, rating, review } = body;
+
+    if (!product_id || !name || !rating || !review) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
 
     const { error } = await supabase
       .from('reviews')
-      .insert([{ product_id, name, rating, review }]);
+      .insert([{
+        product_id,
+        customer_name: name,   // ✅ match column
+        rating: parseInt(rating),
+        review,
+        is_verified: false,
+        image_url: null
+      }]);
 
     if (error) {
+      console.error(error);
       return res.status(500).json({ error: error.message });
     }
 

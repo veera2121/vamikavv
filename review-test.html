@@ -47,7 +47,7 @@
   <h2 style="text-align:center;">Write a Review</h2>
 
   <!-- REVIEW FORM -->
-  <form id="reviewForm">
+  <form id="reviewForm" enctype="multipart/form-data">
     <input type="text" id="name" placeholder="Your Name" required>
 
     <select id="rating" required>
@@ -61,6 +61,9 @@
 
     <textarea id="review" placeholder="Write your review" required></textarea>
 
+    <!-- Optional IMAGE UPLOAD -->
+    <input type="file" id="image" accept="image/*">
+
     <button type="submit">Submit Review</button>
   </form>
 
@@ -71,15 +74,31 @@ const productId = params.get('product_id');
 document.getElementById('reviewForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const payload = {
-    product_id: productId,
-    name: document.getElementById('name').value,
-    rating: document.getElementById('rating').value,
-    review: document.getElementById('review').value
-  };
+  const name = document.getElementById('name').value;
+  const rating = document.getElementById('rating').value;
+  const reviewText = document.getElementById('review').value;
+  const imageFile = document.getElementById('image').files[0];
 
   try {
-    // ✅ Replace old fetch with absolute URL
+    let image_url = null;
+
+    // ✅ Upload image to Supabase storage (if selected)
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append('file', imageFile);
+      // Optional: you can implement an /api/upload-image endpoint to handle storage
+      // For now, image_url will remain null until uploaded
+      alert('Image upload not implemented yet; it will be null');
+    }
+
+    const payload = {
+      product_id: productId,
+      name,
+      rating,
+      review: reviewText,
+      image_url
+    };
+
     const res = await fetch('https://srisaiganeshhomeneeds.shop/api/add-review', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -102,7 +121,6 @@ document.getElementById('reviewForm').addEventListener('submit', async (e) => {
   }
 });
 </script>
-
 
 </body>
 </html>

@@ -4504,7 +4504,44 @@ button:hover {
 
 .review-btn:hover {
   background: #e96b00;
-}
+} 
+#reviews-section {
+    margin-top: 40px;
+    max-width: 700px;
+  }
+
+  .review-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .review-name {
+    font-weight: 600;
+  }
+
+  .review-stars {
+    color: #ffc107;
+    font-size: 16px;
+  }
+
+  .review-text {
+    color: #444;
+    font-size: 14px;
+  }
+
+  .no-reviews {
+    color: #777;
+    font-style: italic;
+  }
 </style>
 
 <script>
@@ -4513,7 +4550,10 @@ function openReviewPage() {
   window.location.href = `review-test.html?product_id=101`;
 }
 </script>
-
+<section id="reviews-section">
+  <h3>Customer Reviews</h3>
+  <div id="reviewsList"></div>
+</section>
 <!-- 💰 EMI Button -->
  <section id="emi-calculator-section"></section>
 
@@ -6151,11 +6191,62 @@ changeImage(0);
 
 
 
+</script>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<script>
+  const supabase = window.supabase.createClient(
+    "https://ukjnvxxobmnboohrucqo.supabase.co",
+    "YOUR_REAL_ANON_KEY"
+  );
+
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("product_id");
+
+  async function loadReviews() {
+    if (!productId) return;
+
+    const { data, error } = await supabase
+      .from("reviews")
+      .select("customer_name, rating, review, created_at")
+      .eq("product_id", productId)
+      .order("created_at", { ascending: false });
+
+    const list = document.getElementById("reviewsList");
+    list.innerHTML = "";
+
+    if (error) {
+      list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
+      console.error(error);
+      return;
+    }
+
+    if (!data.length) {
+      list.innerHTML = "<p class='no-reviews'>No reviews yet</p>";
+      return;
+    }
+
+    data.forEach(r => {
+      list.innerHTML += `
+        <div class="review-box">
+          <div class="review-header">
+            <span class="review-name">${r.customer_name}</span>
+            <span class="review-stars">${"★".repeat(r.rating)}</span>
+          </div>
+          <div class="review-text">${r.review}</div>
+        </div>
+      `;
+    });
+  }
+
+  loadReviews();
+</script>
 
 
 
 </script>
-<script src="review.js"></script> 
+
 
 <!--End of Tawk.to Script-->
 

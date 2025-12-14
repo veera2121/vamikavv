@@ -52,7 +52,6 @@
   .reviews-container::-webkit-scrollbar { height: 8px; }
   .reviews-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 4px; }
 
-  /* Responsive: 3 reviews on desktop, 1 on mobile */
   @media (min-width: 768px) { .review-box { min-width: calc((100% - 40px)/3); } }
   @media (max-width: 767px) { .review-box { min-width: 90%; } }
 </style>
@@ -98,16 +97,16 @@ const supabase = window.supabase.createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
 );
 
-const productId = new URLSearchParams(window.location.search).get("product_id"); // Keep as string
+// Always treat product_id as string
+const productId = String(new URLSearchParams(window.location.search).get("product_id") || "");
 const stars = document.querySelectorAll("#stars span");
 const ratingInput = document.getElementById("rating");
 
 // Star rating selection
 stars.forEach(star => {
   star.addEventListener("click", () => {
-    const value = star.dataset.value;
-    ratingInput.value = value;
-    stars.forEach(s => s.classList.toggle("active", s.dataset.value <= value));
+    ratingInput.value = star.dataset.value;
+    stars.forEach(s => s.classList.toggle("active", s.dataset.value <= star.dataset.value));
   });
 });
 
@@ -177,24 +176,25 @@ async function loadReviews() {
     return; 
   }
 
-  // Average
-  const totalRating = data.reduce((sum, r) => sum + r.rating, 0);
+  // Calculate average rating
+  const totalRating = data.reduce((sum, r) => sum + Number(r.rating), 0);
   const avgRating = (totalRating / data.length).toFixed(1);
   const fullStars = Math.floor(avgRating);
   const halfStar = avgRating - fullStars >= 0.5 ? 1 : 0;
-  const emptyStars = 5 - fullStars - halfStar;
-  document.getElementById("avgStars").textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
+  document.getElementById("avgStars").textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(5 - fullStars - halfStar);
   document.getElementById("avgNumber").textContent = `${avgRating} (${data.length} reviews)`;
 
-  // Display reviews
+  // Display review cards
   data.forEach(r => {
     let imagesHtml = "";
-    if (r.images && r.images.length) imagesHtml = `<div class="review-images">${r.images.map(url => `<img src="${url}" alt="Review Image">`).join('')}</div>`;
+    if (Array.isArray(r.images) && r.images.length > 0) {
+      imagesHtml = `<div class="review-images">${r.images.filter(url => url).map(url => `<img src="${url}" alt="Review Image">`).join('')}</div>`;
+    }
     list.innerHTML += `
       <div class="review-box">
         <div class="review-header">
           <span class="review-name">${r.customer_name}</span>
-          <span class="review-stars">${"★".repeat(r.rating)}</span>
+          <span class="review-stars">${"★".repeat(Number(r.rating))}</span>
         </div>
         <div class="review-text">${r.review}</div>
         ${imagesHtml}

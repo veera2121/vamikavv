@@ -75,6 +75,11 @@
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
   }
 
+  /* Image upload */
+  .review-card input[type="file"] {
+    border: none;
+  }
+
   /* Average Rating */
   .average-rating {
     text-align: center;
@@ -102,7 +107,6 @@
     gap: 20px;
     padding-bottom: 10px;
     scroll-behavior: smooth;
-    align-items: stretch; /* ensures all cards same height */
   }
 
   .review-box {
@@ -110,13 +114,11 @@
     border-radius: 12px;
     padding: 20px;
     min-width: 280px;
-    max-width: 300px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    word-wrap: break-word; /* wrap long text */
   }
 
   .review-header {
@@ -128,12 +130,25 @@
   .review-text {
     color: #555;
     line-height: 1.5;
-    flex-grow: 1; /* maintain uniform card height */
+    white-space: pre-wrap;
   }
 
   .review-stars {
     color: #ffc107;
     font-size: 18px;
+  }
+
+  .review-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .review-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   .no-reviews {
@@ -183,6 +198,10 @@
   <input type="hidden" id="rating" required>
 
   <textarea id="review" placeholder="Write your review..." required></textarea>
+  
+  <label>Upload Images (optional)</label>
+  <input type="file" id="images" multiple accept="image/*">
+
   <button id="submitBtn">Submit Review</button>
 </div>
 
@@ -202,16 +221,16 @@
 <script>
 const supabase = window.supabase.createClient(
   "https://ukjnvxxobmnboohrucqo.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
+  "YOUR_ANON_KEY"
 );
 
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("product_id");
 
-// Star rating selection
 const stars = document.querySelectorAll("#stars span");
 const ratingInput = document.getElementById("rating");
 
+// Star rating selection
 stars.forEach(star => {
   star.addEventListener("click", () => {
     const value = star.dataset.value;
@@ -220,11 +239,34 @@ stars.forEach(star => {
   });
 });
 
+// Upload image function
+async function uploadImages(files) {
+  const urls = [];
+  for (const file of files) {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
+    const { data, error } = await supabase.storage
+      .from('reviews-images')
+      .upload(fileName, file);
+
+    if (error) {
+      console.error(error);
+      continue;
+    }
+
+    // Make public URL
+    const { publicUrl } = supabase.storage.from('reviews-images').getPublicUrl(fileName);
+    urls.push(publicUrl);
+  }
+  return urls;
+}
+
 // Submit review
 document.getElementById("submitBtn").addEventListener("click", async () => {
   const name = document.getElementById("name").value.trim();
   const rating = Number(ratingInput.value);
   const review = document.getElementById("review").value.trim();
+  const files = document.getElementById("images").files;
 
   if (!name || !rating || !review) {
     alert("Please fill all fields and select a rating.");
@@ -236,11 +278,15 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     return;
   }
 
+  // Upload images first
+  const imageUrls = await uploadImages(files);
+
   const { error } = await supabase.from("reviews").insert([{
     product_id: productId,
     customer_name: name,
     rating: rating,
-    review: review
+    review: review,
+    images: imageUrls
   }]);
 
   if (error) {
@@ -250,6 +296,7 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     alert("Review submitted!");
     document.getElementById("name").value = "";
     document.getElementById("review").value = "";
+    document.getElementById("images").value = "";
     ratingInput.value = "";
     stars.forEach(s => s.classList.remove("active"));
     loadReviews();
@@ -268,7 +315,7 @@ async function loadReviews() {
 
   const { data, error } = await supabase
     .from("reviews")
-    .select("customer_name, rating, review, created_at")
+    .select("customer_name, rating, review, created_at, images")
     .eq("product_id", productId)
     .order("created_at", { ascending: false });
 
@@ -300,6 +347,11 @@ async function loadReviews() {
 
   // Display reviews
   data.forEach(r => {
+    let imagesHtml = "";
+    if (r.images && r.images.length) {
+      imagesHtml = `<div class="review-images">` + r.images.map(url => `<img src="${url}" alt="Review Image">`).join('') + `</div>`;
+    }
+
     list.innerHTML += `
       <div class="review-box">
         <div class="review-header">
@@ -307,6 +359,7 @@ async function loadReviews() {
           <span class="review-stars">${"★".repeat(r.rating)}</span>
         </div>
         <div class="review-text">${r.review}</div>
+        ${imagesHtml}
       </div>
     `;
   });

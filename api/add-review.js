@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const { product_id, name, rating, review } = body;
 
     if (!product_id || !name || !rating || !review) {
-      return res.status(400).json({ error: 'Missing fields' });
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
     const { error } = await supabase

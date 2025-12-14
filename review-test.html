@@ -186,9 +186,22 @@ async function loadReviews() {
   // Display reviews
   data.forEach(r => {
     let imagesHtml = "";
-    if (Array.isArray(r.images) && r.images.length) {
-      imagesHtml = `<div class="review-images">${r.images.map(url => `<img src="${url}" alt="Review Image">`).join('')}</div>`;
-    }
+     if (Array.isArray(r.images)) {
+  const validImages = r.images.filter(
+    url => typeof url === "string" && url.startsWith("http")
+  );
+
+  if (validImages.length) {
+    imagesHtml = `
+      <div class="review-images">
+        ${validImages.map(url =>
+          `<img src="${url}" alt="Review Image" loading="lazy">`
+        ).join("")}
+      </div>
+    `;
+  }
+}
+
     list.innerHTML += `
       <div class="review-box">
         <div class="review-header">

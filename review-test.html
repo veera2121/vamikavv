@@ -59,7 +59,6 @@
     height: 90px;
   }
 
-  /* ⭐ STAR RATING */
   .stars {
     display: flex;
     gap: 6px;
@@ -120,17 +119,14 @@
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 <script>
-  /* ✅ Supabase */
- const supabase = window.supabase.createClient(
+  const supabase = window.supabase.createClient(
     "https://ukjnvxxobmnboohrucqo.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
+    "YOUR_ANON_KEY"
   );
 
-  /* ✅ Read product_id */
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("product_id");
 
-  /* ⭐ Star logic */
   const stars = document.querySelectorAll("#stars span");
   const ratingInput = document.getElementById("rating");
 
@@ -139,26 +135,29 @@
       const value = star.dataset.value;
       ratingInput.value = value;
 
-      stars.forEach(s => {
-        s.classList.toggle("active", s.dataset.value <= value);
-      });
+      stars.forEach(s =>
+        s.classList.toggle("active", s.dataset.value <= value)
+      );
     });
   });
 
-  /* ✅ Submit review */
   document.getElementById("reviewForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (!productId) {
-      alert("❌ Product ID missing in URL");
+    const customerName = document.getElementById("name").value.trim();
+    const ratingValue = Number(ratingInput.value);
+    const reviewText = document.getElementById("review").value.trim();
+
+    if (!productId || !customerName || !ratingValue || !reviewText) {
+      alert("❌ Please fill all fields and select rating");
       return;
     }
 
     const payload = {
       product_id: productId,
-      customer_name: name.value,
-      rating: Number(ratingInput.value),
-      review: review.value
+      customer_name: customerName,
+      rating: ratingValue,
+      review: reviewText
     };
 
     const { error } = await supabase.from("reviews").insert([payload]);
@@ -176,3 +175,4 @@
 
 </body>
 </html>
+

@@ -6307,55 +6307,51 @@ changeImage(0);
 
 </script>
 
-
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
 const supabase = window.supabase.createClient(
   "https://ukjnvxxobmnboohrucqo.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
+  "YOUR_ANON_KEY"
 );
 
-
-const productId = new URLSearchParams(window.location.search).get("product_id"); 
+const productId = new URLSearchParams(location.search).get("product_id");
 const stars = document.querySelectorAll("#stars span");
 const ratingInput = document.getElementById("rating");
 
-// Star selection
+/* Star select */
 stars.forEach(star => {
-  star.addEventListener("click", () => {
+  star.onclick = () => {
     ratingInput.value = star.dataset.value;
     stars.forEach(s => s.classList.toggle("active", s.dataset.value <= star.dataset.value));
-  });
+  };
 });
 
-// Upload images
+/* Upload images */
 async function uploadImages(files) {
   const urls = [];
   for (const file of files) {
-    const ext = file.name.split('.').pop();
-    const fileName = `reviews/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await supabase.storage.from('reviews-images').upload(fileName, file);
-    if (error) { console.error(error); continue; }
-
-    const { data } = supabase.storage.from('reviews-images').getPublicUrl(fileName);
-    if (data?.publicUrl) urls.push(data.publicUrl);
+    const path = `reviews/${Date.now()}-${file.name}`;
+    const { error } = await supabase.storage.from("reviews-images").upload(path, file);
+    if (!error) {
+      const { data } = supabase.storage.from("reviews-images").getPublicUrl(path);
+      urls.push(data.publicUrl);
+    }
   }
   return urls;
 }
 
-// Submit review
-document.getElementById("submitBtn").addEventListener("click", async () => {
-  const name = document.getElementById("name").value.trim();
+/* Submit review */
+document.getElementById("submitBtn").onclick = async () => {
+  const name = nameInput.value.trim();
   const rating = Number(ratingInput.value);
-  const review = document.getElementById("review").value.trim();
-  const files = document.getElementById("images").files;
+  const review = reviewInput.value.trim();
+  const files = images.files;
 
-  if (!name || !rating || !review) { alert("Fill all fields and select rating"); return; }
-  if (!productId) { alert("Product ID missing"); return; }
+  if (!name || !rating || !review) return alert("Fill all fields");
 
   const imageUrls = files.length ? await uploadImages(files) : [];
 
-  const { error } = await supabase.from("reviews").insert([{
+  await supabase.from("reviews").insert([{
     product_id: productId,
     customer_name: name,
     rating,
@@ -6363,72 +6359,42 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     images: imageUrls
   }]);
 
-  if (error) { alert("Failed: " + error.message); return; }
-
-  alert("Review submitted!");
-  document.getElementById("name").value = "";
-  document.getElementById("review").value = "";
-  document.getElementById("images").value = "";
-  ratingInput.value = "";
-  stars.forEach(s => s.classList.remove("active"));
-
   loadReviews();
-});
+};
 
-// Load reviews
+/* Load reviews */
 async function loadReviews() {
   const list = document.getElementById("reviewsList");
   list.innerHTML = "";
 
-  if (!productId) return;
-
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("reviews")
-    .select("customer_name, rating, review, images")
+    .select("customer_name,rating,review,images")
     .eq("product_id", productId)
-    .order("created_at", { ascending: false });
+    .order("created_at",{ascending:false});
 
-  if (error) { list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>"; return; }
-  if (!data?.length) { 
-    list.innerHTML = "<p class='no-reviews'>No reviews yet</p>"; 
-    document.getElementById("avgStars").textContent = "☆ ☆ ☆ ☆ ☆"; 
-    document.getElementById("avgNumber").textContent = "0.0 (0 reviews)"; 
-    return; 
-  }
-
-  // Average rating
-  const totalRating = data.reduce((sum, r) => sum + Number(r.rating), 0);
-  const avgRating = (totalRating / data.length).toFixed(1);
-  const fullStars = Math.floor(avgRating);
-  const halfStar = avgRating - fullStars >= 0.5 ? 1 : 0;
-  const emptyStars = 5 - fullStars - halfStar;
-  document.getElementById("avgStars").textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
-  document.getElementById("avgNumber").textContent = `${avgRating} (${data.length} reviews)`;
-
-  // Display reviews
   data.forEach(r => {
     let imagesHtml = "";
-     if (Array.isArray(r.images)) {
-  const validImages = r.images.filter(
-    url => typeof url === "string" && url.startsWith("http")
-  );
 
-  if (validImages.length) {
-    imagesHtml = `
-      <div class="review-images">
-        ${validImages.map(url =>
-          `<img src="${url}" alt="Review Image" loading="lazy">`
-        ).join("")}
-      </div>
-    `;
-  }
-}
+    if (Array.isArray(r.images)) {
+      const validImages = r.images.filter(url =>
+        typeof url === "string" && url.startsWith("http")
+      );
+
+      if (validImages.length) {
+        imagesHtml = `
+          <div class="review-images">
+            ${validImages.map(url => `<img src="${url}" loading="lazy">`).join("")}
+          </div>
+        `;
+      }
+    }
 
     list.innerHTML += `
-      <div class="review-box">
+      <div class="glass-card review-box">
         <div class="review-header">
-          <span class="review-name">${r.customer_name}</span>
-          <span class="review-stars">${"★".repeat(Number(r.rating))}</span>
+          <span>${r.customer_name}</span>
+          <span class="review-stars">${"★".repeat(r.rating)}</span>
         </div>
         <div class="review-text">${r.review}</div>
         ${imagesHtml}
@@ -6437,7 +6403,6 @@ async function loadReviews() {
   });
 }
 
-// Initial load
 loadReviews();
 </script>
 

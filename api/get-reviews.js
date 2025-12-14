@@ -6,13 +6,27 @@ const supabase = createClient(
 );
 
 export default async function handler(req, res) {
-  const { product_id } = req.query;
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-  const { data } = await supabase
-    .from('reviews')
-    .select('*')
-    .eq('product_id', product_id)
-    .order('created_at', { ascending: false });
+  try {
+    const product_id = req.query.product_id;
 
-  res.json(data);
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('product_id', product_id)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    res.status(200).json(data);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 }

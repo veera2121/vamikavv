@@ -11,8 +11,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = await req.json();
-    const { product_id, name, rating, review } = body;
+    const { product_id, name, rating, review } = req.body; // ✅ FIX
 
     if (!product_id || !name || !rating || !review) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -22,8 +21,8 @@ export default async function handler(req, res) {
       .from('reviews')
       .insert([{
         product_id,
-        customer_name: name,   // ✅ match column
-        rating: parseInt(rating),
+        customer_name: name,
+        rating: Number(rating),
         review,
         is_verified: false,
         image_url: null
@@ -34,10 +33,10 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: error.message });
     }
 
-    res.status(200).json({ success: true });
+    return res.status(200).json({ success: true });
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: 'Server error' });
   }
 }

@@ -3840,236 +3840,181 @@ button:hover {
  
  /* ===== GLOBAL GLASS BACKGROUND ===== */
 
-/* ===== Reviews Glass UI ===== */
-.reviews-wrapper {
+/* ===== GLOBAL ===== */
+
+/* ===== PAGE BASE ===== */
+/* ===== Namespaced Review System CSS ===== */
+.myreviews-wrapper {
   margin: 40px 0;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
-.glass-card {
+.myreview-card {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(14px);
   border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-.review-form {
-  max-width: 480px;
+  padding: 28px;
+  max-width: 520px;
   margin: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.review-form input,
-.review-form textarea {
+.myreview-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.myreview-card input,
+.myreview-card textarea {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 12px;
-  border: none;
+  border: 1px solid #ddd;
   margin-bottom: 14px;
   outline: none;
+  background: rgba(255,255,255,0.6);
 }
 
-.review-form textarea {
-  height: 90px;
+.myreview-card textarea {
+  height: 100px;
   resize: none;
 }
 
-.review-form button {
+.myreview-card button {
   width: 100%;
-  padding: 12px;
-  border-radius: 14px;
+  padding: 14px;
   border: none;
+  border-radius: 12px;
   background: linear-gradient(135deg,#4caf50,#2e7d32);
   color: #fff;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 12px;
 }
 
-.stars {
+.myreview-stars {
   display: flex;
-  gap: 6px;
-  font-size: 26px;
-  margin-bottom: 12px;
+  gap: 8px;
+  font-size: 28px;
+  margin-bottom: 16px;
   cursor: pointer;
 }
 
-.stars span {
+.myreview-stars span {
   color: #ccc;
+  transition: transform 0.2s, color 0.2s;
 }
 
-.stars span.active {
-  color: #ffc107;
+.myreview-stars span.active {
+  color: #389e09;
+  transform: scale(1.2);
 }
 
-/* Average */
-.average-rating {
+/* Average Rating */
+.myaverage-rating {
   text-align: center;
-  margin: 25px 0;
+  margin: 30px 0;
 }
 
-.average-rating span {
-  font-size: 26px;
+.myaverage-rating span {
+  font-size: 40px;
   color: #ffc107;
+}
+
+.myaverage-rating div {
+  color: #eeeaea;
+  font-size: 35px;
+  margin-top: 5px;
 }
 
 /* Reviews List */
-.reviews-container {
+.myreviews-container {
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
-.review-box {
-  min-width: 280px;
-  background: rgba(255,255,255,0.18);
+.myreview-box {
+  min-width: 500px;
+  background: rgb(255, 255, 255);
   backdrop-filter: blur(12px);
   border-radius: 18px;
-  padding: 18px;
+  padding: 22px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.review-header {
+.myreview-header {
   display: flex;
   justify-content: space-between;
   font-weight: 600;
-}
-
-.review-stars {
-  color: #ffc107;
-}
-
-.review-text {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #222;
-}
-
-/* Images */
-.review-images {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-.review-images img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-/* ===== REVIEW SYSTEM ===== */
-
-.review-card {
-  background: #fff;
-  max-width: 520px;
-  margin: 40px auto;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-.review-card h2 {
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.review-card input,
-.review-card textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 14px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
-
-.review-card textarea {
-  height: 90px;
-  resize: none;
-}
-
-.stars {
-  display: flex;
-  gap: 6px;
-  font-size: 26px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.stars span {
-  color: #ccc;
-}
-
-.stars span.active {
-  color: #ffc107;
-}
-
-.review-card button {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  background: #4CAF50;
-  color: #fff;
-  border-radius: 10px;
   font-size: 15px;
-  cursor: pointer;
 }
 
-.average-rating {
-  text-align: center;
-  margin: 25px 0;
+.myreview-stars-display {
+  color: #1a6d06;
+  font-size: 18px;
 }
 
-.average-rating span {
-  font-size: 26px;
-  color: #ffc107;
-}
 
-.reviews-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 10px;
-}
-
-.review-box {
-  min-width: 280px;
-  background: #fff;
-  padding: 18px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-}
-
-.review-stars {
-  color: #ffc107;
-}
-
-.review-text {
-  margin-top: 8px;
+.myreview-text {
+  color: #030303;
+  line-height: 1.6;
   font-size: 14px;
-  color: #555;
+  white-space: pre-wrap;
+  flex: 1;
+
+  /* 🔑 FIX LONG TEXT ISSUE */
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-.review-images {
+/* Review Images */
+.myreview-images {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 12px;
   justify-content: flex-end;
+  margin-top: 12px;
 }
 
-.review-images img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 10px;
+.myreview-images img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 14px;
 }
 
+/* Scrollbar */
+.myreviews-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.myreviews-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+
+  .myreview-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .myreview-images img {
+    width: 300px;
+    height: 200px;
+  }
+
+  .myreview-box {
+    min-width: 90%;
+  }
+}
 
   </style> 
 </head>
@@ -4722,34 +4667,6 @@ button:hover {
 
 <!-- ===== REVIEW SYSTEM ===== -->
 
-<div class="review-card">
-  <h2>Write a Review</h2>
-
-  <input type="text" id="name" placeholder="Your Name">
-
-  <div class="stars" id="stars">
-    <span data-value="1">★</span>
-    <span data-value="2">★</span>
-    <span data-value="3">★</span>
-    <span data-value="4">★</span>
-    <span data-value="5">★</span>
-  </div>
-
-  <input type="hidden" id="rating">
-
-  <textarea id="review" placeholder="Write your review..."></textarea>
-
-  <input type="file" id="images" multiple accept="image/*">
-
-  <button id="submitBtn">Submit Review</button>
-</div>
-
-<div class="average-rating">
-  <span id="avgStars">☆ ☆ ☆ ☆ ☆</span>
-  <div id="avgNumber">0.0 (0 reviews)</div>
-</div>
-
-<div class="reviews-container" id="reviewsList"></div>
 
 
 
@@ -4789,6 +4706,44 @@ button:hover {
 </div>
 
 
+<!-- ===== Review System Start ===== -->
+<div class="myreviews-wrapper">
+
+  <!-- Review Form Card -->
+  <div class="myreview-card">
+    <h2>Write a Review</h2>
+    <input type="text" id="myreview-name" placeholder="Your Name" required>
+
+    <div class="myreview-stars" id="myreview-stars">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+    <input type="hidden" id="myreview-rating" required>
+
+    <textarea id="myreview-text" placeholder="Write your review..." required></textarea>
+    <label>Upload Images (optional)</label>
+    <input type="file" id="myreview-images" multiple accept="image/*">
+    <button id="myreview-submit">Submit Review</button>
+  </div>
+
+  <!-- Average Rating -->
+  <div class="myaverage-rating">
+    <span id="myavgStars">★ ★ ★ ★ ☆</span>
+    <div id="myavgNumber">0.0 (0 reviews)</div>
+  </div>
+
+  <!-- Reviews List -->
+  <section class="myreviews-section">
+    <h3>Customer Reviews</h3>
+    <div class="myreviews-container" id="myreviewsList"></div>
+  </section>
+
+</div>
+
+
 <section class="cards-section">
   <div class="cards-container">
     
@@ -4821,58 +4776,6 @@ button:hover {
 
   </div>
 </section>
-
-
-<!-- Explore Button 
-<div class="explore-collection">
-  <button id="exploreBtn" class="btn-explore">Explore Our products</button>
-  </div>
-
- Featured Collection (Hidden Initially) 
-  <div id="featuredWrapper" style="display: none;">
-  <div class="section-title">
-    <h3 style="margin:0">Featured Collection</h3>
-    <div style="color:var(--muted)"></div>
-  </div>
-
- 
-    <div class="grid" id="productGrid">
-      <!-- Product cards inserted by JS 
-    </div>
-  </section>
-  </div> -->
-
-
-          
- <!--  <section class="customer-reviews">
-  <h2>What Our Customers Say</h2>
-  <p class="cta-text">Share your experience & win a surprise reward 🎁</p>
-⭐ Review Form 
-<form class="review-form" id="reviewForm">
-    <div class="rating" id="starRating">
-        <span data-value="1">★</span>
-        <span data-value="2">★</span>
-        <span data-value="3">★</span>
-        <span data-value="4">★</span>
-        <span data-value="5">★</span>
-    </div>
-
-    <input id="reviewName" placeholder="Your Name">
-    <textarea id="reviewText" placeholder="Write your review..." required></textarea>
-    <input type="file" id="reviewImage" accept="image/*">
-
-    <button type="submit">Submit Review ✅</button>
-</form>
-
-<!-- 🎁 Reward Popup 
-<div class="reward-popup" id="rewardPopup">
-    <span class="close-btn" onclick="closePopup()">×</span>
-    <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="gift">
-    <span>🎉 Thanks! You’ve earned a Reward!</span>
-</div>
-
-<!-- 💬 Reviews List
-<div class="reviews-list" id="reviewsList"></div>-->
 
 
 
@@ -6400,65 +6303,45 @@ const supabase = window.supabase.createClient(
   "https://ukjnvxxobmnboohrucqo.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
 );
-/* ================== FIXED PRODUCT ID ================== */
-/* Home page does NOT have URL params */
-const productId = "home-page";   // ✅ IMPORTANT
 
-/* ================== STAR RATING ================== */
-const stars = document.querySelectorAll("#stars span");
-const ratingInput = document.getElementById("rating");
 
+const productId = "home-page";
+ 
+const stars = document.querySelectorAll("#myreview-stars span");
+const ratingInput = document.getElementById("myreview-rating");
+
+// Star selection
 stars.forEach(star => {
   star.addEventListener("click", () => {
     ratingInput.value = star.dataset.value;
-    stars.forEach(s =>
-      s.classList.toggle("active", s.dataset.value <= star.dataset.value)
-    );
+    stars.forEach(s => s.classList.toggle("active", s.dataset.value <= star.dataset.value));
   });
 });
 
-/* ================== IMAGE UPLOAD ================== */
+// Upload images
 async function uploadImages(files) {
   const urls = [];
-
   for (const file of files) {
-    const ext = file.name.split(".").pop();
-    const fileName = `reviews/${Date.now()}-${Math.random()
-      .toString(36)
-      .slice(2)}.${ext}`;
+    const ext = file.name.split('.').pop();
+    const fileName = `reviews/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await supabase.storage.from('reviews-images').upload(fileName, file);
+    if (error) { console.error(error); continue; }
 
-    const { error } = await supabase
-      .storage
-      .from("reviews-images")
-      .upload(fileName, file);
-
-    if (error) {
-      console.error("Upload error:", error);
-      continue;
-    }
-
-    const { data } = supabase
-      .storage
-      .from("reviews-images")
-      .getPublicUrl(fileName);
-
+    const { data } = supabase.storage.from('reviews-images').getPublicUrl(fileName);
     if (data?.publicUrl) urls.push(data.publicUrl);
   }
-
   return urls;
 }
 
-/* ================== SUBMIT REVIEW ================== */
-document.getElementById("submitBtn").addEventListener("click", async () => {
-  const name = document.getElementById("name").value.trim();
+// Submit review
+document.getElementById("myreview-submit").addEventListener("click", async () => {
+  const name = document.getElementById("myreview-name").value.trim();
   const rating = Number(ratingInput.value);
-  const review = document.getElementById("review").value.trim();
-  const files = document.getElementById("images").files;
+  const review = document.getElementById("myreview-text").value.trim();
+  const files = document.getElementById("myreview-images").files;
 
-  if (!name || !rating || !review) {
-    alert("Please fill all fields & select rating");
-    return;
-  }
+  if (!name || !rating || !review) { alert("Fill all fields and select rating"); return; }
+  if (!productId) { alert("Product ID missing"); return; }
 
   const imageUrls = files.length ? await uploadImages(files) : [];
 
@@ -6470,25 +6353,24 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     images: imageUrls
   }]);
 
-  if (error) {
-    alert("Failed: " + error.message);
-    return;
-  }
+  if (error) { alert("Failed: " + error.message); return; }
 
-  // Reset form
-  document.getElementById("name").value = "";
-  document.getElementById("review").value = "";
-  document.getElementById("images").value = "";
+  alert("Review submitted!");
+  document.getElementById("myreview-name").value = "";
+  document.getElementById("myreview-text").value = "";
+  document.getElementById("myreview-images").value = "";
   ratingInput.value = "";
   stars.forEach(s => s.classList.remove("active"));
 
   loadReviews();
 });
 
-/* ================== LOAD REVIEWS ================== */
+// Load reviews
 async function loadReviews() {
-  const list = document.getElementById("reviewsList");
+  const list = document.getElementById("myreviewsList");
   list.innerHTML = "";
+
+  if (!productId) return;
 
   const { data, error } = await supabase
     .from("reviews")
@@ -6496,61 +6378,52 @@ async function loadReviews() {
     .eq("product_id", productId)
     .order("created_at", { ascending: false });
 
-  if (error) {
-    list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
-    return;
+  if (error) { list.innerHTML = "<p class='myreview-text'>Failed to load reviews</p>"; return; }
+  if (!data?.length) { 
+    list.innerHTML = "<p class='myreview-text'>No reviews yet</p>"; 
+    document.getElementById("myavgStars").textContent = "☆ ☆ ☆ ☆ ☆"; 
+    document.getElementById("myavgNumber").textContent = "0.0 (0 reviews)"; 
+    return; 
   }
 
-  if (!data || !data.length) {
-    list.innerHTML = "<p class='no-reviews'>No reviews yet</p>";
-    document.getElementById("avgStars").textContent = "☆ ☆ ☆ ☆ ☆";
-    document.getElementById("avgNumber").textContent = "0.0 (0 reviews)";
-    return;
-  }
+  // Average rating
+  const totalRating = data.reduce((sum, r) => sum + Number(r.rating), 0);
+  const avgRating = (totalRating / data.length).toFixed(1);
+  const fullStars = Math.floor(avgRating);
+  const halfStar = avgRating - fullStars >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
+  document.getElementById("myavgStars").textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
+  document.getElementById("myavgNumber").textContent = `${avgRating} (${data.length} reviews)`;
 
-  /* ===== Average Rating ===== */
-  const total = data.reduce((s, r) => s + r.rating, 0);
-  const avg = (total / data.length).toFixed(1);
-  const fullStars = Math.floor(avg);
-  const emptyStars = 5 - fullStars;
-
-  document.getElementById("avgStars").textContent =
-    "★".repeat(fullStars) + "☆".repeat(emptyStars);
-  document.getElementById("avgNumber").textContent =
-    `${avg} (${data.length} reviews)`;
-
-  /* ===== Review Cards ===== */
+  // Display reviews
   data.forEach(r => {
     let imagesHtml = "";
-
-    if (Array.isArray(r.images) && r.images.length) {
-      imagesHtml = `
-        <div class="review-images">
-          ${r.images
-            .filter(url => typeof url === "string" && url.startsWith("http"))
-            .map(url => `<img src="${url}" loading="lazy">`)
-            .join("")}
-        </div>
-      `;
+    if (Array.isArray(r.images)) {
+      const validImages = r.images.filter(url => typeof url === "string" && url.startsWith("http"));
+      if (validImages.length) {
+        imagesHtml = `<div class="myreview-images">
+          ${validImages.map(url => `<img src="${url}" alt="Review Image" loading="lazy">`).join("")}
+        </div>`;
+      }
     }
 
     list.innerHTML += `
-      <div class="review-box">
-        <div class="review-header">
+      <div class="myreview-box">
+        <div class="myreview-header">
           <span>${r.customer_name}</span>
-          <span class="review-stars">${"★".repeat(r.rating)}</span>
+          <span class="myreview-stars-display">${"★".repeat(Number(r.rating))}</span>
         </div>
-        <div class="review-text">${r.review}</div>
+        <div class="myreview-text">${r.review}</div>
         ${imagesHtml}
       </div>
     `;
   });
 }
 
-/* ================== INIT ================== */
+// Initial load
 loadReviews();
 </script>
-
+<!-- ===== Review System End ===== -->
 
 </body>
 </html>

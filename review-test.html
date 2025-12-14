@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Write Review</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 
 <body>
+
+  <h2 style="text-align:center;">Write a Review</h2>
 
   <!-- REVIEW FORM -->
   <form id="reviewForm">
@@ -14,14 +54,17 @@
       <option value="">Rating</option>
       <option value="5">⭐⭐⭐⭐⭐</option>
       <option value="4">⭐⭐⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="1">⭐</option>
     </select>
 
-    <textarea id="review" placeholder="Write your review"></textarea>
+    <textarea id="review" placeholder="Write your review" required></textarea>
 
     <button type="submit">Submit Review</button>
   </form>
 
-  <!-- ✅ ADD SCRIPT HERE -->
+  <!-- SCRIPT -->
   <script>
   const params = new URLSearchParams(window.location.search);
   const productId = params.get('product_id');
@@ -46,15 +89,15 @@
       const data = await res.json();
 
       if (!res.ok) {
-        alert('Error: ' + data.error);
+        alert('❌ ' + data.error);
         return;
       }
 
       alert('✅ Review submitted successfully');
-      window.history.back();
+      window.location.href = '/product.html'; // redirect to product page
 
     } catch (err) {
-      alert('Network error');
+      alert('Network error. Please try again.');
       console.error(err);
     }
   });

@@ -97,7 +97,7 @@ const supabase = window.supabase.createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
 );
 
-const productId = new URLSearchParams(window.location.search).get("product_id"); // keep as string
+const productId = new URLSearchParams(window.location.search).get("product_id"); 
 const stars = document.querySelectorAll("#stars span");
 const ratingInput = document.getElementById("rating");
 
@@ -110,7 +110,7 @@ stars.forEach(star => {
   });
 });
 
-// Upload images to Supabase Storage
+// Upload images to Supabase Storage and return public URLs
 async function uploadImages(files) {
   const urls = [];
   for (const file of files) {
@@ -118,8 +118,8 @@ async function uploadImages(files) {
     const fileName = `reviews/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error } = await supabase.storage.from('reviews-images').upload(fileName, file);
     if (error) { console.error(error); continue; }
-    const { publicUrl } = supabase.storage.from('reviews-images').getPublicUrl(fileName);
-    urls.push(publicUrl);
+    const { data } = supabase.storage.from('reviews-images').getPublicUrl(fileName);
+    if (data && data.publicUrl) urls.push(data.publicUrl);
   }
   return urls;
 }
@@ -141,7 +141,7 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     customer_name: name,
     rating: rating,
     review: review,
-    images: imageUrls
+    images: imageUrls.length ? imageUrls : null
   }]);
 
   if (error) { console.error(error); alert("Failed to submit review: " + error.message); return; }
@@ -176,7 +176,7 @@ async function loadReviews() {
     return; 
   }
 
-  // Average rating
+  // Calculate average rating
   const totalRating = data.reduce((sum, r) => sum + Number(r.rating), 0);
   const avgRating = (totalRating / data.length).toFixed(1);
   const fullStars = Math.floor(avgRating);

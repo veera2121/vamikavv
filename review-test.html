@@ -1,181 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Product Reviews</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-/* ===== BASIC RESET ===== */
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background: #f5f6fa;
-  padding: 20px;
-}
-
-/* ===== REVIEW FORM ===== */
-.review-box {
-  max-width: 500px;
-  margin: auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.review-box h2 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.review-box input,
-.review-box select,
-.review-box textarea,
-.review-box button {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.review-box textarea {
-  resize: none;
-  height: 80px;
-}
-
-.review-box input[type="file"] {
-  padding: 5px;
-}
-
-.review-box button {
-  background: #2d89ff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.review-box button:hover {
-  background: #1b6fe0;
-}
-
-/* ===== REVIEWS LIST ===== */
-#reviews {
-  max-width: 500px;
-  margin: 25px auto;
-}
-
-.review-card {
-  background: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-.review-card img {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
-.stars {
-  color: #f5a623;
-  font-size: 18px;
-}
-</style>
+  <title>Write Review</title>
 </head>
 
 <body>
 
-<!-- ===== REVIEW FORM ===== -->
-<div class="review-box">
-  <h2>Write a Review</h2>
-
-  <form id="reviewForm" enctype="multipart/form-data">
-    <input type="hidden" id="product_id" value="101">
-
+  <!-- REVIEW FORM -->
+  <form id="reviewForm">
     <input type="text" id="name" placeholder="Your Name" required>
 
     <select id="rating" required>
-      <option value="">Select Rating</option>
-      <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-      <option value="4">⭐⭐⭐⭐ (4)</option>
-      <option value="3">⭐⭐⭐ (3)</option>
-      <option value="2">⭐⭐ (2)</option>
-      <option value="1">⭐ (1)</option>
+      <option value="">Rating</option>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
     </select>
 
     <textarea id="review" placeholder="Write your review"></textarea>
 
-    <input type="file" id="image" accept="image/*">
-
     <button type="submit">Submit Review</button>
   </form>
-</div>
 
-<!-- ===== REVIEWS DISPLAY ===== -->
-<div id="reviews"></div>
+  <!-- ✅ ADD SCRIPT HERE -->
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('product_id');
 
-<script>
-const productId = 101;
+  document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-/* ===== SUBMIT REVIEW ===== */
-document.getElementById('reviewForm').addEventListener('submit', async e => {
-  e.preventDefault();
+    const payload = {
+      product_id: productId,
+      name: document.getElementById('name').value,
+      rating: document.getElementById('rating').value,
+      review: document.getElementById('review').value
+    };
 
-  const formData = new FormData();
-  formData.append('product_id', productId);
-  formData.append('name', document.getElementById('name').value);
-  formData.append('rating', document.getElementById('rating').value);
-  formData.append('review', document.getElementById('review').value);
+    try {
+      const res = await fetch('/api/add-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-  const imageFile = document.getElementById('image').files[0];
-  if (imageFile) formData.append('image', imageFile);
+      const data = await res.json();
 
-  const res = await fetch('/api/add-review', {
-    method: 'POST',
-    body: formData
+      if (!res.ok) {
+        alert('Error: ' + data.error);
+        return;
+      }
+
+      alert('✅ Review submitted successfully');
+      window.history.back();
+
+    } catch (err) {
+      alert('Network error');
+      console.error(err);
+    }
   });
-
-  if (res.ok) {
-    alert('Review submitted successfully!');
-    document.getElementById('reviewForm').reset();
-    loadReviews();
-  } else {
-    alert('Error submitting review');
-  }
-});
-
-/* ===== LOAD REVIEWS ===== */
-async function loadReviews() {
-  const res = await fetch(`/api/get-reviews?product_id=${productId}`);
-  const data = await res.json();
-
-  const reviewsDiv = document.getElementById('reviews');
-  reviewsDiv.innerHTML = '';
-
-  data.forEach(r => {
-    reviewsDiv.innerHTML += `
-      <div class="review-card">
-        <div class="stars">${'⭐'.repeat(r.rating)}</div>
-        <p>${r.review || ''}</p>
-        ${r.image_url ? `<img src="${r.image_url}">` : ''}
-        <small>— ${r.customer_name}</small>
-      </div>
-    `;
-  });
-}
-
-loadReviews();
-</script>
+  </script>
 
 </body>
 </html>

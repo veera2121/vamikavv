@@ -6,64 +6,159 @@
 <title>Product Reviews</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     background: #f4f6f8;
     padding: 20px;
   }
 
-  .review-card, .review-box {
+  /* Review Form */
+  .review-card {
     background: #fff;
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .review-card h2 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+  }
+
+  .review-card input, .review-card textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .review-card textarea {
+    resize: none;
+    height: 90px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    cursor: pointer;
   }
 
   .stars span {
-    font-size: 24px;
     color: #ddd;
-    cursor: pointer;
   }
 
   .stars span.active {
     color: #ffc107;
   }
 
-  button {
+  .review-card button {
     padding: 12px;
     width: 100%;
-    background: #4CAF50;
+    background: linear-gradient(135deg, #4CAF50, #43a047);
     color: white;
     border: none;
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.2s;
   }
 
-  button:hover {
-    background: #43a047;
+  .review-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+
+  /* Average Rating */
+  .average-rating {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .average-rating span {
+    font-size: 28px;
+    color: #ffc107;
+  }
+
+  /* Reviews Section */
+  #reviews-section {
+    margin-top: 40px;
+  }
+
+  #reviews-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .reviews-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+  }
+
+  .review-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 280px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .review-header {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
-    margin-bottom: 8px;
   }
 
   .review-text {
     color: #555;
+    line-height: 1.5;
+  }
+
+  .review-stars {
+    color: #ffc107;
+    font-size: 18px;
   }
 
   .no-reviews {
     text-align: center;
     color: #888;
     font-style: italic;
+    width: 100%;
+  }
+
+  /* Scrollbar style */
+  .reviews-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .reviews-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+  }
+
+  /* Responsive: 3 reviews on desktop, 1 review on mobile */
+  @media (min-width: 768px) {
+    .review-box {
+      min-width: calc((100% - 40px) / 3); /* 3 reviews per view, 20px gap */
+    }
+  }
+
+  @media (max-width: 767px) {
+    .review-box {
+      min-width: 90%;
+    }
   }
 </style>
 </head>
@@ -84,116 +179,138 @@
   <input type="hidden" id="rating" required>
 
   <textarea id="review" placeholder="Write your review..." required></textarea>
-
   <button id="submitBtn">Submit Review</button>
+</div>
+
+<!-- Average Rating -->
+<div class="average-rating" id="averageRating">
+  <span id="avgStars">★ ★ ★ ★ ☆</span>
+  <div id="avgNumber">0.0 (0 reviews)</div>
 </div>
 
 <!-- Reviews Display -->
 <section id="reviews-section">
-  <h3 style="text-align:center;">Customer Reviews</h3>
-  <div id="reviewsList"></div>
+  <h3>Customer Reviews</h3>
+  <div class="reviews-container" id="reviewsList"></div>
 </section>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
-  const supabase = window.supabase.createClient(
-    "https://ukjnvxxobmnboohrucqo.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
-  );
+const supabase = window.supabase.createClient(
+  "https://ukjnvxxobmnboohrucqo.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVram52eHhvYm1uYm9vaHJ1Y3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MDQ1NzgsImV4cCI6MjA4MTI4MDU3OH0.8RE9DGlVMWsr_umCaETbhuBDII111PcFXBTddFLmMUE"
+);
 
-  const params = new URLSearchParams(window.location.search);
-  const productId = params.get("product_id");
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("product_id");
 
-  const stars = document.querySelectorAll("#stars span");
-  const ratingInput = document.getElementById("rating");
+// Star rating selection
+const stars = document.querySelectorAll("#stars span");
+const ratingInput = document.getElementById("rating");
 
-  // Star rating selection
-  stars.forEach(star => {
-    star.addEventListener("click", () => {
-      const value = star.dataset.value;
-      ratingInput.value = value;
-      stars.forEach(s => s.classList.toggle("active", s.dataset.value <= value));
-    });
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    const value = star.dataset.value;
+    ratingInput.value = value;
+    stars.forEach(s => s.classList.toggle("active", s.dataset.value <= value));
   });
+});
 
-  // Submit review
-  document.getElementById("submitBtn").addEventListener("click", async () => {
-    const name = document.getElementById("name").value.trim();
-    const rating = Number(ratingInput.value);
-    const review = document.getElementById("review").value.trim();
+// Submit review
+document.getElementById("submitBtn").addEventListener("click", async () => {
+  const name = document.getElementById("name").value.trim();
+  const rating = Number(ratingInput.value);
+  const review = document.getElementById("review").value.trim();
 
-    if (!name || !rating || !review) {
-      alert("Please fill all fields and select a rating.");
-      return;
-    }
-
-    if (!productId) {
-      alert("Product ID missing in URL!");
-      return;
-    }
-
-    const { error } = await supabase.from("reviews").insert([{
-      product_id: productId,
-      customer_name: name,
-      rating: rating,
-      review: review
-    }]);
-
-    if (error) {
-      console.error(error);
-      alert("Failed to submit review: " + error.message);
-    } else {
-      alert("Review submitted!");
-      document.getElementById("name").value = "";
-      document.getElementById("review").value = "";
-      ratingInput.value = "";
-      stars.forEach(s => s.classList.remove("active"));
-      loadReviews(); // refresh reviews instantly
-    }
-  });
-
-  // Load reviews
-  async function loadReviews() {
-    const list = document.getElementById("reviewsList");
-    list.innerHTML = "";
-
-    if (!productId) {
-      list.innerHTML = "<p class='no-reviews'>Product ID missing</p>";
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from("reviews")
-      .select("customer_name, rating, review, created_at")
-      .eq("product_id", productId)
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error(error);
-      list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
-      return;
-    }
-
-    if (!data || data.length === 0) {
-      list.innerHTML = "<p class='no-reviews'>No reviews yet</p>";
-      return;
-    }
-
-    data.forEach(r => {
-      list.innerHTML += `
-        <div class="review-box">
-          <div class="review-header">
-            <span class="review-name">${r.customer_name}</span>
-            <span class="review-stars">${"★".repeat(r.rating)}</span>
-          </div>
-          <div class="review-text">${r.review}</div>
-        </div>
-      `;
-    });
+  if (!name || !rating || !review) {
+    alert("Please fill all fields and select a rating.");
+    return;
   }
 
-  // Load reviews on page load
-  loadReviews();
+  if (!productId) {
+    alert("Product ID missing in URL!");
+    return;
+  }
+
+  const { error } = await supabase.from("reviews").insert([{
+    product_id: productId,
+    customer_name: name,
+    rating: rating,
+    review: review
+  }]);
+
+  if (error) {
+    console.error(error);
+    alert("Failed to submit review: " + error.message);
+  } else {
+    alert("Review submitted!");
+    document.getElementById("name").value = "";
+    document.getElementById("review").value = "";
+    ratingInput.value = "";
+    stars.forEach(s => s.classList.remove("active"));
+    loadReviews(); // refresh reviews and average rating
+  }
+});
+
+// Load reviews and calculate average
+async function loadReviews() {
+  const list = document.getElementById("reviewsList");
+  list.innerHTML = "";
+
+  if (!productId) {
+    list.innerHTML = "<p class='no-reviews'>Product ID missing</p>";
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("customer_name, rating, review, created_at")
+    .eq("product_id", productId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    list.innerHTML = "<p class='no-reviews'>Failed to load reviews</p>";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    list.innerHTML = "<p class='no-reviews'>No reviews yet</p>";
+    document.getElementById("avgStars").textContent = "☆ ☆ ☆ ☆ ☆";
+    document.getElementById("avgNumber").textContent = "0.0 (0 reviews)";
+    return;
+  }
+
+  // Calculate average
+  const totalRating = data.reduce((sum, r) => sum + r.rating, 0);
+  const avgRating = (totalRating / data.length).toFixed(1);
+
+  // Stars (round to nearest 0.5)
+  const fullStars = Math.floor(avgRating);
+  const halfStar = avgRating - fullStars >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
+  const starsDisplay = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
+
+  document.getElementById("avgStars").textContent = starsDisplay;
+  document.getElementById("avgNumber").textContent = `${avgRating} (${data.length} reviews)`;
+
+  // Display reviews
+  data.forEach(r => {
+    list.innerHTML += `
+      <div class="review-box">
+        <div class="review-header">
+          <span class="review-name">${r.customer_name}</span>
+          <span class="review-stars">${"★".repeat(r.rating)}</span>
+        </div>
+        <div class="review-text">${r.review}</div>
+      </div>
+    `;
+  });
+}
+
+// Initial load
+loadReviews();
 </script>
+
 </body>
 </html>

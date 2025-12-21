@@ -3969,8 +3969,7 @@ button:hover {
   </div>
 
   <!-- Arrows -->
-  <button class="manual-carousel-btn manual-prev-btn" onclick="manualMoveSlide(-1)">❮</button>
-  <button class="manual-carousel-btn manual-next-btn" onclick="manualMoveSlide(1)">❯</button>
+
 
   <!-- Dots -->
   <div class="manual-carousel-dots" id="manualCarouselDots"></div>
@@ -6350,100 +6349,6 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- ===== Review System End ===== -->
 
 
-<!-- ===== Review System End ===== -->
-<script>
-let manualSlidesPerView = window.innerWidth <= 768 ? 1 : 2;
-let manualCurrentIndex = manualSlidesPerView;
-
-const manualTrack = document.getElementById("manualCarouselTrack");
-let manualItems = document.querySelectorAll(".manual-carousel-item");
-const manualDotsBox = document.getElementById("manualCarouselDots");
-
-// ---- CLONE SLIDES FOR INFINITE EFFECT ----
-function manualCloneSlides() {
-  const items = [...manualItems];
-
-  // Clone last slides to start
-  items.slice(-manualSlidesPerView).forEach(item => {
-    manualTrack.prepend(item.cloneNode(true));
-  });
-
-  // Clone first slides to end
-  items.slice(0, manualSlidesPerView).forEach(item => {
-    manualTrack.append(item.cloneNode(true));
-  });
-
-  manualItems = document.querySelectorAll(".manual-carousel-item");
-}
-
-manualCloneSlides();
-
-// ---- POSITION SLIDER INIT ----
-function manualSetPosition(noAnimation = false) {
-  if (noAnimation) manualTrack.style.transition = "none";
-  else manualTrack.style.transition = "transform 0.4s ease-in-out";
-
-  const slideWidth = manualItems[0].offsetWidth;
-  manualTrack.style.transform =
-    `translateX(-${manualCurrentIndex * slideWidth}px)`;
-}
-
-// ---- DOTS ----
-function manualCreateDots() {
-  manualDotsBox.innerHTML = "";
-  const realSlides = manualItems.length - manualSlidesPerView * 2;
-  const totalDots = Math.ceil(realSlides / manualSlidesPerView);
-
-  for (let i = 0; i < totalDots; i++) {
-    const dot = document.createElement("span");
-    dot.classList.add("manual-carousel-dot");
-    if (i === manualCurrentIndex - manualSlidesPerView) {
-      dot.classList.add("active");
-    }
-    dot.onclick = () => manualGoToSlide(i);
-    manualDotsBox.appendChild(dot);
-  }
-}
-
-// ---- MOVE SLIDE ----
-function manualMoveSlide(step) {
-  manualCurrentIndex += step;
-  manualSetPosition();
-}
-
-// ---- DOT CLICK ----
-function manualGoToSlide(dotIndex) {
-  manualCurrentIndex = dotIndex + manualSlidesPerView;
-  manualSetPosition();
-}
-
-// ---- EDGE FIX (INFINITE LOOP) ----
-manualTrack.addEventListener("transitionend", () => {
-  const realSlides = manualItems.length - manualSlidesPerView * 2;
-
-  if (manualCurrentIndex >= realSlides + manualSlidesPerView) {
-    manualCurrentIndex = manualSlidesPerView;
-    manualSetPosition(true);
-  }
-
-  if (manualCurrentIndex < manualSlidesPerView) {
-    manualCurrentIndex = realSlides;
-    manualSetPosition(true);
-  }
-
-  manualCreateDots();
-});
-
-// ---- RESPONSIVE RESET ----
-window.addEventListener("resize", () => {
-  manualSlidesPerView = window.innerWidth <= 768 ? 1 : 2;
-  location.reload(); // safest for infinite sliders
-});
-
-// INIT
-manualSetPosition(true);
-manualCreateDots();
-</script>
 </body>
 </html>
 

@@ -6444,11 +6444,7 @@ manualTrack.addEventListener("transitionend", () => {
   manualCreateDots();
 });
 
-// ---- RESPONSIVE RESET ----
-window.addEventListener("resize", () => {
-  manualSlidesPerView = window.innerWidth <= 768 ? 1 : 2;
-  location.reload(); // safest for infinite sliders
-});
+
 
 // INIT
 manualSetPosition(true);
